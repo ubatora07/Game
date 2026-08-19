@@ -63,3 +63,14 @@ Legacy content fields may remain for compatibility until their data schema is mi
 - any building/rank lacks registry coverage;
 - responsive QA falls back to 36px targets;
 - required surface/focus/touch tokens disappear.
+
+
+## Focus semantics
+
+Primary navigation and domain-hub action groups use roving focus. Arrow keys move within the active focus group; Home/End jump to its boundaries. Buttons expose deterministic `data-focus-group` / `data-focus-order` metadata so a future gamepad adapter can map directional input onto the same focus contract rather than inventing a parallel navigation model.
+
+Modal surfaces declare `role=dialog` and `aria-modal=true`, move focus into the opened modal, and restore focus to the previous control on close.
+
+## Geometry normalization boundary
+
+The shared application shell (`layout.css`) may not use raw pixel values for layout spacing, border radii, or box shadows. It must consume spacing/radius/shadow tokens. Dense optical exceptions use the explicit `--space-hairline` and `--space-micro` tokens. Legacy screen-local inline styles are being migrated separately and therefore P11-19/P11-20/P11-21 remain open until that debt is removed from active screens.

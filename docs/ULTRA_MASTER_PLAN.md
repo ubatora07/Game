@@ -438,7 +438,7 @@
 - [x] `P11-09` Define destructive confirmation style
 - [x] `P11-10` Define disabled style
 - [x] `P11-11` Define keyboard focus style
-- [ ] `P11-12` Define controller-ready focus semantics
+- [x] `P11-12` Define controller-ready focus semantics
 - [x] `P11-13` Replace navigation emoji with icons
 - [x] `P11-14` Replace building emoji with icons
 - [x] `P11-15` Replace rank emoji with badges/icons

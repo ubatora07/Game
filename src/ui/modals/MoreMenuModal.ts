@@ -27,14 +27,14 @@ export const MoreMenuModal: ModalInstance = {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 14px 10px;
+        padding: var(--space-3);
         background: var(--surface-stone);
         border: 1px solid var(--border-subtle);
         border-radius: var(--radius-md);
         color: var(--text-main);
         cursor: pointer;
         transition: all 0.15s ease;
-        gap: 6px;
+        gap: var(--space-2);
       ">
         <span style="width:28px;height:28px;color:${item.color};filter:drop-shadow(0 0 5px ${item.color}40);">${resolveUIIcon(item.iconId).fallbackSvg}</span>
         <span style="font-size: 12px; font-weight: bold;">${t(item.labelKey)}</span>
@@ -46,7 +46,7 @@ export const MoreMenuModal: ModalInstance = {
         ${t('modal.more.title')}
       </h2>
 
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-bottom:18px;">
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:var(--space-3); margin-bottom:var(--space-4);">
         ${gridHtml}
       </div>
 

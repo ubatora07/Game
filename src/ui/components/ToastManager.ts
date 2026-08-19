@@ -33,18 +33,19 @@ export class ToastManager {
     toast.style.cssText = `
       background: var(--surface-stone);
       border: 1px solid ${borderColor};
-      box-shadow: 0 4px 20px ${glowColor};
+      --toast-glow: ${glowColor};
+      box-shadow: var(--shadow-toast);
       color: #ffffff;
-      padding: 10px 18px;
+      padding: var(--space-2) var(--space-4);
       border-radius: var(--radius-sm);
       font-size: 13px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: var(--space-2);
       animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       pointer-events: auto;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-2);
       max-width: 320px;
     `;
 

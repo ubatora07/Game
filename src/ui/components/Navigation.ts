@@ -69,7 +69,7 @@ export class Navigation {
     this.lastRankIndex = s.rankIndex;
     this.el.innerHTML = '';
 
-    PRIMARY_DOMAINS.forEach((tab) => {
+    PRIMARY_DOMAINS.forEach((tab, focusIndex) => {
       const isUnlocked = s.rankIndex >= tab.minRankIndex;
       if (!isUnlocked) return;
 
@@ -80,6 +80,9 @@ export class Navigation {
       btn.id = `navBtn_${tab.id}`;
       btn.style.position = 'relative';
       btn.setAttribute('aria-label', t(tab.labelKey));
+      btn.dataset.focusGroup = 'primary-navigation';
+      btn.dataset.focusOrder = String(focusIndex);
+      btn.tabIndex = -1;
 
       if (isBattle) {
         btn.style.background = 'linear-gradient(135deg, rgba(120, 53, 15, 0.72), rgba(127, 29, 29, 0.72))';
@@ -92,6 +95,9 @@ export class Navigation {
         <span class="nav-label">${t(tab.labelKey)}</span>
         <span class="nav-badge" aria-hidden="true"></span>
       `;
+
+      btn.addEventListener('focus', () => this.setRovingFocus(btn));
+      btn.addEventListener('keydown', (event) => this.handleNavigationKeydown(event, btn));
 
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -108,7 +114,43 @@ export class Navigation {
     });
 
     this.updateActiveState();
+    this.ensureRovingFocusTarget();
     this.updateBadges();
+  }
+
+  private getFocusableButtons(): HTMLButtonElement[] {
+    return Array.from(this.el.querySelectorAll<HTMLButtonElement>('.nav-tab-btn'));
+  }
+
+  private setRovingFocus(target: HTMLButtonElement): void {
+    this.getFocusableButtons().forEach((button) => {
+      button.tabIndex = button === target ? 0 : -1;
+    });
+  }
+
+  private ensureRovingFocusTarget(): void {
+    const buttons = this.getFocusableButtons();
+    if (buttons.length === 0) return;
+    const activeTabId = getPrimaryDomainForScreen(this.currentScreen);
+    const active = activeTabId ? this.el.querySelector<HTMLButtonElement>(`#navBtn_${activeTabId}`) : null;
+    this.setRovingFocus(active ?? buttons[0]);
+  }
+
+  private handleNavigationKeydown(event: KeyboardEvent, current: HTMLButtonElement): void {
+    const buttons = this.getFocusableButtons();
+    const currentIndex = buttons.indexOf(current);
+    if (currentIndex < 0 || buttons.length === 0) return;
+
+    let nextIndex = currentIndex;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % buttons.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = buttons.length - 1;
+    else return;
+
+    event.preventDefault();
+    this.setRovingFocus(buttons[nextIndex]);
+    buttons[nextIndex].focus();
   }
 
   private setBadge(tabId: string, visible: boolean): void {
@@ -153,10 +195,11 @@ export class Navigation {
     const activeTabId = getPrimaryDomainForScreen(this.currentScreen);
     if (!activeTabId) return;
 
-    const activeBtn = this.el.querySelector(`#navBtn_${activeTabId}`);
+    const activeBtn = this.el.querySelector<HTMLButtonElement>(`#navBtn_${activeTabId}`);
     if (activeBtn) {
       activeBtn.classList.add('active');
       activeBtn.setAttribute('aria-current', 'page');
+      if (!this.el.contains(document.activeElement)) this.setRovingFocus(activeBtn);
     }
   }
 

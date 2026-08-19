@@ -282,3 +282,15 @@ Validation:
 - selective TypeScript compile of navigation/art/responsive QA PASS
 - i18n / terminology / art-registry gates PASS
 - `git diff --check` PASS
+
+
+### 2026-08-19 — Phase 11 UI Production Pass (source contract batch B)
+
+**Status:** PASS — shared shell focus/geometry contract; active-screen inline geometry cleanup still open.
+
+- Added roving arrow-key focus semantics to the six primary navigation domains.
+- Added deterministic focus groups/order to Hero/Team/World domain action hubs.
+- Added modal `aria-modal` semantics, initial focus placement, and focus restoration on close.
+- Tokenized all layout.css spacing/radius/shadow declarations; raw pixel spacing/radius/shadow now fail `qa:ui-production`.
+- Added controlled nav/hub/toast shadow tokens and explicit micro-spacing tokens for dense optical exceptions.
+- P11-12 is complete. P11-19/P11-20/P11-21 remain open because active legacy screen-local inline styles still contain raw geometry values.

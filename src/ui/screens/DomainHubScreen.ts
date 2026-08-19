@@ -52,13 +52,16 @@ export class DomainHubScreen {
         </header>
 
         <div class="domain-hub-grid">
-          ${this.config.actions.map((action) => `
+          ${this.config.actions.map((action, focusIndex) => `
             <button
               type="button"
               class="domain-hub-action"
               data-domain-action="${action.id}"
               data-action-type="${action.type}"
               data-action-target="${action.targetId}"
+              data-focus-group="${this.config.id}-domain-actions"
+              data-focus-order="${focusIndex}"
+              tabindex="${focusIndex === 0 ? '0' : '-1'}"
               style="--domain-accent:${action.accent};"
             >
               <span class="domain-hub-action-icon" aria-hidden="true">${resolveUIIcon(action.iconId).fallbackSvg}</span>
@@ -73,7 +76,9 @@ export class DomainHubScreen {
       </section>
     `;
 
-    this.el.querySelectorAll<HTMLElement>('.domain-hub-action').forEach((button) => {
+    this.el.querySelectorAll<HTMLButtonElement>('.domain-hub-action').forEach((button) => {
+      button.addEventListener('focus', () => this.setRovingFocus(button));
+      button.addEventListener('keydown', (event) => this.handleActionKeydown(event, button));
       button.addEventListener('click', () => {
         const actionType = button.dataset.actionType as DomainHubActionType | undefined;
         const targetId = button.dataset.actionTarget;
@@ -87,5 +92,32 @@ export class DomainHubScreen {
         }
       });
     });
+  }
+
+  private getActionButtons(): HTMLButtonElement[] {
+    return Array.from(this.el.querySelectorAll<HTMLButtonElement>('.domain-hub-action'));
+  }
+
+  private setRovingFocus(target: HTMLButtonElement): void {
+    this.getActionButtons().forEach((button) => {
+      button.tabIndex = button === target ? 0 : -1;
+    });
+  }
+
+  private handleActionKeydown(event: KeyboardEvent, current: HTMLButtonElement): void {
+    const buttons = this.getActionButtons();
+    const currentIndex = buttons.indexOf(current);
+    if (currentIndex < 0 || buttons.length === 0) return;
+
+    let nextIndex = currentIndex;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % buttons.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = buttons.length - 1;
+    else return;
+
+    event.preventDefault();
+    this.setRovingFocus(buttons[nextIndex]);
+    buttons[nextIndex].focus();
   }
 }

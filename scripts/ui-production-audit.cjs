@@ -27,13 +27,30 @@ const ranks = read('src/content/ranks.ts');
 
 const requiredTokens = [
   '--surface-forged-bronze', '--surface-stone', '--surface-wood', '--surface-leather',
-  '--surface-parchment', '--space-1', '--space-6', '--focus-ring', '--touch-target-min: 44px',
+  '--surface-parchment', '--space-hairline', '--space-micro', '--space-1', '--space-6', '--focus-ring', '--touch-target-min: 44px',
   '.ui-btn-primary', '.ui-btn-secondary', '.ui-btn-destructive',
   '.rarity-frame-common', '.rarity-frame-mythic', 'min-width: var(--touch-target-min)',
+  '--shadow-nav', '--shadow-hub-header', '--shadow-toast',
 ];
 for (const token of requiredTokens) {
   if (!tokens.includes(token)) fail(`missing production UI token/contract: ${token}`);
 }
+
+
+const rawLayoutSpacing = /(padding|gap|margin)(-[a-z]+)?\s*:\s*\d+px/;
+const rawLayoutRadius = /border-radius\s*:\s*\d+px/;
+const rawLayoutShadow = /box-shadow\s*:\s*(?:0|inset)/;
+if (rawLayoutSpacing.test(layout)) fail('layout.css bypasses the spacing token scale');
+if (rawLayoutRadius.test(layout)) fail('layout.css bypasses radius tokens');
+if (rawLayoutShadow.test(layout)) fail('layout.css bypasses controlled shadow tokens');
+
+if (!nav.includes("dataset.focusGroup = 'primary-navigation'")) fail('primary navigation is missing a controller-ready focus group');
+if (!nav.includes('handleNavigationKeydown')) fail('primary navigation is missing arrow-key roving focus semantics');
+const domainHub = read('src/ui/screens/DomainHubScreen.ts');
+if (!domainHub.includes('data-focus-group')) fail('domain hubs are missing focus-group metadata');
+if (!domainHub.includes('handleActionKeydown')) fail('domain hubs are missing arrow-key roving focus semantics');
+if (!modal.includes("setAttribute('aria-modal', 'true')")) fail('modal manager is missing aria-modal semantics');
+if (!modal.includes('previouslyFocusedElement')) fail('modal manager does not restore focus after close');
 
 for (const [name, text] of [['layout.css', layout], ['ModalManager', modal], ['ToastManager', toast]]) {
   if (/backdrop-filter\s*:/.test(text)) fail(`${name} reintroduced backdrop-filter/glass blur`);
@@ -67,5 +84,5 @@ for (const id of rankIds) {
 }
 
 if (!process.exitCode) {
-  console.log(`[ui-production] PASS: opaque RPG surfaces, semantic primary/building/rank icons, and 44px QA contract verified (${buildingIds.length} buildings, ${rankIds.length} ranks).`);
+  console.log(`[ui-production] PASS: opaque RPG surfaces, tokenized shell geometry/shadows, controller-ready focus groups, semantic primary/building/rank icons, and 44px QA contract verified (${buildingIds.length} buildings, ${rankIds.length} ranks).`);
 }

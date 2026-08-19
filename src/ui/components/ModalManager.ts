@@ -11,6 +11,7 @@ export class ModalManager {
   private container: HTMLElement | null = null;
   private registeredModals: Map<string, ModalInstance> = new Map();
   private activeModalId: string | null = null;
+  private previouslyFocusedElement: HTMLElement | null = null;
 
   private constructor() {
     this.bindKeyboard();
@@ -45,6 +46,7 @@ export class ModalManager {
     if (!modalDef) return;
 
     this.activeModalId = modalId;
+    this.previouslyFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     this.container.innerHTML = '';
     this.container.style.display = 'flex';
 
@@ -64,6 +66,9 @@ export class ModalManager {
 
     const contentWrapper = document.createElement('div');
     contentWrapper.className = 'modal-content-animated';
+    contentWrapper.setAttribute('role', 'dialog');
+    contentWrapper.setAttribute('aria-modal', 'true');
+    contentWrapper.tabIndex = -1;
     contentWrapper.style.cssText = `
       position: relative;
       z-index: 101;
@@ -75,7 +80,7 @@ export class ModalManager {
       border: 1px solid var(--frame-bronze);
       box-shadow: var(--shadow-lg), var(--shadow-inset-frame);
       border-radius: var(--radius-md);
-      padding: 24px;
+      padding: var(--space-5);
     `;
 
     const renderedModal = modalDef.render(data);
@@ -83,6 +88,11 @@ export class ModalManager {
 
     this.container.appendChild(backdrop);
     this.container.appendChild(contentWrapper);
+
+    const focusable = contentWrapper.querySelector<HTMLElement>(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    (focusable ?? contentWrapper).focus();
   }
 
   public close(modalId?: string): void {
@@ -99,6 +109,9 @@ export class ModalManager {
     this.container.innerHTML = '';
     this.container.style.display = 'none';
     this.activeModalId = null;
+    const restoreTarget = this.previouslyFocusedElement;
+    this.previouslyFocusedElement = null;
+    if (restoreTarget?.isConnected) restoreTarget.focus();
   }
 
   private bindKeyboard(): void {

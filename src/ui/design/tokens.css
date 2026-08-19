@@ -61,6 +61,8 @@
   --text-purple: #c9add8;
 
   /* Spacing scale */
+  --space-hairline: 1px; /* optical-only: dense nav separators */
+  --space-micro: 2px; /* optical-only: dense nav internals */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -79,6 +81,13 @@
   --shadow-md: 0 5px 14px rgba(0, 0, 0, 0.58);
   --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.70);
   --shadow-inset-frame: inset 0 1px 0 rgba(240, 198, 110, 0.10), inset 0 -2px 0 rgba(0, 0, 0, 0.35);
+  --shadow-nav: 0 -6px 18px rgba(0, 0, 0, 0.45), var(--shadow-inset-frame);
+  --shadow-accent-inset: inset 3px 0 0 var(--domain-accent);
+  --shadow-alert-badge: 0 0 6px rgba(200, 75, 82, 0.72);
+  --shadow-nav-active: inset 0 0 10px rgba(217, 144, 47, 0.10);
+  --shadow-hub-header: var(--shadow-md), var(--shadow-inset-frame);
+  --shadow-emblem: inset 0 0 14px rgba(217, 144, 47, 0.12);
+  --shadow-toast: var(--shadow-md), 0 0 16px var(--toast-glow, rgba(178, 170, 161, 0.24));
   --glow-gold: 0 0 12px rgba(217, 144, 47, 0.24);
   --glow-cyan: 0 0 12px rgba(72, 167, 191, 0.22);
   --glow-purple: 0 0 12px rgba(154, 112, 181, 0.22);
@@ -167,7 +176,7 @@ button[aria-disabled='true'],
 .ui-btn-secondary,
 .ui-btn-destructive {
   min-height: var(--touch-target-min);
-  padding: 8px 14px;
+  padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-sm);
   font-weight: 800;
   letter-spacing: 0.02em;
