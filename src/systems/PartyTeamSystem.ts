@@ -13,7 +13,7 @@ export class PartyTeamSystem {
       slotId: 'char_1',
       name: 'Ascendant Hero',
       isUnlocked: true,
-      classId: 'mage',
+      classId: null,
       level: 1,
       skillPoints: 4,
       unlockedSkillNodeIds: [],
@@ -88,10 +88,20 @@ export class PartyTeamSystem {
       classId: classId ?? 'none',
     });
 
+    events.emit('party:second_character_unlocked', {
+      slotId: 'char_2',
+      name,
+      classId,
+    });
+
     return true;
   }
 
-  public setCharacterClass(slotId: MainCharacterSlotId, classId: CharacterClassId): boolean {
+  public setCharacterClass(
+    slotId: MainCharacterSlotId,
+    classId: CharacterClassId,
+    emitFeedback: boolean = true
+  ): boolean {
     const char = this.characters[slotId];
     if (!char.isUnlocked) return false;
 
@@ -101,16 +111,34 @@ export class PartyTeamSystem {
 
     this.reapplyAllModifiers();
 
-    events.emit('toast:show', {
-      message: `${char.name} selected path: ${classId.toUpperCase()}!`,
-      type: 'epic',
-    });
+    if (emitFeedback) {
+      events.emit('toast:show', {
+        message: `${char.name} selected path: ${classId.toUpperCase()}!`,
+        type: 'epic',
+      });
 
-    analytics.trackEvent('character_class_selected', {
+      analytics.trackEvent('character_class_selected', {
+        slotId,
+        classId,
+      });
+    }
+
+    events.emit('party:character_class_selected', {
       slotId,
       classId,
     });
 
+    return true;
+  }
+
+  public clearCharacterClass(slotId: MainCharacterSlotId): boolean {
+    const char = this.characters[slotId];
+    if (!char.isUnlocked) return false;
+
+    char.classId = null;
+    char.unlockedSkillNodeIds = [];
+    char.skillPoints = 4;
+    this.reapplyAllModifiers();
     return true;
   }
 
@@ -205,12 +233,36 @@ export class PartyTeamSystem {
           });
         }
 
+        if (stats.critDamageBonus > 0) {
+          modifierResolver.registerModifier({
+            id: `${slotId}_class_crit_dmg`,
+            target: 'critDamage',
+            type: 'percent_add',
+            value: stats.critDamageBonus,
+            source: `${char.name} Class: ${classDef.defaultName}`,
+            sourceType: 'class',
+            classTag: char.classId,
+          });
+        }
+
         if (stats.bossDamageBonus > 0) {
           modifierResolver.registerModifier({
             id: `${slotId}_class_boss`,
             target: 'bossDamage',
             type: 'percent_add',
             value: stats.bossDamageBonus,
+            source: `${char.name} Class: ${classDef.defaultName}`,
+            sourceType: 'class',
+            classTag: char.classId,
+          });
+        }
+
+        if (stats.lootBonus > 0) {
+          modifierResolver.registerModifier({
+            id: `${slotId}_class_loot`,
+            target: 'lootChance',
+            type: 'percent_add',
+            value: stats.lootBonus,
             source: `${char.name} Class: ${classDef.defaultName}`,
             sourceType: 'class',
             classTag: char.classId,

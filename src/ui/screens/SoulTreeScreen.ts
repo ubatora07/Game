@@ -3,6 +3,7 @@ import { SOUL_TREE, calculateSoulSkillCost } from '../../content/soulTree';
 import { ReincarnationSystem } from '../../systems/ReincarnationSystem';
 import { events } from '../../core/EventBus';
 import { t } from '../../services/i18n/I18nService';
+import { BigNumber } from '../../core/BigNumber';
 
 export class SoulTreeScreen {
   private el: HTMLElement;
@@ -28,6 +29,7 @@ export class SoulTreeScreen {
   }
 
   private buildDOM(): void {
+    const requiredRank = ReincarnationSystem.getRequiredRank();
     this.el.innerHTML = `
       <div style="padding:16px; max-width:680px; margin:0 auto; width:100%;">
         <!-- Reincarnation Banner Card -->
@@ -70,7 +72,7 @@ export class SoulTreeScreen {
             font-size: 14px;
             cursor: pointer;
           ">
-            Requires Rank S (1M Power)
+            ${t(requiredRank.titleKey)} • ${t('rank.req')}: ${BigNumber.format(requiredRank.reqPower)} ⚡
           </button>
         </div>
 
@@ -149,6 +151,7 @@ export class SoulTreeScreen {
     const s = store.get();
     const potentialSouls = ReincarnationSystem.getPotentialSouls();
     const canReincarnate = ReincarnationSystem.canReincarnate();
+    const requiredRank = ReincarnationSystem.getRequiredRank();
 
     const ownedDisplay = this.el.querySelector('#soulOwnedDisplay');
     const potentialDisplay = this.el.querySelector('#soulPotentialDisplay');
@@ -165,7 +168,7 @@ export class SoulTreeScreen {
         reincarnateBtn.style.color = '#ffffff';
         reincarnateBtn.style.boxShadow = '0 0 15px rgba(225,29,72,0.4)';
       } else {
-        reincarnateBtn.innerText = 'Requires Rank S (1M Power)';
+        reincarnateBtn.innerText = `${t(requiredRank.titleKey)} • ${t('rank.req')}: ${BigNumber.format(requiredRank.reqPower)} ⚡`;
         reincarnateBtn.style.background = 'rgba(51,65,85,0.5)';
         reincarnateBtn.style.borderColor = 'transparent';
         reincarnateBtn.style.color = '#64748b';

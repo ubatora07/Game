@@ -9,6 +9,7 @@ import { events } from '../core/EventBus';
 import { sound } from '../services/audio/SoundService';
 import { HeroSystem } from './HeroSystem';
 import { HeroDefinition, getHeroStarMultiplier } from '../content/heroes';
+import { petSystem } from './PetSystem';
 
 export interface ActiveCombatEntity {
   id: string;
@@ -361,6 +362,26 @@ export class CampaignCombatService {
     // 2. Hero Party Active Skills Trigger
     if (this.combatState.activeEnemy && this.combatState.activeEnemy.currentHp > 0 && !this.isResolvingDeath) {
       this.updateHeroSkills(dt);
+    }
+
+    // 2b. Active companion combat action. PetSystem tracks cooldown in ms.
+    if (this.combatState.activeEnemy && this.combatState.activeEnemy.currentHp > 0 && !this.isResolvingDeath) {
+      const petResult = petSystem.tickCombat(dt * 1000);
+      if (petResult.triggered && petResult.damage && petResult.damage > 0) {
+        const activePet = petSystem.getActivePet();
+        const enemy = this.combatState.activeEnemy;
+        this.applyDamageToEnemy(petResult.damage);
+        events.emit('combat:pet_action', {
+          petId: activePet?.id || 'unknown_pet',
+          actionName: petResult.action?.defaultName || 'Companion Attack',
+          damage: petResult.damage,
+          remainingHp: enemy.currentHp,
+        });
+        if (enemy.currentHp <= 0 && !this.isResolvingDeath) {
+          this.handleEnemyDefeat();
+          return;
+        }
+      }
     }
 
     // 3. Auto DPS calculation and damage application

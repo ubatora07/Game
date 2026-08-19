@@ -90,7 +90,7 @@ export class PetSystem {
       type: 'epic',
     });
 
-    events.emit('pet:acquired' as any, { petId });
+    events.emit('pet:acquired', { petId });
     analytics.trackEvent('pet_acquired', { petId, element: def.element });
 
     return true;
@@ -105,7 +105,7 @@ export class PetSystem {
     this.actionCooldownTimerMs = 0;
     this.reapplyActivePetModifiers();
 
-    events.emit('pet:active_changed' as any, { activePetId: petId });
+    events.emit('pet:active_changed', { activePetId: petId });
 
     if (petId) {
       const pet = this.ownedPets[petId];
@@ -215,7 +215,7 @@ export class PetSystem {
       type: 'epic',
     });
 
-    events.emit('pet:evolved' as any, { petId, stage: nextStage });
+    events.emit('pet:evolved', { petId, stage: nextStage });
     analytics.trackEvent('pet_evolved', { petId, stage: nextStage });
 
     return true;

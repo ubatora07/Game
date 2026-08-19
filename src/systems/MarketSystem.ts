@@ -215,7 +215,11 @@ export class MarketSystem {
       type: offer.isBlackMarket ? 'epic' : 'success',
     });
 
-    events.emit('market:purchased' as any, { offerId, isBlackMarket: offer.isBlackMarket });
+    events.emit('market:purchased', {
+      offerId,
+      isBlackMarket: offer.isBlackMarket,
+      totalPurchasesCount: this.state.totalPurchasesCount,
+    });
     analytics.trackEvent('market_purchased', { offerId, isBlackMarket: offer.isBlackMarket, rarity: offer.rarity });
 
     return { success: true };

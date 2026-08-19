@@ -260,7 +260,11 @@ export class CraftingEquipmentSystem {
       type: 'success',
     });
 
-    events.emit('crafting:item_crafted' as any, { item, recipeId });
+    events.emit('crafting:item_crafted', {
+      item,
+      recipeId,
+      totalCraftedCount: this.state.totalCraftedCount,
+    });
     analytics.trackEvent('item_crafted', { itemId: item.id, templateId: item.templateId, rarity: item.rarity });
 
     return { success: true, item };

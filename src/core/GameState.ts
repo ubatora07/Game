@@ -1,5 +1,10 @@
 import { getRankById } from '../content/ranks';
 import { CampaignState } from '../content/campaignTypes';
+import { DualTeamSaveState } from './characters/MainCharacterTypes';
+import { PetSaveState } from './pets/PetTypes';
+import { KarmaState } from './karma/KarmaTypes';
+import { WorldSaveState } from './world/WorldStateTypes';
+import { AdventureEventSaveState } from './events/AdventureEventTypes';
 
 export interface PlayerStats {
   totalClicks: number;
@@ -127,12 +132,16 @@ export interface GameStateData {
   settlementDefense?: any;
   settlementStory?: any;
   legacyEndings?: any;
-  worldState?: any;
+  partyTeam?: DualTeamSaveState;
+  pets?: PetSaveState;
+  karma?: KarmaState;
+  adventureEvents?: AdventureEventSaveState;
+  worldState?: WorldSaveState;
 }
 
 export function createInitialState(): GameStateData {
   return {
-    version: 6,
+    version: 7,
     power: 0,
     gold: 0,
     crystals: 150, // Starter crystals for early summon

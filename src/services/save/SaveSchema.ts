@@ -1,7 +1,172 @@
 import { GameStateData, createInitialState } from '../../core/GameState';
+import { DualTeamSaveState, MainCharacterState, MainCharacterSlotId } from '../../core/characters/MainCharacterTypes';
+import { PetEvolutionStage, PetInstance, PetSaveState } from '../../core/pets/PetTypes';
+import { KarmaBand, KarmaState } from '../../core/karma/KarmaTypes';
+import { WorldSaveState } from '../../core/world/WorldStateTypes';
+import { CharacterClassId } from '../../content/classes';
+import { getPetDefinition } from '../../content/petsCatalog';
 
-export const CURRENT_SAVE_VERSION = 6;
-export const SAVE_KEY = 'ANIME_ASCENSION_SAVE_V6';
+export const CURRENT_SAVE_VERSION = 7;
+export const SAVE_KEY = 'ANIME_ASCENSION_SAVE_V7';
+
+const CLASS_IDS = new Set<CharacterClassId>(['mage', 'swordsman', 'archer', 'assassin']);
+const WORLD_FLAG_IDS = new Set([
+  'village_saved',
+  'village_ruined',
+  'refugees_accepted',
+  'refugees_turned_away',
+  'smuggler_alliance',
+  'smuggler_syndicate_crushed',
+  'kingdom_trusted',
+  'dark_reputation',
+  'sovereign_citadel_erected',
+]);
+
+function isRecord(value: unknown): value is Record<string, any> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function safeNonNegativeNumber(value: unknown, fallback: number): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
+function safeInteger(value: unknown, fallback: number, min: number = 0): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? Math.max(min, Math.floor(parsed)) : fallback;
+}
+
+function sanitizeClassId(value: unknown): CharacterClassId | null {
+  return typeof value === 'string' && CLASS_IDS.has(value as CharacterClassId)
+    ? value as CharacterClassId
+    : null;
+}
+
+function sanitizeCharacter(
+  raw: unknown,
+  slotId: MainCharacterSlotId,
+  fallbackName: string,
+  defaultUnlocked: boolean
+): MainCharacterState {
+  const data = isRecord(raw) ? raw : {};
+  return {
+    slotId,
+    name: typeof data.name === 'string' && data.name.trim().length > 0 ? data.name.slice(0, 80) : fallbackName,
+    isUnlocked: typeof data.isUnlocked === 'boolean' ? data.isUnlocked : defaultUnlocked,
+    classId: sanitizeClassId(data.classId),
+    level: safeInteger(data.level, 1, 1),
+    skillPoints: safeInteger(data.skillPoints, 4),
+    unlockedSkillNodeIds: Array.isArray(data.unlockedSkillNodeIds)
+      ? Array.from(new Set(data.unlockedSkillNodeIds.filter((id: unknown): id is string => typeof id === 'string')))
+      : [],
+  };
+}
+
+function sanitizePartyTeam(raw: unknown): DualTeamSaveState | undefined {
+  if (!isRecord(raw)) return undefined;
+  const characters = isRecord(raw.characters) ? raw.characters : {};
+  const char1 = sanitizeCharacter(characters.char_1, 'char_1', 'Ascendant Hero', true);
+  const char2 = sanitizeCharacter(characters.char_2, 'char_2', 'Soul Partner', false);
+  char1.isUnlocked = true;
+  const requestedFocus = raw.activeFocusCharId === 'char_2' ? 'char_2' : 'char_1';
+  return {
+    characters: { char_1: char1, char_2: char2 },
+    activeFocusCharId: requestedFocus === 'char_2' && !char2.isUnlocked ? 'char_1' : requestedFocus,
+  };
+}
+
+function sanitizePetInstance(raw: unknown, petId: string): PetInstance | null {
+  if (!isRecord(raw) || !getPetDefinition(petId)) return null;
+  const stageRaw = safeInteger(raw.evolutionStage, 1, 1);
+  const evolutionStage = Math.min(3, stageRaw) as PetEvolutionStage;
+  const affection = Math.min(100, safeNonNegativeNumber(raw.affection, 0));
+  return {
+    id: petId,
+    name: typeof raw.name === 'string' && raw.name.trim().length > 0
+      ? raw.name.slice(0, 80)
+      : getPetDefinition(petId)!.defaultName,
+    level: safeInteger(raw.level, 1, 1),
+    xp: safeNonNegativeNumber(raw.xp, 0),
+    xpToNextLevel: Math.max(1, safeNonNegativeNumber(raw.xpToNextLevel, 100)),
+    evolutionStage,
+    affection,
+    unlockedAt: Math.min(Date.now(), safeNonNegativeNumber(raw.unlockedAt, Date.now())),
+  };
+}
+
+function sanitizePets(raw: unknown): PetSaveState | undefined {
+  if (!isRecord(raw)) return undefined;
+  const ownedPets: Record<string, PetInstance> = {};
+  if (isRecord(raw.ownedPets)) {
+    for (const [petId, petRaw] of Object.entries(raw.ownedPets)) {
+      const pet = sanitizePetInstance(petRaw, petId);
+      if (pet) ownedPets[petId] = pet;
+    }
+  }
+  const activePetId = typeof raw.activePetId === 'string' && ownedPets[raw.activePetId]
+    ? raw.activePetId
+    : null;
+  return { ownedPets, activePetId };
+}
+
+function karmaBandForScore(score: number): KarmaBand {
+  if (score >= 50) return 'virtuous';
+  if (score >= 15) return 'positive';
+  if (score <= -50) return 'infamous';
+  if (score <= -15) return 'negative';
+  return 'neutral';
+}
+
+function sanitizeBooleanRecord(raw: unknown, allowedKeys?: Set<string>): Record<string, boolean> {
+  if (!isRecord(raw)) return {};
+  const result: Record<string, boolean> = {};
+  for (const [key, value] of Object.entries(raw)) {
+    if ((!allowedKeys || allowedKeys.has(key)) && typeof value === 'boolean') result[key] = value;
+  }
+  return result;
+}
+
+function sanitizeNumberRecord(raw: unknown): Record<string, number> {
+  if (!isRecord(raw)) return {};
+  const result: Record<string, number> = {};
+  for (const [key, value] of Object.entries(raw)) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) result[key] = parsed;
+  }
+  return result;
+}
+
+function sanitizeKarma(raw: unknown): KarmaState | undefined {
+  if (!isRecord(raw)) return undefined;
+  const scoreValue = Number(raw.score);
+  const score = Number.isFinite(scoreValue) ? Math.max(-100, Math.min(100, Math.round(scoreValue))) : 0;
+  return {
+    score,
+    band: karmaBandForScore(score),
+    majorChoiceFlags: sanitizeBooleanRecord(raw.majorChoiceFlags),
+    factionReputation: sanitizeNumberRecord(raw.factionReputation),
+    lifetimeKarmaPositive: safeNonNegativeNumber(raw.lifetimeKarmaPositive, 0),
+    lifetimeKarmaNegative: safeNonNegativeNumber(raw.lifetimeKarmaNegative, 0),
+  };
+}
+
+function sanitizeWorldState(raw: unknown): WorldSaveState | undefined {
+  if (!isRecord(raw)) return undefined;
+  return {
+    currentLifeFlags: sanitizeBooleanRecord(raw.currentLifeFlags, WORLD_FLAG_IDS),
+    legacyWorldChronicle: sanitizeBooleanRecord(raw.legacyWorldChronicle, WORLD_FLAG_IDS),
+  };
+}
+
+function sanitizeAdventureEventCooldowns(raw: unknown): Record<string, number> {
+  if (!isRecord(raw)) return {};
+  const result: Record<string, number> = {};
+  for (const [eventId, timestamp] of Object.entries(raw)) {
+    const parsed = Number(timestamp);
+    if (Number.isFinite(parsed) && parsed >= 0) result[eventId] = parsed;
+  }
+  return result;
+}
 
 export function sanitizeGameState(data: any): GameStateData {
   const initial = createInitialState();
@@ -9,11 +174,8 @@ export function sanitizeGameState(data: any): GameStateData {
     return initial;
   }
 
-  // Safe number extraction
-  const safeNumber = (val: any, fallback: number): number => {
-    const n = Number(val);
-    return isNaN(n) || !isFinite(n) || n < 0 ? fallback : n;
-  };
+  // Safe number extraction for the legacy/core non-negative numeric fields.
+  const safeNumber = safeNonNegativeNumber;
 
   return {
     version: CURRENT_SAVE_VERSION,
@@ -119,6 +281,17 @@ export function sanitizeGameState(data: any): GameStateData {
     settlementDefense: typeof data.settlementDefense === 'object' && data.settlementDefense !== null ? data.settlementDefense : undefined,
     settlementStory: typeof data.settlementStory === 'object' && data.settlementStory !== null ? data.settlementStory : undefined,
     legacyEndings: typeof data.legacyEndings === 'object' && data.legacyEndings !== null ? data.legacyEndings : undefined,
-    worldState: typeof data.worldState === 'object' && data.worldState !== null ? data.worldState : undefined,
+    partyTeam: sanitizePartyTeam(data.partyTeam),
+    pets: sanitizePets(data.pets),
+    karma: sanitizeKarma(data.karma),
+    adventureEvents: isRecord(data.adventureEvents)
+      ? {
+          completedOnceOnly: Array.isArray(data.adventureEvents.completedOnceOnly)
+            ? Array.from(new Set(data.adventureEvents.completedOnceOnly.filter((id: unknown): id is string => typeof id === 'string')))
+            : [],
+          eventCooldowns: sanitizeAdventureEventCooldowns(data.adventureEvents.eventCooldowns),
+        }
+      : undefined,
+    worldState: sanitizeWorldState(data.worldState),
   };
 }

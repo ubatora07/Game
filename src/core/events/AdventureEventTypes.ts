@@ -73,3 +73,8 @@ export interface AdventureEventContext {
   rank: string;
   gold: number;
 }
+
+export interface AdventureEventSaveState {
+  completedOnceOnly: string[];
+  eventCooldowns: Record<string, number>;
+}

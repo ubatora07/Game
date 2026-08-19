@@ -21,6 +21,11 @@ import { titleSystem } from './systems/TitleSystem';
 import { settlementDefenseSystem } from './systems/SettlementDefenseSystem';
 import { settlementStorySystem } from './systems/SettlementStorySystem';
 import { legacyEndingSystem } from './systems/LegacyEndingSystem';
+import { worldStateManager } from './systems/WorldStateManager';
+import { partyTeamSystem } from './systems/PartyTeamSystem';
+import { petSystem } from './systems/PetSystem';
+import { karmaSystem } from './systems/KarmaSystem';
+import { adventureEventSystem } from './systems/AdventureEventSystem';
 import { sound } from './services/audio/SoundService';
 
 // UI
@@ -28,7 +33,6 @@ import { Header } from './ui/components/Header';
 import { Navigation } from './ui/components/Navigation';
 import { modalManager } from './ui/components/ModalManager';
 import { ToastManager } from './ui/components/ToastManager';
-import { DevOverlay } from './ui/components/DevOverlay';
 import { ParticleCanvas } from './ui/vfx/ParticleCanvas';
 import { FloatingNumbers } from './ui/vfx/FloatingNumbers';
 
@@ -75,11 +79,13 @@ class GameApp {
   private screens: Map<string, HTMLElement> = new Map();
   private screenViewport: HTMLElement | null = null;
   private particleCanvas: ParticleCanvas | null = null;
-  private devOverlay: DevOverlay | null = null;
+  private devOverlay: { updateFps(): void } | null = null;
 
   public async bootstrap(): Promise<void> {
     console.log('[Anime Infinite Ascension] Bootstrapping...');
-    if (typeof window !== 'undefined') {
+    // Keep mutable debug handles out of production. E2E/dev tooling can still
+    // use them while running the Vite development server.
+    if (typeof window !== 'undefined' && import.meta.env.DEV) {
       (window as any).events = events;
       (window as any).store = store;
     }
@@ -119,6 +125,21 @@ class GameApp {
       }
       if (activeSave.legacyEndings) {
         legacyEndingSystem.deserialize(activeSave.legacyEndings);
+      }
+      if (activeSave.partyTeam) {
+        partyTeamSystem.deserialize(activeSave.partyTeam);
+      }
+      if (activeSave.karma) {
+        karmaSystem.deserialize(activeSave.karma);
+      }
+      if (activeSave.pets) {
+        petSystem.deserialize(activeSave.pets);
+      }
+      if (activeSave.adventureEvents) {
+        adventureEventSystem.deserialize(activeSave.adventureEvents);
+      }
+      if (activeSave.worldState) {
+        worldStateManager.deserialize(activeSave.worldState);
       }
     }
 
@@ -196,9 +217,14 @@ class GameApp {
     const nav = new Navigation();
     appEl.appendChild(nav.getElement());
 
-    // Dev Overlay
-    this.devOverlay = new DevOverlay();
-    appEl.appendChild(this.devOverlay.getElement());
+    // Dev-only telemetry / cheats. Dynamic import keeps it outside the
+    // production execution path when import.meta.env.DEV is false.
+    if (import.meta.env.DEV) {
+      const { DevOverlay } = await import('./ui/components/DevOverlay');
+      const devOverlay = new DevOverlay();
+      this.devOverlay = devOverlay;
+      appEl.appendChild(devOverlay.getElement());
+    }
 
     // 4. Initialize Screens
     const battleScreen = new BattleScreen(this.particleCanvas);

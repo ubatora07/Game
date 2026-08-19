@@ -25,7 +25,7 @@ describe('Save System & Migrations', () => {
     expect(sanitized.crystals).toBe(150); // fallback starter
   });
 
-  it('should migrate older save schemas cleanly to v6', () => {
+  it('should migrate older save schemas cleanly to the current version', () => {
     const oldSave = {
       version: 0,
       power: 2500,
@@ -42,7 +42,7 @@ describe('Save System & Migrations', () => {
     expect(migrated.campaign.currentStageId).toBe('1-1');
   });
 
-  it('should derive campaign placement from player rank when migrating from v5 to v6', () => {
+  it('should derive campaign placement from player rank when migrating from v5', () => {
     const v5Save = {
       version: 5,
       power: 1000000,
@@ -55,7 +55,7 @@ describe('Save System & Migrations', () => {
     };
 
     const migrated = SaveMigrations.migrate(v5Save);
-    expect(migrated.version).toBe(6);
+    expect(migrated.version).toBe(CURRENT_SAVE_VERSION);
     expect(migrated.campaign.currentWorldId).toBe(3);
     expect(migrated.campaign.currentStageId).toBe('3-1');
     expect(migrated.campaign.highestWorldReached).toBe(3);
@@ -84,6 +84,81 @@ describe('Save System & Migrations', () => {
     expect(sanitized.campaign.campaignMode).toBe('progress');
     expect(sanitized.campaign.autoAdvance).toBe(true);
     expect(Array.isArray(sanitized.campaign.firstClears)).toBe(true);
+  });
+
+  it('should preserve v7 RPG subdomain payloads through sanitization', () => {
+    const payload = sanitizeGameState({
+      version: CURRENT_SAVE_VERSION,
+      partyTeam: { characters: { char_1: { classId: 'archer' } }, activeFocusCharId: 'char_1' },
+      pets: { ownedPets: { pet_1: { id: 'pet_1', level: 7 } }, activePetId: 'pet_1' },
+      karma: { score: -25, majorChoiceFlags: { refugees_sheltered: true } },
+      worldState: { currentLifeFlags: { village_saved: true }, legacyWorldChronicle: {} },
+    });
+
+    expect(payload.partyTeam).toBeDefined();
+    expect(payload.pets).toBeDefined();
+    expect(payload.karma).toBeDefined();
+    expect(payload.worldState).toBeDefined();
+  });
+
+  it('should sanitize corrupted V7 RPG subdomains without leaking invalid state', () => {
+    const sanitized = sanitizeGameState({
+      version: 7,
+      partyTeam: {
+        characters: {
+          char_1: { slotId: 'evil', name: '', isUnlocked: false, classId: 'necromancer', level: -2, skillPoints: -5, unlockedSkillNodeIds: [1, 'node_a', 'node_a'] },
+          char_2: { slotId: 'char_2', name: 'Partner', isUnlocked: false, classId: 'archer', level: 3, skillPoints: 2, unlockedSkillNodeIds: [] },
+        },
+        activeFocusCharId: 'char_2',
+      },
+      pets: {
+        ownedPets: {
+          pet_ignis_drake: { id: 'spoofed', name: '', level: -1, xp: -5, xpToNextLevel: 0, evolutionStage: 99, affection: 999, unlockedAt: Infinity },
+          pet_unknown: { id: 'pet_unknown', level: 99 },
+        },
+        activePetId: 'pet_unknown',
+      },
+      karma: {
+        score: -999,
+        band: 'virtuous',
+        majorChoiceFlags: { valid: true, invalid: 'yes' },
+        factionReputation: { guild: 10, broken: NaN },
+        lifetimeKarmaPositive: -1,
+        lifetimeKarmaNegative: 12,
+      },
+      worldState: {
+        currentLifeFlags: { village_saved: true, bogus_flag: true, dark_reputation: 'yes' },
+        legacyWorldChronicle: { sovereign_citadel_erected: true, bogus_flag: true },
+      },
+      adventureEvents: {
+        completedOnceOnly: ['evt_a', 'evt_a', 123],
+        eventCooldowns: { good: 12345, invalid: Infinity, negative: -1 },
+      },
+    });
+
+    expect(sanitized.partyTeam?.characters.char_1.slotId).toBe('char_1');
+    expect(sanitized.partyTeam?.characters.char_1.isUnlocked).toBe(true);
+    expect(sanitized.partyTeam?.characters.char_1.classId).toBeNull();
+    expect(sanitized.partyTeam?.characters.char_1.level).toBe(1);
+    expect(sanitized.partyTeam?.characters.char_1.unlockedSkillNodeIds).toEqual(['node_a']);
+    expect(sanitized.partyTeam?.activeFocusCharId).toBe('char_1');
+
+    expect(Object.keys(sanitized.pets?.ownedPets ?? {})).toEqual(['pet_ignis_drake']);
+    expect(sanitized.pets?.ownedPets.pet_ignis_drake.id).toBe('pet_ignis_drake');
+    expect(sanitized.pets?.ownedPets.pet_ignis_drake.evolutionStage).toBe(3);
+    expect(sanitized.pets?.ownedPets.pet_ignis_drake.affection).toBe(100);
+    expect(sanitized.pets?.activePetId).toBeNull();
+
+    expect(sanitized.karma?.score).toBe(-100);
+    expect(sanitized.karma?.band).toBe('infamous');
+    expect(sanitized.karma?.majorChoiceFlags).toEqual({ valid: true });
+    expect(sanitized.karma?.factionReputation).toEqual({ guild: 10 });
+    expect(sanitized.karma?.lifetimeKarmaPositive).toBe(0);
+
+    expect(sanitized.worldState?.currentLifeFlags).toEqual({ village_saved: true });
+    expect(sanitized.worldState?.legacyWorldChronicle).toEqual({ sovereign_citadel_erected: true });
+    expect(sanitized.adventureEvents?.completedOnceOnly).toEqual(['evt_a']);
+    expect(sanitized.adventureEvents?.eventCooldowns).toEqual({ good: 12345 });
   });
 
   it('should accurately compute offline progress', () => {

@@ -3,6 +3,7 @@ import {
   AdventureEventChoice,
   AdventureEventContext,
   AdventureEventOutcome,
+  AdventureEventSaveState,
 } from '../core/events/AdventureEventTypes';
 import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { events } from '../core/EventBus';
@@ -272,19 +273,27 @@ export class AdventureEventSystem {
     karmaSystem.resetAll();
   }
 
-  public serialize(): { completedOnceOnly: string[]; karma: number } {
+  public serialize(): AdventureEventSaveState {
     return {
       completedOnceOnly: Array.from(this.completedOnceOnlyEvents),
-      karma: karmaSystem.getScore(),
+      eventCooldowns: Object.fromEntries(this.eventCooldowns.entries()),
     };
   }
 
-  public deserialize(data?: { completedOnceOnly?: string[]; karma?: number }): void {
-    if (data?.completedOnceOnly) {
-      this.completedOnceOnlyEvents = new Set(data.completedOnceOnly);
-    }
-    if (data?.karma !== undefined) {
-      karmaSystem.setScore(data.karma);
+  public deserialize(data?: Partial<AdventureEventSaveState>, now: number = Date.now()): void {
+    this.completedOnceOnlyEvents = new Set(
+      Array.isArray(data?.completedOnceOnly)
+        ? data.completedOnceOnly.filter((id): id is string => typeof id === 'string')
+        : []
+    );
+
+    this.eventCooldowns.clear();
+    if (data?.eventCooldowns && typeof data.eventCooldowns === 'object') {
+      for (const [eventId, cooldownEnd] of Object.entries(data.eventCooldowns)) {
+        if (typeof cooldownEnd === 'number' && Number.isFinite(cooldownEnd) && cooldownEnd > now) {
+          this.eventCooldowns.set(eventId, cooldownEnd);
+        }
+      }
     }
   }
 }

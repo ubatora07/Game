@@ -12,6 +12,10 @@ import { settlementDefenseSystem } from '../../systems/SettlementDefenseSystem';
 import { settlementStorySystem } from '../../systems/SettlementStorySystem';
 import { legacyEndingSystem } from '../../systems/LegacyEndingSystem';
 import { worldStateManager } from '../../systems/WorldStateManager';
+import { partyTeamSystem } from '../../systems/PartyTeamSystem';
+import { petSystem } from '../../systems/PetSystem';
+import { karmaSystem } from '../../systems/KarmaSystem';
+import { adventureEventSystem } from '../../systems/AdventureEventSystem';
 
 export interface OfflineGains {
   seconds: number;
@@ -57,13 +61,17 @@ export class SaveService {
     });
 
     window.addEventListener('beforeunload', () => {
-      if ((window as any).__DISABLE_SAVE__) return;
+      if (this.isSaveDisabledForTest()) return;
       this.saveLocal();
     });
   }
 
+  private isSaveDisabledForTest(): boolean {
+    return import.meta.env.DEV && typeof window !== 'undefined' && (window as any).__DISABLE_SAVE__ === true;
+  }
+
   public saveLocal(): void {
-    if (this.isSaving || (window as any).__DISABLE_SAVE__) return;
+    if (this.isSaving || this.isSaveDisabledForTest()) return;
     this.isSaving = true;
 
     try {
@@ -77,6 +85,10 @@ export class SaveService {
         draft.settlementDefense = settlementDefenseSystem.serialize();
         draft.settlementStory = settlementStorySystem.serialize();
         draft.legacyEndings = legacyEndingSystem.serialize();
+        draft.partyTeam = partyTeamSystem.serialize();
+        draft.pets = petSystem.serialize();
+        draft.karma = karmaSystem.serialize();
+        draft.adventureEvents = adventureEventSystem.serialize();
         draft.worldState = worldStateManager.serialize();
       });
 
@@ -97,6 +109,7 @@ export class SaveService {
     try {
       const keys = [
         SAVE_KEY,
+        'ANIME_ASCENSION_SAVE_V6',
         'ANIME_ASCENSION_SAVE_V5',
         'ANIME_ASCENSION_SAVE_V4',
         'ANIME_ASCENSION_SAVE_V3',
@@ -122,6 +135,7 @@ export class SaveService {
     try {
       const keys = [
         SAVE_KEY,
+        'ANIME_ASCENSION_SAVE_V6',
         'ANIME_ASCENSION_SAVE_V5',
         'ANIME_ASCENSION_SAVE_V4',
         'ANIME_ASCENSION_SAVE_V3',
@@ -132,6 +146,23 @@ export class SaveService {
       for (const k of keys) {
         localStorage.removeItem(k);
       }
+
+      // Reset every mutable subsystem outside GameStore before saveLocal()
+      // serializes the fresh aggregate.
+      settlementSystem.resetAll();
+      craftingEquipmentSystem.resetAll();
+      marketSystem.resetAll();
+      mercenarySystem.resetAll();
+      titleSystem.resetAll();
+      settlementDefenseSystem.resetAll();
+      settlementStorySystem.resetAll();
+      legacyEndingSystem.resetAll();
+      partyTeamSystem.resetAll();
+      petSystem.resetAll();
+      adventureEventSystem.resetAll();
+      karmaSystem.resetAll();
+      worldStateManager.resetAll();
+
       const initial = SaveMigrations.migrate(null);
       store.replace(initial);
       this.saveLocal();

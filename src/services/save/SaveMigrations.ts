@@ -76,6 +76,11 @@ export class SaveMigrations {
           bossRetryState: null
         };
       }
+      raw.version = 6;
+    }
+
+    // v6 -> v7 (RPG subdomain persistence aggregation)
+    if (version < 7) {
       raw.version = CURRENT_SAVE_VERSION;
     }
 

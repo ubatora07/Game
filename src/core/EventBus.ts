@@ -40,12 +40,19 @@ export type GameEventMap = {
   'campaign:rush_started': { stageId: string };
   'campaign:rush_ended': { stageId: string };
 
+  // Character / Party contract events
+  'class:selected': { classId: string };
+  'class:respec': {};
+  'party:character_class_selected': { slotId: string; classId: string };
+  'party:second_character_unlocked': { slotId: 'char_2'; name: string; classId?: string };
+
   // Real-time Combat Events
   'combat:enemy_spawned': { enemy: any; stageId: string; encounterIndex: number };
   'combat:player_attack': { damage: number; isCrit: boolean; remainingHp: number; enemyId: string; x?: number; y?: number };
   'combat:auto_attack': { damage: number; isCrit: boolean; remainingHp: number; enemyId: string };
   'combat:samsara_rush_kill': { enemyId: string; stageId: string };
   'combat:hero_skill': { heroId: string; heroName: string; skillName: string; skillIcon: string; type: string; damage: number; gold: number; power: number; remainingHp: number };
+  'combat:pet_action': { petId: string; actionName: string; damage: number; remainingHp: number };
   'combat:boss_warning': { bossName: string; stageId: string };
   'combat:boss_mechanic': { bossId: string; mechanic: 'shield' | 'enrage' | 'damage_reduction'; active: boolean };
   'combat:reward_dropped': { rewards: { gold: number; power: number; crystals?: number; soulEssence?: number }; x?: number; y?: number };
@@ -57,6 +64,12 @@ export type GameEventMap = {
   'modal:open': { modalId: string; data?: any };
   'modal:close': { modalId: string };
   'karma:changed': { score: number; band: string; delta: number; reason?: string };
+  'karma:major_choice_recorded': { flagId: string; value: boolean };
+  'pet:acquired': { petId: string };
+  'pet:active_changed': { activePetId: string | null };
+  'pet:evolved': { petId: string; stage: number };
+  'crafting:item_crafted': { item: any; recipeId: string; totalCraftedCount: number };
+  'market:purchased': { offerId: string; isBlackMarket: boolean; totalPurchasesCount: number };
 };
 
 type EventCallback<T> = (data: T) => void;

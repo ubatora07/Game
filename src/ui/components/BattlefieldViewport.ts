@@ -70,11 +70,13 @@ export class BattlefieldViewport {
     events.on('hero:unlocked', () => this.render());
     events.on('hero:starUp', () => this.render());
     events.on('combat:hero_skill', (data) => this.onHeroSkill(data));
+    events.on('combat:pet_action', (data) => this.onPetAction(data));
     events.on('campaign:world_cleared', (data) => this.onWorldCleared(data));
     events.on('combat:boss_mechanic', (data) => this.onBossMechanic(data));
     events.on('combat:samsara_rush_kill', (data) => this.onSamsaraRushKill(data));
-    events.on('pet:equipped' as any, () => this.updatePetDisplay());
-    events.on('pet:evolved' as any, () => this.updatePetDisplay());
+    events.on('pet:active_changed', () => this.updatePetDisplay());
+    events.on('pet:acquired', () => this.updatePetDisplay());
+    events.on('pet:evolved', () => this.updatePetDisplay());
 
     // Interactive Tap on Battlefield to attack
     this.el.addEventListener('pointerdown', (e: MouseEvent | TouchEvent) => {
@@ -118,6 +120,20 @@ export class BattlefieldViewport {
     } else {
       this.petAvatarEl.style.display = 'none';
       this.petAvatarEl.innerHTML = '';
+    }
+  }
+
+  private onPetAction(data: { petId: string; actionName: string; damage: number; remainingHp: number }): void {
+    if (this.petAvatarEl) {
+      this.petAvatarEl.style.transform = 'scale(1.12) translateY(-2px)';
+      setTimeout(() => {
+        if (this.petAvatarEl) this.petAvatarEl.style.transform = '';
+      }, 160);
+    }
+
+    if (this.enemyAvatarEl) {
+      const rect = this.enemyAvatarEl.getBoundingClientRect();
+      FloatingNumbers.spawn(rect.left + rect.width / 2, rect.top + 6, data.damage, false, '-');
     }
   }
 

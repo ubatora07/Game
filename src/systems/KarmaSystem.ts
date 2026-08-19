@@ -221,6 +221,7 @@ export class KarmaSystem {
 
   public setMajorChoiceFlag(flagId: string, value: boolean = true): void {
     this.majorChoiceFlags[flagId] = value;
+    events.emit('karma:major_choice_recorded', { flagId, value });
     analytics.trackEvent('major_choice_recorded', { flagId, value });
   }
 
@@ -250,6 +251,7 @@ export class KarmaSystem {
   public resetCurrentLifeKarma(): void {
     // Samsara legacy rules: resets current-life alignment score to 0, but retains historical majorChoiceFlags
     this.score = 0;
+    this.reapplyKarmaModifiers();
   }
 
   public resetAll(): void {
@@ -258,6 +260,7 @@ export class KarmaSystem {
     this.factionReputation = {};
     this.lifetimeKarmaPositive = 0;
     this.lifetimeKarmaNegative = 0;
+    this.reapplyKarmaModifiers();
   }
 
   public serialize(): KarmaState {

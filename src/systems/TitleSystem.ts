@@ -38,12 +38,12 @@ export class TitleSystem {
       this.unlockTitle('title_rhythm_master');
     });
 
-    events.on('crafting:item_crafted' as any, () => {
-      this.checkCraftingMilestones();
+    events.on('crafting:item_crafted', (data) => {
+      this.checkCraftingMilestones(data.totalCraftedCount);
     });
 
-    events.on('market:purchased' as any, () => {
-      this.checkMarketMilestones();
+    events.on('market:purchased', (data) => {
+      this.checkMarketMilestones(data.totalPurchasesCount);
     });
   }
 
@@ -102,14 +102,16 @@ export class TitleSystem {
     return true;
   }
 
-  public checkCraftingMilestones(): void {
-    // Check craft count from crafting system
-    this.unlockTitle('title_master_artisan');
+  public checkCraftingMilestones(totalCraftedCount: number): void {
+    if (totalCraftedCount >= 5) {
+      this.unlockTitle('title_master_artisan');
+    }
   }
 
-  public checkMarketMilestones(): void {
-    // Check market purchases
-    this.unlockTitle('title_baron_of_commerce');
+  public checkMarketMilestones(totalPurchasesCount: number): void {
+    if (totalPurchasesCount >= 5) {
+      this.unlockTitle('title_baron_of_commerce');
+    }
   }
 
   public reapplyTitleModifiers(): void {
