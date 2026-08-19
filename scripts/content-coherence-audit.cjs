@@ -66,6 +66,10 @@ requireText('src/systems/MercenarySystem.ts', 'settlementSystem.isSettlementOwne
 requireText('src/systems/MercenarySystem.ts', 'if (!this.isGuildUnlocked())', 'mercenary-gate');
 requireText('src/systems/MarketSystem.ts', "offer.reward.type === 'mercenary' && !mercenarySystem.isGuildUnlocked()", 'mercenary-market-transaction');
 requireText('src/ui/modals/MercenaryGuildModal.ts', "mercenary.guild_locked_tavern", 'mercenary-locked-ui');
+requireText('src/systems/AdventureEventSystem.ts', 'if (req?.minRank)', 'adventure-min-rank');
+requireText('src/systems/AdventureEventSystem.ts', 'public isChoiceEligible(choice: AdventureEventChoice)', 'adventure-choice-gate');
+requireText('src/systems/AdventureEventSystem.ts', 'if (!this.isChoiceEligible(choice))', 'adventure-choice-gate');
+requireText('src/ui/modals/AdventureEventModal.ts', 'adventureEventSystem.isChoiceEligible(c)', 'adventure-choice-ui');
 
 // Player-facing duplicate identities need to be intentional and explicit.
 const allowedDuplicateNames = new Map([
@@ -100,7 +104,7 @@ const unresolvedHeroTiming = read('src/content/progressionUnlocks.ts').includes(
   && read('src/content/progressionUnlocks.ts').includes("enforcement: 'declared'");
 if (!unresolvedHeroTiming) errors.push('[pacing-evidence] hero roster timing conflict must remain explicitly declared until resolved');
 
-console.log(`content coherence audit: player names=${[...byName.values()].flat().length}, duplicate groups=${duplicateGroups}, shared progression gate=on, mercenary tavern gate=on`);
+console.log(`content coherence audit: player names=${[...byName.values()].flat().length}, duplicate groups=${duplicateGroups}, shared progression gate=on, mercenary tavern gate=on, adventure eligibility gate=on`);
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

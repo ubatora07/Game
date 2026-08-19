@@ -469,3 +469,31 @@ Roadmap effect:
 - `P13-07` Mercenary audit COMPLETE with runtime enforcement evidence;
 - `P13-28` Unlock pacing matrix COMPLETE;
 - `P13-27` first-60-minute overload reduction remains OPEN until Hero/Partner timing and locked-teaser browser behavior are resolved.
+
+
+## 2026-08-19 — Adventure Event Integrity Contracts (BATCH-15)
+
+Status: **SOURCE INTEGRITY COMPLETE / LIVE SCHEDULER STILL OPEN**
+
+Completed:
+- enforced `AdventureEventRequirement.minRank`, which previously existed in schema but was ignored by eligibility resolution;
+- added fail-closed choice eligibility for Gold, Class, active Pet, unlocked Title and signed Karma requirements;
+- guarded `executeChoice` against foreign/ineligible choices so direct calls cannot bypass choice costs/requirements;
+- disabled ineligible Adventure modal choices and exposed a locked state instead of presenting every choice as clickable;
+- localized the Adventure modal empty state and category ribbon for EN/RU;
+- repaired the stale Phase 85 persistence test so Adventure event history and Karma are validated as separate V7 save domains;
+- added focused regressions for min-rank and choice-requirement enforcement;
+- recorded the separate live scheduler disconnect as `P13-29` instead of inventing an unvalidated random-event cadence.
+
+Validation:
+- source `npx tsc --noEmit -p tsconfig.json` PASS;
+- focused Adventure framework/integrity regression typecheck PASS;
+- `npm run qa:i18n` PASS;
+- `npm run qa:content-coherence` PASS;
+- `git diff --check` PASS;
+- full Vitest/Vite/Playwright remains environment-blocked by the supplied Windows-only Rollup native dependency.
+
+Roadmap effect:
+- `P13-30` Adventure min-rank enforcement COMPLETE;
+- `P13-31` Adventure choice requirements COMPLETE;
+- `P13-29` live Adventure scheduler remains OPEN and explicit.

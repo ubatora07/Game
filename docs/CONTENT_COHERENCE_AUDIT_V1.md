@@ -10,6 +10,7 @@
 - mercenary hiring and mercenary Market contracts cannot bypass Settlement ownership + constructed Tavern progression;
 - player-facing duplicate names across `src/content` fail the audit unless explicitly recognized as one intentional cross-system identity;
 - the only current exact duplicate player name is **Master Goran**, intentionally represented by the Settlement NPC and Forge blacksmith service definitions;
+- Adventure event `minRank` and choice-level requirements are enforced instead of existing as inert schema fields;
 - the unresolved Hero roster timing conflict remains explicit rather than silently changing balance/onboarding.
 
 ## Current content inventory snapshot
@@ -25,11 +26,13 @@ The automated audit scans **222 `defaultName`/`name` fields** in `src/content`; 
 2. **Dead Settlement rank-up hook:** listener expected `rankIndex`, but `ascension:rankUp` emits `newRank`.
 3. **Duplicate rank threshold literals:** Tower and Settlement each hardcoded index `2`.
 4. **Mercenary progression bypass:** Tavern claimed to unlock mercenary hiring, but Team/Market could hire before the Tavern existed. Direct hiring and mercenary contract purchases are now fail-closed until Mountain Haven is owned and the Tavern is constructed; existing loaded contracts are allowed to expire normally.
-5. **Intentional cross-system identity:** Master Goran is one character serving Settlement + Forge, not two unrelated NPCs.
+5. **Adventure requirement bypasses:** event `minRank` plus choice Gold/Class/Pet/Title/Karma requirements existed in schema but were not enforced. Runtime execution and modal availability now fail closed.
+6. **Intentional cross-system identity:** Master Goran is one character serving Settlement + Forge, not two unrelated NPCs.
 
 ### Still open
-1. **Hero recruitment timing:** Rank B catalog declaration conflicts with UX V3's earlier 5–15 minute summoning target.
-2. **Second-character timing:** Partner Awakening modal can be reached from Team and needs a validated discovery gate.
-3. **Mercenary surfacing:** Team can still open the Guild as a locked teaser before Tavern construction, but no hire/purchase can bypass progression. Browser/onboarding validation must decide whether the teaser itself is too early.
-4. **Pet discovery timing:** collection UI can be inspected before acquisition; whether that is teaser or overload needs browser/onboarding validation.
-5. Remaining Phase 13 category audits need qualitative review of roles, progression chains and unlock pacing; they are intentionally left unchecked until that work is performed.
+1. **Adventure scheduler disconnect:** the event pool, resolver, cooldowns and modal exist, but no live gameplay system currently calls weighted selection/opening. This is now tracked as `P13-29` and must be wired without inventing an unvalidated event cadence.
+2. **Hero recruitment timing:** Rank B catalog declaration conflicts with UX V3's earlier 5–15 minute summoning target.
+3. **Second-character timing:** Partner Awakening modal can be reached from Team and needs a validated discovery gate.
+4. **Mercenary surfacing:** Team can still open the Guild as a locked teaser before Tavern construction, but no hire/purchase can bypass progression. Browser/onboarding validation must decide whether the teaser itself is too early.
+5. **Pet discovery timing:** collection UI can be inspected before acquisition; whether that is teaser or overload needs browser/onboarding validation.
+6. Remaining Phase 13 category audits need qualitative review of roles, progression chains and unlock pacing; they are intentionally left unchecked until that work is performed.

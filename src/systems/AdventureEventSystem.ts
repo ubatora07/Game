@@ -18,6 +18,8 @@ import { titleSystem } from './TitleSystem';
 import { craftingEquipmentSystem } from './CraftingEquipmentSystem';
 import { CraftingMaterialId } from '../core/crafting/CraftingTypes';
 import { t } from '../services/i18n/I18nService';
+import { RANKS } from '../content/ranks';
+import { partyTeamSystem } from './PartyTeamSystem';
 
 export class AdventureEventSystem {
   private static instance: AdventureEventSystem;
@@ -93,6 +95,15 @@ export class AdventureEventSystem {
       return false;
     }
 
+    // Rank requirement check. Unknown rank IDs fail closed instead of falling back to Rank E.
+    if (req?.minRank) {
+      const requiredRank = RANKS.find((rank) => rank.id === req.minRank);
+      const currentRank = RANKS.find((rank) => rank.id === context.rank);
+      if (!requiredRank || !currentRank || currentRank.index < requiredRank.index) {
+        return false;
+      }
+    }
+
     // Class requirement check
     if (req?.requiredClasses && req.requiredClasses.length > 0) {
       const hasClass = req.requiredClasses.some((c) => context.activeClasses.includes(c));
@@ -148,7 +159,41 @@ export class AdventureEventSystem {
     return weightedItems[weightedItems.length - 1].event;
   }
 
+  public isChoiceEligible(choice: AdventureEventChoice): boolean {
+    const state = store.get();
+
+    if (choice.requiredGold !== undefined && state.gold < choice.requiredGold) return false;
+
+    if (choice.requiredClass) {
+      const hasRequiredClass = partyTeamSystem
+        .getAllCharacters()
+        .some((character) => character.isUnlocked && character.classId === choice.requiredClass);
+      if (!hasRequiredClass) return false;
+    }
+
+    if (choice.requiredPetId) {
+      const activePet = petSystem.getActivePet();
+      if (!activePet || activePet.id !== choice.requiredPetId) return false;
+    }
+
+    if (choice.requiredTitleId && !titleSystem.isTitleUnlocked(choice.requiredTitleId)) return false;
+
+    if (choice.requiredKarma !== undefined) {
+      const score = karmaSystem.getScore();
+      if (choice.requiredKarma >= 0 ? score < choice.requiredKarma : score > choice.requiredKarma) return false;
+    }
+
+    return true;
+  }
+
   public executeChoice(eventDef: AdventureEventDefinition, choice: AdventureEventChoice): AdventureEventOutcome {
+    if (!eventDef.choices.some((candidate) => candidate.id === choice.id)) {
+      throw new Error(`Choice ${choice.id} does not belong to event ${eventDef.id}`);
+    }
+    if (!this.isChoiceEligible(choice)) {
+      throw new Error(`Choice ${choice.id} is not currently eligible`);
+    }
+
     const outcome = choice.outcome;
 
     // Apply currency changes to game state

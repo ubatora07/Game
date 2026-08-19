@@ -878,6 +878,20 @@ export const en = {
   'tree.assassin.t4_voidwalker_god.name': 'Voidwalker Primordial Stalker',
   'tree.assassin.t4_voidwalker_god.desc': 'Void phase stalker. +25% Crit Chance, +150% Crit Damage.',
 
+  // Adventure Event Modal
+  'modal.adventure.no_active': 'No active adventure encounter.',
+  'modal.adventure.category': '{category} ENCOUNTER',
+  'event.category.chest': 'CHEST',
+  'event.category.traveler': 'TRAVELER',
+  'event.category.recruit': 'RECRUIT',
+  'event.category.ambush': 'AMBUSH',
+  'event.category.village': 'VILLAGE',
+  'event.category.merchant': 'MERCHANT',
+  'event.category.rare_item': 'RARE FIND',
+  'event.category.strange_npc': 'STRANGE ENCOUNTER',
+  'event.category.story': 'STORY',
+  'event.category.choice': 'CHOICE',
+
   // Partner Awakening Modal
   'modal.partner_awakening.title': 'Soul Resonance: Partner Awakened',
   'modal.partner_awakening.desc': 'By conquering the ancient trial, your soul resonance has called forth a sworn companion! Choose your partner\'s combat specialization to complete your duo.',

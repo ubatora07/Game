@@ -878,6 +878,20 @@ export const ru = {
   'tree.assassin.t4_voidwalker_god.name': 'Первородный Странник Пустоты',
   'tree.assassin.t4_voidwalker_god.desc': 'Слияние с Пустотой. +25% крита, +150% крит. урона.',
 
+  // Adventure Event Modal
+  'modal.adventure.no_active': 'Сейчас нет активного приключенческого события.',
+  'modal.adventure.category': 'СОБЫТИЕ: {category}',
+  'event.category.chest': 'СУНДУК',
+  'event.category.traveler': 'ПУТНИК',
+  'event.category.recruit': 'ВЕРБОВКА',
+  'event.category.ambush': 'ЗАСАДА',
+  'event.category.village': 'ПОСЕЛЕНИЕ',
+  'event.category.merchant': 'ТОРГОВЕЦ',
+  'event.category.rare_item': 'РЕДКАЯ НАХОДКА',
+  'event.category.strange_npc': 'СТРАННАЯ ВСТРЕЧА',
+  'event.category.story': 'ИСТОРИЯ',
+  'event.category.choice': 'ВЫБОР',
+
   // Partner Awakening Modal
   'modal.partner_awakening.title': 'Резонанс Душ: Пробуждение Напарника',
   'modal.partner_awakening.desc': 'Пройдя древнее испытание, резонанс вашей души призвал верного соратника! Выберите боевую специализацию напарника, чтобы завершить ваш дуэт.',

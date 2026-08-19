@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { adventureEventSystem } from '../src/systems/AdventureEventSystem';
 import { AdventureEventDefinition, AdventureEventContext } from '../src/core/events/AdventureEventTypes';
 import { store, createInitialState } from '../src/core/GameState';
+import { karmaSystem } from '../src/systems/KarmaSystem';
 
 describe('Phase 85 — Adventure Event Framework Suite', () => {
   const sampleEvents: AdventureEventDefinition[] = [
@@ -67,6 +68,7 @@ describe('Phase 85 — Adventure Event Framework Suite', () => {
     store.replace(createInitialState());
     adventureEventSystem.clearEvents();
     adventureEventSystem.resetAll();
+    karmaSystem.resetAll();
     adventureEventSystem.registerEvents(sampleEvents);
   });
 
@@ -149,14 +151,17 @@ describe('Phase 85 — Adventure Event Framework Suite', () => {
     expect(adventureEventSystem.getKarma()).toBe(25);
 
     const saved = adventureEventSystem.serialize();
+    const savedKarma = karmaSystem.serialize();
     expect(saved.completedOnceOnly).toContain('event_holy_pilgrim');
-    expect(saved.karma).toBe(25);
+    expect(savedKarma.score).toBe(25);
 
-    // Reset & restore
+    // Adventure history and Karma are separate V7 save domains.
     adventureEventSystem.resetAll();
+    karmaSystem.resetAll();
     expect(adventureEventSystem.getKarma()).toBe(0);
 
     adventureEventSystem.deserialize(saved);
+    karmaSystem.deserialize(savedKarma);
     expect(adventureEventSystem.getKarma()).toBe(25);
 
     // Once-only event remains ineligible

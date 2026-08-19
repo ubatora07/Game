@@ -526,6 +526,9 @@
 - [ ] `P13-26` Remove duplicate fantasy roles
 - [ ] `P13-27` Reduce system overload in first 60 minutes
 - [x] `P13-28` Create unlock pacing matrix
+- [ ] `P13-29` Wire AdventureEvent scheduler into the live gameplay loop
+- [x] `P13-30` Enforce AdventureEvent minRank eligibility
+- [x] `P13-31` Enforce AdventureEvent choice requirements in UI and execution
 
 ## PHASE 14 — Audio & Feel
 
@@ -628,4 +631,4 @@
 
 ## Task count
 
-**Concrete checklist tasks:** 497 (including status/evidence checklists and global gates).
+**Concrete checklist tasks:** 500 (including status/evidence checklists and global gates).
