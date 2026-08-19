@@ -5,67 +5,89 @@
   --safe-left: env(safe-area-inset-left, 0px);
   --safe-right: env(safe-area-inset-right, 0px);
 
-  /* Color Palette - Premium Anime Dark Fantasy */
-  --bg-core: #040711;
-  --bg-surface: #0a0f1d;
-  --bg-surface-raised: #111827;
-  --bg-card: rgba(17, 24, 39, 0.85);
-  --bg-card-hover: rgba(30, 41, 59, 0.9);
-  --bg-glass: rgba(15, 23, 42, 0.75);
+  /* Dark heroic-fantasy foundation */
+  --bg-core: #080706;
+  --bg-surface: #12100e;
+  --bg-surface-raised: #1b1713;
+  --bg-card: #17130f; /* compatibility alias: opaque, never glass */
+  --bg-card-hover: #211a14;
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(255, 255, 255, 0.2);
-  --border-gold: rgba(245, 158, 11, 0.4);
-  --border-cyan: rgba(56, 189, 248, 0.4);
-  --border-purple: rgba(168, 85, 247, 0.4);
+  /* Production surfaces */
+  --surface-forged-bronze: linear-gradient(180deg, #2a2118 0%, #17110c 100%);
+  --surface-stone: linear-gradient(180deg, #201d1a 0%, #12100e 100%);
+  --surface-wood: linear-gradient(180deg, #2a1b10 0%, #17100a 100%);
+  --surface-leather: linear-gradient(180deg, #251812 0%, #120d0a 100%);
+  --surface-parchment: #d7c29a;
+  --surface-parchment-ink: #2b2118;
 
-  /* Accent & Element Colors */
-  --color-gold: #f59e0b;
-  --color-gold-glow: rgba(245, 158, 11, 0.5);
-  --color-cyan: #38bdf8;
-  --color-cyan-glow: rgba(56, 189, 248, 0.5);
-  --color-purple: #c084fc;
-  --color-purple-glow: rgba(192, 132, 252, 0.5);
-  --color-crimson: #f43f5e;
-  --color-crimson-glow: rgba(244, 63, 94, 0.6);
-  --color-emerald: #10b981;
+  --border-subtle: #493a2c;
+  --border-highlight: #806344;
+  --border-gold: #9a641f;
+  --border-cyan: #2d6f85;
+  --border-purple: #6d4b7e;
+  --frame-bronze-dark: #5b3518;
+  --frame-bronze: #9a5b22;
+  --frame-bronze-light: #d49a45;
 
-  /* Rarity Colors */
-  --rarity-common: #94a3b8;
-  --rarity-rare: #38bdf8;
-  --rarity-epic: #c084fc;
-  --rarity-legendary: #fbbf24;
-  --rarity-mythic: #f43f5e;
+  /* Accent & element colors */
+  --color-gold: #d9902f;
+  --color-gold-glow: rgba(217, 144, 47, 0.32);
+  --color-cyan: #48a7bf;
+  --color-cyan-glow: rgba(72, 167, 191, 0.30);
+  --color-purple: #9a70b5;
+  --color-purple-glow: rgba(154, 112, 181, 0.30);
+  --color-crimson: #c84b52;
+  --color-crimson-glow: rgba(200, 75, 82, 0.32);
+  --color-emerald: #3f9b72;
 
-  /* Typography */
-  --font-main: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
-  --font-display: 'Impact', 'Trebuchet MS', 'Arial Black', sans-serif;
+  /* Rarity colors */
+  --rarity-common: #a8a29e;
+  --rarity-rare: #4e9fc2;
+  --rarity-epic: #9a70b5;
+  --rarity-legendary: #d6a03c;
+  --rarity-mythic: #c84b52;
 
-  /* Text Colors */
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  --text-gold: #fde047;
-  --text-cyan: #7dd3fc;
-  --text-purple: #e9d5ff;
+  /* Typography: local/system-only, no font-file dependency */
+  --font-main: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-mono: 'Cascadia Mono', 'SFMono-Regular', Consolas, monospace;
 
-  /* Sizing & Radius */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+  /* Text colors */
+  --text-main: #f2eee8;
+  --text-muted: #b2aaa1;
+  --text-dim: #81786f;
+  --text-gold: #f0c66e;
+  --text-cyan: #8cc9d8;
+  --text-purple: #c9add8;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Compact RPG geometry; avoid SaaS pill/card language */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
   --radius-full: 9999px;
 
-  /* Shadows & Glows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.8);
-  --glow-gold: 0 0 20px rgba(245, 158, 11, 0.4);
-  --glow-cyan: 0 0 20px rgba(56, 189, 248, 0.4);
-  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.4);
+  /* Controlled shadows */
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 5px 14px rgba(0, 0, 0, 0.58);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.70);
+  --shadow-inset-frame: inset 0 1px 0 rgba(240, 198, 110, 0.10), inset 0 -2px 0 rgba(0, 0, 0, 0.35);
+  --glow-gold: 0 0 12px rgba(217, 144, 47, 0.24);
+  --glow-cyan: 0 0 12px rgba(72, 167, 191, 0.22);
+  --glow-purple: 0 0 12px rgba(154, 112, 181, 0.22);
 
-  /* Touch sizing */
+  /* Accessibility / input */
   --touch-target-min: 44px;
+  --focus-ring: 0 0 0 2px #080706, 0 0 0 4px #f0c66e;
 }
+
 
 * {
   box-sizing: border-box;
@@ -102,4 +124,61 @@ button {
   background: none;
   cursor: pointer;
   outline: none;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
 }
+
+input,
+select,
+textarea {
+  min-height: var(--touch-target-min);
+}
+
+button:focus-visible,
+[role='button']:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring) !important;
+}
+
+button:disabled,
+button[aria-disabled='true'],
+.is-disabled {
+  cursor: not-allowed !important;
+  opacity: 0.46 !important;
+  filter: saturate(0.45);
+}
+
+.ui-frame-primary {
+  background: var(--surface-forged-bronze);
+  border: 1px solid var(--frame-bronze);
+  box-shadow: var(--shadow-md), var(--shadow-inset-frame);
+  border-radius: var(--radius-md);
+}
+.ui-panel-stone { background: var(--surface-stone); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.ui-panel-wood { background: var(--surface-wood); border: 1px solid #65401f; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.ui-panel-leather { background: var(--surface-leather); border: 1px solid #57372b; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.ui-panel-parchment { background: var(--surface-parchment); color: var(--surface-parchment-ink); border: 1px solid #876f4f; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
+
+.ui-btn-primary,
+.ui-btn-secondary,
+.ui-btn-destructive {
+  min-height: var(--touch-target-min);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: var(--shadow-sm), var(--shadow-inset-frame);
+}
+.ui-btn-primary { color: #fff7e6; background: linear-gradient(180deg, #9a5b22, #633716); border: 1px solid #d49a45; }
+.ui-btn-secondary { color: var(--text-main); background: var(--surface-stone); border: 1px solid var(--border-highlight); }
+.ui-btn-destructive { color: #fff1f2; background: linear-gradient(180deg, #8d2f35, #50191e); border: 1px solid #c84b52; }
+
+.rarity-frame-common { border-color: var(--rarity-common) !important; }
+.rarity-frame-rare { border-color: var(--rarity-rare) !important; box-shadow: 0 0 0 1px rgba(78,159,194,.16); }
+.rarity-frame-epic { border-color: var(--rarity-epic) !important; box-shadow: 0 0 0 1px rgba(154,112,181,.18); }
+.rarity-frame-legendary { border-color: var(--rarity-legendary) !important; box-shadow: 0 0 0 1px rgba(214,160,60,.20); }
+.rarity-frame-mythic { border-color: var(--rarity-mythic) !important; box-shadow: 0 0 0 1px rgba(200,75,82,.22); }

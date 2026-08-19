@@ -57,9 +57,7 @@ export class ModalManager {
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(4, 7, 17, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(4, 3, 2, 0.88);
       z-index: 100;
     `;
     backdrop.addEventListener('click', () => this.close(modalId));
@@ -73,10 +71,10 @@ export class ModalManager {
       width: 90%;
       max-height: 85vh;
       overflow-y: auto;
-      background: #0a0f1d;
-      border: 1px solid var(--border-gold);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(245,158,11,0.2);
-      border-radius: var(--radius-lg);
+      background: var(--surface-stone);
+      border: 1px solid var(--frame-bronze);
+      box-shadow: var(--shadow-lg), var(--shadow-inset-frame);
+      border-radius: var(--radius-md);
       padding: 24px;
     `;
 

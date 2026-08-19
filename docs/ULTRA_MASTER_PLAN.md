@@ -40,6 +40,7 @@
 - [x] Independent Phase 10 gameplay integration harness passes **10/10** assertions.
 - [x] `git diff --check` passes.
 - [x] Build-time `qa:release-safety` gate added and chained into `npm run build`.
+- [x] Build-time `qa:ui-production` gate enforces opaque RPG surfaces, semantic icons, and 44px targets.
 - [x] Existing stale `dist` correctly FAILS release-safety because it predates P0 hardening.
 - [ ] Full `npm test` execution — environment-blocked: uploaded `node_modules` contains only Windows Rollup native packages, sandbox is Linux.
 - [ ] Fresh `npm run build` — same Rollup native-package blocker; current `dist` must not be shipped.
@@ -426,29 +427,29 @@
 
 **Priority:** P2
 
-- [ ] `P11-01` Remove generic glassmorphism from primary surfaces
-- [ ] `P11-02` Reduce backdrop-filter usage
-- [ ] `P11-03` Define forged bronze primary frame
-- [ ] `P11-04` Define stone secondary panel
-- [ ] `P11-05` Define wood/leather contextual panels
-- [ ] `P11-06` Define parchment narrative surface
-- [ ] `P11-07` Define rarity frames
-- [ ] `P11-08` Define button hierarchy
-- [ ] `P11-09` Define destructive confirmation style
-- [ ] `P11-10` Define disabled style
-- [ ] `P11-11` Define keyboard focus style
+- [x] `P11-01` Remove generic glassmorphism from primary surfaces
+- [x] `P11-02` Reduce backdrop-filter usage
+- [x] `P11-03` Define forged bronze primary frame
+- [x] `P11-04` Define stone secondary panel
+- [x] `P11-05` Define wood/leather contextual panels
+- [x] `P11-06` Define parchment narrative surface
+- [x] `P11-07` Define rarity frames
+- [x] `P11-08` Define button hierarchy
+- [x] `P11-09` Define destructive confirmation style
+- [x] `P11-10` Define disabled style
+- [x] `P11-11` Define keyboard focus style
 - [ ] `P11-12` Define controller-ready focus semantics
-- [ ] `P11-13` Replace navigation emoji with icons
-- [ ] `P11-14` Replace building emoji with icons
-- [ ] `P11-15` Replace rank emoji with badges/icons
-- [ ] `P11-16` Replace More menu emoji with icons
-- [ ] `P11-17` Create readable fantasy display font strategy
-- [ ] `P11-18` Keep body font highly readable
+- [x] `P11-13` Replace navigation emoji with icons
+- [x] `P11-14` Replace building emoji with icons
+- [x] `P11-15` Replace rank emoji with badges/icons
+- [x] `P11-16` Replace More menu emoji with icons
+- [x] `P11-17` Create readable fantasy display font strategy
+- [x] `P11-18` Keep body font highly readable
 - [ ] `P11-19` Normalize spacing scale
 - [ ] `P11-20` Normalize border radii
 - [ ] `P11-21` Normalize shadow use
-- [ ] `P11-22` Enforce 44px touch targets
-- [ ] `P11-23` Update E2E target-size expectation from 36 to 44
+- [x] `P11-22` Enforce 44px touch targets
+- [x] `P11-23` Update E2E target-size expectation from 36 to 44
 - [ ] `P11-24` Validate modals at 390x844
 - [ ] `P11-25` Validate 1366x768 density
 - [ ] `P11-26` Validate 1920x1080 expansion

@@ -8,6 +8,7 @@ import { EconomyEngine } from '../../economy/EconomyEngine';
 import { t } from '../../services/i18n/I18nService';
 import { events } from '../../core/EventBus';
 import { sound } from '../../services/audio/SoundService';
+import { resolveUIIcon } from '../art/runtime/UIIconRegistry';
 
 export class HomeScreen {
   private el: HTMLElement;
@@ -173,7 +174,7 @@ export class HomeScreen {
         card.innerHTML = `
           <div style="display:flex; align-items:center; gap:10px; flex:1;">
             <div style="font-size:24px; width:38px; height:38px; display:flex; align-items:center; justify-content:center; background:rgba(30,41,59,0.7); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-              ${building.icon}
+              ${resolveUIIcon(`building_${building.id}`).fallbackSvg}
             </div>
             <div style="flex:1;">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-right:8px;">

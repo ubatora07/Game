@@ -16,6 +16,7 @@ import { t } from '../../services/i18n/I18nService';
 import { events } from '../../core/EventBus';
 import { sound } from '../../services/audio/SoundService';
 import { adService } from '../../services/ads/AdService';
+import { resolveUIIcon } from '../art/runtime/UIIconRegistry';
 
 export class BattleScreen {
   private el: HTMLElement;
@@ -424,7 +425,7 @@ export class BattleScreen {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: rgba(17, 24, 39, 0.85);
+          background: var(--surface-stone);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-md);
           padding: 8px 12px;
@@ -433,8 +434,8 @@ export class BattleScreen {
 
         card.innerHTML = `
           <div style="display:flex; align-items:center; gap:10px; flex:1;">
-            <div style="font-size:24px; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:radial-gradient(circle, rgba(245,158,11,0.15), rgba(30,41,59,0.8)); border-radius:var(--radius-sm); border:1px solid rgba(245,158,11,0.3); box-shadow:0 0 8px rgba(0,0,0,0.5);">
-              ${building.icon}
+            <div style="color:var(--text-gold); width:40px; height:40px; padding:7px; display:flex; align-items:center; justify-content:center; background:radial-gradient(circle, rgba(245,158,11,0.15), rgba(30,41,59,0.8)); border-radius:var(--radius-sm); border:1px solid rgba(245,158,11,0.3); box-shadow:0 0 8px rgba(0,0,0,0.5);">
+              ${resolveUIIcon(`building_${building.id}`).fallbackSvg}
             </div>
             <div style="flex:1;">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-right:8px;">
@@ -493,7 +494,7 @@ export class BattleScreen {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: rgba(17, 24, 39, 0.85);
+          background: var(--surface-stone);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-md);
           padding: 8px 12px;

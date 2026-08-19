@@ -251,3 +251,34 @@ Validation:
 - `node scripts/art-registry-audit.cjs` PASS
 - `git diff --check` PASS
 - full Vitest/Vite/Playwright execution remains environment-blocked by Windows-only Rollup native dependencies in supplied `node_modules`.
+
+
+## 2026-08-19 — Phase 11 UI Production Pass (source contract batch A)
+
+Status: **SOURCE CONTRACT PASS / BROWSER DENSITY QA PENDING**
+
+Completed in this batch:
+- replaced the old blue/slate glass token language with opaque dark heroic-fantasy surface tokens;
+- defined forged-bronze, stone, wood, leather and parchment surface contracts;
+- defined rarity frames plus primary/secondary/destructive/disabled action states;
+- added visible keyboard focus rings and a 44px minimum control contract;
+- removed all `backdrop-filter` usage from active UI source, including header/layout, modal and toast surfaces;
+- switched the six primary domains and all Hero/Team/World hub icons to semantic SVG registry IDs;
+- switched More menu to semantic registry icons;
+- switched active Battle/Home building presentation from legacy emoji fields to 10 semantic building icons;
+- switched HeroStage rank presentation from its emoji array to 12 semantic rank badges;
+- documented system/local typography strategy without adding external font-file dependencies;
+- raised responsive QA train/navigation thresholds from 36px to 44px;
+- added build-enforced `qa:ui-production` and `docs/UI_PRODUCTION_SYSTEM_V1.md`.
+
+Intentionally still open:
+- controller-specific navigation semantics beyond keyboard/focus-visible readiness;
+- repo-wide replacement of legacy raw spacing/radius/shadow literals in old inline-style screens;
+- real browser validation at 390x844, 1366x768 and 1920x1080.
+
+Validation:
+- `node scripts/ui-production-audit.cjs` PASS (10 building icons / 12 rank badges)
+- `npx tsc --noEmit -p tsconfig.json` PASS
+- selective TypeScript compile of navigation/art/responsive QA PASS
+- i18n / terminology / art-registry gates PASS
+- `git diff --check` PASS

@@ -132,8 +132,8 @@ test.describe('Phase 59 — Responsive QA v2', () => {
       const trainBox = await page.locator('#trainActionBtn').boundingBox();
       expect(trainBox).not.toBeNull();
       if (trainBox) {
-        expect(trainBox.width).toBeGreaterThanOrEqual(36);
-        expect(trainBox.height).toBeGreaterThanOrEqual(36);
+        expect(trainBox.width).toBeGreaterThanOrEqual(44);
+        expect(trainBox.height).toBeGreaterThanOrEqual(44);
       }
       await page.click('#trainActionBtn');
 
@@ -230,7 +230,7 @@ test.describe('Phase 59 — Responsive QA v2', () => {
         for (const btn of navBtns) {
           const box = await btn.boundingBox();
           if (box) {
-            expect(box.height).toBeGreaterThanOrEqual(36);
+            expect(box.height).toBeGreaterThanOrEqual(44);
           }
         }
       }

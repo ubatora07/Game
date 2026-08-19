@@ -11,6 +11,7 @@ import {
   PrimaryDomainDefinition,
   getPrimaryDomainForScreen,
 } from '../navigation/PrimaryDomains';
+import { resolveUIIcon } from '../art/runtime/UIIconRegistry';
 
 export type NavTab = PrimaryDomainDefinition;
 
@@ -87,7 +88,7 @@ export class Navigation {
       }
 
       btn.innerHTML = `
-        <span class="nav-icon" aria-hidden="true">${tab.icon}</span>
+        <span class="nav-icon" aria-hidden="true">${resolveUIIcon(tab.iconId).fallbackSvg}</span>
         <span class="nav-label">${t(tab.labelKey)}</span>
         <span class="nav-badge" aria-hidden="true"></span>
       `;

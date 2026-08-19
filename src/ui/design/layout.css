@@ -6,7 +6,7 @@
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at 50% 30%, #0a1128 0%, #040711 75%, #020307 100%);
+  background: radial-gradient(circle at 50% 24%, #1b1713 0%, #0d0b09 58%, #080706 100%);
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -20,10 +20,8 @@
 .app-header {
   height: 60px;
   min-height: 60px;
-  background: rgba(10, 15, 29, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-forged-bronze);
+  border-bottom: 1px solid var(--frame-bronze);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -181,9 +179,13 @@
 }
 
 .nav-tab-btn .nav-icon {
-  font-size: 17px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
   line-height: 1;
 }
+.nav-tab-btn .nav-icon svg { width: 100%; height: 100%; display: block; }
 
 .nav-tab-btn .nav-label {
   display: block;
@@ -245,11 +247,10 @@
     order: 2;
     width: 100%;
     max-width: 100%;
-    background: var(--bg-card);
+    background: var(--surface-stone);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: 14px;
-    backdrop-filter: blur(10px);
     box-sizing: border-box;
     overflow-x: hidden;
   }
@@ -258,11 +259,10 @@
     order: 3;
     width: 100%;
     max-width: 100%;
-    background: var(--bg-card);
+    background: var(--surface-stone);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: 14px;
-    backdrop-filter: blur(10px);
     box-sizing: border-box;
     overflow-x: hidden;
   }
@@ -294,15 +294,14 @@
   }
 
   .home-col-left, .home-col-right {
-    background: var(--bg-card);
+    background: var(--surface-stone);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: 16px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    box-shadow: var(--shadow-md);
   }
 
   .home-col-center {
@@ -639,7 +638,8 @@
   }
 
   .nav-tab-btn .nav-icon {
-    font-size: 15px;
+    width: 18px;
+    height: 18px;
   }
 
   .nav-tab-btn .nav-badge {

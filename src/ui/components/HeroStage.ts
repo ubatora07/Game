@@ -8,6 +8,7 @@ import { FloatingNumbers } from '../vfx/FloatingNumbers';
 import { ParticleCanvas } from '../vfx/ParticleCanvas';
 import { t } from '../../services/i18n/I18nService';
 import { events } from '../../core/EventBus';
+import { resolveUIIcon } from '../art/runtime/UIIconRegistry';
 
 export class HeroStage {
   private el: HTMLElement;
@@ -228,10 +229,9 @@ export class HeroStage {
     if (trainBtnText) {
       trainBtnText.innerText = t('btn.train');
     }
-
-    const avatarIcons = ['🥋', '🗡️', '⚡', '🌀', '🔥', '👑', '🌌', '👁️', '✨', '🪐', '💫', '☀️'];
     if (heroAvatarArt) {
-      heroAvatarArt.innerText = avatarIcons[rank.index % avatarIcons.length];
+      heroAvatarArt.innerHTML = resolveUIIcon(`rank_${rank.id.toLowerCase()}`).fallbackSvg;
+      heroAvatarArt.style.color = rank.color;
     }
 
     if (heroGraphic) {

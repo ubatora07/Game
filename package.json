@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run qa:terminology && npm run qa:i18n && npm run qa:art-registry && tsc && vite build && npm run qa:release-safety",
+    "build": "npm run qa:terminology && npm run qa:i18n && npm run qa:art-registry && npm run qa:ui-production && tsc && vite build && npm run qa:release-safety",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -16,7 +16,8 @@
     "qa:release-safety": "node scripts/release-safety-audit.cjs",
     "qa:terminology": "node scripts/terminology-audit.cjs",
     "qa:i18n": "node scripts/i18n-audit.cjs",
-    "qa:art-registry": "node scripts/art-registry-audit.cjs"
+    "qa:art-registry": "node scripts/art-registry-audit.cjs",
+    "qa:ui-production": "node scripts/ui-production-audit.cjs"
   },
   "devDependencies": {
     "@playwright/test": "1.45",

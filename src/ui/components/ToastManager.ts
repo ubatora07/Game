@@ -31,13 +31,12 @@ export class ToastManager {
     }
 
     toast.style.cssText = `
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(12px);
+      background: var(--surface-stone);
       border: 1px solid ${borderColor};
       box-shadow: 0 4px 20px ${glowColor};
       color: #ffffff;
       padding: 10px 18px;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-sm);
       font-size: 13px;
       font-weight: 600;
       margin-bottom: 8px;

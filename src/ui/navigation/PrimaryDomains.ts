@@ -2,7 +2,7 @@ export type PrimaryDomainId = 'hero' | 'team' | 'battle' | 'settlement' | 'world
 
 export interface PrimaryDomainDefinition {
   id: PrimaryDomainId;
-  icon: string;
+  iconId: string;
   labelKey: string;
   minRankIndex: number;
 }
@@ -12,12 +12,12 @@ export interface PrimaryDomainDefinition {
  * Keep this array as the single source of truth for order and labels.
  */
 export const PRIMARY_DOMAINS: readonly PrimaryDomainDefinition[] = [
-  { id: 'hero', icon: '⚔️', labelKey: 'nav.hero', minRankIndex: 0 },
-  { id: 'team', icon: '👥', labelKey: 'nav.team', minRankIndex: 0 },
-  { id: 'battle', icon: '🔥', labelKey: 'nav.battle', minRankIndex: 0 },
-  { id: 'settlement', icon: '🏰', labelKey: 'nav.settlement', minRankIndex: 0 },
-  { id: 'world', icon: '🗺️', labelKey: 'nav.world', minRankIndex: 0 },
-  { id: 'more', icon: '⋯', labelKey: 'nav.more', minRankIndex: 0 },
+  { id: 'hero', iconId: 'nav_hero', labelKey: 'nav.hero', minRankIndex: 0 },
+  { id: 'team', iconId: 'nav_team', labelKey: 'nav.team', minRankIndex: 0 },
+  { id: 'battle', iconId: 'nav_battle', labelKey: 'nav.battle', minRankIndex: 0 },
+  { id: 'settlement', iconId: 'nav_settlement', labelKey: 'nav.settlement', minRankIndex: 0 },
+  { id: 'world', iconId: 'nav_world', labelKey: 'nav.world', minRankIndex: 0 },
+  { id: 'more', iconId: 'nav_more', labelKey: 'nav.more', minRankIndex: 0 },
 ] as const;
 
 const DEEP_ROUTE_DOMAIN: Readonly<Record<string, PrimaryDomainId>> = {

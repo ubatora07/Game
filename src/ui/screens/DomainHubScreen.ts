@@ -1,6 +1,7 @@
 import { events } from '../../core/EventBus';
 import { t } from '../../services/i18n/I18nService';
 import { sound } from '../../services/audio/SoundService';
+import { resolveUIIcon } from '../art/runtime/UIIconRegistry';
 
 export type DomainHubActionType = 'screen' | 'modal';
 
@@ -8,7 +9,7 @@ export interface DomainHubAction {
   id: string;
   targetId: string;
   type: DomainHubActionType;
-  icon: string;
+  iconId: string;
   labelKey: string;
   descriptionKey: string;
   accent: string;
@@ -16,7 +17,7 @@ export interface DomainHubAction {
 
 export interface DomainHubConfig {
   id: string;
-  icon: string;
+  iconId: string;
   eyebrowKey: string;
   titleKey: string;
   subtitleKey: string;
@@ -42,7 +43,7 @@ export class DomainHubScreen {
     this.el.innerHTML = `
       <section class="domain-hub-shell" aria-labelledby="${this.config.id}DomainTitle">
         <header class="domain-hub-header">
-          <div class="domain-hub-emblem" aria-hidden="true">${this.config.icon}</div>
+          <div class="domain-hub-emblem" aria-hidden="true">${resolveUIIcon(this.config.iconId).fallbackSvg}</div>
           <div class="domain-hub-heading-copy">
             <div class="domain-hub-eyebrow">${t(this.config.eyebrowKey)}</div>
             <h2 id="${this.config.id}DomainTitle" class="domain-hub-title">${t(this.config.titleKey)}</h2>
@@ -60,7 +61,7 @@ export class DomainHubScreen {
               data-action-target="${action.targetId}"
               style="--domain-accent:${action.accent};"
             >
-              <span class="domain-hub-action-icon" aria-hidden="true">${action.icon}</span>
+              <span class="domain-hub-action-icon" aria-hidden="true">${resolveUIIcon(action.iconId).fallbackSvg}</span>
               <span class="domain-hub-action-copy">
                 <strong>${t(action.labelKey)}</strong>
                 <small>${t(action.descriptionKey)}</small>
