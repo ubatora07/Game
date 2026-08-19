@@ -1,4 +1,5 @@
 import { getCampaignStageById } from './campaignStages';
+import type { GameStateData } from '../core/GameState';
 
 export interface QuestReward {
   gold?: number;
@@ -15,7 +16,7 @@ export interface QuestDefinition {
   descKey: string;
   targetCount: number;
   reward: QuestReward;
-  getProgress: (state: any) => number;
+  getProgress: (state: Readonly<GameStateData>) => number;
 }
 
 export const QUESTS: readonly QuestDefinition[] = [
@@ -42,7 +43,7 @@ export const QUESTS: readonly QuestDefinition[] = [
     descKey: 'quest.build_1.desc',
     targetCount: 1,
     reward: { gold: 50, crystals: 20 },
-    getProgress: (s) => Object.values(s.buildings || {}).reduce((a: number, b: any) => a + (Number(b) || 0), 0)
+    getProgress: (s) => Object.values(s.buildings || {}).reduce((a, b) => a + (Number(b) || 0), 0)
   },
   {
     id: 'quest_reach_stage_1_3',
@@ -186,7 +187,7 @@ export const QUESTS: readonly QuestDefinition[] = [
     descKey: 'quest.build_50.desc',
     targetCount: 50,
     reward: { goldSeconds: 90, crystals: 200, essence: 100 },
-    getProgress: (s) => Object.values(s.buildings || {}).reduce((a: number, b: any) => a + (Number(b) || 0), 0)
+    getProgress: (s) => Object.values(s.buildings || {}).reduce((a, b) => a + (Number(b) || 0), 0)
   },
 
   // 6. Chapter 6: Samsara (Круг Перерождений)

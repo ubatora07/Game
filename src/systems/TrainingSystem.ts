@@ -2,11 +2,13 @@ import { store } from '../core/GameState';
 import { EconomyEngine } from '../economy/EconomyEngine';
 import { events } from '../core/EventBus';
 import { sound } from '../services/audio/SoundService';
+import { RelicSystem } from './RelicSystem';
 
 export interface TrainResult {
   powerGained: number;
   goldGained: number;
   isCrit: boolean;
+  isBurstCrit: boolean;
   comboMult: number;
 }
 
@@ -25,9 +27,15 @@ export class TrainingSystem {
       draft.combo.timer = 2.0; // 2 seconds decay window
     });
 
-    const metrics = EconomyEngine.calculateMetrics(store.get());
-    const isCrit = Math.random() < metrics.critChance;
-    const powerGained = Math.floor(isCrit ? metrics.clickPower * metrics.critMultiplier : metrics.clickPower);
+    const combatState = store.get();
+    const metrics = EconomyEngine.calculateMetrics(combatState);
+    const burstChance = RelicSystem.getEquippedEffectValue(combatState, 'crit_burst');
+    const isBurstCrit = burstChance > 0 && Math.random() < burstChance;
+    const isCrit = isBurstCrit || Math.random() < metrics.critChance;
+    const normalCritPower = metrics.clickPower * metrics.critMultiplier;
+    const powerGained = Math.floor(
+      isBurstCrit ? normalCritPower * 5 : isCrit ? normalCritPower : metrics.clickPower
+    );
     const goldGained = Math.floor(isCrit ? metrics.clickGold * 2 : metrics.clickGold);
 
     store.set((draft) => {
@@ -51,11 +59,12 @@ export class TrainingSystem {
       powerGained,
       goldGained,
       isCrit,
+      isBurstCrit,
       x: clickCoords?.x,
       y: clickCoords?.y
     });
 
-    return { powerGained, goldGained, isCrit, comboMult: newComboMult };
+    return { powerGained, goldGained, isCrit, isBurstCrit, comboMult: newComboMult };
   }
 
   public static updateCombo(dt: number): void {

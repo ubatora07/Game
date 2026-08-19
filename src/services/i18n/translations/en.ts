@@ -1718,7 +1718,7 @@ export const en = {
   'relic_dragon_scale_desc': 'Adds a chance for devastating burst critical strikes. Higher levels increase the trigger chance.',
   'relic_harmonic_chime_desc': 'Amplifies class and build synergy effects. Higher levels strengthen the amplification.',
   'relic_merchants_abacus_desc': 'Adds a chance for completed quests to grant extra gold based on your current production.',
-  'relic_ethereal_hammer_desc': 'Improves offline forging efficiency by reducing eligible construction costs after time away.',
+  'relic_ethereal_hammer_desc': 'Improves offline production efficiency. Each level adds another percentage point toward the offline efficiency cap.',
   // Market offer localization V2
   'market.iron_ore_pack.name': 'Mountain Iron Ore Crate',
   'market.iron_ore_pack.desc': 'A crate of 20 refined Mountain Iron Ore ingots from local quarries.',

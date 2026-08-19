@@ -6,7 +6,7 @@ export type GameEventMap = {
 
   // Gameplay Events
   'game_start': { saveVersion: number };
-  'train:click': { powerGained: number; goldGained?: number; isCrit: boolean; x?: number; y?: number };
+  'train:click': { powerGained: number; goldGained?: number; isCrit: boolean; isBurstCrit?: boolean; x?: number; y?: number };
   'building:buy': { buildingId: string; count: number; totalCost: number };
   'upgrade:buy': { upgradeId: string; newLevel: number; cost: number };
   'ascension:rankUp': { oldRank: string; newRank: string; multiplier: number };

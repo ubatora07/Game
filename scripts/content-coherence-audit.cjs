@@ -30,7 +30,7 @@ function collectPlayerNames() {
         if ((key === 'defaultName' || key === 'name') && ts.isStringLiteralLike(node.initializer)) {
           names.push({
             value: node.initializer.text.trim(),
-            file: path.relative(ROOT, file),
+            file: path.relative(ROOT, file).replace(/\\/g, '/'),
             line: source.getLineAndCharacterOfPosition(node.getStart(source)).line + 1,
           });
         }

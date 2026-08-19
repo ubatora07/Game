@@ -4,6 +4,7 @@ import { BUILDINGS, getBuildingMilestoneMultiplier } from '../content/buildings'
 import { UPGRADES } from '../content/upgrades';
 import { getHeroById, getHeroStarMultiplier } from '../content/heroes';
 import { SOUL_TREE } from '../content/soulTree';
+import { RelicSystem } from '../systems/RelicSystem';
 
 export interface BuildingProductionDetail {
   buildingId: string;
@@ -184,6 +185,7 @@ export class EconomyEngine {
     let extraOfflineCapFromUpgrades = 0;
 
     const buildingUpgradeMultipliers: Record<string, number> = {};
+    const relicSynergyMultiplier = RelicSystem.getEquippedEffectValue(state, 'synergy_amp') || 1.0;
 
     for (const upg of UPGRADES) {
       const lvl = state.upgrades[upg.id] || 0;
@@ -202,7 +204,7 @@ export class EconomyEngine {
         } else if (upg.effectType === 'synergy_boost' && upg.targetBuildingId && upg.sourceBuildingId) {
           // Cross-tier synergy (e.g. Celestial Temples boosting Dojos)
           const sourceOwned = state.buildings[upg.sourceBuildingId] || 0;
-          const synergyMult = 1.0 + sourceOwned * (lvl * upg.effectValue);
+          const synergyMult = 1.0 + sourceOwned * (lvl * upg.effectValue) * relicSynergyMultiplier;
           buildingUpgradeMultipliers[upg.targetBuildingId] = 
             (buildingUpgradeMultipliers[upg.targetBuildingId] || 1.0) * synergyMult;
         } else if (upg.effectType === 'global_power_mult') {
@@ -286,7 +288,8 @@ export class EconomyEngine {
 
     // 10. Offline Configuration
     const maxOfflineSeconds = (8 + extraOfflineHours + extraOfflineCapFromUpgrades) * 3600;
-    const offlineEfficiency = Math.min(1.0, 0.50 + heroOfflineAdd + soulOfflineBonus);
+    const relicOfflineEfficiency = RelicSystem.getEquippedEffectValue(state, 'offline_efficiency');
+    const offlineEfficiency = Math.min(1.0, 0.50 + heroOfflineAdd + soulOfflineBonus + relicOfflineEfficiency);
 
     // 11. Breakdown
     const breakdown: ProductionBreakdown = {

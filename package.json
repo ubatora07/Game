@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run qa:governance && npm run qa:source-safety && npm run qa:terminology && npm run qa:i18n && npm run qa:content-coherence && npm run qa:art-registry && npm run qa:ui-production && tsc && vite build && npm run qa:release-safety",
+    "build": "npm run qa:governance && npm run qa:source-safety && npm run qa:terminology && npm run qa:i18n && npm run qa:content-coherence && npm run qa:meta-content && npm run qa:art-registry && npm run qa:ui-production && tsc && vite build && npm run qa:release-safety",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -21,7 +21,8 @@
     "qa:source-safety": "node scripts/source-production-safety-audit.cjs",
     "package:release": "node scripts/package-release.cjs",
     "qa:governance": "node scripts/governance-audit.cjs",
-    "qa:content-coherence": "node scripts/content-coherence-audit.cjs"
+    "qa:content-coherence": "node scripts/content-coherence-audit.cjs",
+    "qa:meta-content": "node scripts/meta-content-audit.cjs"
   },
   "devDependencies": {
     "@playwright/test": "1.45",

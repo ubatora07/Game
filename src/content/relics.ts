@@ -2,7 +2,7 @@ export type RelicEffectType =
   | 'auto_training'      // Simulates clicks per second
   | 'tower_skip'         // Chance to skip a floor after boss
   | 'spirit_lure'        // Multiplier to random spirit spawn rate
-  | 'offline_forge'      // Reduces cost of unbought buildings offline (stubbed for future)
+  | 'offline_efficiency' // Adds percentage points to offline production efficiency
   | 'synergy_amp'        // Boosts existing synergy upgrades
   | 'quest_gold'         // Chance to get gold on quest complete
   | 'reincarnation_boost'// Increases souls earned slightly
@@ -115,8 +115,8 @@ export const RELICS: RelicDefinition[] = [
     maxLevel: 3,
     icon: '🔨',
     modifier: {
-      type: 'offline_forge',
-      baseValue: 0.01, // 1% cost reduction per hour offline
+      type: 'offline_efficiency',
+      baseValue: 0.01, // +1 percentage point offline efficiency
       growthPerLevel: 0.01
     }
   }

@@ -5,6 +5,7 @@ import { EconomyEngine } from '../economy/EconomyEngine';
 import { events } from '../core/EventBus';
 import { sound } from '../services/audio/SoundService';
 import { t } from '../services/i18n/I18nService';
+import { RelicSystem } from './RelicSystem';
 
 export class QuestSystem {
   public static checkAchievements(): void {
@@ -63,6 +64,11 @@ export class QuestSystem {
     if (quest.reward.goldSeconds) {
       const dynamicGold = Math.max(50, Math.floor(metrics.passiveGoldPerSec * quest.reward.goldSeconds * soulQuestMult));
       goldReward += dynamicGold;
+    }
+
+    const questGoldChance = RelicSystem.getEquippedEffectValue(state, 'quest_gold');
+    if (questGoldChance > 0 && Math.random() < questGoldChance) {
+      goldReward += Math.floor(metrics.passiveGoldPerSec * 60);
     }
 
     let powerReward = 0;
