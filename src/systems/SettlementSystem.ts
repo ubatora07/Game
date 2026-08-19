@@ -94,7 +94,7 @@ export class SettlementSystem {
       type: 'epic',
     });
 
-    events.emit('settlement:unlocked' as any, { name });
+    events.emit('settlement:unlocked', { name });
     analytics.trackEvent('settlement_unlocked', { name });
     return true;
   }
@@ -207,7 +207,7 @@ export class SettlementSystem {
       type: 'success',
     });
 
-    events.emit('settlement:building_upgraded' as any, { buildingId, level: bState.level });
+    events.emit('settlement:building_upgraded', { buildingId, level: bState.level });
     analytics.trackEvent('settlement_building_upgraded', { buildingId, level: bState.level });
     return true;
   }

@@ -78,3 +78,12 @@ The automated audit scans **222 `defaultName`/`name` fields** in `src/content`; 
 - Team hides the Pet-management action until `PetSystem` owns at least one pet, then refreshes on `pet:acquired`.
 - The existing Pet Nest still offers all four pet choices and `PetSystem` auto-equips the first owned pet.
 - Exact 15–30 minute wall-clock timing remains browser/balance evidence, not a hard timer in source.
+
+
+## First-hour secondary disclosure — BATCH-20
+
+- World starts with Campaign/Quests; Tower appears at its canonical Rank C gate and Expeditions after the first owned Hero.
+- More keeps always-relevant run/settings surfaces while hiding empty Relics, Soul/Legacy Tree and Legacy Codex until their existing state makes them meaningful.
+- Team hides Mercenary Guild until Mountain Haven owns a constructed Tavern, matching the already enforced transaction gate.
+- Disclosure reacts to live state (`rankId`, Hero ownership, pet/partner events, settlement construction) without adding new balance thresholds.
+- `P13-27` is closed for source-level overload reduction; exact 390px/browser pacing remains covered by separate Phase 11/15 QA tasks.

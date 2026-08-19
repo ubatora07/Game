@@ -91,6 +91,16 @@ requireText('src/systems/AdventureEventDirector.ts', 'FIRST_PET_TRIGGER_STAGE_ID
 requireText('src/systems/AdventureEventDirector.ts', 'petSystem.getOwnedPets().length === 0', 'pet-discovery-milestone');
 requireText('src/ui/screens/TeamHubScreen.ts', 'isVisible: () => petSystem.getOwnedPets().length > 0', 'pet-progressive-disclosure');
 requireText('src/ui/screens/TeamHubScreen.ts', "events.on('pet:acquired'", 'pet-progressive-disclosure');
+requireText('src/ui/navigation/SecondaryDisclosure.ts', "isProgressionUnlockedForRankId('tower'", 'secondary-disclosure');
+requireText('src/ui/navigation/SecondaryDisclosure.ts', 'ownedHeroCount > 0', 'secondary-disclosure');
+requireText('src/ui/navigation/SecondaryDisclosure.ts', 'ownedRelicCount > 0', 'secondary-disclosure');
+requireText('src/ui/navigation/SecondaryDisclosure.ts', "isProgressionUnlockedForRankId('rebirth'", 'secondary-disclosure');
+requireText('src/ui/screens/WorldHubScreen.ts', 'shouldShowTower(store.get().rankId)', 'world-progressive-disclosure');
+requireText('src/ui/screens/WorldHubScreen.ts', 'shouldShowExpeditions(Object.keys(store.get().heroes).length)', 'world-progressive-disclosure');
+requireText('src/ui/modals/MoreMenuModal.ts', 'shouldShowSoulTree(state.rankId, state.souls)', 'more-progressive-disclosure');
+requireText('src/ui/modals/MoreMenuModal.ts', 'shouldShowRelics(Object.keys(state.relics).length)', 'more-progressive-disclosure');
+requireText('src/ui/modals/MoreMenuModal.ts', 'shouldShowLegacyCodex(state.reincarnationCount', 'more-progressive-disclosure');
+requireText('src/ui/screens/TeamHubScreen.ts', 'isVisible: () => mercenarySystem.isGuildUnlocked()', 'mercenary-progressive-disclosure');
 
 // Player-facing duplicate identities need to be intentional and explicit.
 const allowedDuplicateNames = new Map([
@@ -135,4 +145,4 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
-console.log('[content-coherence] PASS: progression gates are centralized, Settlement/Mercenary bypasses are blocked, Adventure scheduling is first-clear boss-only, Partner/Pet discovery is milestone-gated, and duplicate player identities are controlled.');
+console.log('[content-coherence] PASS: progression gates are centralized, Settlement/Mercenary bypasses are blocked, Adventure scheduling is first-clear boss-only, Partner/Pet/late-meta discovery is progressively disclosed, and duplicate player identities are controlled.');

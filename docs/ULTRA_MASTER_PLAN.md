@@ -524,7 +524,7 @@
 - [ ] `P13-24` Audit dailies
 - [ ] `P13-25` Audit liveops content packs
 - [ ] `P13-26` Remove duplicate fantasy roles
-- [ ] `P13-27` Reduce system overload in first 60 minutes
+- [x] `P13-27` Reduce system overload in first 60 minutes
 - [x] `P13-28` Create unlock pacing matrix
 - [x] `P13-29` Wire AdventureEvent scheduler into the live gameplay loop
 - [x] `P13-30` Enforce AdventureEvent minRank eligibility
@@ -534,6 +534,8 @@
 - [x] `P13-34` Resolve Hero roster Rank B metadata vs Rank E starter-runtime timing conflict
 - [x] `P13-35` Make HeroSystem consume the canonical early recruitment progression contract
 - [x] `P13-36` Guarantee first Pet discovery through World 2 milestone and hide Pet management until acquisition
+- [x] `P13-37` Progressively disclose Tower/Expeditions/Relics/Soul/Legacy screens from existing state
+- [x] `P13-38` Hide Mercenary Team entry until the Tavern transaction gate is satisfied
 
 ## PHASE 14 — Audio & Feel
 

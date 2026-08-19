@@ -600,3 +600,27 @@ Roadmap effect:
 - `P13-06` Pet content/integration audit COMPLETE;
 - `P13-36` deterministic first Pet discovery + progressive disclosure COMPLETE;
 - `P13-27` overload reduction remains OPEN pending remaining World/More disclosure and browser pacing evidence.
+
+
+## 2026-08-19 — Secondary Navigation Progressive Disclosure (BATCH-20)
+
+Status: **SOURCE COMPLETE / FIRST-HOUR MENU LOAD REDUCED / BROWSER QA PENDING**
+
+Completed:
+- added a pure `SecondaryDisclosure` contract for Tower, Expeditions, Relics, Soul Tree and Legacy Codex discoverability;
+- World now reveals Tower at the canonical Rank C gate and Expeditions after the player owns a Hero;
+- More hides empty Relic/Soul/Legacy destinations until existing progression state makes them useful;
+- Team hides Mercenary Guild until its already-enforced Settlement + Tavern requirement is met;
+- typed Settlement unlock/building events and use them to refresh Team disclosure;
+- added focused pure regressions and content-coherence enforcement.
+
+Validation target:
+- source TypeScript + focused disclosure test typecheck;
+- full available source QA matrix;
+- `git diff --check`;
+- exact mobile/desktop visual pacing remains in Phase 11/15 browser gates.
+
+Roadmap effect:
+- `P13-27` first-60-minute source overload reduction COMPLETE;
+- `P13-37` World/More secondary disclosure COMPLETE;
+- `P13-38` Mercenary Team disclosure COMPLETE.

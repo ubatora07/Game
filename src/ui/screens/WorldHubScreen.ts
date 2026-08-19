@@ -1,3 +1,5 @@
+import { store } from '../../core/GameState';
+import { shouldShowExpeditions, shouldShowTower } from '../navigation/SecondaryDisclosure';
 import { DomainHubScreen, DomainHubAction } from './DomainHubScreen';
 
 const WORLD_ACTIONS: readonly DomainHubAction[] = [
@@ -18,6 +20,7 @@ const WORLD_ACTIONS: readonly DomainHubAction[] = [
     labelKey: 'domain.world.tower',
     descriptionKey: 'domain.world.tower_desc',
     accent: '#38bdf8',
+    isVisible: () => shouldShowTower(store.get().rankId),
   },
   {
     id: 'expeditions',
@@ -27,6 +30,7 @@ const WORLD_ACTIONS: readonly DomainHubAction[] = [
     labelKey: 'domain.world.expeditions',
     descriptionKey: 'domain.world.expeditions_desc',
     accent: '#10b981',
+    isVisible: () => shouldShowExpeditions(Object.keys(store.get().heroes).length),
   },
   {
     id: 'quests',
@@ -49,5 +53,19 @@ export class WorldHubScreen extends DomainHubScreen {
       subtitleKey: 'domain.world.subtitle',
       actions: WORLD_ACTIONS,
     });
+
+    let disclosureKey = this.getDisclosureKey();
+    store.subscribe(() => {
+      const nextKey = this.getDisclosureKey();
+      if (nextKey !== disclosureKey) {
+        disclosureKey = nextKey;
+        this.refresh();
+      }
+    });
+  }
+
+  private getDisclosureKey(): string {
+    const state = store.get();
+    return `${state.rankId}:${Object.keys(state.heroes).length}`;
   }
 }

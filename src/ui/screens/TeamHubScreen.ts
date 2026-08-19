@@ -2,6 +2,7 @@ import { events } from '../../core/EventBus';
 import { PARTNER_AWAKENING_INVITATION_FLAG } from '../../content/partnerUnlock';
 import { partnerUnlockSystem } from '../../systems/PartnerUnlockSystem';
 import { petSystem } from '../../systems/PetSystem';
+import { mercenarySystem } from '../../systems/MercenarySystem';
 import { DomainHubScreen, DomainHubAction } from './DomainHubScreen';
 
 const TEAM_ACTIONS: readonly DomainHubAction[] = [
@@ -51,6 +52,7 @@ const TEAM_ACTIONS: readonly DomainHubAction[] = [
     labelKey: 'domain.team.mercenaries',
     descriptionKey: 'domain.team.mercenaries_desc',
     accent: '#fb923c',
+    isVisible: () => mercenarySystem.isGuildUnlocked(),
   },
 ];
 
@@ -70,5 +72,9 @@ export class TeamHubScreen extends DomainHubScreen {
     });
     events.on('party:second_character_unlocked', () => this.refresh());
     events.on('pet:acquired', () => this.refresh());
+    events.on('settlement:unlocked', () => this.refresh());
+    events.on('settlement:building_upgraded', ({ buildingId }) => {
+      if (buildingId === 'tavern') this.refresh();
+    });
   }
 }

@@ -73,6 +73,8 @@ export type GameEventMap = {
   'market:purchased': { offerId: string; isBlackMarket: boolean; totalPurchasesCount: number };
   'mercenary:hired': { mercId: string; durationMinutes: number };
   'mercenary:expired': { mercId: string };
+  'settlement:unlocked': { name: string };
+  'settlement:building_upgraded': { buildingId: string; level: number };
   'settlement:story_path_chosen': { path: 'lord' | 'adventurer' };
   'world:flag_changed': { flagId: string; value: boolean };
 };

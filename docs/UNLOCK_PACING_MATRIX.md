@@ -39,3 +39,19 @@ Now:
 - Tower and Settlement no longer duplicate the magic rank index `2`;
 - Mercenary hiring and mercenary Market contracts cannot bypass the constructed Tavern;
 - unresolved Hero/Partner/Pet timing and the question of whether a locked Mercenary teaser is too early remain visible debt instead of being guessed away.
+
+
+## Secondary navigation disclosure — BATCH-20
+
+Fresh-save navigation now follows “show when mechanically relevant” instead of exposing empty/late screens:
+
+| Surface | Reveal rule |
+|---|---|
+| Tower | shared Rank C progression gate |
+| Expeditions | at least one recruited Hero |
+| Relics | at least one owned Relic |
+| Soul / Legacy Tree | at least one Soul or Rank S reached |
+| Legacy Codex | at least one Reincarnation or unlocked Legacy Ending |
+| Mercenary Guild | owned Settlement + constructed Tavern |
+
+These are navigation/discovery rules only. They do not change reward math, prices, save ownership or underlying state APIs.

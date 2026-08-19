@@ -3,6 +3,9 @@ import { events } from '../../core/EventBus';
 import { t } from '../../services/i18n/I18nService';
 import { sound } from '../../services/audio/SoundService';
 import { resolveUIIcon } from '../art/runtime/UIIconRegistry';
+import { store } from '../../core/GameState';
+import { legacyEndingSystem } from '../../systems/LegacyEndingSystem';
+import { shouldShowLegacyCodex, shouldShowRelics, shouldShowSoulTree } from '../navigation/SecondaryDisclosure';
 
 export const MoreMenuModal: ModalInstance = {
   id: 'more_menu',
@@ -10,18 +13,19 @@ export const MoreMenuModal: ModalInstance = {
     const el = document.createElement('div');
     el.style.textAlign = 'center';
 
+    const state = store.get();
     const menuItems = [
       // UX IA V3: More is reserved for legacy/meta systems, not primary-domain overflow.
-      { id: 'sect', iconId: 'more_sect', labelKey: 'nav.sect', color: '#d9902f', type: 'screen' },
-      { id: 'souls', iconId: 'more_legacy', labelKey: 'nav.souls', color: '#9a70b5', type: 'screen' },
-      { id: 'relics', iconId: 'more_relics', labelKey: 'nav.relics', color: '#9a70b5', type: 'screen' },
-      { id: 'dailies', iconId: 'more_dailies', labelKey: 'nav.dailies', color: '#d6a03c', type: 'screen' },
-      { id: 'legacy_codex_modal', iconId: 'more_codex', labelKey: 'nav.legacy_codex', color: '#9a70b5', type: 'modal' },
-      { id: 'stats', iconId: 'more_stats', labelKey: 'btn.stats', color: '#48a7bf', type: 'modal' },
-      { id: 'settings', iconId: 'more_settings', labelKey: 'nav.settings', color: '#a8a29e', type: 'modal' }
+      { id: 'sect', iconId: 'more_sect', labelKey: 'nav.sect', color: '#d9902f', type: 'screen', visible: true },
+      { id: 'souls', iconId: 'more_legacy', labelKey: 'nav.souls', color: '#9a70b5', type: 'screen', visible: shouldShowSoulTree(state.rankId, state.souls) },
+      { id: 'relics', iconId: 'more_relics', labelKey: 'nav.relics', color: '#9a70b5', type: 'screen', visible: shouldShowRelics(Object.keys(state.relics).length) },
+      { id: 'dailies', iconId: 'more_dailies', labelKey: 'nav.dailies', color: '#d6a03c', type: 'screen', visible: true },
+      { id: 'legacy_codex_modal', iconId: 'more_codex', labelKey: 'nav.legacy_codex', color: '#9a70b5', type: 'modal', visible: shouldShowLegacyCodex(state.reincarnationCount, legacyEndingSystem.getUnlockedEndings().length) },
+      { id: 'stats', iconId: 'more_stats', labelKey: 'btn.stats', color: '#48a7bf', type: 'modal', visible: true },
+      { id: 'settings', iconId: 'more_settings', labelKey: 'nav.settings', color: '#a8a29e', type: 'modal', visible: true }
     ];
 
-    const gridHtml = menuItems.map(item => `
+    const gridHtml = menuItems.filter((item) => item.visible).map(item => `
       <button class="more-menu-tile" data-id="${item.id}" data-type="${item.type}" style="
         display: flex;
         flex-direction: column;
