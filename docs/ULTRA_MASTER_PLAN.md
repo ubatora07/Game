@@ -504,7 +504,7 @@
 - [ ] `P13-04` Audit four base classes
 - [ ] `P13-05` Audit skill trees
 - [ ] `P13-06` Audit pets
-- [ ] `P13-07` Audit mercenaries
+- [x] `P13-07` Audit mercenaries
 - [ ] `P13-08` Audit settlement NPCs
 - [ ] `P13-09` Audit settlement buildings
 - [ ] `P13-10` Audit equipment progression chains
@@ -525,7 +525,7 @@
 - [ ] `P13-25` Audit liveops content packs
 - [ ] `P13-26` Remove duplicate fantasy roles
 - [ ] `P13-27` Reduce system overload in first 60 minutes
-- [ ] `P13-28` Create unlock pacing matrix
+- [x] `P13-28` Create unlock pacing matrix
 
 ## PHASE 14 — Audio & Feel
 

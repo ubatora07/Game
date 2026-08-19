@@ -161,6 +161,10 @@ export class MarketSystem {
       return { canBuy: false, reason: 'Black Market route locked' };
     }
 
+    if (offer.reward.type === 'mercenary' && !mercenarySystem.isGuildUnlocked()) {
+      return { canBuy: false, reason: 'Mercenary Guild locked: construct the Tavern first' };
+    }
+
     // Check Gold
     if (offer.price.gold && store.get().gold < offer.price.gold) {
       return { canBuy: false, reason: 'Insufficient Gold' };

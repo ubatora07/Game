@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { marketSystem } from '../src/systems/MarketSystem';
 import { mercenarySystem } from '../src/systems/MercenarySystem';
+import { settlementSystem } from '../src/systems/SettlementSystem';
 import { titleSystem } from '../src/systems/TitleSystem';
 import { karmaSystem } from '../src/systems/KarmaSystem';
 import { craftingEquipmentSystem } from '../src/systems/CraftingEquipmentSystem';
@@ -17,6 +18,12 @@ describe('Milestone C — Expanded Market, Mercenaries, Titles & Black Market', 
     craftingEquipmentSystem.resetAll();
     marketSystem.resetAll();
     mercenarySystem.resetAll();
+    settlementSystem.resetAll();
+    const settlement = settlementSystem.serialize();
+    settlement.isOwned = true;
+    settlement.settlementLevel = 2;
+    settlement.buildings.tavern = { ...settlement.buildings.tavern, level: 1, isConstructed: true };
+    settlementSystem.deserialize(settlement);
     titleSystem.resetAll();
   });
 

@@ -12,33 +12,17 @@ export const MercenaryGuildModal: ModalInstance = {
     el.style.cssText = 'max-width:560px; padding:var(--space-16); background:radial-gradient(ellipse at 50% 15%, #1c1917 0%, #0c0a09 100%); border:2px solid #d97706; border-radius:var(--radius-06); box-shadow:var(--shadow-modal);';
 
     const refresh = () => {
-      const mercs = getAllMercenaryDefs();
       const currentGold = store.get().gold;
+      const guildUnlocked = mercenarySystem.isGuildUnlocked();
+      const lockReason = mercenarySystem.getGuildLockReason();
+      const descriptionKey = lockReason === 'settlement_required'
+        ? 'mercenary.guild_locked_settlement'
+        : 'mercenary.guild_locked_tavern';
 
-      el.innerHTML = `
-        <!-- Header -->
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-12); border-bottom:1.5px solid #78350f; padding-bottom:var(--space-08); flex-wrap:wrap; gap:var(--space-08);">
-          <div>
-            <div style="font-size:9px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; font-family:var(--font-display);">
-              ✦ ${t('mercenary.guild_label')} ✦
-            </div>
-            <h3 style="font-family:var(--font-display); font-size:17px; color:#fef08a; margin:var(--space-01) 0 0 0;">
-              ${t('mercenary.guild_title')}
-            </h3>
-          </div>
-
-          <div style="background:rgba(0,0,0,0.5); padding:var(--space-03) var(--space-08); border-radius:var(--radius-04); border:1px solid #eab308; color:#fef08a; font-size:11px;">
-            🪙 <b>${currentGold}</b>
-          </div>
-        </div>
-
-        <p style="font-size:11px; color:#cbd5e1; margin:0 0 var(--space-12) 0;">
-          ${t('mercenary.guild_desc')}
-        </p>
-
-        <!-- Mercenaries List -->
+      const mercenaryList = guildUnlocked
+        ? `
         <div style="display:flex; flex-direction:column; gap:var(--space-08); max-height:280px; overflow-y:auto; padding-right:var(--space-04); margin-bottom:var(--space-12);">
-          ${mercs
+          ${getAllMercenaryDefs()
             .map((m) => {
               const isActive = mercenarySystem.isMercenaryActive(m.id);
               const contract = mercenarySystem.getContract(m.id);
@@ -81,21 +65,50 @@ export const MercenaryGuildModal: ModalInstance = {
             `;
             })
             .join('')}
+        </div>`
+        : `
+        <div class="mercenary-guild-locked" style="border:1px solid #78350f; border-radius:var(--radius-04); padding:var(--space-12); margin-bottom:var(--space-12); background:rgba(69,26,3,0.28); text-align:center;">
+          <div style="font-family:var(--font-display); color:#f59e0b; font-size:12px; font-weight:bold; margin-bottom:var(--space-04);">${t('mercenary.guild_locked_title')}</div>
+          <div style="font-size:10px; color:#d6d3d1; line-height:1.5;">${t(descriptionKey)}</div>
+        </div>`;
+
+      el.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-12); border-bottom:1.5px solid #78350f; padding-bottom:var(--space-08); flex-wrap:wrap; gap:var(--space-08);">
+          <div>
+            <div style="font-size:9px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; font-family:var(--font-display);">
+              ✦ ${t('mercenary.guild_label')} ✦
+            </div>
+            <h3 style="font-family:var(--font-display); font-size:17px; color:#fef08a; margin:var(--space-01) 0 0 0;">
+              ${t('mercenary.guild_title')}
+            </h3>
+          </div>
+
+          <div style="background:rgba(0,0,0,0.5); padding:var(--space-03) var(--space-08); border-radius:var(--radius-04); border:1px solid #eab308; color:#fef08a; font-size:11px;">
+            🪙 <b>${currentGold}</b>
+          </div>
         </div>
+
+        <p style="font-size:11px; color:#cbd5e1; margin:0 0 var(--space-12) 0;">
+          ${guildUnlocked ? t('mercenary.guild_desc') : t(descriptionKey)}
+        </p>
+
+        ${mercenaryList}
 
         <button id="btn-close-merc-guild" style="width:100%; padding:var(--space-08); background:#1c1917; border:1px solid #78350f; border-radius:var(--radius-04); color:#cbd5e1; font-family:var(--font-display); font-size:12px; cursor:pointer;">
           ${t('mercenary.exit')}
         </button>
       `;
 
-      el.querySelectorAll('.btn-hire-merc').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const mercId = btn.getAttribute('data-merc-id') as any;
-          if (mercenarySystem.hireMercenary(mercId).success) {
-            refresh();
-          }
+      if (guildUnlocked) {
+        el.querySelectorAll('.btn-hire-merc').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const mercId = btn.getAttribute('data-merc-id') as any;
+            if (mercenarySystem.hireMercenary(mercId).success) {
+              refresh();
+            }
+          });
         });
-      });
+      }
 
       el.querySelector('#btn-close-merc-guild')?.addEventListener('click', () => {
         modalManager.close('mercenary_guild_modal');

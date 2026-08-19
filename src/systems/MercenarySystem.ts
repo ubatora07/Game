@@ -9,6 +9,7 @@ import { store } from '../core/GameState';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
 import { t } from '../services/i18n/I18nService';
+import { settlementSystem } from './SettlementSystem';
 
 export class MercenarySystem {
   private static instance: MercenarySystem;
@@ -52,7 +53,22 @@ export class MercenarySystem {
     return this.state.activeContracts[id];
   }
 
+  public isGuildUnlocked(): boolean {
+    const tavern = settlementSystem.getBuildingState('tavern');
+    return settlementSystem.isSettlementOwned() && Boolean(tavern?.isConstructed && tavern.level > 0);
+  }
+
+  public getGuildLockReason(): 'settlement_required' | 'tavern_required' | null {
+    if (!settlementSystem.isSettlementOwned()) return 'settlement_required';
+    if (!this.isGuildUnlocked()) return 'tavern_required';
+    return null;
+  }
+
   public hireMercenary(id: MercenaryId): { success: boolean; reason?: string } {
+    if (!this.isGuildUnlocked()) {
+      return { success: false, reason: 'Mercenary Guild locked: construct the Tavern first' };
+    }
+
     const def = getMercenaryDef(id);
     if (!def) return { success: false, reason: 'Mercenary not found' };
 

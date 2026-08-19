@@ -438,3 +438,34 @@ Validation:
 Roadmap effect:
 - `P12-01`, `P12-02`, `P12-07`, `P12-12`, `P12-17` COMPLETE (world identity/content contracts);
 - World 2–5 background layers, production enemy/boss art, authored ambience, unique props/loot/VFX and browser transition validation remain intentionally OPEN.
+
+
+## 2026-08-19 — Progression Disclosure & Content Coherence Gate (BATCH-14)
+
+Status: **SOURCE COMPLETE / CONTENT-COHERENCE GATE PASS / HERO + PARTNER TIMING INTENTIONALLY OPEN**
+
+Completed:
+- introduced `PROGRESSION_UNLOCKS` as the shared rank-gate contract for Settlement, Tower, declared Hero-roster timing and Rebirth documentation;
+- moved Settlement primary navigation and direct-claim eligibility to the shared Rank C gate;
+- fixed the dead Settlement rank-up listener to consume the typed `newRank` payload instead of nonexistent `rankIndex` data;
+- replaced Tower's duplicated magic Rank C index with the shared progression helper;
+- added the active unlock pacing matrix and structural content-coherence audit;
+- added duplicate player-name enforcement with the single intentional Master Goran Settlement/Forge identity explicitly recognized;
+- closed a mercenary progression bypass: hiring now requires Mountain Haven ownership plus a constructed Tavern;
+- made Market mercenary contracts validate the Tavern gate before any currency is deducted;
+- added a locked Mercenary Guild state explaining Settlement/Tavern requirements in EN/RU;
+- updated legacy mercenary integration tests to establish the Tavern explicitly and added focused mercenary progression regressions;
+- left Hero recruitment timing and Partner Awakening discovery timing open because existing design sources conflict or do not define an enforceable trigger; no balance/time gate was invented.
+
+Validation:
+- `npm run qa:content-coherence` PASS;
+- `npm run qa:i18n` PASS;
+- source `npx tsc --noEmit -p tsconfig.json` PASS;
+- focused progression/mercenary regression typecheck PASS in ES module mode;
+- `git diff --check` PASS;
+- full Vitest/Vite/Playwright execution remains environment-blocked by the supplied Windows-only Rollup native dependency.
+
+Roadmap effect:
+- `P13-07` Mercenary audit COMPLETE with runtime enforcement evidence;
+- `P13-28` Unlock pacing matrix COMPLETE;
+- `P13-27` first-60-minute overload reduction remains OPEN until Hero/Partner timing and locked-teaser browser behavior are resolved.

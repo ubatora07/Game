@@ -38,6 +38,7 @@ export class SettlementScreen {
     const isOwned = sState.isOwned;
 
     if (!isOwned) {
+      const canClaim = settlementSystem.canClaimSettlementFromProgression();
       this.el.innerHTML = `
         <div style="max-width:500px; margin:var(--space-40) auto; text-align:center; padding:var(--space-24); background:rgba(28,25,23,0.9); border:2px solid #d97706; border-radius:var(--radius-08); box-shadow:var(--shadow-lg);">
           <div style="font-size:42px; margin-bottom:var(--space-12);">🏰</div>
@@ -50,16 +51,18 @@ export class SettlementScreen {
           <p style="color:#cbd5e1; font-size:13px; line-height:1.5; margin-bottom:var(--space-20);">
             ${t('settlement.claim_desc')}
           </p>
-          <button id="btn-claim-settlement" style="padding:var(--space-12) var(--space-24); background:linear-gradient(135deg, #d97706, #b45309); border:1px solid #f59e0b; border-radius:var(--radius-04); color:#ffffff; font-family:var(--font-display); font-weight:900; font-size:15px; letter-spacing:1px; cursor:pointer; box-shadow:var(--glow-gold);">
-            ${t('settlement.claim_action')}
+          <button id="btn-claim-settlement" ${canClaim ? '' : 'disabled'} style="padding:var(--space-12) var(--space-24); background:${canClaim ? 'linear-gradient(135deg, #d97706, #b45309)' : '#292524'}; border:1px solid ${canClaim ? '#f59e0b' : '#57534e'}; border-radius:var(--radius-04); color:${canClaim ? '#ffffff' : '#a8a29e'}; font-family:var(--font-display); font-weight:900; font-size:15px; letter-spacing:1px; cursor:${canClaim ? 'pointer' : 'not-allowed'}; box-shadow:${canClaim ? 'var(--glow-gold)' : 'none'};">
+            ${canClaim ? t('settlement.claim_action') : t('settlement.claim_locked')}
           </button>
         </div>
       `;
 
-      this.el.querySelector('#btn-claim-settlement')?.addEventListener('click', () => {
-        settlementSystem.unlockSettlement('Mountain Haven');
-        this.render();
-      });
+      if (canClaim) {
+        this.el.querySelector('#btn-claim-settlement')?.addEventListener('click', () => {
+          settlementSystem.unlockSettlement('Mountain Haven');
+          this.render();
+        });
+      }
       return;
     }
 

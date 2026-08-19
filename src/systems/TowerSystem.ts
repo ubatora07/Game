@@ -6,6 +6,7 @@ import { sound } from '../services/audio/SoundService';
 import { RelicSystem } from './RelicSystem';
 import { RELICS } from '../content/relics';
 import { t } from '../services/i18n/I18nService';
+import { isProgressionUnlocked } from '../content/progressionUnlocks';
 
 export interface CombatState {
   currentFloor: number;
@@ -64,7 +65,7 @@ export class TowerSystem {
 
   public slash(): number {
     const state = store.get();
-    if (state.rankIndex < 2) return 0;
+    if (!isProgressionUnlocked('tower', state.rankIndex)) return 0;
     
     const metrics = EconomyEngine.calculateMetrics(state);
     // Manual slash deals 10% of DPS or a flat base damage if DPS is low
@@ -94,8 +95,8 @@ export class TowerSystem {
   public update(dt: number): void {
     if (!this.combatState.isAutoClimbing) return;
 
-    // Check if tower is unlocked (Rank C / index >= 2 or higher)
-    if (store.get().rankIndex < 2) return;
+    // Rank gate comes from the shared progression contract.
+    if (!isProgressionUnlocked('tower', store.get().rankIndex)) return;
 
     const state = store.get();
     const metrics = EconomyEngine.calculateMetrics(state);

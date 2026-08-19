@@ -15,6 +15,7 @@ import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
 import { t } from '../services/i18n/I18nService';
 import { karmaSystem } from './KarmaSystem';
+import { isProgressionUnlocked, isProgressionUnlockedForRankId } from '../content/progressionUnlocks';
 
 export class SettlementSystem {
   private static instance: SettlementSystem;
@@ -55,10 +56,11 @@ export class SettlementSystem {
   private constructor() {
     this.reapplySettlementModifiers();
 
-    // Auto-unlock settlement when reaching Rank C or via adventure event
-    events.on('ascension:rankUp', (data: any) => {
-      if (data?.rankIndex >= 2 && !this.state.isOwned) {
-        this.unlockSettlement('Haven of Ascendants');
+    // Auto-unlock settlement when reaching its shared progression gate.
+    // Adventure/story systems may still unlock it earlier by calling unlockSettlement directly.
+    events.on('ascension:rankUp', ({ newRank }) => {
+      if (isProgressionUnlockedForRankId('settlement', newRank) && !this.state.isOwned) {
+        this.unlockSettlement('Mountain Haven');
       }
     });
 
@@ -73,6 +75,10 @@ export class SettlementSystem {
 
   public isSettlementOwned(): boolean {
     return this.state.isOwned;
+  }
+
+  public canClaimSettlementFromProgression(): boolean {
+    return isProgressionUnlocked('settlement', store.get().rankIndex);
   }
 
   public unlockSettlement(name: string = 'Mountain Haven'): boolean {
