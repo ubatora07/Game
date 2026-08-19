@@ -274,31 +274,31 @@
 
 **Priority:** P1
 
-- [ ] `P6-01` Audit Sect player-facing strings
-- [ ] `P6-02` Audit Cultivation player-facing strings
-- [ ] `P6-03` Audit Qi player-facing strings
-- [ ] `P6-04` Audit Samsara player-facing strings
-- [ ] `P6-05` Audit Ascension player-facing strings
-- [ ] `P6-06` Audit Soul Tree player-facing strings
-- [ ] `P6-07` Audit immortal/god/deity escalation copy
-- [ ] `P6-08` Audit dojo/meditation/shrine cultural mix
-- [ ] `P6-09` Audit Sakura Empire world identity
-- [ ] `P6-10` Audit ronin/kitsune/shogun enemy set
-- [ ] `P6-11` Audit Japanese/Chinese hero naming concentration
-- [ ] `P6-12` Audit rank descriptions
-- [ ] `P6-13` Audit building descriptions
-- [ ] `P6-14` Audit upgrades
-- [ ] `P6-15` Audit quests and achievements
-- [ ] `P6-16` Audit titles
-- [ ] `P6-17` Audit market black-market copy
-- [ ] `P6-18` Audit pets and evolution names
-- [ ] `P6-19` Audit equipment evolution names
-- [ ] `P6-20` Audit relic names
-- [ ] `P6-21` Audit NPC dialogue
-- [ ] `P6-22` Audit story chapters
-- [ ] `P6-23` Audit analytics event labels only where player-facing dashboards use them
-- [ ] `P6-24` Preserve stable internal IDs unless migration value is proven
-- [ ] `P6-25` Add terminology regression scan
+- [x] `P6-01` Audit Sect player-facing strings
+- [x] `P6-02` Audit Cultivation player-facing strings
+- [x] `P6-03` Audit Qi player-facing strings
+- [x] `P6-04` Audit Samsara player-facing strings
+- [x] `P6-05` Audit Ascension player-facing strings
+- [x] `P6-06` Audit Soul Tree player-facing strings
+- [x] `P6-07` Audit immortal/god/deity escalation copy
+- [x] `P6-08` Audit dojo/meditation/shrine cultural mix
+- [x] `P6-09` Audit Sakura Empire world identity
+- [x] `P6-10` Audit ronin/kitsune/shogun enemy set
+- [x] `P6-11` Audit Japanese/Chinese hero naming concentration
+- [x] `P6-12` Audit rank descriptions
+- [x] `P6-13` Audit building descriptions
+- [x] `P6-14` Audit upgrades
+- [x] `P6-15` Audit quests and achievements
+- [x] `P6-16` Audit titles
+- [x] `P6-17` Audit market black-market copy
+- [x] `P6-18` Audit pets and evolution names
+- [x] `P6-19` Audit equipment evolution names
+- [x] `P6-20` Audit relic names
+- [x] `P6-21` Audit NPC dialogue
+- [x] `P6-22` Audit story chapters
+- [x] `P6-23` Audit analytics event labels only where player-facing dashboards use them
+- [x] `P6-24` Preserve stable internal IDs unless migration value is proven
+- [x] `P6-25` Add terminology regression scan
 
 ## PHASE 7 — Localization Consolidation
 

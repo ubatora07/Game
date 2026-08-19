@@ -111,6 +111,17 @@ Status: **DOCUMENTED / COMPATIBILITY-SAFE / TITLE DECISION OPEN**
 - `P5-01` through `P5-21` and `P5-24/P5-25` are complete.
 - `P5-22/P5-23` intentionally remain open: no final store-facing game title is selected or applied without availability review and explicit product choice.
 
+### Batch 10 — Xianxia Legacy Audit + Regression Gate
+
+Status: **AUDITED / BASELINE LOCKED / BUILD GATE ENABLED**
+
+- Added `docs/XIANXIA_LEGACY_AUDIT_V2.md` covering Sect, Cultivation, Qi, Samsara, Ascension, Soul Tree, rank escalation, buildings, upgrades, World 2 cultural identity, heroes, titles, market, pets, equipment, relics, NPC/story copy and compatibility rules.
+- Added AST-based `scripts/terminology-audit.cjs` scanning player-facing translation values and content display fields rather than internal identifiers/comments.
+- Added locked `scripts/terminology-baseline.json` for 19 tracked legacy/restricted term families across 2,473 player-facing strings.
+- Baseline policy is monotonic: new occurrences fail; approved migrations lower counts; baseline should not be increased to silence regressions.
+- Added `npm run qa:terminology` and made it the first gate in `npm run build`.
+- `P6-01` through `P6-25` are complete at audit/regression-control level. Actual display-copy migration proceeds in Phase 7 with EN/RU parity.
+
 ## Validation results
 
 - `git diff --check`: **PASS**.

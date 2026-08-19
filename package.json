@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && npm run qa:release-safety",
+    "build": "npm run qa:terminology && tsc && vite build && npm run qa:release-safety",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -13,7 +13,8 @@
     "qa:interaction:headed": "playwright test interaction-qa --headed",
     "qa:responsive": "playwright test responsive-qa",
     "qa:all": "playwright test",
-    "qa:release-safety": "node scripts/release-safety-audit.cjs"
+    "qa:release-safety": "node scripts/release-safety-audit.cjs",
+    "qa:terminology": "node scripts/terminology-audit.cjs"
   },
   "devDependencies": {
     "@playwright/test": "1.45",
