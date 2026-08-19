@@ -196,7 +196,7 @@ export const en = {
   'rank.c.desc': 'Aura materializes into pure force. Infinite Tower unlocked!',
   'rank.b.name': 'Soul Master',
   'rank.b.title': 'Rank B: Soul Master',
-  'rank.b.desc': 'Can manifest spirit blades and summon allied heroes.',
+  'rank.b.desc': 'A proven frontier champion whose command and combat mastery have reached an elite tier.',
   'rank.a.name': 'Domain Lord',
   'rank.a.title': 'Rank A: Domain Lord',
   'rank.a.desc': 'Command over elemental realms and ancient summoning portals.',

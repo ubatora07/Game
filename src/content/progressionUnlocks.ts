@@ -34,10 +34,10 @@ export const PROGRESSION_UNLOCKS: Readonly<Record<ProgressionUnlockId, Progressi
   },
   hero_roster: {
     id: 'hero_roster',
-    rankId: 'B',
-    pacingBand: 'legacy rank declaration; product timing unresolved',
-    rationale: 'Rank B currently advertises the heroes unlock, while UX V3 expects recruitment earlier.',
-    enforcement: 'declared',
+    rankId: 'E',
+    pacingBand: 'starter / early-session system',
+    rationale: 'Fresh saves begin at Rank E with 150 starter Crystals specifically reserved for an early Hero summon.',
+    enforcement: 'runtime',
   },
   rebirth: {
     id: 'rebirth',

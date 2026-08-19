@@ -62,12 +62,14 @@ As *Anime Infinite Ascension* grew from a prototype clicker into an expansive 37
 
 ### 4. Progressive Disclosure Timeline (Fresh-Save UX Pacing)
 
+> **Hero roster availability contract:** recruitment is technically available from the Rank E fresh-save state; the 5–15 minute band describes preferred onboarding/surfacing, not a hidden Rank B gate. Fresh saves intentionally include 150 Crystals for the first 100-Crystal summon.
+
 To prevent cognitive overload, systems reveal themselves only when mechanically necessary:
 
 | Playtime Band | Newly Unlocked Systems | First Explanation / Prompt | First Required Player Action | Where Player Finds It Later |
 | :--- | :--- | :--- | :--- | :--- |
 | **0–5 min** | Training, Manual Attack, Rhythm Attack, Stage 1 Boss | "Tap to train Chi and strike in rhythm with cosmic energy!" | Tap Training $\to$ Defeat First Goblin Scout | **Battle Screen** |
-| **5–15 min** | Ascension Rank E, Hero Summoning, First Class Selection | "Ascend to mortal rank E to unlock your true combat class!" | Choose Class (Swordsman / Mage / Archer / Assassin) | **Hero Tab** |
+| **5–15 min** | Hero Summoning guidance, First Class Selection | "Your first recruit is ready — build a support roster while defining your own class." | Summon first Hero / Choose Class | **Team / Hero Tabs** |
 | **15–30 min** | Partner Slot 2, Companion Pet Nest, First Event | "A lost egg stirs in the wilderness. Hatch your companion!" | Hatch starter Pet & equip in Team slot | **Team Tab** |
 | **30–60 min** | Mountain Haven Settlement, First Equipment Forge | "Clear the mountain ruins and awaken Goran’s forge furnace." | Build Lumber Hut & Forge first weapon | **Settlement Tab** |
 | **1–3 hours** | Expanded Market, Tavern Mercenaries, Raids, Karma Sagas | "Caravans and sellswords have arrived at Mountain Haven!" | Review first raid threat / Hire mercenary | **Settlement Tab** |

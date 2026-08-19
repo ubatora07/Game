@@ -552,3 +552,27 @@ Roadmap effect:
 - `P13-32` milestone story gate COMPLETE;
 - `P13-33` direct awakening bypass + persisted invitation COMPLETE;
 - `P13-27` first-hour overload reduction remains OPEN because Hero roster timing still conflicts across design/runtime sources.
+
+
+## 2026-08-19 — Hero Roster Timing Reconciliation (BATCH-18)
+
+Status: **SOURCE CONTRACT RESOLVED / NO BALANCE CHANGE / BROWSER SURFACING QA PENDING**
+
+Completed:
+- resolved the Rank B vs early-Hero contradiction using governance precedence: current runtime starts at Rank E with 150 Crystals explicitly intended for the first summon;
+- changed `PROGRESSION_UNLOCKS.hero_roster` from unresolved Rank B declaration to enforced Rank E starter contract;
+- made `HeroSystem` consume the shared recruitment contract before paid/free summons;
+- removed stale Rank B `unlockedFeature: heroes` metadata and replaced its player-facing description with rank identity instead of a false feature unlock;
+- reconciled UX V3 and unlock pacing docs so 5–15 minutes describes onboarding/surfacing, not a hidden hard gate;
+- added focused regression coverage and content-coherence enforcement.
+
+Validation target:
+- source TypeScript + focused Hero progression test typecheck;
+- terminology/i18n/content/source/UI/art/governance source gates;
+- `git diff --check`;
+- no summon cost, rarity rate, starter Crystal quantity or combat balance value changed.
+
+Roadmap effect:
+- `P13-34` Hero timing conflict COMPLETE;
+- `P13-35` canonical runtime contract COMPLETE;
+- `P13-27` first-hour overload remains OPEN primarily for Pet disclosure/browser pacing evidence.

@@ -17,16 +17,16 @@
 | System | Current discovery rule | Coherence note |
 |---|---|---|
 | Main class | explicit player selection | belongs to Hero; no extra rank gate added |
-| Second character | `PartyTeamSystem.unlockSecondCharacter(...)` | event/UI timing remains a Phase 13 onboarding review item |
+| Second character | World 1 final-boss oath story → persisted invitation | direct fresh-save access is blocked; Team reveals setup only after the invitation |
 | Pets | acquired through PetSystem/event content | Team may show the pet collection before first acquisition; acquisition itself remains stateful |
 | Settlement services | settlement ownership/buildings/NPC state | Mercenary hiring/contracts require owned Settlement + constructed Tavern; other service surfacing still needs review |
 | Adventure events / Karma | event-driven | should surface through play, not as a fresh-save management requirement |
 
-## Known timing conflict — intentionally unresolved
+## Hero roster timing — resolved to current runtime
 
-`RANKS` still declares **Heroes** as the Rank B unlocked feature, while UX Information Architecture V3 describes first Hero Summoning in the 5–15 minute band. Current runtime recruitment is not consistently rank-gated.
+Fresh saves start at **Rank E** with **150 starter Crystals**, explicitly enough for the 100-Crystal first summon. `PROGRESSION_UNLOCKS.hero_roster` now records Rank E with `enforcement: 'runtime'`, and `HeroSystem` consumes that contract.
 
-This is recorded as `PROGRESSION_UNLOCKS.hero_roster` with `enforcement: 'declared'`. Do **not** silently gate or ungate the system until the onboarding/balance decision is made and validated against the fresh-save progression curve.
+The 5–15 minute UX band is a **surfacing/onboarding target**, not a hard unlock gate. The stale Rank B `unlockedFeature: 'heroes'` declaration was removed so the rank catalog no longer advertises a feature the player already owns.
 
 ## First-60-minute overload reduction applied in this batch
 

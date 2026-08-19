@@ -31,7 +31,7 @@ The automated audit scans **222 `defaultName`/`name` fields** in `src/content`; 
 
 ### Still open
 1. **Adventure scheduler disconnect:** the event pool, resolver, cooldowns and modal exist, but no live gameplay system currently calls weighted selection/opening. This is now tracked as `P13-29` and must be wired without inventing an unvalidated event cadence.
-2. **Hero recruitment timing:** Rank B catalog declaration conflicts with UX V3's earlier 5–15 minute summoning target.
+2. **Hero recruitment timing:** RESOLVED — current runtime intent wins: Rank E fresh saves receive 150 starter Crystals and recruitment is an early system; Rank B no longer falsely advertises the unlock.
 3. **Second-character timing:** RESOLVED — first World 1 boss clear presents a dedicated oath story; accepting it persists the invitation and reveals the Partner setup in Team.
 4. **Mercenary surfacing:** Team can still open the Guild as a locked teaser before Tavern construction, but no hire/purchase can bypass progression. Browser/onboarding validation must decide whether the teaser itself is too early.
 5. **Pet discovery timing:** collection UI can be inspected before acquisition; whether that is teaser or overload needs browser/onboarding validation.
@@ -58,3 +58,13 @@ The automated audit scans **222 `defaultName`/`name` fields** in `src/content`; 
 - `PartnerUnlockSystem.completeAwakening` is the production completion path and fails closed without the invitation.
 - The invitation survives save/reload through the existing Karma V7 domain, so dismissing the setup cannot permanently lose the unlock.
 - Player-facing identity was moved from legacy “Soul Resonance / Soul Partner” language to an oathbound frontier companion without renaming stable internal slot IDs.
+
+
+## Hero roster timing contract — BATCH-18
+
+- Current source is authoritative: fresh saves begin at Rank E with 150 Crystals explicitly reserved for an early Hero summon.
+- `PROGRESSION_UNLOCKS.hero_roster` is therefore a Rank E runtime contract, not a deferred Rank B declaration.
+- `HeroSystem.isRecruitmentUnlocked()` consumes the shared progression contract before paid or rewarded-ad summons.
+- Rank B no longer advertises `heroes` as a newly unlocked feature; its player-facing description is a rank/power identity only.
+- UX V3 keeps 5–15 minutes as a preferred **guidance/surfacing** band, not an invisible balance gate.
+- No Crystal prices, pull rates or combat balance values changed.

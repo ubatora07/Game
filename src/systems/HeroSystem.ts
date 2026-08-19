@@ -2,6 +2,7 @@ import { store } from '../core/GameState';
 import { HEROES, HERO_RARITY_CONFIG, HeroDefinition, HeroRarity, getHeroById, getStarUpgradeCost } from '../content/heroes';
 import { events } from '../core/EventBus';
 import { sound } from '../services/audio/SoundService';
+import { isProgressionUnlockedForRankId } from '../content/progressionUnlocks';
 
 export interface SummonResult {
   hero: HeroDefinition;
@@ -10,9 +11,17 @@ export interface SummonResult {
 }
 
 export class HeroSystem {
+  public static isRecruitmentUnlocked(): boolean {
+    return isProgressionUnlockedForRankId('hero_roster', store.get().rankId);
+  }
+
   public static summon(count: 1 | 10, isFree: boolean = false): SummonResult[] | null {
     const cost = count === 1 ? 100 : 900;
     const state = store.get();
+
+    if (!this.isRecruitmentUnlocked()) {
+      return null;
+    }
 
     if (!isFree && state.crystals < cost) {
       return null;

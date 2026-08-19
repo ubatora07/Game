@@ -531,6 +531,8 @@
 - [x] `P13-31` Enforce AdventureEvent choice requirements in UI and execution
 - [x] `P13-32` Gate Partner Awakening behind a memorable World 1 milestone story
 - [x] `P13-33` Prevent fresh-save/direct Partner Awakening bypass and persist the invitation
+- [x] `P13-34` Resolve Hero roster Rank B metadata vs Rank E starter-runtime timing conflict
+- [x] `P13-35` Make HeroSystem consume the canonical early recruitment progression contract
 
 ## PHASE 14 — Audio & Feel
 

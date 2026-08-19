@@ -115,11 +115,16 @@ const goranBlacksmith = /defaultName:\s*'Master Goran'/.test(read('src/content/b
 const goranNpc = /defaultName:\s*'Master Goran'/.test(read('src/content/settlementNPCs.ts'));
 if (!goranBlacksmith || !goranNpc) errors.push('[identity-link] Master Goran settlement/forge identity drifted');
 
-const unresolvedHeroTiming = read('src/content/progressionUnlocks.ts').includes("hero_roster")
-  && read('src/content/progressionUnlocks.ts').includes("enforcement: 'declared'");
-if (!unresolvedHeroTiming) errors.push('[pacing-evidence] hero roster timing conflict must remain explicitly declared until resolved');
+requireText('src/content/progressionUnlocks.ts', "hero_roster: {", 'hero-roster-timing');
+requireText('src/content/progressionUnlocks.ts', "rankId: 'E'", 'hero-roster-timing');
+requireText('src/content/progressionUnlocks.ts', "enforcement: 'runtime'", 'hero-roster-timing');
+requireText('src/core/GameState.ts', 'crystals: 150, // Starter crystals for early summon', 'hero-roster-starter-funding');
+requireText('src/systems/HeroSystem.ts', "isProgressionUnlockedForRankId('hero_roster'", 'hero-roster-runtime-gate');
+if (read('src/content/ranks.ts').includes("unlockedFeature: 'heroes'")) {
+  errors.push('[hero-roster-timing] Rank B must not advertise Heroes as a new feature after Rank E recruitment is already live');
+}
 
-console.log(`content coherence audit: player names=${[...byName.values()].flat().length}, duplicate groups=${duplicateGroups}, shared progression gate=on, mercenary tavern gate=on, adventure eligibility/scheduler gate=on`);
+console.log(`content coherence audit: player names=${[...byName.values()].flat().length}, duplicate groups=${duplicateGroups}, shared progression gate=on, hero starter contract=on, mercenary tavern gate=on, adventure eligibility/scheduler gate=on`);
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

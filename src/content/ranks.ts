@@ -80,7 +80,6 @@ export const RANKS: readonly RankDefinition[] = [
     avatarIcon: '⚔️',
     weaponVisual: 'Soul Greatsword',
     trailColor: '#c084fc',
-    unlockedFeature: 'heroes',
     descriptionKey: 'rank.b.desc',
     avatarIndex: 3
   },
