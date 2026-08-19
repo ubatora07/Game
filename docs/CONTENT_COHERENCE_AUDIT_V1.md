@@ -68,3 +68,13 @@ The automated audit scans **222 `defaultName`/`name` fields** in `src/content`; 
 - Rank B no longer advertises `heroes` as a newly unlocked feature; its player-facing description is a rank/power identity only.
 - UX V3 keeps 5–15 minutes as a preferred **guidance/surfacing** band, not an invisible balance gate.
 - No Crystal prices, pull rates or combat balance values changed.
+
+
+## First Pet discovery contract — BATCH-19
+
+- The existing `evt_pet_mystic_egg_nest` is the canonical first-pet story; no duplicate pet-acquisition content was added.
+- If the collection is still empty, the first clear of World 2 final stage (`2-10`) prioritizes that Pet Nest over ordinary Adventure selection.
+- If a pet was already acquired through Market/another event, the milestone is skipped and ordinary Adventure selection proceeds.
+- Team hides the Pet-management action until `PetSystem` owns at least one pet, then refreshes on `pet:acquired`.
+- The existing Pet Nest still offers all four pet choices and `PetSystem` auto-equips the first owned pet.
+- Exact 15–30 minute wall-clock timing remains browser/balance evidence, not a hard timer in source.

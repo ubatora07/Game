@@ -1,6 +1,7 @@
 import { events } from '../../core/EventBus';
 import { PARTNER_AWAKENING_INVITATION_FLAG } from '../../content/partnerUnlock';
 import { partnerUnlockSystem } from '../../systems/PartnerUnlockSystem';
+import { petSystem } from '../../systems/PetSystem';
 import { DomainHubScreen, DomainHubAction } from './DomainHubScreen';
 
 const TEAM_ACTIONS: readonly DomainHubAction[] = [
@@ -40,6 +41,7 @@ const TEAM_ACTIONS: readonly DomainHubAction[] = [
     labelKey: 'domain.team.pets',
     descriptionKey: 'domain.team.pets_desc',
     accent: '#10b981',
+    isVisible: () => petSystem.getOwnedPets().length > 0,
   },
   {
     id: 'mercenaries',
@@ -67,5 +69,6 @@ export class TeamHubScreen extends DomainHubScreen {
       if (flagId === PARTNER_AWAKENING_INVITATION_FLAG) this.refresh();
     });
     events.on('party:second_character_unlocked', () => this.refresh());
+    events.on('pet:acquired', () => this.refresh());
   }
 }

@@ -18,7 +18,7 @@
 |---|---|---|
 | Main class | explicit player selection | belongs to Hero; no extra rank gate added |
 | Second character | World 1 final-boss oath story → persisted invitation | direct fresh-save access is blocked; Team reveals setup only after the invitation |
-| Pets | acquired through PetSystem/event content | Team may show the pet collection before first acquisition; acquisition itself remains stateful |
+| Pets | first guaranteed Pet Nest at World 2 final boss; Market/events remain alternate sources | Team hides Pet management until `pet:acquired`; milestone is skipped if another source already granted a pet |
 | Settlement services | settlement ownership/buildings/NPC state | Mercenary hiring/contracts require owned Settlement + constructed Tavern; other service surfacing still needs review |
 | Adventure events / Karma | event-driven | should surface through play, not as a fresh-save management requirement |
 

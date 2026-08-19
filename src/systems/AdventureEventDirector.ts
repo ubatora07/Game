@@ -3,6 +3,7 @@ import { AdventureEventDefinition, AdventureEventContext } from '../core/events/
 import { getCampaignStageById } from '../content/campaignStages';
 import { getCampaignWorldById } from '../content/campaignWorlds';
 import { PARTNER_AWAKENING_EVENT_ID, PARTNER_AWAKENING_TRIGGER_STAGE_ID } from '../content/partnerUnlock';
+import { FIRST_PET_EVENT_ID, FIRST_PET_TRIGGER_STAGE_ID } from '../content/petUnlock';
 import { store } from '../core/GameState';
 import { analytics } from '../services/analytics/AnalyticsService';
 import { adventureEventSystem } from './AdventureEventSystem';
@@ -10,6 +11,7 @@ import { campaignCombatService } from './CampaignCombatService';
 import { karmaSystem } from './KarmaSystem';
 import { partyTeamSystem } from './PartyTeamSystem';
 import { partnerUnlockSystem } from './PartnerUnlockSystem';
+import { petSystem } from './PetSystem';
 
 /**
  * Bridges Campaign progression into the Adventure Event framework.
@@ -80,14 +82,24 @@ export class AdventureEventDirector {
   }
 
   private selectMilestoneEvent(stageId: string, context: AdventureEventContext): AdventureEventDefinition | null {
-    if (stageId !== PARTNER_AWAKENING_TRIGGER_STAGE_ID || partnerUnlockSystem.isPartnerUnlocked() || partnerUnlockSystem.hasAwakeningInvitation()) {
-      return null;
+    if (stageId === PARTNER_AWAKENING_TRIGGER_STAGE_ID && !partnerUnlockSystem.isPartnerUnlocked() && !partnerUnlockSystem.hasAwakeningInvitation()) {
+      const partnerEvent = this.getEligibleMilestoneEvent(PARTNER_AWAKENING_EVENT_ID, context);
+      if (partnerEvent) return partnerEvent;
     }
 
-    const partnerEvent = adventureEventSystem.getEventById(PARTNER_AWAKENING_EVENT_ID);
-    if (!partnerEvent || !adventureEventSystem.isEventEligible(partnerEvent, context)) return null;
-    if (!partnerEvent.choices.some((choice) => adventureEventSystem.isChoiceEligible(choice))) return null;
-    return partnerEvent;
+    if (stageId === FIRST_PET_TRIGGER_STAGE_ID && petSystem.getOwnedPets().length === 0) {
+      const petEvent = this.getEligibleMilestoneEvent(FIRST_PET_EVENT_ID, context);
+      if (petEvent) return petEvent;
+    }
+
+    return null;
+  }
+
+  private getEligibleMilestoneEvent(eventId: string, context: AdventureEventContext): AdventureEventDefinition | null {
+    const eventDef = adventureEventSystem.getEventById(eventId);
+    if (!eventDef || !adventureEventSystem.isEventEligible(eventDef, context)) return null;
+    if (!eventDef.choices.some((choice) => adventureEventSystem.isChoiceEligible(choice))) return null;
+    return eventDef;
   }
 
   public releasePresentationPause(): void {

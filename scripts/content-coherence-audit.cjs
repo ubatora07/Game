@@ -85,6 +85,12 @@ requireText('src/systems/PartnerUnlockSystem.ts', 'if (!this.canAwakenPartner())
 requireText('src/ui/modals/PartnerAwakeningModal.ts', 'partnerUnlockSystem.canAwakenPartner()', 'partner-modal-gate');
 requireText('src/ui/modals/PartnerAwakeningModal.ts', 'partnerUnlockSystem.completeAwakening', 'partner-modal-gate');
 requireText('src/ui/screens/TeamHubScreen.ts', 'isVisible: () => partnerUnlockSystem.canAwakenPartner()', 'partner-progressive-disclosure');
+requireText('src/content/petUnlock.ts', "FIRST_PET_EVENT_ID = 'evt_pet_mystic_egg_nest'", 'pet-discovery-milestone');
+requireText('src/content/petUnlock.ts', "FIRST_PET_TRIGGER_STAGE_ID = '2-10'", 'pet-discovery-milestone');
+requireText('src/systems/AdventureEventDirector.ts', 'FIRST_PET_TRIGGER_STAGE_ID', 'pet-discovery-milestone');
+requireText('src/systems/AdventureEventDirector.ts', 'petSystem.getOwnedPets().length === 0', 'pet-discovery-milestone');
+requireText('src/ui/screens/TeamHubScreen.ts', 'isVisible: () => petSystem.getOwnedPets().length > 0', 'pet-progressive-disclosure');
+requireText('src/ui/screens/TeamHubScreen.ts', "events.on('pet:acquired'", 'pet-progressive-disclosure');
 
 // Player-facing duplicate identities need to be intentional and explicit.
 const allowedDuplicateNames = new Map([
@@ -129,4 +135,4 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
-console.log('[content-coherence] PASS: progression gates are centralized, Settlement/Mercenary bypasses are blocked, Adventure scheduling is first-clear boss-only, Partner Awakening is milestone-gated, and duplicate player identities are controlled.');
+console.log('[content-coherence] PASS: progression gates are centralized, Settlement/Mercenary bypasses are blocked, Adventure scheduling is first-clear boss-only, Partner/Pet discovery is milestone-gated, and duplicate player identities are controlled.');

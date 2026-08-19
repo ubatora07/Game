@@ -503,7 +503,7 @@
 - [ ] `P13-03` Audit gacha hero roster
 - [ ] `P13-04` Audit four base classes
 - [ ] `P13-05` Audit skill trees
-- [ ] `P13-06` Audit pets
+- [x] `P13-06` Audit pets
 - [x] `P13-07` Audit mercenaries
 - [ ] `P13-08` Audit settlement NPCs
 - [ ] `P13-09` Audit settlement buildings
@@ -533,6 +533,7 @@
 - [x] `P13-33` Prevent fresh-save/direct Partner Awakening bypass and persist the invitation
 - [x] `P13-34` Resolve Hero roster Rank B metadata vs Rank E starter-runtime timing conflict
 - [x] `P13-35` Make HeroSystem consume the canonical early recruitment progression contract
+- [x] `P13-36` Guarantee first Pet discovery through World 2 milestone and hide Pet management until acquisition
 
 ## PHASE 14 — Audio & Feel
 

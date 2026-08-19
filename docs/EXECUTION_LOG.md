@@ -576,3 +576,27 @@ Roadmap effect:
 - `P13-34` Hero timing conflict COMPLETE;
 - `P13-35` canonical runtime contract COMPLETE;
 - `P13-27` first-hour overload remains OPEN primarily for Pet disclosure/browser pacing evidence.
+
+
+## 2026-08-19 — First Pet Discovery & Progressive Disclosure (BATCH-19)
+
+Status: **SOURCE COMPLETE / DETERMINISTIC DISCOVERY / WALL-CLOCK QA PENDING**
+
+Completed:
+- reused the existing Phase 94 Pet Nest instead of creating a second acquisition system;
+- guaranteed that Pet Nest on first World 2 final-boss clear when the player still owns zero pets;
+- skip the forced milestone if Market/another event already granted a pet;
+- hide Team Pet management on fresh saves and reveal it immediately on `pet:acquired`;
+- retained existing four-pet choice, auto-equip, persistence, evolution and combat contracts;
+- added focused milestone regression and content-coherence enforcement.
+
+Validation target:
+- source TypeScript + focused Pet discovery test typecheck;
+- full available source QA matrix;
+- `git diff --check`;
+- exact 15–30 minute browser pacing remains unverified until fresh Vite/Playwright can run.
+
+Roadmap effect:
+- `P13-06` Pet content/integration audit COMPLETE;
+- `P13-36` deterministic first Pet discovery + progressive disclosure COMPLETE;
+- `P13-27` overload reduction remains OPEN pending remaining World/More disclosure and browser pacing evidence.
