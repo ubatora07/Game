@@ -34,6 +34,12 @@ const STRICT_UI_FILES = [
   'src/ui/art/SettlementVisualRenderer.ts',
 ];
 
+const DYNAMIC_CONTENT_KEY_FILES = [
+  'src/content/campaignWorlds.ts',
+  'src/content/campaignEnemies.ts',
+  'src/content/campaignBosses.ts',
+];
+
 const STRICT_CONTENT_FILES = [
   'src/content/settlementCatalog.ts',
   'src/content/settlementNPCs.ts',
@@ -77,6 +83,15 @@ function placeholders(value) {
   let m;
   while ((m = re.exec(value || ''))) found.add(m[1]);
   return [...found].sort();
+}
+
+function dynamicContentTranslationKeys(rel) {
+  const text = read(rel);
+  const keys = new Set();
+  const re = /\b(?:nameKey|descriptionKey|titleKey)\s*:\s*['\"]([^'\"]+)['\"]/g;
+  let m;
+  while ((m = re.exec(text))) keys.add(m[1]);
+  return keys;
 }
 
 function strictContentTranslationKeys(rel) {
@@ -182,6 +197,12 @@ for (const key of [...en].filter((k) => ru.has(k)).sort()) {
   }
 }
 
+for (const rel of DYNAMIC_CONTENT_KEY_FILES) {
+  for (const key of dynamicContentTranslationKeys(rel)) {
+    if (!en.has(key) || !ru.has(key)) errors.push(`[dynamic-content-key] ${rel}: missing EN/RU translation for ${key}`);
+  }
+}
+
 for (const rel of STRICT_CONTENT_FILES) {
   for (const key of strictContentTranslationKeys(rel)) {
     if (!en.has(key) || !ru.has(key)) errors.push(`[content-key] ${rel}: missing EN/RU translation for ${key}`);
@@ -206,7 +227,7 @@ for (const hit of rawRuntimeToastLiterals()) {
   errors.push(`[raw-runtime-toast] ${hit}: player toast must use t(...)`);
 }
 
-console.log(`i18n audit: EN=${en.size}, RU=${ru.size}, literal t() keys=${used.size}, strict UI=${STRICT_UI_FILES.length}, strict content=${STRICT_CONTENT_FILES.length}, raw toast gate=on`);
+console.log(`i18n audit: EN=${en.size}, RU=${ru.size}, literal t() keys=${used.size}, strict UI=${STRICT_UI_FILES.length}, strict content=${STRICT_CONTENT_FILES.length}, dynamic content=${DYNAMIC_CONTENT_KEY_FILES.length}, raw toast gate=on`);
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

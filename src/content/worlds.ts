@@ -43,7 +43,7 @@ export const TOWER_WORLDS: readonly WorldTheme[] = [
     nameKey: 'world.sakura.name',
     bgGradient: 'radial-gradient(ellipse at bottom, #831843 0%, #4c0519 70%, #030712 100%)',
     accentColor: '#f43f5e',
-    ambientParticles: 'petals',
+    ambientParticles: 'leaves',
     monsterTypes: [
       { nameKey: 'monster.ronin', icon: '⚔️', descriptionKey: 'monster.ronin.desc' },
       { nameKey: 'monster.kitsune', icon: '🦊', descriptionKey: 'monster.kitsune.desc' },

@@ -410,3 +410,31 @@ Validation:
 Roadmap effect:
 - Phase 0 Baseline & Governance is now **20/20 complete**.
 - Positive release ZIP generation remains a release-candidate task because a fresh Vite build is still environment-blocked by the missing Linux Rollup native dependency.
+
+## 2026-08-19 — Campaign World Identity + Dynamic i18n Contract (BATCH-13)
+
+Status: **SOURCE COMPLETE / I18N + TERMINOLOGY GATES PASS / PRODUCTION ART STILL OPEN**
+
+Completed:
+- finalized player-facing identities for Worlds 1–5 as Whispering Forest, Thorncourt Marches, Ashen Rift, Frostspire Range and Umbral Sanctum while preserving stable world/theme/background IDs;
+- removed the Sakura/Ronin/Kitsune/Shogun player-facing cluster from World 2 campaign/tower copy and replaced it with fallen-marches duelists, wardens, cursed foxes and Regent Morcant;
+- rethemed World 3 around blackglass ruins and the Ashen Rift, World 4 around frostborn high passes and ward-stones, and World 5 around an occult Umbral Sanctum rather than outer-space/cosmic fantasy;
+- aligned campaign enemy and boss fallback names with the Product Identity V2 world bible without renaming internal enemy IDs, boss IDs, translation keys or sprite IDs;
+- added all missing campaign `nameKey`, `titleKey`, and `descriptionKey` translations for EN/RU so battle UI cannot fall back to raw content keys;
+- extended `qa:i18n` with automatic dynamic-key extraction for campaign worlds, enemies and bosses;
+- rethemed matching Infinite Tower world/monster/boss copy and the Stage 2-5 quest;
+- switched the legacy World 2 tower ambient particle presentation from blossom petals to generic red-leaf particles while preserving the mechanical world slot.
+
+Validation:
+- `npm run qa:i18n` PASS: EN/RU parity **1696 / 1696**, dynamic campaign key gate active;
+- `npm run qa:terminology` PASS with reductions from the locked baseline (`sakura -4`, `ronin -2`, `kitsune -2`, `shogun -2`, `cosmic -4`, `astral -4`, `sovereign -4`);
+- `npm run qa:art-registry` PASS;
+- `npm run qa:ui-production` PASS;
+- `npm run qa:source-safety` PASS;
+- `npm run qa:governance` PASS;
+- `npx tsc --noEmit -p tsconfig.json` PASS;
+- `git diff --check` PASS.
+
+Roadmap effect:
+- `P12-01`, `P12-02`, `P12-07`, `P12-12`, `P12-17` COMPLETE (world identity/content contracts);
+- World 2–5 background layers, production enemy/boss art, authored ambience, unique props/loot/VFX and browser transition validation remain intentionally OPEN.

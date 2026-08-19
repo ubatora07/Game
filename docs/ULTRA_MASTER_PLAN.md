@@ -468,23 +468,23 @@
 
 **Priority:** P2
 
-- [ ] `P12-01` Finalize World 1 identity
-- [ ] `P12-02` Retheme World 2 to fit Product Identity V2
+- [x] `P12-01` Finalize World 1 identity
+- [x] `P12-02` Retheme World 2 to fit Product Identity V2
 - [ ] `P12-03` Create World 2 background layers
 - [ ] `P12-04` Create World 2 enemy family
 - [ ] `P12-05` Create World 2 boss
 - [ ] `P12-06` Create World 2 ambience
-- [ ] `P12-07` Finalize World 3 identity
+- [x] `P12-07` Finalize World 3 identity
 - [ ] `P12-08` Create World 3 background layers
 - [ ] `P12-09` Create World 3 enemy family
 - [ ] `P12-10` Create World 3 boss
 - [ ] `P12-11` Create World 3 ambience
-- [ ] `P12-12` Finalize World 4 identity
+- [x] `P12-12` Finalize World 4 identity
 - [ ] `P12-13` Create World 4 background layers
 - [ ] `P12-14` Create World 4 enemy family
 - [ ] `P12-15` Create World 4 boss
 - [ ] `P12-16` Create World 4 ambience
-- [ ] `P12-17` Finalize World 5 identity
+- [x] `P12-17` Finalize World 5 identity
 - [ ] `P12-18` Create World 5 background layers
 - [ ] `P12-19` Create World 5 enemy family
 - [ ] `P12-20` Create World 5 boss

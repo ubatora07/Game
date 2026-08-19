@@ -19,7 +19,7 @@ export const CAMPAIGN_WORLDS: CampaignWorld[] = [
   {
     id: 2,
     nameKey: 'world.sakura.name',
-    defaultName: 'Sakura Empire',
+    defaultName: 'Thorncourt Marches',
     descriptionKey: 'world.sakura.desc',
     theme: 'sakura',
     emoji: '🌸',
@@ -34,7 +34,7 @@ export const CAMPAIGN_WORLDS: CampaignWorld[] = [
   {
     id: 3,
     nameKey: 'world.abyss.name',
-    defaultName: 'Crimson Abyss',
+    defaultName: 'Ashen Rift',
     descriptionKey: 'world.abyss.desc',
     theme: 'volcano',
     emoji: '🌋',
@@ -49,7 +49,7 @@ export const CAMPAIGN_WORLDS: CampaignWorld[] = [
   {
     id: 4,
     nameKey: 'world.frozen.name',
-    defaultName: 'Frozen Peak',
+    defaultName: 'Frostspire Range',
     descriptionKey: 'world.frozen.desc',
     theme: 'ice',
     emoji: '❄️',
@@ -64,7 +64,7 @@ export const CAMPAIGN_WORLDS: CampaignWorld[] = [
   {
     id: 5,
     nameKey: 'world.void.name',
-    defaultName: 'Void Sanctuary',
+    defaultName: 'Umbral Sanctum',
     descriptionKey: 'world.void.desc',
     theme: 'void',
     emoji: '🌌',

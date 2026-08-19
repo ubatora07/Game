@@ -5,7 +5,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   forest_goblin: {
     id: 'forest_goblin',
     nameKey: 'enemy_forest_goblin',
-    defaultName: 'Forest Goblin',
+    defaultName: 'Goblin Scout',
     archetype: 'melee',
     baseHpMultiplier: 0.9,
     rewardMultiplier: 1.0,
@@ -14,7 +14,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   dire_wolf: {
     id: 'dire_wolf',
     nameKey: 'enemy_dire_wolf',
-    defaultName: 'Dire Wolf',
+    defaultName: 'Thorn Wolf',
     archetype: 'melee',
     baseHpMultiplier: 1.0,
     rewardMultiplier: 1.1,
@@ -23,7 +23,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   corrupted_treant: {
     id: 'corrupted_treant',
     nameKey: 'enemy_corrupted_treant',
-    defaultName: 'Corrupted Treant',
+    defaultName: 'Mossback Treant',
     archetype: 'tank',
     baseHpMultiplier: 1.3,
     rewardMultiplier: 1.3,
@@ -32,7 +32,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   forest_spirit: {
     id: 'forest_spirit',
     nameKey: 'enemy_forest_spirit',
-    defaultName: 'Wandering Sprite',
+    defaultName: 'Whisper Sprite',
     archetype: 'magic',
     baseHpMultiplier: 0.85,
     rewardMultiplier: 1.2,
@@ -41,18 +41,18 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   forest_alpha: {
     id: 'forest_alpha',
     nameKey: 'enemy_forest_alpha',
-    defaultName: 'Ancient Alpha Wolf',
+    defaultName: 'Thorn Alpha',
     archetype: 'elite',
     baseHpMultiplier: 1.8,
     rewardMultiplier: 2.0,
     spriteId: 'enemy_alpha_wolf',
   },
 
-  // World 2 - Sakura Empire
+  // World 2 - Thorncourt Marches
   rogue_ninja: {
     id: 'rogue_ninja',
     nameKey: 'enemy_rogue_ninja',
-    defaultName: 'Rogue Ninja',
+    defaultName: 'Thorncourt Skirmisher',
     archetype: 'ranged',
     baseHpMultiplier: 0.95,
     rewardMultiplier: 1.0,
@@ -61,7 +61,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   bamboo_ronin: {
     id: 'bamboo_ronin',
     nameKey: 'enemy_bamboo_ronin',
-    defaultName: 'Bamboo Ronin',
+    defaultName: 'Exiled Duelist',
     archetype: 'melee',
     baseHpMultiplier: 1.1,
     rewardMultiplier: 1.15,
@@ -70,7 +70,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   temple_guardian: {
     id: 'temple_guardian',
     nameKey: 'enemy_temple_guardian',
-    defaultName: 'Stone Lion Guardian',
+    defaultName: 'Stone Warden',
     archetype: 'tank',
     baseHpMultiplier: 1.4,
     rewardMultiplier: 1.35,
@@ -79,7 +79,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   kitsune_shade: {
     id: 'kitsune_shade',
     nameKey: 'enemy_kitsune_shade',
-    defaultName: 'Kitsune Shade',
+    defaultName: 'Gloam Fox',
     archetype: 'magic',
     baseHpMultiplier: 1.0,
     rewardMultiplier: 1.25,
@@ -88,18 +88,18 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   corrupted_samurai: {
     id: 'corrupted_samurai',
     nameKey: 'enemy_corrupted_samurai',
-    defaultName: 'Corrupted Samurai Lord',
+    defaultName: 'Thorncourt Champion',
     archetype: 'elite',
     baseHpMultiplier: 2.0,
     rewardMultiplier: 2.2,
     spriteId: 'enemy_corrupted_samurai',
   },
 
-  // World 3 - Crimson Abyss
+  // World 3 - Ashen Rift
   flame_imp: {
     id: 'flame_imp',
     nameKey: 'enemy_flame_imp',
-    defaultName: 'Flame Imp',
+    defaultName: 'Rift Imp',
     archetype: 'ranged',
     baseHpMultiplier: 0.9,
     rewardMultiplier: 1.05,
@@ -108,7 +108,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   magma_beast: {
     id: 'magma_beast',
     nameKey: 'enemy_magma_beast',
-    defaultName: 'Magma Hound',
+    defaultName: 'Ash Hound',
     archetype: 'melee',
     baseHpMultiplier: 1.15,
     rewardMultiplier: 1.2,
@@ -117,7 +117,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   obsidian_golem: {
     id: 'obsidian_golem',
     nameKey: 'enemy_obsidian_golem',
-    defaultName: 'Obsidian Golem',
+    defaultName: 'Blackglass Golem',
     archetype: 'tank',
     baseHpMultiplier: 1.5,
     rewardMultiplier: 1.4,
@@ -126,7 +126,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   infernal_sorcerer: {
     id: 'infernal_sorcerer',
     nameKey: 'enemy_infernal_sorcerer',
-    defaultName: 'Infernal Pyromancer',
+    defaultName: 'Cinder Hexer',
     archetype: 'magic',
     baseHpMultiplier: 1.05,
     rewardMultiplier: 1.3,
@@ -135,18 +135,18 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   abyss_executioner: {
     id: 'abyss_executioner',
     nameKey: 'enemy_abyss_executioner',
-    defaultName: 'Abyssal Executioner',
+    defaultName: 'Rift Executioner',
     archetype: 'elite',
     baseHpMultiplier: 2.2,
     rewardMultiplier: 2.5,
     spriteId: 'enemy_executioner',
   },
 
-  // World 4 - Frozen Peak
+  // World 4 - Frostspire Range
   frost_wolf: {
     id: 'frost_wolf',
     nameKey: 'enemy_frost_wolf',
-    defaultName: 'Frostfang Wolf',
+    defaultName: 'Frost Warg',
     archetype: 'melee',
     baseHpMultiplier: 1.0,
     rewardMultiplier: 1.1,
@@ -155,7 +155,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   ice_archer: {
     id: 'ice_archer',
     nameKey: 'enemy_ice_archer',
-    defaultName: 'Glacier Hunter',
+    defaultName: 'Icebound Hunter',
     archetype: 'ranged',
     baseHpMultiplier: 0.95,
     rewardMultiplier: 1.15,
@@ -164,7 +164,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   glacier_elemental: {
     id: 'glacier_elemental',
     nameKey: 'enemy_glacier_elemental',
-    defaultName: 'Glacier Titan',
+    defaultName: 'Rime Golem',
     archetype: 'tank',
     baseHpMultiplier: 1.55,
     rewardMultiplier: 1.45,
@@ -173,7 +173,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   blizzard_specter: {
     id: 'blizzard_specter',
     nameKey: 'enemy_blizzard_specter',
-    defaultName: 'Blizzard Specter',
+    defaultName: 'Pale Warden',
     archetype: 'magic',
     baseHpMultiplier: 1.1,
     rewardMultiplier: 1.35,
@@ -182,18 +182,18 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   frost_wyrm: {
     id: 'frost_wyrm',
     nameKey: 'enemy_frost_wyrm',
-    defaultName: 'Frost Wyrmling',
+    defaultName: 'Frost Wyrm',
     archetype: 'elite',
     baseHpMultiplier: 2.3,
     rewardMultiplier: 2.6,
     spriteId: 'enemy_frost_wyrm',
   },
 
-  // World 5 - Void Sanctuary
+  // World 5 - Umbral Sanctum
   void_crawler: {
     id: 'void_crawler',
     nameKey: 'enemy_void_crawler',
-    defaultName: 'Void Scuttler',
+    defaultName: 'Umbral Crawler',
     archetype: 'melee',
     baseHpMultiplier: 1.05,
     rewardMultiplier: 1.15,
@@ -202,7 +202,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   cosmic_ray: {
     id: 'cosmic_ray',
     nameKey: 'enemy_cosmic_ray',
-    defaultName: 'Dimensional Weaver',
+    defaultName: 'Rift Weaver',
     archetype: 'ranged',
     baseHpMultiplier: 1.0,
     rewardMultiplier: 1.25,
@@ -211,7 +211,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   astral_colossus: {
     id: 'astral_colossus',
     nameKey: 'enemy_astral_colossus',
-    defaultName: 'Astral Colossus',
+    defaultName: 'Blackstone Colossus',
     archetype: 'tank',
     baseHpMultiplier: 1.6,
     rewardMultiplier: 1.5,
@@ -220,7 +220,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   singularity_cultist: {
     id: 'singularity_cultist',
     nameKey: 'enemy_singularity_cultist',
-    defaultName: 'Void Prophet',
+    defaultName: 'Voidbound Prophet',
     archetype: 'magic',
     baseHpMultiplier: 1.15,
     rewardMultiplier: 1.4,
@@ -229,7 +229,7 @@ export const CAMPAIGN_ENEMIES: Record<string, CampaignEnemy> = {
   void_harbinger: {
     id: 'void_harbinger',
     nameKey: 'enemy_void_harbinger',
-    defaultName: 'Harbinger of Nothingness',
+    defaultName: 'Umbral Harbinger',
     archetype: 'elite',
     baseHpMultiplier: 2.5,
     rewardMultiplier: 3.0,
