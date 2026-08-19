@@ -14,7 +14,7 @@ export class SettlementScreen {
   constructor() {
     this.el = document.createElement('div');
     this.el.className = 'settlement-screen-container pixel-fantasy-screen';
-    this.el.style.cssText = 'display:flex; flex-direction:column; width:100%; height:100%; overflow-y:auto; padding:12px; box-sizing:border-box; gap:12px; background:radial-gradient(circle at 50% 20%, #1c1917 0%, #09090b 100%);';
+    this.el.style.cssText = 'display:flex; flex-direction:column; width:100%; height:100%; overflow-y:auto; padding:var(--space-12); box-sizing:border-box; gap:var(--space-12); background:radial-gradient(circle at 50% 20%, #1c1917 0%, #09090b 100%);';
 
     this.render();
     this.bindEvents();
@@ -39,18 +39,18 @@ export class SettlementScreen {
 
     if (!isOwned) {
       this.el.innerHTML = `
-        <div style="max-width:500px; margin:40px auto; text-align:center; padding:24px; background:rgba(28,25,23,0.9); border:2px solid #d97706; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.9);">
-          <div style="font-size:42px; margin-bottom:12px;">🏰</div>
+        <div style="max-width:500px; margin:var(--space-40) auto; text-align:center; padding:var(--space-24); background:rgba(28,25,23,0.9); border:2px solid #d97706; border-radius:var(--radius-08); box-shadow:var(--shadow-lg);">
+          <div style="font-size:42px; margin-bottom:var(--space-12);">🏰</div>
           <div style="font-size:11px; color:#f59e0b; font-weight:bold; letter-spacing:1px; text-transform:uppercase; font-family:var(--font-display);">
             ✦ ${t('settlement.unclaimed_label')} ✦
           </div>
-          <h2 style="font-family:var(--font-display); font-size:22px; color:#fef08a; margin:4px 0 12px 0;">
+          <h2 style="font-family:var(--font-display); font-size:22px; color:#fef08a; margin:var(--space-04) 0 var(--space-12) 0;">
             ${t('settlement.claim_title')}
           </h2>
-          <p style="color:#cbd5e1; font-size:13px; line-height:1.5; margin-bottom:20px;">
+          <p style="color:#cbd5e1; font-size:13px; line-height:1.5; margin-bottom:var(--space-20);">
             ${t('settlement.claim_desc')}
           </p>
-          <button id="btn-claim-settlement" style="padding:12px 24px; background:linear-gradient(135deg, #d97706, #b45309); border:1px solid #f59e0b; border-radius:4px; color:#ffffff; font-family:var(--font-display); font-weight:900; font-size:15px; letter-spacing:1px; cursor:pointer; box-shadow:0 0 15px rgba(217,119,6,0.6);">
+          <button id="btn-claim-settlement" style="padding:var(--space-12) var(--space-24); background:linear-gradient(135deg, #d97706, #b45309); border:1px solid #f59e0b; border-radius:var(--radius-04); color:#ffffff; font-family:var(--font-display); font-weight:900; font-size:15px; letter-spacing:1px; cursor:pointer; box-shadow:var(--glow-gold);">
             ${t('settlement.claim_action')}
           </button>
         </div>
@@ -70,34 +70,34 @@ export class SettlementScreen {
 
     this.el.innerHTML = `
       <!-- Settlement Header Bar -->
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:rgba(28,25,23,0.9); border:1.5px solid #b45309; border-radius:6px; padding:10px 14px; box-shadow:0 2px 8px rgba(0,0,0,0.6);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-08); background:rgba(28,25,23,0.9); border:1.5px solid #b45309; border-radius:var(--radius-06); padding:var(--space-10) var(--space-14); box-shadow:var(--shadow-sm);">
         <div>
           <div style="font-size:10px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; font-family:var(--font-display);">
             ✦ ${t('settlement.header_level', { level: sState.settlementLevel })} ✦
           </div>
-          <h2 style="font-family:var(--font-display); font-size:18px; color:#fef08a; margin:2px 0 0 0;">
+          <h2 style="font-family:var(--font-display); font-size:18px; color:#fef08a; margin:var(--space-02) 0 0 0;">
             ${sState.settlementName}
           </h2>
         </div>
 
         <!-- Materials & Ratings Summary -->
-        <div style="display:flex; align-items:center; gap:10px; font-size:11px; color:#cbd5e1; flex-wrap:wrap;">
-          <div style="background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:4px; border:1px solid #78350f;">
+        <div style="display:flex; align-items:center; gap:var(--space-10); font-size:11px; color:#cbd5e1; flex-wrap:wrap;">
+          <div style="background:rgba(0,0,0,0.5); padding:var(--space-04) var(--space-08); border-radius:var(--radius-04); border:1px solid #78350f;">
             🪵 <b style="color:#fb923c;">${mats.wood}</b>
           </div>
-          <div style="background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:4px; border:1px solid #78350f;">
+          <div style="background:rgba(0,0,0,0.5); padding:var(--space-04) var(--space-08); border-radius:var(--radius-04); border:1px solid #78350f;">
             🪨 <b style="color:#cbd5e1;">${mats.stone}</b>
           </div>
-          <div style="background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:4px; border:1px solid #78350f;">
+          <div style="background:rgba(0,0,0,0.5); padding:var(--space-04) var(--space-08); border-radius:var(--radius-04); border:1px solid #78350f;">
             ⚙️ <b style="color:#38bdf8;">${mats.iron}</b>
           </div>
-          <div style="background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:4px; border:1px solid #f59e0b;">
+          <div style="background:rgba(0,0,0,0.5); padding:var(--space-04) var(--space-08); border-radius:var(--radius-04); border:1px solid #f59e0b;">
             🛡️ ${t('settlement.defense_short')}: <b style="color:#fde047;">${sState.defenseRating}</b>
           </div>
-          <div style="background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:4px; border:1px solid #10b981;">
+          <div style="background:rgba(0,0,0,0.5); padding:var(--space-04) var(--space-08); border-radius:var(--radius-04); border:1px solid #10b981;">
             ⭐ ${t('settlement.prosperity_short')}: <b style="color:#34d399;">${sState.prosperityRating}</b>
           </div>
-          <button id="btn-harvest-mats" style="padding:4px 10px; background:linear-gradient(135deg, #10b981, #059669); border:1px solid #34d399; border-radius:4px; color:#ffffff; font-family:var(--font-display); font-weight:bold; font-size:11px; cursor:pointer;">
+          <button id="btn-harvest-mats" style="padding:var(--space-04) var(--space-10); background:linear-gradient(135deg, #10b981, #059669); border:1px solid #34d399; border-radius:var(--radius-04); color:#ffffff; font-family:var(--font-display); font-weight:bold; font-size:11px; cursor:pointer;">
             🌾 ${t('settlement.harvest')}
           </button>
         </div>
@@ -131,12 +131,12 @@ export class SettlementScreen {
       </section>
 
       <!-- Panoramic Visual Canvas with Interactive Building Plots -->
-      <div class="settlement-canvas-wrapper" style="position:relative; width:100%; height:260px; min-height:240px; border:2px solid #78350f; border-radius:6px; overflow:hidden; box-shadow:0 0 20px rgba(0,0,0,0.8); background:#0c0a09;">
+      <div class="settlement-canvas-wrapper" style="position:relative; width:100%; height:260px; min-height:240px; border:2px solid #78350f; border-radius:var(--radius-06); overflow:hidden; box-shadow:var(--shadow-md); background:#0c0a09;">
         ${SettlementVisualRenderer.getSettlementPanoramaSvg(buildings, sState.settlementLevel)}
         ${SettlementVisualRenderer.getWorldConsequenceOverlaySvg(worldFlagIds)}
 
         <!-- Interactive Building Plots Placed on Canvas -->
-        <div class="settlement-interactive-layer" style="position:absolute; top:0; left:0; width:100%; height:100%; display:grid; grid-template-columns:repeat(4, 1fr); grid-template-rows:1fr 1fr; gap:6px; padding:12px; box-sizing:border-box; pointer-events:none;">
+        <div class="settlement-interactive-layer" style="position:absolute; top:0; left:0; width:100%; height:100%; display:grid; grid-template-columns:repeat(4, 1fr); grid-template-rows:1fr 1fr; gap:var(--space-06); padding:var(--space-12); box-sizing:border-box; pointer-events:none;">
           ${getAllSettlementBuildingDefs().map(def => {
             const b = buildings[def.id];
             const structSvg = SettlementVisualRenderer.getBuildingStructureSvg(def.id, b ? b.level : 0);
@@ -145,7 +145,7 @@ export class SettlementScreen {
                 <div style="width:52px; height:52px; display:flex; align-items:center; justify-content:center;">
                   ${structSvg}
                 </div>
-                <div style="background:rgba(0,0,0,0.8); border:1px solid #d97706; padding:1px 6px; border-radius:3px; font-size:9px; font-weight:bold; color:#fef08a; font-family:var(--font-display); margin-top:-4px; white-space:nowrap;">
+                <div style="background:rgba(0,0,0,0.8); border:1px solid #d97706; padding:var(--space-01) var(--space-06); border-radius:var(--radius-03); font-size:9px; font-weight:bold; color:#fef08a; font-family:var(--font-display); margin-top:calc(-1 * var(--space-04)); white-space:nowrap;">
                   ${t(def.nameKey).split(' ')[0]} ${b && b.isConstructed ? t('common.level_short', { level: b.level }) : t('settlement.plot')}
                 </div>
               </div>
@@ -155,16 +155,16 @@ export class SettlementScreen {
       </div>
 
       <!-- Domain Residents Roster Strip -->
-      <div style="background:rgba(28,25,23,0.85); border:1.5px solid #78350f; border-radius:6px; padding:10px 14px;">
-        <div style="font-size:11px; color:#f59e0b; font-weight:bold; margin-bottom:8px; font-family:var(--font-display);">
+      <div style="background:rgba(28,25,23,0.85); border:1.5px solid #78350f; border-radius:var(--radius-06); padding:var(--space-10) var(--space-14);">
+        <div style="font-size:11px; color:#f59e0b; font-weight:bold; margin-bottom:var(--space-08); font-family:var(--font-display);">
           ✦ ${t('settlement.residents_title')} ✦
         </div>
-        <div class="settlement-npc-row" style="display:flex; gap:12px; overflow-x:auto; padding-bottom:4px;">
+        <div class="settlement-npc-row" style="display:flex; gap:var(--space-12); overflow-x:auto; padding-bottom:var(--space-04);">
           ${getAllSettlementNPCDefs().map(npcDef => {
             const npcState = npcs[npcDef.id];
             const isUnlocked = npcState ? npcState.isUnlocked : false;
             return `
-              <div class="npc-interactive-card" data-npc-id="${npcDef.id}" style="opacity:${isUnlocked ? '1' : '0.4'}; cursor:${isUnlocked ? 'pointer' : 'not-allowed'}; display:flex; align-items:center; gap:8px; background:rgba(0,0,0,0.5); border:1px solid ${isUnlocked ? '#d97706' : '#451a03'}; border-radius:4px; padding:6px 10px; min-width:140px;">
+              <div class="npc-interactive-card" data-npc-id="${npcDef.id}" style="opacity:${isUnlocked ? '1' : '0.4'}; cursor:${isUnlocked ? 'pointer' : 'not-allowed'}; display:flex; align-items:center; gap:var(--space-08); background:rgba(0,0,0,0.5); border:1px solid ${isUnlocked ? '#d97706' : '#451a03'}; border-radius:var(--radius-04); padding:var(--space-06) var(--space-10); min-width:140px;">
                 <div style="width:30px; height:30px; border-radius:50%; background:rgba(0,0,0,0.6); border:1px solid #f59e0b; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
                   ${npcDef.avatarSvg}
                 </div>
@@ -179,24 +179,24 @@ export class SettlementScreen {
       </div>
 
       <!-- Building Management Matrix -->
-      <div style="background:rgba(28,25,23,0.85); border:1.5px solid #78350f; border-radius:6px; padding:12px;">
-        <div style="font-size:11px; color:#f59e0b; font-weight:bold; margin-bottom:10px; font-family:var(--font-display);">
+      <div style="background:rgba(28,25,23,0.85); border:1.5px solid #78350f; border-radius:var(--radius-06); padding:var(--space-12);">
+        <div style="font-size:11px; color:#f59e0b; font-weight:bold; margin-bottom:var(--space-10); font-family:var(--font-display);">
           ✦ ${t('settlement.structures_title')} ✦
         </div>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:var(--space-10);">
           ${getAllSettlementBuildingDefs().map(def => {
             const b = buildings[def.id];
             const lvl = b ? b.level : 0;
             const isConstructed = b ? b.isConstructed : false;
             return `
-              <div class="building-card-tile" data-building-id="${def.id}" style="background:rgba(12,10,9,0.7); border:1px solid #78350f; border-radius:4px; padding:8px 10px; cursor:pointer; transition:all 0.15s ease;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <div class="building-card-tile" data-building-id="${def.id}" style="background:rgba(12,10,9,0.7); border:1px solid #78350f; border-radius:var(--radius-04); padding:var(--space-08) var(--space-10); cursor:pointer; transition:all 0.15s ease;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-04);">
                   <div style="font-size:12px; font-weight:bold; color:#fef08a; font-family:var(--font-display);">${t(def.nameKey)}</div>
-                  <div style="font-size:10px; background:rgba(217,119,6,0.2); border:1px solid #d97706; padding:1px 5px; border-radius:3px; color:#fde047; font-family:var(--font-display); font-weight:bold;">
+                  <div style="font-size:10px; background:rgba(217,119,6,0.2); border:1px solid #d97706; padding:var(--space-01) var(--space-05); border-radius:var(--radius-03); color:#fde047; font-family:var(--font-display); font-weight:bold;">
                     ${isConstructed ? t('common.level_short', { level: lvl }) : t('settlement.plot')}
                   </div>
                 </div>
-                <div style="font-size:10px; color:#94a3b8; margin-bottom:6px; line-height:1.35;">${t(def.descKey)}</div>
+                <div style="font-size:10px; color:#94a3b8; margin-bottom:var(--space-06); line-height:1.35;">${t(def.descKey)}</div>
                 <div style="font-size:10px; color:#34d399; font-weight:bold;">${t('settlement.inspect_upgrade')} ➔</div>
               </div>
             `;

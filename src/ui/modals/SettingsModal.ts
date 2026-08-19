@@ -11,14 +11,14 @@ export const SettingsModal: ModalInstance = {
     const el = document.createElement('div');
 
     el.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
         <h2 style="font-family:var(--font-display); font-size:20px; color:#fde047;">
           ⚙️ ${t('nav.settings')}
         </h2>
         <button id="settingsCloseBtn" style="font-size:20px; color:var(--text-muted); cursor:pointer;">✕</button>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:14px; font-size:13px;">
+      <div style="display:flex; flex-direction:column; gap:var(--space-14); font-size:13px;">
         <!-- Sound FX -->
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span>${t('settings.sound')}</span>
@@ -46,7 +46,7 @@ export const SettingsModal: ModalInstance = {
         <!-- Number Notation -->
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span>${t('settings.notation')}</span>
-          <select id="setNotation" style="background:#1e293b; color:#fff; border:1px solid var(--border-subtle); padding:4px 8px; border-radius:var(--radius-sm);">
+          <select id="setNotation" style="background:#1e293b; color:#fff; border:1px solid var(--border-subtle); padding:var(--space-04) var(--space-08); border-radius:var(--radius-sm);">
             <option value="standard" ${s.notation === 'standard' ? 'selected' : ''}>${t('settings.notation_standard')}</option>
             <option value="scientific" ${s.notation === 'scientific' ? 'selected' : ''}>${t('settings.notation_scientific')}</option>
           </select>
@@ -55,13 +55,13 @@ export const SettingsModal: ModalInstance = {
         <!-- Language -->
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span>${t('settings.language')}</span>
-          <select id="setLang" style="background:#1e293b; color:#fff; border:1px solid var(--border-subtle); padding:4px 8px; border-radius:var(--radius-sm);">
+          <select id="setLang" style="background:#1e293b; color:#fff; border:1px solid var(--border-subtle); padding:var(--space-04) var(--space-08); border-radius:var(--radius-sm);">
             <option value="ru" ${s.language === 'ru' ? 'selected' : ''}>${t('settings.language_ru')}</option>
             <option value="en" ${s.language === 'en' ? 'selected' : ''}>${t('settings.language_en')}</option>
           </select>
         </div>
 
-        <hr style="border:none; border-top:1px solid var(--border-subtle); margin:8px 0;" />
+        <hr style="border:none; border-top:1px solid var(--border-subtle); margin:var(--space-08) 0;" />
 
         <!-- Reset Save -->
         <button id="resetSaveBtn" style="height:40px; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#f87171; border-radius:var(--radius-md); font-weight:bold; cursor:pointer;">

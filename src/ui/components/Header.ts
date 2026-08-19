@@ -29,14 +29,14 @@ export class Header {
     const equippedTitle = titleSystem.getEquippedTitle();
 
     this.el.innerHTML = `
-      <div class="header-rank-badge" id="headerRankBadge" style="display:flex; align-items:center; gap:8px; cursor:pointer; min-width:0; flex-shrink:1;">
+      <div class="header-rank-badge" id="headerRankBadge" style="display:flex; align-items:center; gap:var(--space-08); cursor:pointer; min-width:0; flex-shrink:1;">
         <div class="rank-icon-frame" id="headerRankFrame" style="width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:16px; border:2px solid #94a3b8; background:rgba(15,23,42,0.8); flex-shrink:0;">
           E
         </div>
         <div style="display:flex; flex-direction:column; min-width:0; overflow:hidden;">
-          <div style="display:flex; align-items:center; gap:4px;">
+          <div style="display:flex; align-items:center; gap:var(--space-04);">
             <span id="headerRankTitle" style="font-size:11px; color:var(--text-muted); font-weight:bold; text-transform:uppercase; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">Novice</span>
-            <span id="headerPlayerTitle" style="font-size:9px; color:#fde047; font-weight:bold; border:1px solid rgba(253,224,71,0.3); padding:0 3px; border-radius:2px; cursor:pointer;" title="Change Title">
+            <span id="headerPlayerTitle" style="font-size:9px; color:#fde047; font-weight:bold; border:1px solid rgba(253,224,71,0.3); padding:0 var(--space-03); border-radius:var(--radius-02); cursor:pointer;" title="Change Title">
               ${equippedTitle ? `✦ ${equippedTitle.defaultName}` : ''}
             </span>
           </div>
@@ -44,13 +44,13 @@ export class Header {
         </div>
       </div>
 
-      <div class="header-currencies" style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
-        <div class="currency-pill" style="display:flex; align-items:center; gap:4px; background:rgba(30,41,59,0.7); padding:4px 8px; border-radius:var(--radius-full); border:1px solid var(--border-subtle); white-space:nowrap;">
+      <div class="header-currencies" style="display:flex; align-items:center; gap:var(--space-08); flex-shrink:0;">
+        <div class="currency-pill" style="display:flex; align-items:center; gap:var(--space-04); background:rgba(30,41,59,0.7); padding:var(--space-04) var(--space-08); border-radius:var(--radius-full); border:1px solid var(--border-subtle); white-space:nowrap;">
           <span style="font-size:13px;">🪙</span>
           <span id="headerGold" style="font-weight:bold; color:#fde047; font-size:12px;">0</span>
         </div>
 
-        <div class="currency-pill" style="display:flex; align-items:center; gap:4px; background:rgba(30,41,59,0.7); padding:4px 8px; border-radius:var(--radius-full); border:1px solid var(--border-subtle); white-space:nowrap;">
+        <div class="currency-pill" style="display:flex; align-items:center; gap:var(--space-04); background:rgba(30,41,59,0.7); padding:var(--space-04) var(--space-08); border-radius:var(--radius-full); border:1px solid var(--border-subtle); white-space:nowrap;">
           <span style="font-size:13px;">💎</span>
           <span id="headerCrystals" style="font-weight:bold; color:#38bdf8; font-size:12px;">0</span>
         </div>
@@ -102,7 +102,8 @@ export class Header {
       frame.innerText = rank.id;
       frame.style.borderColor = rank.color;
       frame.style.color = rank.color;
-      frame.style.boxShadow = `0 0 10px ${rank.color}40`;
+      frame.style.setProperty('--ui-glow-color', `${rank.color}40`);
+      frame.style.boxShadow = 'var(--glow-dynamic-sm)';
     }
 
     if (rankTitle) rankTitle.innerText = t(rank.nameKey);

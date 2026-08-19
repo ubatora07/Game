@@ -311,10 +311,10 @@ export class SettlementVisualRenderer {
 
     return `
       <div class="settlement-npc-sprite" data-npc-id="${npcId}" style="position:relative; width:48px; height:48px; cursor:pointer; display:flex; flex-direction:column; align-items:center; transition:transform 0.15s ease;">
-        <div style="width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,0.6); border:1.5px solid #f59e0b; display:flex; align-items:center; justify-content:center; box-shadow:0 0 8px rgba(245,158,11,0.5);">
+        <div style="width:36px; height:36px; border-radius:50%; background:rgba(0,0,0,0.6); border:1.5px solid #f59e0b; display:flex; align-items:center; justify-content:center; box-shadow:var(--glow-gold);">
           ${def.avatarSvg}
         </div>
-        <div style="font-size:9px; font-weight:bold; color:#fef08a; font-family:var(--font-display); white-space:nowrap; background:rgba(0,0,0,0.7); padding:1px 4px; border-radius:3px; margin-top:2px;">
+        <div style="font-size:9px; font-weight:bold; color:#fef08a; font-family:var(--font-display); white-space:nowrap; background:rgba(0,0,0,0.7); padding:var(--space-01) var(--space-04); border-radius:var(--radius-03); margin-top:var(--space-02);">
           ${def.defaultName.split(' ')[0]}
         </div>
       </div>

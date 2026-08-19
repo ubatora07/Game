@@ -455,9 +455,9 @@
 - [x] `P11-16` Replace More menu emoji with icons
 - [x] `P11-17` Create readable fantasy display font strategy
 - [x] `P11-18` Keep body font highly readable
-- [ ] `P11-19` Normalize spacing scale
-- [ ] `P11-20` Normalize border radii
-- [ ] `P11-21` Normalize shadow use
+- [x] `P11-19` Normalize spacing scale
+- [x] `P11-20` Normalize border radii
+- [x] `P11-21` Normalize shadow use
 - [x] `P11-22` Enforce 44px touch targets
 - [x] `P11-23` Update E2E target-size expectation from 36 to 44
 - [ ] `P11-24` Validate modals at 390x844

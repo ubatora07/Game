@@ -20,30 +20,30 @@ export const HeroRecruitmentModal: ModalInstance = {
     const rarityConfig = HERO_RARITY_CONFIG[hero.rarity];
 
     el.innerHTML = `
-      <div style="font-size:56px; margin-bottom:8px; animation:bounce 1.5s infinite;">
+      <div style="font-size:56px; margin-bottom:var(--space-08); animation:bounce 1.5s infinite;">
         ${hero.icon}
       </div>
-      <div style="display:inline-block; background:${rarityConfig.glow}; border:1px solid ${rarityConfig.color}; border-radius:12px; padding:3px 12px; font-size:11px; font-weight:bold; color:${rarityConfig.color}; text-transform:uppercase; margin-bottom:8px;">
+      <div style="display:inline-block; background:${rarityConfig.glow}; border:1px solid ${rarityConfig.color}; border-radius:var(--radius-12); padding:var(--space-03) var(--space-12); font-size:11px; font-weight:bold; color:${rarityConfig.color}; text-transform:uppercase; margin-bottom:var(--space-08);">
         ${isDuplicate ? t('recruit.duplicate_badge') : t('recruit.new_hero_badge')} • ${t(rarityConfig.nameKey)}
       </div>
-      <h2 style="font-family:var(--font-display); font-size:22px; color:#f8fafc; margin-bottom:4px;">
+      <h2 style="font-family:var(--font-display); font-size:22px; color:#f8fafc; margin-bottom:var(--space-04);">
         ${t(hero.nameKey)}
       </h2>
-      <div style="font-size:12px; color:#38bdf8; font-weight:bold; margin-bottom:12px;">
+      <div style="font-size:12px; color:#38bdf8; font-weight:bold; margin-bottom:var(--space-12);">
         ${t(hero.titleKey)}
       </div>
 
-      <div style="background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:12px; margin-bottom:16px; text-align:left;">
-        <div style="font-size:11px; color:#cbd5e1; line-height:1.45; margin-bottom:10px;">
+      <div style="background:rgba(15,23,42,0.9); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-08); padding:var(--space-12); margin-bottom:var(--space-16); text-align:left;">
+        <div style="font-size:11px; color:#cbd5e1; line-height:1.45; margin-bottom:var(--space-10);">
           "${t(hero.descriptionKey)}"
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px; font-size:11px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.1); padding-top:var(--space-08); font-size:11px;">
           <span style="color:#94a3b8;">Skill:</span>
           <span style="color:#fde047; font-weight:bold;">${hero.skill.icon} ${t(hero.skill.nameKey)}</span>
         </div>
       </div>
 
-      <button id="btn-confirm-recruit" style="width:100%; height:44px; background:linear-gradient(135deg, ${rarityConfig.color}, #1e293b); border:1px solid ${rarityConfig.color}; border-radius:8px; color:#ffffff; font-weight:bold; font-size:14px; cursor:pointer; box-shadow:0 0 15px ${rarityConfig.glow};">
+      <button id="btn-confirm-recruit" style="width:100%; height:44px; background:linear-gradient(135deg, ${rarityConfig.color}, #1e293b); border:1px solid ${rarityConfig.color}; border-radius:var(--radius-08); color:#ffffff; font-weight:bold; font-size:14px; cursor:pointer; --ui-glow-color:${rarityConfig.glow}; box-shadow:var(--glow-dynamic-md);">
         ${t('recruit.confirm_btn')}
       </button>
     `;

@@ -36,20 +36,20 @@ export class RelicsScreen {
   private render(): void {
     const state = store.get();
     this.el.innerHTML = `
-      <h1 style="margin-bottom: 24px; color: var(--color-gold); text-align: center;">🏺 ${t('nav.relics')}</h1>
+      <h1 style="margin-bottom: var(--space-24); color: var(--color-gold); text-align: center;">🏺 ${t('nav.relics')}</h1>
       
-      <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-lg); margin-bottom: 24px;">
-        <h2 style="margin-bottom: 16px; font-size: 16px;">${t('relics.equipped')}</h2>
-        <div style="display: flex; gap: 16px; justify-content: center;">
+      <div style="background: var(--bg-card); padding: var(--space-16); border-radius: var(--radius-lg); margin-bottom: var(--space-24);">
+        <h2 style="margin-bottom: var(--space-16); font-size: 16px;">${t('relics.equipped')}</h2>
+        <div style="display: flex; gap: var(--space-16); justify-content: center;">
           ${state.equippedRelics.map((rId, i) => this.renderSlot(rId, i)).join('')}
         </div>
       </div>
 
-      <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-lg);">
-        <h2 style="margin-bottom: 16px; font-size: 16px;">${t('relics.inventory')}</h2>
+      <div style="background: var(--bg-card); padding: var(--space-16); border-radius: var(--radius-lg);">
+        <h2 style="margin-bottom: var(--space-16); font-size: 16px;">${t('relics.inventory')}</h2>
         ${Object.keys(state.relics).length === 0 ? 
           `<div class="empty-state">${t('relics.empty')}</div>` :
-          `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;">
+          `<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--space-12);">
              ${Object.keys(state.relics).map(id => this.renderInventoryItem(id)).join('')}
            </div>`
         }
@@ -94,7 +94,7 @@ export class RelicsScreen {
     return `
       <div style="width: 80px; height: 80px; background: var(--bg-surface-raised); border: 1px solid var(--border-highlight); border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
         <span style="font-size: 24px;">${def.icon}</span>
-        <span style="font-size: 10px; color: var(--text-gold); font-weight: bold; margin-top: 4px;">${t('common.level_short', { level: state.level })}</span>
+        <span style="font-size: 10px; color: var(--text-gold); font-weight: bold; margin-top: var(--space-04);">${t('common.level_short', { level: state.level })}</span>
         <button class="unequip-btn" data-slot="${index}" style="position: absolute; top: -8px; right: -8px; background: var(--color-crimson); color: white; width: 24px; height: 24px; border-radius: 50%; font-size: 12px; font-weight: bold; border: 1px solid white;">X</button>
       </div>
     `;
@@ -107,16 +107,16 @@ export class RelicsScreen {
     const isEquipped = store.get().equippedRelics.includes(relicId);
 
     return `
-      <div style="background: var(--bg-surface-raised); border: 1px solid ${isEquipped ? 'var(--color-cyan)' : 'var(--border-subtle)'}; border-radius: var(--radius-md); padding: 12px; text-align: center; display: flex; flex-direction: column; align-items: center;">
-        <span style="font-size: 32px; margin-bottom: 8px;">${def.icon}</span>
-        <span style="font-size: 12px; font-weight: bold; margin-bottom: 4px; line-height: 1.2;">${t(def.nameKey)}</span>
-        <span style="font-size: 10px; color: var(--text-gold); margin-bottom: 12px;">${t('common.level_range', { current: state.level, max: def.maxLevel })}</span>
+      <div style="background: var(--bg-surface-raised); border: 1px solid ${isEquipped ? 'var(--color-cyan)' : 'var(--border-subtle)'}; border-radius: var(--radius-md); padding: var(--space-12); text-align: center; display: flex; flex-direction: column; align-items: center;">
+        <span style="font-size: 32px; margin-bottom: var(--space-08);">${def.icon}</span>
+        <span style="font-size: 12px; font-weight: bold; margin-bottom: var(--space-04); line-height: 1.2;">${t(def.nameKey)}</span>
+        <span style="font-size: 10px; color: var(--text-gold); margin-bottom: var(--space-12);">${t('common.level_range', { current: state.level, max: def.maxLevel })}</span>
         
-        <div style="font-size: 9px; color: var(--text-muted); margin-bottom: 12px;">
+        <div style="font-size: 9px; color: var(--text-muted); margin-bottom: var(--space-12);">
           ${t('relics.dupes', { current: state.duplicates, needed: state.level * 2 })}
         </div>
 
-        <button class="equip-btn" data-id="${relicId}" ${isEquipped ? 'disabled' : ''} style="background: ${isEquipped ? 'var(--bg-core)' : 'var(--color-cyan)'}; color: ${isEquipped ? 'var(--text-muted)' : '#000'}; padding: 6px 16px; border-radius: var(--radius-full); font-size: 12px; font-weight: bold; transition: opacity 0.2s;">
+        <button class="equip-btn" data-id="${relicId}" ${isEquipped ? 'disabled' : ''} style="background: ${isEquipped ? 'var(--bg-core)' : 'var(--color-cyan)'}; color: ${isEquipped ? 'var(--text-muted)' : '#000'}; padding: var(--space-06) var(--space-16); border-radius: var(--radius-full); font-size: 12px; font-weight: bold; transition: opacity 0.2s;">
           ${isEquipped ? t('relics.equipped_short') : t('relics.equip')}
         </button>
       </div>

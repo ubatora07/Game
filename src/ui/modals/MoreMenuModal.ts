@@ -42,7 +42,7 @@ export const MoreMenuModal: ModalInstance = {
     `).join('');
 
     el.innerHTML = `
-      <h2 style="font-family:var(--font-display); font-size:22px; color:#fde047; margin-bottom:14px; text-shadow:0 0 10px rgba(253,224,71,0.4);">
+      <h2 style="font-family:var(--font-display); font-size:22px; color:#fde047; margin-bottom:var(--space-14); text-shadow:0 0 10px rgba(253,224,71,0.4);">
         ${t('modal.more.title')}
       </h2>
 

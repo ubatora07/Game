@@ -15,23 +15,23 @@ export const SummonResultModal: ModalInstance = {
       const frameStyle = RARITY_FRAME_STYLES[res.hero.rarity.toLowerCase()] || RARITY_FRAME_STYLES.common;
       const frameCss = getRarityFrameCss(res.hero.rarity);
       return `
-        <div style="${frameCss} border-radius:var(--radius-md); padding:12px; display:flex; flex-direction:column; align-items:center; position:relative; min-width:110px;">
-          ${res.isNew ? `<div style="position:absolute; top:-8px; right:-6px; background:#10b981; color:#fff; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:var(--radius-full); box-shadow:0 0 8px #10b981;">NEW</div>` : ''}
+        <div style="${frameCss} border-radius:var(--radius-md); padding:var(--space-12); display:flex; flex-direction:column; align-items:center; position:relative; min-width:110px;">
+          ${res.isNew ? `<div style="position:absolute; top:-8px; right:-6px; background:#10b981; color:#fff; font-size:10px; font-weight:bold; padding:var(--space-02) var(--space-06); border-radius:var(--radius-full); box-shadow:var(--glow-success);">NEW</div>` : ''}
           <div style="position:absolute; top:4px; left:6px; font-size:10px; font-weight:900; color:${frameStyle.badgeColor};">${frameStyle.badgeSymbol}</div>
-          <div style="font-size:36px; margin:4px 0; filter:drop-shadow(0 0 8px ${frameStyle.glowColor});">🥋</div>
+          <div style="font-size:36px; margin:var(--space-04) 0; filter:drop-shadow(0 0 8px ${frameStyle.glowColor});">🥋</div>
           <div style="font-size:13px; font-weight:bold; color:var(--text-main);">${t(res.hero.nameKey)}</div>
           <div style="font-size:11px; font-weight:bold; color:${config.color}; text-transform:uppercase;">${t(config.nameKey)}</div>
-          ${!res.isNew ? `<div style="font-size:11px; color:#c084fc; margin-top:4px;">+${res.essenceGranted} ✨</div>` : ''}
+          ${!res.isNew ? `<div style="font-size:11px; color:#c084fc; margin-top:var(--space-04);">+${res.essenceGranted} ✨</div>` : ''}
         </div>
       `;
     }).join('');
 
     el.innerHTML = `
-      <h2 style="font-family:var(--font-display); font-size:24px; color:#fde047; margin-bottom:12px;">
+      <h2 style="font-family:var(--font-display); font-size:24px; color:#fde047; margin-bottom:var(--space-12);">
         ${t('modal.summon.title')}
       </h2>
 
-      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; max-height:55vh; overflow-y:auto; padding:8px 0; margin-bottom:16px;">
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:var(--space-12); max-height:55vh; overflow-y:auto; padding:var(--space-08) 0; margin-bottom:var(--space-16);">
         ${resultsHtml}
       </div>
 

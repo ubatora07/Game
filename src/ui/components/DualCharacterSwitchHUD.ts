@@ -22,11 +22,11 @@ export class DualCharacterSwitchHUD {
     const class1 = char1.classId ? getClassById(char1.classId) : null;
     const class2 = char2.classId ? getClassById(char2.classId) : null;
 
-    this.element.style.cssText = 'display:flex; gap:8px; align-items:center; justify-content:center; margin-bottom:8px;';
+    this.element.style.cssText = 'display:flex; gap:var(--space-08); align-items:center; justify-content:center; margin-bottom:var(--space-08);';
 
     this.element.innerHTML = `
       <!-- Character 1 -->
-      <div id="hud-char-1" class="char-hud-card ${activeFocus === 'char_1' ? 'active-focus' : ''}" style="display:flex; align-items:center; gap:6px; background:rgba(15,23,42,0.85); border:2px solid ${activeFocus === 'char_1' ? '#38bdf8' : 'rgba(255,255,255,0.1)'}; border-radius:8px; padding:6px 10px; cursor:pointer; min-width:120px;">
+      <div id="hud-char-1" class="char-hud-card ${activeFocus === 'char_1' ? 'active-focus' : ''}" style="display:flex; align-items:center; gap:var(--space-06); background:rgba(15,23,42,0.85); border:2px solid ${activeFocus === 'char_1' ? '#38bdf8' : 'rgba(255,255,255,0.1)'}; border-radius:var(--radius-08); padding:var(--space-06) var(--space-10); cursor:pointer; min-width:120px;">
         <div style="font-size:16px;">${class1 ? class1.iconSvg : '👤'}</div>
         <div>
           <div style="font-size:11px; font-weight:bold; color:#f8fafc;">${char1.name}</div>
@@ -35,7 +35,7 @@ export class DualCharacterSwitchHUD {
       </div>
 
       <!-- Character 2 -->
-      <div id="hud-char-2" class="char-hud-card ${activeFocus === 'char_2' ? 'active-focus' : ''}" style="display:flex; align-items:center; gap:6px; background:rgba(15,23,42,0.85); border:2px solid ${activeFocus === 'char_2' ? '#a855f7' : 'rgba(255,255,255,0.1)'}; border-radius:8px; padding:6px 10px; cursor:pointer; min-width:120px;">
+      <div id="hud-char-2" class="char-hud-card ${activeFocus === 'char_2' ? 'active-focus' : ''}" style="display:flex; align-items:center; gap:var(--space-06); background:rgba(15,23,42,0.85); border:2px solid ${activeFocus === 'char_2' ? '#a855f7' : 'rgba(255,255,255,0.1)'}; border-radius:var(--radius-08); padding:var(--space-06) var(--space-10); cursor:pointer; min-width:120px;">
         ${
           char2.isUnlocked
             ? `

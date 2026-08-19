@@ -56,38 +56,38 @@ export class DevOverlay {
 
   private render(): void {
     this.el.innerHTML = `
-      <button id="devToggleBtn" style="background:#ef4444; color:#fff; font-weight:bold; padding:4px 8px; border-radius:var(--radius-sm); border:1px solid #fff; cursor:pointer; opacity:0.85;">
+      <button id="devToggleBtn" style="background:#ef4444; color:#fff; font-weight:bold; padding:var(--space-04) var(--space-08); border-radius:var(--radius-sm); border:1px solid #fff; cursor:pointer; opacity:0.85;">
         🛠️ BALANCE DEV (<span id="devFps">60 FPS</span>)
       </button>
 
-      <div id="devPanel" style="display:none; margin-top:6px; background:rgba(15,23,42,0.96); border:1px solid #ef4444; border-radius:var(--radius-md); padding:10px; color:#fff; width:300px; max-height:480px; overflow-y:auto; box-shadow:0 8px 30px rgba(0,0,0,0.8);">
-        <div style="font-weight:bold; color:#ef4444; margin-bottom:6px; border-bottom:1px solid #333; padding-bottom:3px; display:flex; justify-content:space-between;">
+      <div id="devPanel" style="display:none; margin-top:var(--space-06); background:rgba(15,23,42,0.96); border:1px solid #ef4444; border-radius:var(--radius-md); padding:var(--space-10); color:#fff; width:300px; max-height:480px; overflow-y:auto; box-shadow:var(--shadow-lg);">
+        <div style="font-weight:bold; color:#ef4444; margin-bottom:var(--space-06); border-bottom:1px solid #333; padding-bottom:var(--space-03); display:flex; justify-content:space-between;">
           <span>⚡ LIVE BALANCE TELEMETRY</span>
         </div>
 
-        <div id="devTelemetry" style="font-size:10px; color:#94a3b8; margin-bottom:8px; line-height:1.4; background:rgba(0,0,0,0.4); padding:6px; border-radius:4px;">
+        <div id="devTelemetry" style="font-size:10px; color:#94a3b8; margin-bottom:var(--space-08); line-height:1.4; background:rgba(0,0,0,0.4); padding:var(--space-06); border-radius:var(--radius-04);">
           <!-- Populated in updateTelemetry -->
         </div>
 
-        <div style="font-weight:bold; color:#fde047; margin-bottom:4px; font-size:10px;">⏩ TIME SKIP / FAST FORWARD</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; margin-bottom:8px;">
-          <button id="devSkip1m" style="background:#1e293b; color:#38bdf8; border:1px solid #334155; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+1 Min</button>
-          <button id="devSkip5m" style="background:#1e293b; color:#38bdf8; border:1px solid #334155; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+5 Min</button>
-          <button id="devSkip15m" style="background:#1e293b; color:#38bdf8; border:1px solid #334155; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+15 Min</button>
-          <button id="devSkip1h" style="background:#1e293b; color:#38bdf8; border:1px solid #334155; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+1 Hour</button>
-          <button id="devSkip8h" style="background:#7c3aed; color:#fff; border:1px solid #a855f7; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+8h Offline</button>
-          <button id="devTestAd" style="background:#059669; color:#fff; border:1px solid #10b981; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">Test Ad</button>
+        <div style="font-weight:bold; color:#fde047; margin-bottom:var(--space-04); font-size:10px;">⏩ TIME SKIP / FAST FORWARD</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--space-04); margin-bottom:var(--space-08);">
+          <button id="devSkip1m" style="background:#1e293b; color:#38bdf8; border:1px solid #334155; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+1 Min</button>
+          <button id="devSkip5m" style="background:#1e293b; color:#38bdf8; border:1px solid #334155; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+5 Min</button>
+          <button id="devSkip15m" style="background:#1e293b; color:#38bdf8; border:1px solid #334155; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+15 Min</button>
+          <button id="devSkip1h" style="background:#1e293b; color:#38bdf8; border:1px solid #334155; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+1 Hour</button>
+          <button id="devSkip8h" style="background:#7c3aed; color:#fff; border:1px solid #a855f7; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+8h Offline</button>
+          <button id="devTestAd" style="background:#059669; color:#fff; border:1px solid #10b981; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">Test Ad</button>
         </div>
 
-        <div style="font-weight:bold; color:#ef4444; margin-bottom:4px; font-size:10px;">🛠️ CHEATS</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
-          <button id="devAddGold" style="background:#334155; color:#fde047; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+10K Gold</button>
-          <button id="devAddPower" style="background:#334155; color:#38bdf8; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+50K Power</button>
-          <button id="devAddCrystals" style="background:#334155; color:#c084fc; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+500 Crystals</button>
-          <button id="devAddSouls" style="background:#334155; color:#f43f5e; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+20 Souls</button>
-          <button id="devAddEssence" style="background:#334155; color:#10b981; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">+200 Essence</button>
-          <button id="devAscendRank" style="background:#d97706; color:#fff; padding:3px; border-radius:3px; font-size:10px; cursor:pointer;">Force Next Rank</button>
-          <button id="devSpawnSpirit" style="background:#f59e0b; color:#000; font-weight:bold; padding:3px; border-radius:3px; font-size:10px; cursor:pointer; grid-column:span 2;">✨ Spawn Spirit</button>
+        <div style="font-weight:bold; color:#ef4444; margin-bottom:var(--space-04); font-size:10px;">🛠️ CHEATS</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-04);">
+          <button id="devAddGold" style="background:#334155; color:#fde047; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+10K Gold</button>
+          <button id="devAddPower" style="background:#334155; color:#38bdf8; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+50K Power</button>
+          <button id="devAddCrystals" style="background:#334155; color:#c084fc; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+500 Crystals</button>
+          <button id="devAddSouls" style="background:#334155; color:#f43f5e; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+20 Souls</button>
+          <button id="devAddEssence" style="background:#334155; color:#10b981; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">+200 Essence</button>
+          <button id="devAscendRank" style="background:#d97706; color:#fff; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer;">Force Next Rank</button>
+          <button id="devSpawnSpirit" style="background:#f59e0b; color:#000; font-weight:bold; padding:var(--space-03); border-radius:var(--radius-03); font-size:10px; cursor:pointer; grid-column:span 2;">✨ Spawn Spirit</button>
         </div>
       </div>
     `;

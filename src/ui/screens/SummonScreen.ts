@@ -28,7 +28,7 @@ export class SummonScreen {
 
   private buildDOM(): void {
     this.el.innerHTML = `
-      <div style="padding:16px; max-width:580px; margin:0 auto; width:100%; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:space-between;">
+      <div style="padding:var(--space-16); max-width:580px; margin:0 auto; width:100%; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:space-between;">
         <!-- Header -->
         <div style="text-align:center;">
           <h2 style="font-family:var(--font-display); font-size:24px; color:#fde047;">
@@ -40,20 +40,20 @@ export class SummonScreen {
         </div>
 
         <!-- Portal Artwork Visual -->
-        <div style="position:relative; width:220px; height:220px; display:flex; align-items:center; justify-content:center; margin:16px 0;">
+        <div style="position:relative; width:220px; height:220px; display:flex; align-items:center; justify-content:center; margin:var(--space-16) 0;">
           <svg style="position:absolute; width:100%; height:100%; animation:celestialRotate 12s linear infinite;" viewBox="0 0 200 200">
             <circle cx="100" cy="100" r="90" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="12 8" opacity="0.6" />
             <circle cx="100" cy="100" r="75" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="20 12" opacity="0.8" />
             <circle cx="100" cy="100" r="60" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.4" />
           </svg>
-          <div style="width:140px; height:140px; border-radius:50%; background:radial-gradient(circle, #7c3aed 0%, #1e1b4b 70%, #030712 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 0 35px rgba(168,85,247,0.6); animation:heroFloat 3s ease-in-out infinite;">
+          <div style="width:140px; height:140px; border-radius:50%; background:radial-gradient(circle, #7c3aed 0%, #1e1b4b 70%, #030712 100%); display:flex; align-items:center; justify-content:center; box-shadow:var(--glow-purple-strong); animation:heroFloat 3s ease-in-out infinite;">
             <span style="font-size:64px;">🌌</span>
           </div>
         </div>
 
         <!-- Rates Table -->
-        <div style="width:100%; background:rgba(30,41,59,0.5); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px 14px; margin-bottom:16px;">
-          <div style="font-size:11px; font-weight:bold; color:var(--text-muted); margin-bottom:6px; text-transform:uppercase;">
+        <div style="width:100%; background:rgba(30,41,59,0.5); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-10) var(--space-14); margin-bottom:var(--space-16);">
+          <div style="font-size:11px; font-weight:bold; color:var(--text-muted); margin-bottom:var(--space-06); text-transform:uppercase;">
             ${t('summon.rates_title')}
           </div>
           <div style="display:flex; justify-content:space-between; font-size:11px;">
@@ -66,8 +66,8 @@ export class SummonScreen {
         </div>
 
         <!-- Action Buttons (1x & 10x) -->
-        <div style="display:flex; flex-direction:column; gap:12px; width:100%; margin-bottom:16px;">
-          <div style="display:flex; gap:12px; width:100%;">
+        <div style="display:flex; flex-direction:column; gap:var(--space-12); width:100%; margin-bottom:var(--space-16);">
+          <div style="display:flex; gap:var(--space-12); width:100%;">
             <button id="summon1Btn" style="
               flex:1;
               height:50px;
@@ -111,12 +111,12 @@ export class SummonScreen {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(16,185,129,0.3);
+            gap: var(--space-08);
+            box-shadow: var(--glow-success);
           ">
             <span>🎬</span>
             <span>${t('summon.free')}</span>
-            <span id="summonAdCooldown" style="font-size:11px; color:#a7f3d0; margin-left:8px;"></span>
+            <span id="summonAdCooldown" style="font-size:11px; color:#a7f3d0; margin-left:var(--space-08);"></span>
           </button>
         </div>
       </div>
@@ -183,14 +183,14 @@ export class SummonScreen {
       btn1.style.background = canSummon1 ? 'linear-gradient(135deg, #7c3aed, #9333ea)' : 'rgba(51,65,85,0.5)';
       btn1.style.borderColor = canSummon1 ? '#c084fc' : 'transparent';
       btn1.style.color = canSummon1 ? '#ffffff' : '#64748b';
-      btn1.style.boxShadow = canSummon1 ? '0 0 15px rgba(147,51,234,0.4)' : 'none';
+      btn1.style.boxShadow = canSummon1 ? 'var(--glow-purple)' : 'none';
     }
 
     if (btn10) {
       btn10.style.background = canSummon10 ? 'linear-gradient(135deg, #d97706, #f59e0b)' : 'rgba(51,65,85,0.5)';
       btn10.style.borderColor = canSummon10 ? '#fde047' : 'transparent';
       btn10.style.color = canSummon10 ? '#ffffff' : '#64748b';
-      btn10.style.boxShadow = canSummon10 ? '0 0 15px rgba(245,158,11,0.4)' : 'none';
+      btn10.style.boxShadow = canSummon10 ? 'var(--glow-gold)' : 'none';
     }
 
     // Free Summon Ad Cooldown

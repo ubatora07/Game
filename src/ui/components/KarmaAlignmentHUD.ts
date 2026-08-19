@@ -13,14 +13,14 @@ export class KarmaAlignmentHUD {
       this.container.style.cssText = `
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 4px 10px;
+        gap: var(--space-08);
+        padding: var(--space-04) var(--space-10);
         background: rgba(15, 23, 42, 0.85);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
+        border-radius: var(--radius-20);
         font-size: 11px;
         user-select: none;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: var(--shadow-sm);
       `;
       this.render();
       this.bindEvents();
@@ -49,7 +49,7 @@ export class KarmaAlignmentHUD {
     const fillPercent = ((score + 100) / 200) * 100;
 
     this.container.innerHTML = `
-      <div style="display:flex; align-items:center; gap:4px;">
+      <div style="display:flex; align-items:center; gap:var(--space-04);">
         <span style="font-size:14px;">${bandInfo.badge}</span>
         <span style="font-weight:bold; color:${bandInfo.color}; text-transform:capitalize;">
           ${t(bandInfo.titleKey)}
@@ -60,7 +60,7 @@ export class KarmaAlignmentHUD {
       </div>
 
       <!-- Karma Range Meter -->
-      <div style="position:relative; width:64px; height:6px; background:rgba(30,41,59,0.9); border-radius:3px; overflow:hidden; border:1px solid rgba(255,255,255,0.05);">
+      <div style="position:relative; width:64px; height:6px; background:rgba(30,41,59,0.9); border-radius:var(--radius-03); overflow:hidden; border:1px solid rgba(255,255,255,0.05);">
         <!-- Center Divider (Neutral 0) -->
         <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(255,255,255,0.3); z-index:2;"></div>
         <!-- Indicator Fill -->

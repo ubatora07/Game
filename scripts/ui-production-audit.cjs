@@ -25,17 +25,47 @@ const iconRegistry = read('src/ui/art/runtime/UIIconRegistry.ts');
 const buildings = read('src/content/buildings.ts');
 const ranks = read('src/content/ranks.ts');
 
+const uiRuntimeFiles = [];
+const walkUi = (dir) => {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const abs = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      walkUi(abs);
+    } else if ((entry.name.endsWith('.ts') || entry.name.endsWith('.css')) && entry.name !== 'tokens.css') {
+      uiRuntimeFiles.push(abs);
+    }
+  }
+};
+walkUi(path.join(root, 'src/ui'));
+
 const requiredTokens = [
   '--surface-forged-bronze', '--surface-stone', '--surface-wood', '--surface-leather',
   '--surface-parchment', '--space-hairline', '--space-micro', '--space-1', '--space-6', '--focus-ring', '--touch-target-min: 44px',
   '.ui-btn-primary', '.ui-btn-secondary', '.ui-btn-destructive',
   '.rarity-frame-common', '.rarity-frame-mythic', 'min-width: var(--touch-target-min)',
-  '--shadow-nav', '--shadow-hub-header', '--shadow-toast',
+  '--shadow-nav', '--shadow-hub-header', '--shadow-toast', '--shadow-modal',
+  '--space-01', '--space-40', '--radius-01', '--radius-20',
+  '--glow-dynamic-sm', '--glow-dynamic-xl', '--ui-glow-color',
 ];
 for (const token of requiredTokens) {
   if (!tokens.includes(token)) fail(`missing production UI token/contract: ${token}`);
 }
 
+// Production geometry contract: runtime UI may use semantic/canonical CSS variables,
+// but it must not introduce one-off pixel spacing/radii or raw numeric box shadows.
+const rawRuntimeSpacing = /(?:padding|margin|gap|row-gap|column-gap)(?:-[a-z]+)?\s*:\s*[^;\n`]*-?\d+px/;
+const rawRuntimeRadius = /border-radius\s*:\s*\d+px/;
+const rawRuntimeShadow = /box-shadow\s*:\s*[^;\n`]*-?\d+px/;
+const rawRuntimeShadowAssignment = /\.style\.boxShadow\s*=\s*[^;\n]*-?\d+px/;
+for (const abs of uiRuntimeFiles) {
+  const rel = path.relative(root, abs);
+  const text = fs.readFileSync(abs, 'utf8');
+  if (rawRuntimeSpacing.test(text)) fail(`${rel} bypasses canonical spacing tokens`);
+  if (rawRuntimeRadius.test(text)) fail(`${rel} bypasses canonical radius tokens`);
+  if (rawRuntimeShadow.test(text) || rawRuntimeShadowAssignment.test(text)) {
+    fail(`${rel} bypasses controlled shadow/glow tokens`);
+  }
+}
 
 const rawLayoutSpacing = /(padding|gap|margin)(-[a-z]+)?\s*:\s*\d+px/;
 const rawLayoutRadius = /border-radius\s*:\s*\d+px/;

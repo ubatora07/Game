@@ -386,7 +386,7 @@ export class PixelSpriteRenderer {
         </svg>
 
         <!-- Layer 3: Foreground Wooden Battle Bridge & Carved Runic Stones -->
-        <div style="position:absolute; bottom:0; left:0; width:100%; height:26%; background:linear-gradient(180deg, #1c1917 0%, #0c0a09 100%); border-top:2px solid #d97706; box-shadow:0 -4px 15px rgba(217,119,6,0.3);">
+        <div style="position:absolute; bottom:0; left:0; width:100%; height:26%; background:linear-gradient(180deg, #1c1917 0%, #0c0a09 100%); border-top:2px solid #d97706; box-shadow:var(--shadow-ground-glow);">
           <!-- Wood Planks and Runic Stone Accents -->
           <div style="width:100%; height:100%; background:repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.4) 40px, rgba(0,0,0,0.4) 42px);"></div>
         </div>

@@ -355,3 +355,31 @@ Validation:
 
 Still open by evidence rule:
 - `P1-02` remains open until a fresh Vite production bundle can be generated and scanned. The supplied dependencies still lack the Linux Rollup native module required by this sandbox.
+
+## 2026-08-19 — UI Geometry & Shadow Normalization (BATCH-11)
+
+Status: **SOURCE COMPLETE / UI PRODUCTION AUDIT PASS / BROWSER DENSITY QA STILL BLOCKED**
+
+Completed:
+- introduced a canonical exact-value spacing token scale and migrated every runtime UI `padding`, `margin`, and `gap` pixel literal to tokens without changing geometry;
+- introduced canonical radius tokens and migrated every runtime UI pixel radius to tokens, retaining circular/full-radius semantics;
+- standardized structural elevation, modal frames, inset depth and colored feedback glows behind controlled shadow/glow tokens;
+- added `--ui-glow-color` + dynamic glow tokens so rank/rarity colors remain data-driven without reintroducing one-off shadow geometry;
+- migrated active dynamic rank/rarity/boss glow assignments to the controlled dynamic glow contract;
+- expanded `qa:ui-production` to recursively reject raw runtime spacing, radius and numeric box-shadow declarations across `src/ui`;
+- eliminated raw runtime spacing/radius/numeric-shadow declarations from the audited UI tree.
+
+Validation:
+- `npm run qa:ui-production` PASS;
+- `npx tsc --noEmit -p tsconfig.json` PASS;
+- `npm run qa:source-safety` PASS;
+- `npm run qa:terminology` PASS;
+- `npm run qa:i18n` PASS;
+- `npm run qa:art-registry` PASS;
+- `git diff --check` PASS.
+
+Roadmap effect:
+- `P11-19` spacing normalization COMPLETE;
+- `P11-20` radius normalization COMPLETE;
+- `P11-21` shadow normalization COMPLETE;
+- `P11-24..26` remain open until a fresh browser-build path is available for 390x844 / 1366x768 / 1920x1080 validation.

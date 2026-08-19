@@ -30,8 +30,8 @@ export class AscensionScreen {
 
   private buildDOM(): void {
     this.el.innerHTML = `
-      <div style="padding:16px; max-width:640px; margin:0 auto; width:100%;">
-        <div style="text-align:center; margin-bottom:20px;">
+      <div style="padding:var(--space-16); max-width:640px; margin:0 auto; width:100%;">
+        <div style="text-align:center; margin-bottom:var(--space-20);">
           <h2 style="font-family:var(--font-display); font-size:24px; color:#fde047; letter-spacing:1px;">
             🌟 ${t('nav.ascension')}
           </h2>
@@ -40,19 +40,19 @@ export class AscensionScreen {
           </p>
         </div>
 
-        <div id="ascensionCardsList" style="display:flex; flex-direction:column; gap:12px;">
+        <div id="ascensionCardsList" style="display:flex; flex-direction:column; gap:var(--space-12);">
           ${RANKS.map((rank) => `
             <div class="ascension-card" id="ascCard_${rank.id}" style="
               background: rgba(17, 24, 39, 0.75);
               border: 1px solid var(--border-subtle);
               border-radius: var(--radius-md);
-              padding: 14px;
+              padding: var(--space-14);
               display: flex;
               align-items: center;
               justify-content: space-between;
               transition: all 0.2s ease;
             ">
-              <div style="display:flex; align-items:center; gap:12px;">
+              <div style="display:flex; align-items:center; gap:var(--space-12);">
                 <div class="asc-badge" style="
                   width: 44px;
                   height: 44px;
@@ -76,7 +76,7 @@ export class AscensionScreen {
                   <div class="asc-desc" style="font-size:12px; color:var(--text-muted);">
                     ${t(rank.descriptionKey)}
                   </div>
-                  <div style="font-size:11px; color:#fde047; font-weight:bold; margin-top:2px;">
+                  <div style="font-size:11px; color:#fde047; font-weight:bold; margin-top:var(--space-02);">
                     ${t('rank.multiplier')}: ×${rank.multiplier}
                   </div>
                 </div>
@@ -114,16 +114,19 @@ export class AscensionScreen {
       if (isCurrent) {
         card.style.border = `2px solid ${rank.color}`;
         card.style.background = `rgba(30, 41, 59, 0.9)`;
-        card.style.boxShadow = `0 0 20px ${rank.glowColor}`;
+        card.style.setProperty('--ui-glow-color', rank.glowColor);
+        card.style.boxShadow = 'var(--glow-dynamic-lg)';
         card.style.opacity = '1';
       } else if (canAscendNow) {
         card.style.border = `2px solid #fde047`;
         card.style.background = `rgba(245, 158, 11, 0.15)`;
+        card.style.removeProperty('--ui-glow-color');
         card.style.boxShadow = 'none';
         card.style.opacity = '1';
       } else {
         card.style.border = `1px solid var(--border-subtle)`;
         card.style.background = `rgba(17, 24, 39, 0.75)`;
+        card.style.removeProperty('--ui-glow-color');
         card.style.boxShadow = 'none';
         card.style.opacity = isLocked ? '0.5' : '1';
       }
@@ -144,13 +147,13 @@ export class AscensionScreen {
         if (isCompleted) {
           slot.innerHTML = `<span style="color:#10b981; font-weight:bold; font-size:12px;">✓ ${t('btn.claim')}</span>`;
         } else if (isCurrent) {
-          slot.innerHTML = `<span style="color:#38bdf8; font-weight:bold; font-size:12px; border:1px solid #38bdf8; padding:4px 8px; border-radius:var(--radius-sm);">${t('rank.current')}</span>`;
+          slot.innerHTML = `<span style="color:#38bdf8; font-weight:bold; font-size:12px; border:1px solid #38bdf8; padding:var(--space-04) var(--space-08); border-radius:var(--radius-sm);">${t('rank.current')}</span>`;
         } else if (canAscendNow) {
           if (!slot.querySelector('.ascend-now-btn')) {
             slot.innerHTML = `
               <button class="ascend-now-btn" style="
                 height: 40px;
-                padding: 0 16px;
+                padding: 0 var(--space-16);
                 background: linear-gradient(135deg, #d97706, #f59e0b);
                 border: 1px solid #fde047;
                 border-radius: var(--radius-sm);

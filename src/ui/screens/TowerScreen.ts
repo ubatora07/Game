@@ -39,14 +39,14 @@ export class TowerScreen {
 
     const state = store.get();
     this.el.innerHTML = `
-      <div style="padding:16px; max-width:640px; margin:0 auto; width:100%; display:flex; flex-direction:column; height:100%; justify-content:space-between;">
+      <div style="padding:var(--space-16); max-width:640px; margin:0 auto; width:100%; display:flex; flex-direction:column; height:100%; justify-content:space-between;">
         <!-- Header / Challenge Info -->
-        <div style="text-align:center; margin-bottom:12px;">
-          <div style="display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:4px;">
-            <span style="font-size:11px; background:rgba(234,179,8,0.15); border:1px solid rgba(234,179,8,0.4); color:#eab308; font-weight:bold; padding:2px 8px; border-radius:999px;">
+        <div style="text-align:center; margin-bottom:var(--space-12);">
+          <div style="display:flex; justify-content:center; align-items:center; gap:var(--space-08); margin-bottom:var(--space-04);">
+            <span style="font-size:11px; background:rgba(234,179,8,0.15); border:1px solid rgba(234,179,8,0.4); color:#eab308; font-weight:bold; padding:var(--space-02) var(--space-08); border-radius:var(--radius-full);">
               🏆 ЧЕЛЛЕНДЖ-РЕЖИМ
             </span>
-            <span style="font-size:11px; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.4); color:#38bdf8; font-weight:bold; padding:2px 8px; border-radius:999px;">
+            <span style="font-size:11px; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.4); color:#38bdf8; font-weight:bold; padding:var(--space-02) var(--space-08); border-radius:var(--radius-full);">
               🏅 Рекорд: Этаж ${state.towerMaxFloor || 1}
             </span>
           </div>
@@ -54,15 +54,15 @@ export class TowerScreen {
           <div id="towerWorldName" style="font-size:12px; color:${world.accentColor}; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">
             ${t(world.nameKey)}
           </div>
-          <h2 style="font-family:var(--font-display); font-size:24px; color:#fde047; margin:2px 0;">
+          <h2 style="font-family:var(--font-display); font-size:24px; color:#fde047; margin:var(--space-02) 0;">
             ${t('tower.title')} - ${t('tower.floor')} <span id="towerFloorNum">${combat.currentFloor}</span>
           </h2>
-          <div id="towerBossBadge" style="display:${combat.isBoss ? 'inline-block' : 'none'}; background:#ef4444; color:#fff; font-weight:bold; font-size:11px; padding:2px 8px; border-radius:var(--radius-sm); animation:buttonReadyGlow 1s infinite;">🔥 ${t('tower.boss')}</div>
+          <div id="towerBossBadge" style="display:${combat.isBoss ? 'inline-block' : 'none'}; background:#ef4444; color:#fff; font-weight:bold; font-size:11px; padding:var(--space-02) var(--space-08); border-radius:var(--radius-sm); animation:buttonReadyGlow 1s infinite;">🔥 ${t('tower.boss')}</div>
         </div>
 
         <!-- Meta Rewards & Milestone Banner -->
-        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-md); padding:6px 12px; margin-bottom:12px; font-size:11px;">
-          <div style="color:#94a3b8; display:flex; align-items:center; gap:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-md); padding:var(--space-06) var(--space-12); margin-bottom:var(--space-12); font-size:11px;">
+          <div style="color:#94a3b8; display:flex; align-items:center; gap:var(--space-04);">
             <span>💎</span><span>Награды: Кристаллы & Эссенция</span>
           </div>
           <div style="color:#eab308; font-weight:bold;">
@@ -75,19 +75,19 @@ export class TowerScreen {
           background: ${world.bgGradient};
           border: 2px solid ${combat.isBoss ? '#ef4444' : 'var(--border-subtle)'};
           border-radius: var(--radius-lg);
-          padding: 24px 16px;
+          padding: var(--space-24) var(--space-16);
           display: flex;
           flex-direction: column;
           align-items: center;
           position: relative;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-          margin-bottom: 16px;
+          box-shadow: var(--shadow-lg);
+          margin-bottom: var(--space-16);
         ">
           <!-- Combatants Row -->
-          <div style="display:flex; justify-content:space-around; align-items:center; width:100%; margin-bottom:18px;">
+          <div style="display:flex; justify-content:space-around; align-items:center; width:100%; margin-bottom:var(--space-18);">
             <!-- Player Avatar -->
-            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
-              <div style="width:72px; height:72px; border-radius:50%; background:rgba(30,41,59,0.8); border:2px solid var(--color-cyan); display:flex; align-items:center; justify-content:center; font-size:36px; box-shadow:0 0 15px rgba(56,189,248,0.4); animation:heroFloat 3s infinite;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:var(--space-06);">
+              <div style="width:72px; height:72px; border-radius:50%; background:rgba(30,41,59,0.8); border:2px solid var(--color-cyan); display:flex; align-items:center; justify-content:center; font-size:36px; box-shadow:var(--glow-cyan); animation:heroFloat 3s infinite;">
                 🥋
               </div>
               <div style="font-weight:bold; font-size:12px; color:var(--text-main);">${t('tower.you')}</div>
@@ -100,8 +100,8 @@ export class TowerScreen {
             </div>
 
             <!-- Enemy Avatar -->
-            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
-              <div id="towerEnemyIcon" style="width:72px; height:72px; border-radius:50%; background:rgba(30,41,59,0.8); border:2px solid ${combat.isBoss ? '#ef4444' : '#94a3b8'}; display:flex; align-items:center; justify-content:center; font-size:36px; box-shadow:0 0 15px ${combat.isBoss ? 'rgba(239,68,68,0.6)' : 'rgba(148,163,184,0.3)'}; animation:heroFloat 3s infinite reverse;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:var(--space-06);">
+              <div id="towerEnemyIcon" style="width:72px; height:72px; border-radius:50%; background:rgba(30,41,59,0.8); border:2px solid ${combat.isBoss ? '#ef4444' : '#94a3b8'}; display:flex; align-items:center; justify-content:center; font-size:36px; --ui-glow-color:${combat.isBoss ? 'rgba(239,68,68,0.6)' : 'rgba(148,163,184,0.3)'}; box-shadow:var(--glow-dynamic-md); animation:heroFloat 3s infinite reverse;">
                 ${combat.enemyIcon}
               </div>
               <div id="towerEnemyName" style="font-weight:bold; font-size:12px; color:var(--text-main);">${t(combat.enemyNameKey)}</div>
@@ -110,8 +110,8 @@ export class TowerScreen {
           </div>
 
           <!-- Enemy Health Bar -->
-          <div style="width:100%; max-width:400px; margin-bottom:8px;">
-            <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:bold; margin-bottom:3px;">
+          <div style="width:100%; max-width:400px; margin-bottom:var(--space-08);">
+            <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:bold; margin-bottom:var(--space-03);">
               <span style="color:#ef4444;">${t('tower.enemy_hp')}</span>
               <span id="towerHpText" style="color:#fde047;">${BigNumber.format(combat.enemyCurrentHp)} / ${BigNumber.format(combat.enemyMaxHp)}</span>
             </div>
@@ -127,7 +127,7 @@ export class TowerScreen {
         </div>
 
         <!-- Controls (Auto-Climb + Farm/Push Mode) -->
-        <div style="display:flex; gap:10px; margin-bottom:16px;">
+        <div style="display:flex; gap:var(--space-10); margin-bottom:var(--space-16);">
           <button id="toggleAutoClimbBtn" style="
             flex:1;
             height:48px;
@@ -141,7 +141,7 @@ export class TowerScreen {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: var(--space-06);
           ">
             <span>⚔️</span>
             <span id="autoClimbText">${combat.isAutoClimbing ? t('tower.auto_climb') : 'Auto Paused'}</span>
@@ -160,7 +160,7 @@ export class TowerScreen {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: var(--space-06);
           ">
             <span>${combat.isFarmMode ? '🔄' : '🚀'}</span>
             <span id="farmModeText">${combat.isFarmMode ? 'Фарм этажа' : 'Штурм рекорда'}</span>

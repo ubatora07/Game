@@ -87,7 +87,7 @@ export class Navigation {
       if (isBattle) {
         btn.style.background = 'linear-gradient(135deg, rgba(120, 53, 15, 0.72), rgba(127, 29, 29, 0.72))';
         btn.style.border = '1px solid rgba(245, 158, 11, 0.55)';
-        btn.style.boxShadow = '0 0 12px rgba(245, 158, 11, 0.24)';
+        btn.style.boxShadow = 'var(--glow-gold)';
       }
 
       btn.innerHTML = `

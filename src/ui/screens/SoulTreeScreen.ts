@@ -31,25 +31,25 @@ export class SoulTreeScreen {
   private buildDOM(): void {
     const requiredRank = ReincarnationSystem.getRequirements().requiredRank;
     this.el.innerHTML = `
-      <div style="padding:16px; max-width:680px; margin:0 auto; width:100%;">
+      <div style="padding:var(--space-16); max-width:680px; margin:0 auto; width:100%;">
         <!-- Reincarnation Banner Card -->
         <div style="
           background: radial-gradient(circle at center, rgba(225,29,72,0.2) 0%, rgba(15,23,42,0.9) 100%);
           border: 2px solid #f43f5e;
           border-radius: var(--radius-lg);
-          padding: 16px;
-          margin-bottom: 20px;
-          box-shadow: 0 0 25px rgba(244,63,94,0.3);
+          padding: var(--space-16);
+          margin-bottom: var(--space-20);
+          box-shadow: var(--glow-danger-strong);
           text-align: center;
         ">
-          <h2 style="font-family:var(--font-display); font-size:22px; color:#f43f5e; margin-bottom:4px;">
+          <h2 style="font-family:var(--font-display); font-size:22px; color:#f43f5e; margin-bottom:var(--space-04);">
             ⚡ ${t('soul.title')}
           </h2>
-          <p style="color:var(--text-muted); font-size:12px; margin-bottom:12px;">
+          <p style="color:var(--text-muted); font-size:12px; margin-bottom:var(--space-12);">
             ${t('soul.desc')}
           </p>
 
-          <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:var(--space-14);">
             <div>
               <div style="font-size:11px; color:var(--text-muted);">${t('soul.owned_label')}</div>
               <div id="soulOwnedDisplay" style="font-size:20px; font-weight:bold; color:#f43f5e;">0 ⚡</div>
@@ -77,22 +77,22 @@ export class SoulTreeScreen {
         </div>
 
         <!-- Soul Skills List -->
-        <h3 style="font-family:var(--font-display); font-size:18px; color:#fde047; margin-bottom:12px;">
+        <h3 style="font-family:var(--font-display); font-size:18px; color:#fde047; margin-bottom:var(--space-12);">
           ✨ ${t('soul.mastery_title')}
         </h3>
 
-        <div id="soulSkillsList" style="display:flex; flex-direction:column; gap:10px;">
+        <div id="soulSkillsList" style="display:flex; flex-direction:column; gap:var(--space-10);">
           ${SOUL_TREE.map((skill) => `
             <div class="soul-skill-card" id="scard_${skill.id}" style="
               background: rgba(17, 24, 39, 0.85);
               border: 1px solid var(--border-subtle);
               border-radius: var(--radius-md);
-              padding: 12px;
+              padding: var(--space-12);
               display: flex;
               align-items: center;
               justify-content: space-between;
             ">
-              <div style="display:flex; align-items:center; gap:12px;">
+              <div style="display:flex; align-items:center; gap:var(--space-12);">
                 <div style="font-size:24px; width:40px; height:40px; border-radius:var(--radius-sm); background:rgba(30,41,59,0.7); display:flex; align-items:center; justify-content:center;">
                   ${skill.icon}
                 </div>
@@ -167,7 +167,7 @@ export class SoulTreeScreen {
         reincarnateBtn.style.background = 'linear-gradient(135deg, #e11d48, #be123c)';
         reincarnateBtn.style.borderColor = '#f43f5e';
         reincarnateBtn.style.color = '#ffffff';
-        reincarnateBtn.style.boxShadow = '0 0 15px rgba(225,29,72,0.4)';
+        reincarnateBtn.style.boxShadow = 'var(--glow-danger)';
       } else {
         reincarnateBtn.innerText = `${t(requiredRank.titleKey)} • ${t('rank.req')}: ${BigNumber.format(requiredRank.reqPower)} ⚡`;
         reincarnateBtn.style.background = 'rgba(51,65,85,0.5)';

@@ -48,10 +48,10 @@ export class BattlefieldViewport {
       border-radius: var(--radius-lg);
       background: #09090b;
       border: 2px solid #b45309;
-      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(217, 119, 6, 0.2);
+      box-shadow: var(--shadow-battlefield);
       overflow: hidden;
       user-select: none;
-      padding: 10px;
+      padding: var(--space-10);
     `;
     this.render();
     this.bind();
@@ -174,19 +174,23 @@ export class BattlefieldViewport {
     if (data.active) {
       if (data.mechanic === 'shield') {
         FloatingNumbers.spawn(x, y - 10, `🛡️ ${t('combat.shield_up')}`, true, '');
-        this.enemyAvatarEl.style.boxShadow = '0 0 25px #38bdf8';
+        this.enemyAvatarEl.style.setProperty('--ui-glow-color', '#38bdf8');
+        this.enemyAvatarEl.style.boxShadow = 'var(--glow-dynamic-lg)';
         if (this.particleCanvas) this.particleCanvas.emitBurst(x, y, 16, '#38bdf8', true);
       } else if (data.mechanic === 'enrage') {
         FloatingNumbers.spawn(x, y - 10, `🔥 ${t('combat.enraged')}`, true, '');
-        this.enemyAvatarEl.style.boxShadow = '0 0 30px #ef4444';
+        this.enemyAvatarEl.style.setProperty('--ui-glow-color', '#ef4444');
+        this.enemyAvatarEl.style.boxShadow = 'var(--glow-dynamic-xl)';
         this.enemyAvatarEl.style.filter = 'brightness(1.4) drop-shadow(0 0 15px #ef4444)';
         if (this.particleCanvas) this.particleCanvas.emitBurst(x, y, 20, '#ef4444', true);
       } else if (data.mechanic === 'damage_reduction') {
         FloatingNumbers.spawn(x, y - 10, `⛓️ ${t('combat.hardened')}`, true, '');
-        this.enemyAvatarEl.style.boxShadow = '0 0 20px #94a3b8';
+        this.enemyAvatarEl.style.setProperty('--ui-glow-color', '#94a3b8');
+        this.enemyAvatarEl.style.boxShadow = 'var(--glow-dynamic-lg)';
         if (this.particleCanvas) this.particleCanvas.emitBurst(x, y, 14, '#94a3b8', true);
       }
     } else {
+      this.enemyAvatarEl.style.removeProperty('--ui-glow-color');
       this.enemyAvatarEl.style.boxShadow = '';
       this.enemyAvatarEl.style.filter = '';
     }
@@ -578,21 +582,21 @@ export class BattlefieldViewport {
       </div>
 
       <!-- Top Pixel Fantasy Header Bar -->
-      <div style="width:100%; display:flex; justify-content:space-between; align-items:center; max-width:480px; margin:0 auto; padding:4px 8px; background:rgba(18,15,23,0.92); border:1px solid #78350f; border-radius:6px; z-index:10; box-shadow:0 2px 8px rgba(0,0,0,0.8);">
-        <div id="worldBadgeText" style="font-size:11px; font-weight:bold; color:#fde047; display:flex; align-items:center; gap:5px; font-family:var(--font-display);">
+      <div style="width:100%; display:flex; justify-content:space-between; align-items:center; max-width:480px; margin:0 auto; padding:var(--space-04) var(--space-08); background:rgba(18,15,23,0.92); border:1px solid #78350f; border-radius:var(--radius-06); z-index:10; box-shadow:var(--shadow-sm);">
+        <div id="worldBadgeText" style="font-size:11px; font-weight:bold; color:#fde047; display:flex; align-items:center; gap:var(--space-05); font-family:var(--font-display);">
           <span style="color:#d97706;">✦</span>
           <span>${t(world.nameKey)}</span>
           <span style="color:#94a3b8; font-size:10px;">[${combat.stageId}]</span>
         </div>
         ${world.worldModifier ? `
-          <div id="worldModifierBadge" style="font-size:9px; font-weight:bold; color:#f59e0b; background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.4); padding:1px 6px; border-radius:4px;">
+          <div id="worldModifierBadge" style="font-size:9px; font-weight:bold; color:#f59e0b; background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.4); padding:var(--space-01) var(--space-06); border-radius:var(--radius-04);">
             ${world.worldModifier.label}
           </div>
         ` : ''}
       </div>
 
       <!-- Enemy Health & Status Bar -->
-      <div style="width:100%; max-width:480px; margin:4px auto 0 auto; display:flex; flex-direction:column; align-items:center; gap:3px; z-index:10; background:rgba(18,15,23,0.88); border:1px solid #451a03; border-radius:6px; padding:6px 10px;">
+      <div style="width:100%; max-width:480px; margin:var(--space-04) auto 0 auto; display:flex; flex-direction:column; align-items:center; gap:var(--space-03); z-index:10; background:rgba(18,15,23,0.88); border:1px solid #451a03; border-radius:var(--radius-06); padding:var(--space-06) var(--space-10);">
         <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
           <div>
             <div id="enemyTitleText" style="font-size:10px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; display:${enemy?.isBoss ? 'block' : 'none'};">
@@ -608,14 +612,14 @@ export class BattlefieldViewport {
         </div>
 
         <!-- Ornate Bronze Segmented HP Bar -->
-        <div style="width:100%; height:12px; background:#0c0a09; border-radius:3px; border:1px solid #78350f; overflow:hidden; position:relative; box-shadow:inset 0 1px 3px rgba(0,0,0,0.9);">
+        <div style="width:100%; height:12px; background:#0c0a09; border-radius:var(--radius-03); border:1px solid #78350f; overflow:hidden; position:relative; box-shadow:var(--shadow-inset-deep);">
           <div id="enemyHpFill" style="height:100%; width:100%; background:linear-gradient(90deg, #10b981, #38bdf8); transition:width 0.1s ease-out;"></div>
         </div>
 
         <!-- Boss Timer Bar (if active) -->
-        <div id="bossTimerContainer" style="display:${combat.isTimerActive ? 'flex' : 'none'}; align-items:center; gap:6px; width:100%; margin-top:2px;">
+        <div id="bossTimerContainer" style="display:${combat.isTimerActive ? 'flex' : 'none'}; align-items:center; gap:var(--space-06); width:100%; margin-top:var(--space-02);">
           <span style="font-size:10px; font-weight:bold; color:#ef4444;">⏱️ ${t('combat.time')}:</span>
-          <div style="flex:1; height:4px; background:#0c0a09; border-radius:2px; overflow:hidden; border:1px solid #450a0a;">
+          <div style="flex:1; height:4px; background:#0c0a09; border-radius:var(--radius-02); overflow:hidden; border:1px solid #450a0a;">
             <div id="bossTimerBar" style="height:100%; width:100%; background:#ef4444; transition:width 0.2s linear;"></div>
           </div>
           <span id="bossTimerText" style="font-size:10px; font-weight:bold; color:#ef4444;">30s</span>
@@ -623,15 +627,15 @@ export class BattlefieldViewport {
       </div>
 
       <!-- Boss Warning Banner Overlay -->
-      <div id="bossWarningBanner" style="display:none; position:absolute; top:35%; left:50%; transform:translate(-50%, -50%); background:rgba(153, 27, 27, 0.95); color:#fef08a; font-size:14px; font-weight:900; font-family:var(--font-display); padding:8px 20px; border-radius:4px; border:2px solid #f59e0b; box-shadow:0 0 30px rgba(239,68,68,0.9); z-index:40; pointer-events:none; transition:all 0.3s ease; text-align:center;">
+      <div id="bossWarningBanner" style="display:none; position:absolute; top:35%; left:50%; transform:translate(-50%, -50%); background:rgba(153, 27, 27, 0.95); color:#fef08a; font-size:14px; font-weight:900; font-family:var(--font-display); padding:var(--space-08) var(--space-20); border-radius:var(--radius-04); border:2px solid #f59e0b; box-shadow:var(--glow-danger-strong); z-index:40; pointer-events:none; transition:all 0.3s ease; text-align:center;">
         ⚠️ ${t('combat.boss_encounter')} ⚠️
       </div>
 
       <!-- Center Battlefield Arena (Swordsman + Pet on left, Goblin on right) -->
-      <div style="display:flex; justify-content:space-around; align-items:flex-end; width:100%; max-width:600px; margin:0 auto; flex:1; position:relative; padding-bottom:12px; z-index:5;">
+      <div style="display:flex; justify-content:space-around; align-items:flex-end; width:100%; max-width:600px; margin:0 auto; flex:1; position:relative; padding-bottom:var(--space-12); z-index:5;">
         
         <!-- Left: Swordsman Main Character + Active Pet Companion -->
-        <div id="battleHeroGroup" style="display:flex; align-items:flex-end; gap:8px; position:relative; cursor:pointer;">
+        <div id="battleHeroGroup" style="display:flex; align-items:flex-end; gap:var(--space-08); position:relative; cursor:pointer;">
           
           <!-- Active Companion Pet (Ignis Ember Drake) -->
           <div id="battlePetAvatar" style="width:48px; height:48px; display:none; filter:drop-shadow(0 0 8px #ef4444);">
@@ -639,7 +643,7 @@ export class BattlefieldViewport {
           </div>
 
           <!-- Swordsman Protagonist Sprite -->
-          <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:var(--space-02);">
             <div id="battleHeroAvatar" style="width:84px; height:84px; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.8));">
               ${ArtRuntimeRenderer.renderPlayer(classId, this.heroAnimState, rank.color)}
             </div>
@@ -647,7 +651,7 @@ export class BattlefieldViewport {
             <div id="heroRankTitle" style="font-size:10px; font-weight:bold; color:${rank.color}; text-shadow:0 1px 3px #000; text-transform:uppercase; letter-spacing:0.5px; font-family:var(--font-display);">
               [${rank.id}] ${t(rank.nameKey)}
             </div>
-            <div id="heroDpsTag" style="font-size:9px; color:#cbd5e1; background:rgba(18,15,23,0.85); border:1px solid #78350f; padding:1px 6px; border-radius:3px; font-family:var(--font-display);">
+            <div id="heroDpsTag" style="font-size:9px; color:#cbd5e1; background:rgba(18,15,23,0.85); border:1px solid #78350f; padding:var(--space-01) var(--space-06); border-radius:var(--radius-03); font-family:var(--font-display);">
               ${BigNumber.format(campaignCombatService.calculateAutoDps())}/s
             </div>
           </div>
@@ -659,12 +663,12 @@ export class BattlefieldViewport {
         </div>
 
         <!-- Right: Active Enemy Entity (Goblin Family) -->
-        <div id="battleEnemyAvatar" style="display:flex; flex-direction:column; align-items:center; gap:2px; cursor:pointer; position:relative;">
+        <div id="battleEnemyAvatar" style="display:flex; flex-direction:column; align-items:center; gap:var(--space-02); cursor:pointer; position:relative;">
           <div id="enemySpriteHolder" data-sprite-id="${enemy?.spriteId || ''}" data-art-role="${enemySpriteDef?.presentation.role || 'minion'}" style="width:${enemy?.isBoss ? '110px' : enemy?.archetype === 'elite' ? '92px' : '74px'}; height:${enemy?.isBoss ? '110px' : enemy?.archetype === 'elite' ? '92px' : '74px'}; filter:${enemy?.isBoss && enemySpriteDef ? `drop-shadow(0 4px 10px rgba(0,0,0,0.8)) drop-shadow(0 0 10px ${enemySpriteDef.presentation.bossAura || enemySpriteDef.accentColor})` : 'drop-shadow(0 4px 10px rgba(0,0,0,0.8))'};">
             ${enemy ? ArtRuntimeRenderer.renderEnemy(enemy.spriteId, enemyTier) : ''}
           </div>
           
-          <div style="font-size:10px; font-weight:bold; color:${enemy?.isBoss ? '#f87171' : '#cbd5e1'}; font-family:var(--font-display); background:rgba(18,15,23,0.8); border:1px solid #451a03; padding:1px 6px; border-radius:3px;">
+          <div style="font-size:10px; font-weight:bold; color:${enemy?.isBoss ? '#f87171' : '#cbd5e1'}; font-family:var(--font-display); background:rgba(18,15,23,0.8); border:1px solid #451a03; padding:var(--space-01) var(--space-06); border-radius:var(--radius-03);">
             ${enemy?.isBoss ? t('combat.enemy_boss') : enemy?.archetype === 'elite' ? t('combat.enemy_elite') : t('combat.enemy_minion')}
           </div>
         </div>

@@ -346,7 +346,7 @@ export class BattleScreen {
         const canClaim = progress >= activeQuest.targetCount;
 
         quickQuestsContainer.innerHTML = `
-          <div style="background:rgba(17,24,39,0.9); border:1px solid ${canClaim ? '#fde047' : 'var(--border-subtle)'}; border-radius:var(--radius-sm); padding:8px 10px; display:flex; flex-direction:column; gap:4px; box-shadow:${canClaim ? '0 0 12px rgba(253,224,71,0.3)' : 'none'};">
+          <div style="background:rgba(17,24,39,0.9); border:1px solid ${canClaim ? '#fde047' : 'var(--border-subtle)'}; border-radius:var(--radius-sm); padding:var(--space-08) var(--space-10); display:flex; flex-direction:column; gap:var(--space-04); box-shadow:${canClaim ? 'var(--glow-gold)' : 'none'};">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span style="font-weight:bold; font-size:12px; color:var(--text-main);">${t(activeQuest.nameKey)}</span>
               <span style="font-size:10px; color:${canClaim ? '#fde047' : '#94a3b8'}; font-weight:bold;">${progress}/${activeQuest.targetCount} (${pct}%)</span>
@@ -355,7 +355,7 @@ export class BattleScreen {
               <div style="width:${pct}%; height:100%; background:${canClaim ? '#fde047' : '#f59e0b'}; transition:width 0.2s ease;"></div>
             </div>
             ${canClaim ? `
-              <button class="quick-claim-btn" data-quest="${activeQuest.id}" style="margin-top:4px; padding:4px 8px; font-size:11px; font-weight:bold; background:linear-gradient(135deg, #d97706, #f59e0b); color:#000; border:none; border-radius:4px; cursor:pointer;">
+              <button class="quick-claim-btn" data-quest="${activeQuest.id}" style="margin-top:var(--space-04); padding:var(--space-04) var(--space-08); font-size:11px; font-weight:bold; background:linear-gradient(135deg, #d97706, #f59e0b); color:#000; border:none; border-radius:var(--radius-04); cursor:pointer;">
                 🎁 ${t('btn.claim')}${activeQuest.reward?.gold ? ` (+${activeQuest.reward.gold}🪙)` : ''}
               </button>
             ` : ''}
@@ -393,11 +393,11 @@ export class BattleScreen {
             lockCard.style.cssText = `
               display: flex;
               align-items: center;
-              gap: 10px;
+              gap: var(--space-10);
               background: rgba(15, 23, 42, 0.5);
               border: 1px dashed var(--border-subtle);
               border-radius: var(--radius-md);
-              padding: 8px 12px;
+              padding: var(--space-08) var(--space-12);
               opacity: 0.6;
             `;
             lockCard.innerHTML = `
@@ -428,24 +428,24 @@ export class BattleScreen {
           background: var(--surface-stone);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-md);
-          padding: 8px 12px;
+          padding: var(--space-08) var(--space-12);
           transition: all 0.15s ease;
         `;
 
         card.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px; flex:1;">
-            <div style="color:var(--text-gold); width:40px; height:40px; padding:7px; display:flex; align-items:center; justify-content:center; background:radial-gradient(circle, rgba(245,158,11,0.15), rgba(30,41,59,0.8)); border-radius:var(--radius-sm); border:1px solid rgba(245,158,11,0.3); box-shadow:0 0 8px rgba(0,0,0,0.5);">
+          <div style="display:flex; align-items:center; gap:var(--space-10); flex:1;">
+            <div style="color:var(--text-gold); width:40px; height:40px; padding:var(--space-07); display:flex; align-items:center; justify-content:center; background:radial-gradient(circle, rgba(245,158,11,0.15), rgba(30,41,59,0.8)); border-radius:var(--radius-sm); border:1px solid rgba(245,158,11,0.3); box-shadow:var(--shadow-sm);">
               ${resolveUIIcon(`building_${building.id}`).fallbackSvg}
             </div>
             <div style="flex:1;">
-              <div style="display:flex; align-items:center; justify-content:space-between; margin-right:8px;">
-                <span style="font-weight:bold; font-size:13px; color:var(--text-main); display:flex; align-items:center; gap:4px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-right:var(--space-08);">
+                <span style="font-weight:bold; font-size:13px; color:var(--text-main); display:flex; align-items:center; gap:var(--space-04);">
                   ${t(building.nameKey)} <span class="b-owned" style="font-size:12px; color:#fde047; font-weight:bold;">×0</span>
-                  <span class="b-best-value" style="display:none; font-size:9px; background:linear-gradient(90deg, #f59e0b, #ef4444); color:#000; font-weight:900; padding:1px 5px; border-radius:3px; letter-spacing:0.5px;">${t('battle.best')}</span>
+                  <span class="b-best-value" style="display:none; font-size:9px; background:linear-gradient(90deg, #f59e0b, #ef4444); color:#000; font-weight:900; padding:var(--space-01) var(--space-05); border-radius:var(--radius-03); letter-spacing:0.5px;">${t('battle.best')}</span>
                 </span>
                 <span class="b-contrib" style="font-size:10px; color:#38bdf8; font-weight:bold;"></span>
               </div>
-              <div style="font-size:11px; color:var(--text-muted); display:flex; gap:6px; align-items:center;">
+              <div style="font-size:11px; color:var(--text-muted); display:flex; gap:var(--space-06); align-items:center;">
                 <span class="b-rate">+0/s</span>
                 <span class="b-milestone" style="color:#10b981; font-size:10px; font-weight:bold;"></span>
               </div>
@@ -497,11 +497,11 @@ export class BattleScreen {
           background: var(--surface-stone);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-md);
-          padding: 8px 12px;
+          padding: var(--space-08) var(--space-12);
         `;
 
         card.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px;">
+          <div style="display:flex; align-items:center; gap:var(--space-10);">
             <div style="font-size:22px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; background:rgba(30,41,59,0.7); border-radius:var(--radius-sm);">
               ${upg.icon}
             </div>
@@ -630,7 +630,7 @@ export class BattleScreen {
           btn.style.borderColor = canAfford ? '#fde047' : 'transparent';
           btn.style.color = canAfford ? '#000' : '#64748b';
           btn.style.cursor = canAfford ? 'pointer' : 'not-allowed';
-          btn.style.boxShadow = canAfford ? '0 0 10px rgba(245,158,11,0.3)' : 'none';
+          btn.style.boxShadow = canAfford ? 'var(--glow-gold)' : 'none';
         }
       });
     } else {
@@ -731,33 +731,33 @@ export class BattleScreen {
       <div class="home-desktop-grid">
         <!-- Left Column: Sect Buildings & Upgrades (Desktop) -->
         <div class="home-col-left" id="homeLeftCol">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
-            <div style="display:flex; gap:6px;">
-              <button id="tabBuildingsBtn" style="padding:5px 12px; font-size:12px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid ${this.activeCategory === 'buildings' ? '#f59e0b' : 'var(--border-subtle)'}; background:${this.activeCategory === 'buildings' ? 'rgba(245,158,11,0.2)' : 'rgba(30,41,59,0.5)'}; color:${this.activeCategory === 'buildings' ? '#fde047' : 'var(--text-muted)'}; cursor:pointer;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-10); border-bottom:1px solid var(--border-subtle); padding-bottom:var(--space-08);">
+            <div style="display:flex; gap:var(--space-06);">
+              <button id="tabBuildingsBtn" style="padding:var(--space-05) var(--space-12); font-size:12px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid ${this.activeCategory === 'buildings' ? '#f59e0b' : 'var(--border-subtle)'}; background:${this.activeCategory === 'buildings' ? 'rgba(245,158,11,0.2)' : 'rgba(30,41,59,0.5)'}; color:${this.activeCategory === 'buildings' ? '#fde047' : 'var(--text-muted)'}; cursor:pointer;">
                 🏯 ${t('building.title')}
               </button>
-              <button id="tabUpgradesBtn" style="padding:5px 12px; font-size:12px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid ${this.activeCategory === 'upgrades' ? '#38bdf8' : 'var(--border-subtle)'}; background:${this.activeCategory === 'upgrades' ? 'rgba(56,189,248,0.2)' : 'rgba(30,41,59,0.5)'}; color:${this.activeCategory === 'upgrades' ? '#7dd3fc' : 'var(--text-muted)'}; cursor:pointer;">
+              <button id="tabUpgradesBtn" style="padding:var(--space-05) var(--space-12); font-size:12px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid ${this.activeCategory === 'upgrades' ? '#38bdf8' : 'var(--border-subtle)'}; background:${this.activeCategory === 'upgrades' ? 'rgba(56,189,248,0.2)' : 'rgba(30,41,59,0.5)'}; color:${this.activeCategory === 'upgrades' ? '#7dd3fc' : 'var(--text-muted)'}; cursor:pointer;">
                 ⚡ ${t('upgrade.title')}
               </button>
             </div>
 
             <!-- Multipliers -->
-            <div style="display:flex; gap:3px; background:rgba(15,23,42,0.9); padding:2px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-              <button class="buy-mult-btn ${this.buyMultiplier === 1 ? 'active' : ''}" data-mult="1" style="padding:3px 7px; font-size:11px; font-weight:bold; border-radius:4px; cursor:pointer; color:${this.buyMultiplier === 1 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 1 ? '#f59e0b' : 'transparent'};">1x</button>
-              <button class="buy-mult-btn ${this.buyMultiplier === 10 ? 'active' : ''}" data-mult="10" style="padding:3px 7px; font-size:11px; font-weight:bold; border-radius:4px; cursor:pointer; color:${this.buyMultiplier === 10 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 10 ? '#f59e0b' : 'transparent'};">10x</button>
-              <button class="buy-mult-btn ${this.buyMultiplier === 100 ? 'active' : ''}" data-mult="100" style="padding:3px 7px; font-size:11px; font-weight:bold; border-radius:4px; cursor:pointer; color:${this.buyMultiplier === 100 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 100 ? '#f59e0b' : 'transparent'};">100x</button>
-              <button class="buy-mult-btn ${this.buyMultiplier === 'max' ? 'active' : ''}" data-mult="max" style="padding:3px 7px; font-size:11px; font-weight:bold; border-radius:4px; cursor:pointer; color:${this.buyMultiplier === 'max' ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 'max' ? '#f59e0b' : 'transparent'};">${t('btn.max')}</button>
+            <div style="display:flex; gap:var(--space-03); background:rgba(15,23,42,0.9); padding:var(--space-02); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <button class="buy-mult-btn ${this.buyMultiplier === 1 ? 'active' : ''}" data-mult="1" style="padding:var(--space-03) var(--space-07); font-size:11px; font-weight:bold; border-radius:var(--radius-04); cursor:pointer; color:${this.buyMultiplier === 1 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 1 ? '#f59e0b' : 'transparent'};">1x</button>
+              <button class="buy-mult-btn ${this.buyMultiplier === 10 ? 'active' : ''}" data-mult="10" style="padding:var(--space-03) var(--space-07); font-size:11px; font-weight:bold; border-radius:var(--radius-04); cursor:pointer; color:${this.buyMultiplier === 10 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 10 ? '#f59e0b' : 'transparent'};">10x</button>
+              <button class="buy-mult-btn ${this.buyMultiplier === 100 ? 'active' : ''}" data-mult="100" style="padding:var(--space-03) var(--space-07); font-size:11px; font-weight:bold; border-radius:var(--radius-04); cursor:pointer; color:${this.buyMultiplier === 100 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 100 ? '#f59e0b' : 'transparent'};">100x</button>
+              <button class="buy-mult-btn ${this.buyMultiplier === 'max' ? 'active' : ''}" data-mult="max" style="padding:var(--space-03) var(--space-07); font-size:11px; font-weight:bold; border-radius:var(--radius-04); cursor:pointer; color:${this.buyMultiplier === 'max' ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 'max' ? '#f59e0b' : 'transparent'};">${t('btn.max')}</button>
             </div>
           </div>
 
-          <div id="homeListContainer" style="display:flex; flex-direction:column; gap:8px; padding-bottom:16px;"></div>
+          <div id="homeListContainer" style="display:flex; flex-direction:column; gap:var(--space-08); padding-bottom:var(--space-16);"></div>
         </div>
 
         <!-- Center Column: Zone A (Power/Progress) + Zone B (Progress) + Zone C (Battlefield) + Zone D (Action) -->
-        <div class="home-col-center" id="battleCenterCol" style="display:flex; flex-direction:column; gap:8px; width:100%; position:relative;">
+        <div class="home-col-center" id="battleCenterCol" style="display:flex; flex-direction:column; gap:var(--space-08); width:100%; position:relative;">
           
           <!-- Zone A / Header HUD: Power, Rate, Rank Progress & Combo -->
-          <div style="background:rgba(15,23,42,0.8); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:8px 12px; display:flex; flex-direction:column; align-items:center; gap:2px; width:100%; position:relative;">
+          <div style="background:rgba(15,23,42,0.8); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-08) var(--space-12); display:flex; flex-direction:column; align-items:center; gap:var(--space-02); width:100%; position:relative;">
             <div style="font-size:10px; color:var(--text-muted); font-weight:bold; letter-spacing:1px; text-transform:uppercase;">
               ${t('currency.power')}
             </div>
@@ -767,13 +767,13 @@ export class BattleScreen {
             <div id="stagePowerRate" style="font-size:11px; color:var(--color-cyan); font-weight:600;">
               +0 / sec
             </div>
-            <div id="stageComboDisplay" style="display:none; font-size:11px; color:#f43f5e; font-weight:bold; margin-top:2px;">
+            <div id="stageComboDisplay" style="display:none; font-size:11px; color:#f43f5e; font-weight:bold; margin-top:var(--space-02);">
               ${t('battle.combo', { multiplier: '1.0', count: 0 })}
             </div>
 
             <!-- Rank & Progress Bar -->
-            <div style="width:100%; max-width:280px; margin-top:2px;">
-              <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:bold; margin-bottom:2px;">
+            <div style="width:100%; max-width:280px; margin-top:var(--space-02);">
+              <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:bold; margin-bottom:var(--space-02);">
                 <span id="stageRankName" style="color:var(--text-main);">${t('rank.e.name')}</span>
                 <span id="stageProgressPct" style="color:var(--color-gold);">0%</span>
               </div>
@@ -783,13 +783,13 @@ export class BattleScreen {
             </div>
 
             <!-- Floating Golden Spirit Orb (Random Event) -->
-            <div id="goldenSpiritOrb" style="display:none; position:absolute; right:12px; top:12px; width:36px; height:36px; border-radius:50%; background:radial-gradient(circle, #fde047 0%, #f59e0b 60%, #b45309 100%); border:2px solid #ffffff; box-shadow:0 0 20px #fde047; animation:auraPulse 1s infinite; cursor:pointer; z-index:50; align-items:center; justify-content:center; font-size:18px;">
+            <div id="goldenSpiritOrb" style="display:none; position:absolute; right:12px; top:12px; width:36px; height:36px; border-radius:50%; background:radial-gradient(circle, #fde047 0%, #f59e0b 60%, #b45309 100%); border:2px solid #ffffff; box-shadow:var(--glow-gold-strong); animation:auraPulse 1s infinite; cursor:pointer; z-index:50; align-items:center; justify-content:center; font-size:18px;">
               ✨
             </div>
           </div>
 
           <!-- Zone B: Campaign Stage Header & Progress Strip -->
-          <div style="background:rgba(15,23,42,0.8); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:8px 12px; display:flex; flex-direction:column; gap:6px;">
+          <div style="background:rgba(15,23,42,0.8); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-08) var(--space-12); display:flex; flex-direction:column; gap:var(--space-06);">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <div>
                 <div id="campaignWorldTitle" style="font-size:10px; font-weight:bold; color:var(--text-muted); letter-spacing:1px;">${t('battle.world_initial')}</div>
@@ -797,21 +797,21 @@ export class BattleScreen {
               </div>
 
               <!-- Mode Badge & Controls -->
-              <div style="display:flex; gap:6px; align-items:center;">
-                <span id="campaignModeBadge" style="font-size:10px; font-weight:bold; padding:2px 8px; border-radius:var(--radius-full); border:1px solid #0284c7; background:rgba(56,189,248,0.2); color:#38bdf8;">${t('campaign.mode_progress').toUpperCase()}</span>
-                <button id="autoAdvanceToggleBtn" style="padding:3px 8px; font-size:10px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid #10b981; background:rgba(16,185,129,0.2); color:#34d399; cursor:pointer;">${t('campaign.auto_advance_on')}</button>
+              <div style="display:flex; gap:var(--space-06); align-items:center;">
+                <span id="campaignModeBadge" style="font-size:10px; font-weight:bold; padding:var(--space-02) var(--space-08); border-radius:var(--radius-full); border:1px solid #0284c7; background:rgba(56,189,248,0.2); color:#38bdf8;">${t('campaign.mode_progress').toUpperCase()}</span>
+                <button id="autoAdvanceToggleBtn" style="padding:var(--space-03) var(--space-08); font-size:10px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid #10b981; background:rgba(16,185,129,0.2); color:#34d399; cursor:pointer;">${t('campaign.auto_advance_on')}</button>
               </div>
             </div>
 
             <!-- Progress Node Strip -->
-            <div id="stageNodeStrip" style="display:flex; align-items:center; justify-content:center; gap:3px; padding-top:2px;"></div>
+            <div id="stageNodeStrip" style="display:flex; align-items:center; justify-content:center; gap:var(--space-03); padding-top:var(--space-02);"></div>
 
             <!-- Boss Retry CTAs (if blocked) -->
-            <div id="bossRetryContainer" style="display:none; gap:6px; margin-top:2px;">
-              <button id="bossRetryBtn" style="flex:1; padding:6px; font-size:11px; font-weight:bold; border-radius:var(--radius-sm); background:linear-gradient(90deg, #f59e0b, #ef4444); color:#000; cursor:pointer; border:none;">
+            <div id="bossRetryContainer" style="display:none; gap:var(--space-06); margin-top:var(--space-02);">
+              <button id="bossRetryBtn" style="flex:1; padding:var(--space-06); font-size:11px; font-weight:bold; border-radius:var(--radius-sm); background:linear-gradient(90deg, #f59e0b, #ef4444); color:#000; cursor:pointer; border:none;">
                 ⚔️ ${t('battle.retry_boss')}
               </button>
-              <button id="bossBoostedRetryBtn" style="flex:1.2; padding:6px; font-size:11px; font-weight:bold; border-radius:var(--radius-sm); background:linear-gradient(90deg, #8b5cf6, #ec4899); color:#fff; cursor:pointer; border:none; box-shadow:0 0 10px rgba(236,72,153,0.5);">
+              <button id="bossBoostedRetryBtn" style="flex:1.2; padding:var(--space-06); font-size:11px; font-weight:bold; border-radius:var(--radius-sm); background:linear-gradient(90deg, #8b5cf6, #ec4899); color:#fff; cursor:pointer; border:none; box-shadow:var(--glow-danger);">
                 🔥 ${t('battle.boosted_retry', { percent: 25 })}
               </button>
             </div>
@@ -821,29 +821,29 @@ export class BattleScreen {
           <div id="battlefieldContainer" style="display:flex; flex-direction:column; flex:1;"></div>
 
           <!-- Zone D: Primary Action Controls -->
-          <div style="display:flex; gap:8px; align-items:center; width:100%;">
+          <div style="display:flex; gap:var(--space-08); align-items:center; width:100%;">
             <!-- Primary Attack Button -->
-            <button id="trainActionBtn" class="btn btn-primary" style="flex:1; padding:12px; font-size:16px; font-weight:900; font-family:var(--font-display); letter-spacing:1px; border-radius:var(--radius-md); background:linear-gradient(135deg, #f59e0b, #d97706); box-shadow:0 0 20px rgba(245,158,11,0.5); cursor:pointer; border:none; display:flex; align-items:center; justify-content:center; gap:8px;">
+            <button id="trainActionBtn" class="btn btn-primary" style="flex:1; padding:var(--space-12); font-size:16px; font-weight:900; font-family:var(--font-display); letter-spacing:1px; border-radius:var(--radius-md); background:linear-gradient(135deg, #f59e0b, #d97706); box-shadow:var(--glow-gold-strong); cursor:pointer; border:none; display:flex; align-items:center; justify-content:center; gap:var(--space-08);">
               <span>⚔️</span>
               <span>${t('battle.attack')}</span>
             </button>
 
             <!-- Quick Ascension button (if ready) -->
-            <button id="ascendQuickBtn" style="display:none; padding:12px 16px; font-size:13px; font-weight:bold; border-radius:var(--radius-md); background:linear-gradient(135deg, #10b981, #059669); color:#fff; border:none; cursor:pointer; box-shadow:0 0 15px rgba(16,185,129,0.5);">
+            <button id="ascendQuickBtn" style="display:none; padding:var(--space-12) var(--space-16); font-size:13px; font-weight:bold; border-radius:var(--radius-md); background:linear-gradient(135deg, #10b981, #059669); color:#fff; border:none; cursor:pointer; box-shadow:var(--glow-success);">
               ✨ ${t('btn.ascend')}
             </button>
           </div>
         </div>
 
         <!-- Right Column: Quests & Goals (Desktop) -->
-        <div class="home-col-right" id="homeRightCol" style="gap:12px;">
+        <div class="home-col-right" id="homeRightCol" style="gap:var(--space-12);">
           <!-- Next Goal Banner -->
-          <div id="nextGoalBanner" style="background:rgba(30,41,59,0.7); border:1px solid var(--border-gold); border-radius:var(--radius-md); padding:8px 12px; font-size:12px; font-weight:bold; color:#fde047; display:flex; justify-content:space-between; align-items:center;">
+          <div id="nextGoalBanner" style="background:rgba(30,41,59,0.7); border:1px solid var(--border-gold); border-radius:var(--radius-md); padding:var(--space-08) var(--space-12); font-size:12px; font-weight:bold; color:#fde047; display:flex; justify-content:space-between; align-items:center;">
             <span>🎯 ${t('battle.next_goal')}:</span>
             <span id="nextGoalText">${t('battle.next_rank_initial')}</span>
           </div>
 
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:var(--space-06);">
             <div style="font-weight:bold; font-size:14px; color:#38bdf8;">
               📜 ${t('quest.title')}
             </div>
@@ -851,15 +851,15 @@ export class BattleScreen {
               ${t('battle.view_all')} ➔
             </button>
           </div>
-          <div id="homeQuickQuests" style="display:flex; flex-direction:column; gap:6px;">
-            <div style="font-size:11px; color:var(--text-muted); padding:8px; background:rgba(30,41,59,0.3); border-radius:var(--radius-sm);">
+          <div id="homeQuickQuests" style="display:flex; flex-direction:column; gap:var(--space-06);">
+            <div style="font-size:11px; color:var(--text-muted); padding:var(--space-08); background:rgba(30,41,59,0.3); border-radius:var(--radius-sm);">
               ${t('battle.quick_quest_hint')}
             </div>
           </div>
 
-          <div style="margin-top:auto; background:rgba(30,41,59,0.5); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px; text-align:center;">
+          <div style="margin-top:auto; background:rgba(30,41,59,0.5); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-10); text-align:center;">
             <div style="font-size:11px; color:var(--text-muted);">${t('app.subtitle')}</div>
-            <div style="font-size:10px; color:#94a3b8; margin-top:2px;">${t('battle.genre_line')}</div>
+            <div style="font-size:10px; color:#94a3b8; margin-top:var(--space-02);">${t('battle.genre_line')}</div>
           </div>
         </div>
       </div>

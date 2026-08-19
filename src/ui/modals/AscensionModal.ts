@@ -11,21 +11,21 @@ export const AscensionModal: ModalInstance = {
     el.style.textAlign = 'center';
 
     el.innerHTML = `
-      <div style="font-size:54px; margin-bottom:8px; animation:heroFloat 2s ease-in-out infinite;">
+      <div style="font-size:54px; margin-bottom:var(--space-08); animation:heroFloat 2s ease-in-out infinite;">
         🌟
       </div>
-      <h2 style="font-family:var(--font-display); font-size:26px; color:#fde047; letter-spacing:1px; text-shadow:0 0 15px rgba(245,158,11,0.6); margin-bottom:6px;">
+      <h2 style="font-family:var(--font-display); font-size:26px; color:#fde047; letter-spacing:1px; text-shadow:0 0 15px rgba(245,158,11,0.6); margin-bottom:var(--space-06);">
         ${t('modal.ascension.title')}
       </h2>
-      <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">
+      <p style="color:var(--text-muted); font-size:13px; margin-bottom:var(--space-16);">
         ${t('modal.ascension.congrats')}
       </p>
 
-      <div style="background:rgba(30,41,59,0.6); border:1px solid ${rank.color}; border-radius:var(--radius-md); padding:16px; margin-bottom:20px; box-shadow:0 0 20px ${rank.glowColor};">
-        <div style="font-size:20px; font-weight:900; color:${rank.color}; margin-bottom:4px;">
+      <div style="background:rgba(30,41,59,0.6); border:1px solid ${rank.color}; border-radius:var(--radius-md); padding:var(--space-16); margin-bottom:var(--space-20); --ui-glow-color:${rank.glowColor}; box-shadow:var(--glow-dynamic-lg);">
+        <div style="font-size:20px; font-weight:900; color:${rank.color}; margin-bottom:var(--space-04);">
           ${t(rank.titleKey)}
         </div>
-        <div style="font-size:13px; color:var(--text-main); margin-bottom:8px;">
+        <div style="font-size:13px; color:var(--text-main); margin-bottom:var(--space-08);">
           ${t(rank.descriptionKey)}
         </div>
         <div style="font-size:16px; font-weight:bold; color:#fde047;">

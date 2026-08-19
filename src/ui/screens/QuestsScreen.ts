@@ -32,9 +32,9 @@ export class QuestsScreen {
     const s = store.get();
 
     this.el.innerHTML = `
-      <div style="padding:16px; max-width:640px; margin:0 auto; width:100%;">
+      <div style="padding:var(--space-16); max-width:640px; margin:0 auto; width:100%;">
         <!-- Tabs Header -->
-        <div style="display:flex; gap:10px; margin-bottom:16px; border-bottom:1px solid var(--border-subtle); padding-bottom:10px;">
+        <div style="display:flex; gap:var(--space-10); margin-bottom:var(--space-16); border-bottom:1px solid var(--border-subtle); padding-bottom:var(--space-10);">
           <button id="tabQuestsBtn" style="
             flex:1;
             height:40px;
@@ -65,7 +65,7 @@ export class QuestsScreen {
         </div>
 
         <!-- Tab Content -->
-        <div id="questsContentList" style="display:flex; flex-direction:column; gap:10px;">
+        <div id="questsContentList" style="display:flex; flex-direction:column; gap:var(--space-10);">
           <!-- Items populated here -->
         </div>
       </div>
@@ -97,18 +97,18 @@ export class QuestsScreen {
           background: rgba(17, 24, 39, 0.85);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-md);
-          padding: 12px;
+          padding: var(--space-12);
           display: flex;
           align-items: center;
           justify-content: space-between;
         `;
 
         card.innerHTML = `
-          <div style="flex:1; margin-right:12px;">
+          <div style="flex:1; margin-right:var(--space-12);">
             <div style="font-weight:bold; font-size:13px; color:var(--text-main);">${t(quest.nameKey)}</div>
-            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">${t(quest.descKey)}</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:var(--space-04);">${t(quest.descKey)}</div>
             
-            <div style="display:flex; align-items:center; gap:8px;">
+            <div style="display:flex; align-items:center; gap:var(--space-08);">
               <div style="flex:1; height:6px; background:rgba(30,41,59,0.8); border-radius:var(--radius-full); overflow:hidden;">
                 <div class="q-bar" style="width:0%; height:100%; background:#f59e0b;"></div>
               </div>
@@ -148,7 +148,7 @@ export class QuestsScreen {
           background: rgba(15, 23, 42, 0.5);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-md);
-          padding: 12px;
+          padding: var(--space-12);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -156,7 +156,7 @@ export class QuestsScreen {
         `;
 
         card.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px;">
+          <div style="display:flex; align-items:center; gap:var(--space-10);">
             <div style="font-size:24px; width:38px; height:38px; border-radius:var(--radius-sm); background:rgba(30,41,59,0.7); display:flex; align-items:center; justify-content:center;">
               ${ach.icon}
             </div>

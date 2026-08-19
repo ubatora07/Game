@@ -9,22 +9,22 @@ export class RhythmBeatIndicator {
   constructor() {
     this.element = document.createElement('div');
     this.element.className = 'rhythm-beat-indicator pixel-fantasy-rhythm';
-    this.element.style.cssText = 'position:relative; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; margin-top:4px;';
+    this.element.style.cssText = 'position:relative; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; margin-top:var(--space-04);';
 
     this.element.innerHTML = `
       <!-- Fantasy Rhythm Reticle Gauge -->
-      <div style="display:flex; align-items:center; gap:6px;">
+      <div style="display:flex; align-items:center; gap:var(--space-06);">
         <span style="font-size:10px; color:#d97706; font-weight:bold;">❮</span>
-        <div class="rhythm-pulse-bar" style="width:180px; height:8px; background:#0c0a09; border:1px solid #78350f; border-radius:2px; position:relative; overflow:hidden; box-shadow:inset 0 1px 3px rgba(0,0,0,0.9);">
+        <div class="rhythm-pulse-bar" style="width:180px; height:8px; background:#0c0a09; border:1px solid #78350f; border-radius:var(--radius-02); position:relative; overflow:hidden; box-shadow:var(--shadow-inset-deep);">
           <!-- Dynamic Target Zone -->
-          <div class="rhythm-pulse-fill" style="position:absolute; left:50%; top:0; bottom:0; width:24px; transform:translateX(-50%); background:rgba(217,119,6,0.3); border-radius:1px; box-shadow:0 0 8px rgba(245,158,11,0.6);"></div>
+          <div class="rhythm-pulse-fill" style="position:absolute; left:50%; top:0; bottom:0; width:24px; transform:translateX(-50%); background:rgba(217,119,6,0.3); border-radius:var(--radius-01); box-shadow:var(--glow-gold);"></div>
           <!-- Precision Center Notch -->
-          <div class="rhythm-center-notch" style="position:absolute; left:50%; top:0; bottom:0; width:2px; transform:translateX(-50%); background:#fde047; box-shadow:0 0 4px #fde047;"></div>
+          <div class="rhythm-center-notch" style="position:absolute; left:50%; top:0; bottom:0; width:2px; transform:translateX(-50%); background:#fde047; box-shadow:var(--glow-gold);"></div>
         </div>
         <span style="font-size:10px; color:#d97706; font-weight:bold;">❯</span>
       </div>
 
-      <div class="rhythm-feedback-text" style="font-size:11px; font-weight:bold; font-family:var(--font-display); height:16px; margin-top:3px; color:#94a3b8; transition:all 0.15s ease; text-transform:uppercase; letter-spacing:0.5px;">
+      <div class="rhythm-feedback-text" style="font-size:11px; font-weight:bold; font-family:var(--font-display); height:16px; margin-top:var(--space-03); color:#94a3b8; transition:all 0.15s ease; text-transform:uppercase; letter-spacing:0.5px;">
         RHYTHM CADENCE
       </div>
     `;

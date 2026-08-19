@@ -29,9 +29,9 @@ export class HeroesScreen {
 
   private buildDOM(): void {
     this.el.innerHTML = `
-      <div style="padding:16px; max-width:760px; margin:0 auto; width:100%;">
+      <div style="padding:var(--space-16); max-width:760px; margin:0 auto; width:100%;">
         <!-- Header -->
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid var(--border-subtle); padding-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16); border-bottom:1px solid var(--border-subtle); padding-bottom:var(--space-10);">
           <div>
             <h2 id="heroesHeaderTitle" style="font-family:var(--font-display); font-size:22px; color:#fde047;">
               👥 ${t('nav.heroes')} (0 / ${HEROES.length})
@@ -43,7 +43,7 @@ export class HeroesScreen {
         </div>
 
         <!-- Heroes Grid -->
-        <div id="heroesGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:12px;">
+        <div id="heroesGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:var(--space-12);">
           ${HEROES.map((hero) => {
             const rarity = HERO_RARITY_CONFIG[hero.rarity];
             return `
@@ -51,7 +51,7 @@ export class HeroesScreen {
                 background: rgba(15, 23, 42, 0.5);
                 border: 2px solid var(--border-subtle);
                 border-radius: var(--radius-md);
-                padding: 12px;
+                padding: var(--space-12);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -66,21 +66,21 @@ export class HeroesScreen {
                 </div>
 
                 <!-- Avatar Artwork -->
-                <div class="h-avatar" style="width:64px; height:64px; border-radius:50%; background:rgba(30,41,59,0.8); border:2px solid ${rarity.color}; display:flex; align-items:center; justify-content:center; font-size:32px; margin:14px 0 6px 0;">
+                <div class="h-avatar" style="width:64px; height:64px; border-radius:50%; background:rgba(30,41,59,0.8); border:2px solid ${rarity.color}; display:flex; align-items:center; justify-content:center; font-size:32px; margin:var(--space-14) 0 var(--space-06) 0;">
                   ❓
                 </div>
 
                 <!-- Name & Title -->
                 <div style="font-weight:bold; font-size:13px; color:var(--text-main);">${t(hero.nameKey)}</div>
-                <div class="h-title" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">${t('btn.locked')}</div>
+                <div class="h-title" style="font-size:10px; color:var(--text-muted); margin-bottom:var(--space-06);">${t('btn.locked')}</div>
 
                 <!-- Star Rating -->
-                <div class="h-stars" style="font-size:12px; color:#fde047; margin-bottom:6px;">
+                <div class="h-stars" style="font-size:12px; color:#fde047; margin-bottom:var(--space-06);">
                   ☆☆☆☆☆
                 </div>
 
                 <!-- Modifier description -->
-                <div class="h-bonus" style="font-size:11px; color:#38bdf8; font-weight:bold; margin-bottom:10px;">
+                <div class="h-bonus" style="font-size:11px; color:#38bdf8; font-weight:bold; margin-bottom:var(--space-10);">
                   ???
                 </div>
 
@@ -126,7 +126,13 @@ export class HeroesScreen {
 
       card.style.background = isOwned ? 'rgba(17, 24, 39, 0.9)' : 'rgba(15, 23, 42, 0.5)';
       card.style.borderColor = isOwned ? rarity.color : 'var(--border-subtle)';
-      card.style.boxShadow = isOwned ? `0 0 15px ${rarity.glow}` : 'none';
+      if (isOwned) {
+        card.style.setProperty('--ui-glow-color', rarity.glow);
+        card.style.boxShadow = 'var(--glow-dynamic-md)';
+      } else {
+        card.style.removeProperty('--ui-glow-color');
+        card.style.boxShadow = 'none';
+      }
       card.style.opacity = isOwned ? '1' : '0.45';
 
       const avatarEl = card.querySelector('.h-avatar') as HTMLElement;

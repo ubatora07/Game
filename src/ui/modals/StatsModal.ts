@@ -21,24 +21,25 @@ export const StatsModal: ModalInstance = {
     const nextRankPct = nextRank ? Math.min(100, Math.floor((s.power / nextRank.reqPower) * 100)) : 100;
 
     el.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
-        <h2 style="font-family:var(--font-display); font-size:20px; color:#fde047; display:flex; align-items:center; gap:8px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-14); border-bottom:1px solid var(--border-subtle); padding-bottom:var(--space-08);">
+        <h2 style="font-family:var(--font-display); font-size:20px; color:#fde047; display:flex; align-items:center; gap:var(--space-08);">
           <span>🥋</span> ${t('modal.stats.title')}
         </h2>
         <button id="statsCloseBtn" class="close-stats-modal-btn" style="font-size:20px; color:var(--text-muted); cursor:pointer;">✕</button>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:14px; max-height:68vh; overflow-y:auto; padding-right:4px;">
+      <div style="display:flex; flex-direction:column; gap:var(--space-14); max-height:68vh; overflow-y:auto; padding-right:var(--space-04);">
         <!-- Protagonist Hero Profile Card -->
         <div style="
           background: linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.95));
           border: 2px solid ${rank.color};
           border-radius: var(--radius-lg);
-          padding: 14px;
+          padding: var(--space-14);
           display: flex;
           align-items: center;
-          gap: 14px;
-          box-shadow: 0 0 15px ${rank.color}30;
+          gap: var(--space-14);
+          --ui-glow-color: ${rank.color}30;
+          box-shadow: var(--glow-dynamic-md);
           position: relative;
         ">
           <!-- Animated Avatar Frame -->
@@ -52,7 +53,8 @@ export const StatsModal: ModalInstance = {
             align-items: center;
             justify-content: center;
             font-size: 30px;
-            box-shadow: 0 0 12px ${rank.color}60;
+            --ui-glow-color: ${rank.color}60;
+            box-shadow: var(--glow-dynamic-md);
             flex-shrink: 0;
           ">
             🥋
@@ -60,22 +62,22 @@ export const StatsModal: ModalInstance = {
 
           <!-- Info -->
           <div style="flex:1; min-width:0;">
-            <div style="display:flex; align-items:center; gap:6px;">
+            <div style="display:flex; align-items:center; gap:var(--space-06);">
               <span style="font-weight:900; font-size:15px; color:#fff;">
                 ${t('rpg.protagonist')}
               </span>
-              <span style="background:${rank.color}25; color:${rank.color}; border:1px solid ${rank.color}; font-size:10px; font-weight:bold; padding:1px 6px; border-radius:4px;">
+              <span style="background:${rank.color}25; color:${rank.color}; border:1px solid ${rank.color}; font-size:10px; font-weight:bold; padding:var(--space-01) var(--space-06); border-radius:var(--radius-04);">
                 [${rank.id}] ${t(rank.nameKey)}
               </span>
             </div>
 
             <!-- Ascension Progress -->
-            <div style="margin-top:6px;">
-              <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-muted); margin-bottom:2px;">
+            <div style="margin-top:var(--space-06);">
+              <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-muted); margin-bottom:var(--space-02);">
                 <span>${nextRank ? `${t('rpg.next_ascension')}: ${t(nextRank.nameKey)}` : 'MAX REALM'}</span>
                 <span style="color:${canAscend ? '#10b981' : '#fde047'}; font-weight:bold;">${nextRankPct}%</span>
               </div>
-              <div style="width:100%; height:6px; background:rgba(0,0,0,0.5); border-radius:3px; overflow:hidden;">
+              <div style="width:100%; height:6px; background:rgba(0,0,0,0.5); border-radius:var(--radius-03); overflow:hidden;">
                 <div style="width:${nextRankPct}%; height:100%; background:linear-gradient(90deg, #f59e0b, ${canAscend ? '#10b981' : '#fde047'});"></div>
               </div>
             </div>
@@ -88,10 +90,10 @@ export const StatsModal: ModalInstance = {
               color: #fff;
               font-weight: 900;
               font-size: 11px;
-              padding: 6px 10px;
+              padding: var(--space-06) var(--space-10);
               border-radius: var(--radius-sm);
               cursor: pointer;
-              box-shadow: 0 0 10px rgba(16,185,129,0.5);
+              box-shadow: var(--glow-success);
               white-space: nowrap;
               flex-shrink: 0;
             ">
@@ -101,47 +103,47 @@ export const StatsModal: ModalInstance = {
         </div>
 
         <!-- Core RPG Combat Stats Grid -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-08);">
           <!-- Combat Power -->
-          <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px; text-align:center;">
+          <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-10); text-align:center;">
             <div style="font-size:10px; color:var(--text-muted); font-weight:bold; text-transform:uppercase;">⚔️ ${t('rpg.combat_power')}</div>
-            <div style="font-size:15px; font-weight:900; color:#fde047; margin-top:2px;">
+            <div style="font-size:15px; font-weight:900; color:#fde047; margin-top:var(--space-02);">
               ${BigNumber.format(metrics.passivePowerPerSec + metrics.towerCombatPower)}/s
             </div>
           </div>
 
           <!-- Strike Power -->
-          <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px; text-align:center;">
+          <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-10); text-align:center;">
             <div style="font-size:10px; color:var(--text-muted); font-weight:bold; text-transform:uppercase;">💥 ${t('rpg.tap_power')}</div>
-            <div style="font-size:15px; font-weight:900; color:#38bdf8; margin-top:2px;">
+            <div style="font-size:15px; font-weight:900; color:#38bdf8; margin-top:var(--space-02);">
               ${BigNumber.format(metrics.clickPower)}
             </div>
           </div>
 
           <!-- Crit Rate -->
-          <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px; text-align:center;">
+          <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-10); text-align:center;">
             <div style="font-size:10px; color:var(--text-muted); font-weight:bold; text-transform:uppercase;">🎯 ${t('rpg.crit_rate')}</div>
-            <div style="font-size:15px; font-weight:900; color:#c084fc; margin-top:2px;">
+            <div style="font-size:15px; font-weight:900; color:#c084fc; margin-top:var(--space-02);">
               ${(metrics.critChance * 100).toFixed(1)}%
             </div>
           </div>
 
           <!-- Crit Damage -->
-          <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px; text-align:center;">
+          <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-10); text-align:center;">
             <div style="font-size:10px; color:var(--text-muted); font-weight:bold; text-transform:uppercase;">⚡ ${t('rpg.crit_dmg')}</div>
-            <div style="font-size:15px; font-weight:900; color:#f43f5e; margin-top:2px;">
+            <div style="font-size:15px; font-weight:900; color:#f43f5e; margin-top:var(--space-02);">
               ${metrics.critMultiplier.toFixed(1)}×
             </div>
           </div>
         </div>
 
         <!-- Power Sources & Multipliers Breakdown -->
-        <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-cyan); border-radius:var(--radius-md); padding:12px;">
-          <div style="font-weight:bold; font-size:12px; color:var(--color-cyan); margin-bottom:8px; text-transform:uppercase; display:flex; justify-content:space-between;">
+        <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-cyan); border-radius:var(--radius-md); padding:var(--space-12);">
+          <div style="font-weight:bold; font-size:12px; color:var(--color-cyan); margin-bottom:var(--space-08); text-transform:uppercase; display:flex; justify-content:space-between;">
             <span>🌐 ${t('rpg.sources_title')}</span>
             <span>+${BigNumber.format(metrics.passivePowerPerSec)}/s</span>
           </div>
-          <div style="display:flex; flex-direction:column; gap:5px; font-size:11px;">
+          <div style="display:flex; flex-direction:column; gap:var(--space-05); font-size:11px;">
             <div style="display:flex; justify-content:space-between;">
               <span style="color:var(--text-muted);">🏯 ${t('rpg.sect_output')}:</span>
               <span style="font-weight:bold;">${BigNumber.format(metrics.baseBuildingsPowerPerSec)} / s</span>
@@ -170,11 +172,11 @@ export const StatsModal: ModalInstance = {
         </div>
 
         <!-- Lifetime Statistics -->
-        <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:12px;">
-          <div style="font-weight:bold; font-size:12px; color:#fde047; margin-bottom:8px; text-transform:uppercase;">
+        <div style="background:rgba(30,41,59,0.6); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-12);">
+          <div style="font-weight:bold; font-size:12px; color:#fde047; margin-bottom:var(--space-08); text-transform:uppercase;">
             📜 Lifetime Records
           </div>
-          <div style="display:flex; flex-direction:column; gap:4px; font-size:11px;">
+          <div style="display:flex; flex-direction:column; gap:var(--space-04); font-size:11px;">
             <div style="display:flex; justify-content:space-between;">
               <span style="color:var(--text-muted);">Lifetime Power:</span>
               <span style="font-weight:bold; color:#fde047;">${BigNumber.format(s.stats.lifetimePower)} ⚡</span>

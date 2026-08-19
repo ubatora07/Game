@@ -45,28 +45,28 @@ export class HomeScreen {
         <!-- Left Column: Buildings & Upgrades List -->
         <div class="home-col-left" id="homeLeftCol">
           <!-- Section Switcher & Multiplier Controls -->
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-10); border-bottom:1px solid var(--border-subtle); padding-bottom:var(--space-08);">
             <!-- Category Tabs -->
-            <div style="display:flex; gap:6px;">
-              <button id="tabBuildingsBtn" style="padding:5px 12px; font-size:12px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid ${this.activeCategory === 'buildings' ? '#f59e0b' : 'var(--border-subtle)'}; background:${this.activeCategory === 'buildings' ? 'rgba(245,158,11,0.2)' : 'rgba(30,41,59,0.5)'}; color:${this.activeCategory === 'buildings' ? '#fde047' : 'var(--text-muted)'}; cursor:pointer;">
+            <div style="display:flex; gap:var(--space-06);">
+              <button id="tabBuildingsBtn" style="padding:var(--space-05) var(--space-12); font-size:12px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid ${this.activeCategory === 'buildings' ? '#f59e0b' : 'var(--border-subtle)'}; background:${this.activeCategory === 'buildings' ? 'rgba(245,158,11,0.2)' : 'rgba(30,41,59,0.5)'}; color:${this.activeCategory === 'buildings' ? '#fde047' : 'var(--text-muted)'}; cursor:pointer;">
                 🏯 ${t('building.title')}
               </button>
-              <button id="tabUpgradesBtn" style="padding:5px 12px; font-size:12px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid ${this.activeCategory === 'upgrades' ? '#38bdf8' : 'var(--border-subtle)'}; background:${this.activeCategory === 'upgrades' ? 'rgba(56,189,248,0.2)' : 'rgba(30,41,59,0.5)'}; color:${this.activeCategory === 'upgrades' ? '#7dd3fc' : 'var(--text-muted)'}; cursor:pointer;">
+              <button id="tabUpgradesBtn" style="padding:var(--space-05) var(--space-12); font-size:12px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid ${this.activeCategory === 'upgrades' ? '#38bdf8' : 'var(--border-subtle)'}; background:${this.activeCategory === 'upgrades' ? 'rgba(56,189,248,0.2)' : 'rgba(30,41,59,0.5)'}; color:${this.activeCategory === 'upgrades' ? '#7dd3fc' : 'var(--text-muted)'}; cursor:pointer;">
                 ⚡ ${t('upgrade.title')}
               </button>
             </div>
 
             <!-- Buy Multiplier Toggles (1x / 10x / 100x / MAX) -->
-            <div style="display:flex; gap:3px; background:rgba(15,23,42,0.9); padding:2px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-              <button class="buy-mult-btn ${this.buyMultiplier === 1 ? 'active' : ''}" data-mult="1" style="padding:3px 7px; font-size:11px; font-weight:bold; border-radius:4px; cursor:pointer; color:${this.buyMultiplier === 1 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 1 ? '#f59e0b' : 'transparent'};">1x</button>
-              <button class="buy-mult-btn ${this.buyMultiplier === 10 ? 'active' : ''}" data-mult="10" style="padding:3px 7px; font-size:11px; font-weight:bold; border-radius:4px; cursor:pointer; color:${this.buyMultiplier === 10 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 10 ? '#f59e0b' : 'transparent'};">10x</button>
-              <button class="buy-mult-btn ${this.buyMultiplier === 100 ? 'active' : ''}" data-mult="100" style="padding:3px 7px; font-size:11px; font-weight:bold; border-radius:4px; cursor:pointer; color:${this.buyMultiplier === 100 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 100 ? '#f59e0b' : 'transparent'};">100x</button>
-              <button class="buy-mult-btn ${this.buyMultiplier === 'max' ? 'active' : ''}" data-mult="max" style="padding:3px 7px; font-size:11px; font-weight:bold; border-radius:4px; cursor:pointer; color:${this.buyMultiplier === 'max' ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 'max' ? '#f59e0b' : 'transparent'};">${t('btn.max')}</button>
+            <div style="display:flex; gap:var(--space-03); background:rgba(15,23,42,0.9); padding:var(--space-02); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <button class="buy-mult-btn ${this.buyMultiplier === 1 ? 'active' : ''}" data-mult="1" style="padding:var(--space-03) var(--space-07); font-size:11px; font-weight:bold; border-radius:var(--radius-04); cursor:pointer; color:${this.buyMultiplier === 1 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 1 ? '#f59e0b' : 'transparent'};">1x</button>
+              <button class="buy-mult-btn ${this.buyMultiplier === 10 ? 'active' : ''}" data-mult="10" style="padding:var(--space-03) var(--space-07); font-size:11px; font-weight:bold; border-radius:var(--radius-04); cursor:pointer; color:${this.buyMultiplier === 10 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 10 ? '#f59e0b' : 'transparent'};">10x</button>
+              <button class="buy-mult-btn ${this.buyMultiplier === 100 ? 'active' : ''}" data-mult="100" style="padding:var(--space-03) var(--space-07); font-size:11px; font-weight:bold; border-radius:var(--radius-04); cursor:pointer; color:${this.buyMultiplier === 100 ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 100 ? '#f59e0b' : 'transparent'};">100x</button>
+              <button class="buy-mult-btn ${this.buyMultiplier === 'max' ? 'active' : ''}" data-mult="max" style="padding:var(--space-03) var(--space-07); font-size:11px; font-weight:bold; border-radius:var(--radius-04); cursor:pointer; color:${this.buyMultiplier === 'max' ? '#000' : 'var(--text-muted)'}; background:${this.buyMultiplier === 'max' ? '#f59e0b' : 'transparent'};">${t('btn.max')}</button>
             </div>
           </div>
 
           <!-- Dynamic List Container -->
-          <div id="homeListContainer" style="display:flex; flex-direction:column; gap:8px; padding-bottom:16px;">
+          <div id="homeListContainer" style="display:flex; flex-direction:column; gap:var(--space-08); padding-bottom:var(--space-16);">
             <!-- Rendered Items -->
           </div>
         </div>
@@ -77,8 +77,8 @@ export class HomeScreen {
         </div>
 
         <!-- Right Column: Quick Quests & Info -->
-        <div class="home-col-right" id="homeRightCol" style="gap:12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:6px;">
+        <div class="home-col-right" id="homeRightCol" style="gap:var(--space-12);">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:var(--space-06);">
             <div style="font-weight:bold; font-size:14px; color:#38bdf8;">
               📜 ${t('quest.title')}
             </div>
@@ -86,13 +86,13 @@ export class HomeScreen {
               View All ➔
             </button>
           </div>
-          <div id="homeQuickQuests" style="display:flex; flex-direction:column; gap:6px;">
+          <div id="homeQuickQuests" style="display:flex; flex-direction:column; gap:var(--space-06);">
             <!-- Mini quest list -->
           </div>
 
-          <div style="margin-top:auto; background:rgba(30,41,59,0.5); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px; text-align:center;">
+          <div style="margin-top:auto; background:rgba(30,41,59,0.5); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:var(--space-10); text-align:center;">
             <div style="font-size:11px; color:var(--text-muted);">${t('app.subtitle')}</div>
-            <div style="font-size:10px; color:#94a3b8; margin-top:2px;">Yandex Games Edition</div>
+            <div style="font-size:10px; color:#94a3b8; margin-top:var(--space-02);">Yandex Games Edition</div>
           </div>
         </div>
       </div>
@@ -167,23 +167,23 @@ export class HomeScreen {
           background: rgba(17, 24, 39, 0.85);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-md);
-          padding: 8px 12px;
+          padding: var(--space-08) var(--space-12);
           transition: all 0.15s ease;
         `;
 
         card.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px; flex:1;">
+          <div style="display:flex; align-items:center; gap:var(--space-10); flex:1;">
             <div style="font-size:24px; width:38px; height:38px; display:flex; align-items:center; justify-content:center; background:rgba(30,41,59,0.7); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
               ${resolveUIIcon(`building_${building.id}`).fallbackSvg}
             </div>
             <div style="flex:1;">
-              <div style="display:flex; align-items:center; justify-content:space-between; margin-right:8px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-right:var(--space-08);">
                 <span style="font-weight:bold; font-size:13px; color:var(--text-main);">
                   ${t(building.nameKey)} <span class="b-owned" style="font-size:12px; color:#fde047; font-weight:bold;">×0</span>
                 </span>
                 <span class="b-contrib" style="font-size:10px; color:#38bdf8; font-weight:bold;"></span>
               </div>
-              <div style="font-size:11px; color:var(--text-muted); display:flex; gap:6px;">
+              <div style="font-size:11px; color:var(--text-muted); display:flex; gap:var(--space-06);">
                 <span class="b-rate">+0/s</span>
                 <span class="b-milestone" style="color:#10b981; font-weight:bold;"></span>
               </div>
@@ -232,11 +232,11 @@ export class HomeScreen {
           background: rgba(17, 24, 39, 0.85);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-md);
-          padding: 8px 12px;
+          padding: var(--space-08) var(--space-12);
         `;
 
         card.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px;">
+          <div style="display:flex; align-items:center; gap:var(--space-10);">
             <div style="font-size:22px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; background:rgba(30,41,59,0.7); border-radius:var(--radius-sm);">
               ${upg.icon}
             </div>

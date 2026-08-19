@@ -60,20 +60,48 @@
   --text-cyan: #8cc9d8;
   --text-purple: #c9add8;
 
-  /* Spacing scale */
-  --space-hairline: 1px; /* optical-only: dense nav separators */
-  --space-micro: 2px; /* optical-only: dense nav internals */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
+  /* Canonical spacing scale. Numeric tokens preserve exact layout geometry while
+     preventing one-off inline values from drifting between screens/modals. */
+  --space-01: 1px;
+  --space-02: 2px;
+  --space-03: 3px;
+  --space-04: 4px;
+  --space-05: 5px;
+  --space-06: 6px;
+  --space-07: 7px;
+  --space-08: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-18: 18px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-hairline: var(--space-01); /* optical-only: dense nav separators */
+  --space-micro: var(--space-02); /* optical-only: dense nav internals */
+  --space-1: var(--space-04);
+  --space-2: var(--space-08);
+  --space-3: var(--space-12);
+  --space-4: var(--space-16);
+  --space-5: var(--space-24);
+  --space-6: var(--space-32);
 
-  /* Compact RPG geometry; avoid SaaS pill/card language */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
+  /* Compact RPG geometry; avoid SaaS pill/card language. */
+  --radius-01: 1px;
+  --radius-02: 2px;
+  --radius-03: 3px;
+  --radius-04: 4px;
+  --radius-06: 6px;
+  --radius-08: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-14: 14px;
+  --radius-20: 20px;
+  --radius-sm: var(--radius-02);
+  --radius-md: var(--radius-04);
+  --radius-lg: var(--radius-06);
   --radius-full: 9999px;
 
   /* Controlled shadows */
@@ -88,9 +116,30 @@
   --shadow-hub-header: var(--shadow-md), var(--shadow-inset-frame);
   --shadow-emblem: inset 0 0 14px rgba(217, 144, 47, 0.12);
   --shadow-toast: var(--shadow-md), 0 0 16px var(--toast-glow, rgba(178, 170, 161, 0.24));
-  --glow-gold: 0 0 12px rgba(217, 144, 47, 0.24);
-  --glow-cyan: 0 0 12px rgba(72, 167, 191, 0.22);
-  --glow-purple: 0 0 12px rgba(154, 112, 181, 0.22);
+  --shadow-modal: var(--shadow-lg), var(--shadow-inset-frame);
+  --shadow-inset-deep: inset 0 1px 3px rgba(0, 0, 0, 0.90);
+  --shadow-inset-soft: inset 0 1px 4px rgba(0, 0, 0, 0.80);
+  --shadow-battlefield: inset 0 0 40px rgba(0, 0, 0, 0.80), 0 0 15px rgba(217, 119, 6, 0.20);
+  --shadow-cta: 0 6px 20px rgba(245, 158, 11, 0.40), inset 0 2px 4px rgba(255, 255, 255, 0.40);
+  --shadow-ground-glow: 0 -4px 15px rgba(217, 119, 6, 0.30);
+
+  /* Controlled semantic glows. Dynamic rank/rarity colors set --ui-glow-color. */
+  --glow-gold: 0 0 12px rgba(217, 144, 47, 0.32);
+  --glow-gold-strong: 0 0 22px rgba(245, 158, 11, 0.58);
+  --glow-cyan: 0 0 12px rgba(72, 167, 191, 0.34);
+  --glow-cyan-strong: 0 0 20px rgba(56, 189, 248, 0.48);
+  --glow-purple: 0 0 12px rgba(154, 112, 181, 0.34);
+  --glow-purple-strong: 0 0 24px rgba(168, 85, 247, 0.52);
+  --glow-success: 0 0 12px rgba(16, 185, 129, 0.42);
+  --glow-danger: 0 0 12px rgba(239, 68, 68, 0.44);
+  --glow-danger-strong: 0 0 24px rgba(239, 68, 68, 0.70);
+  --glow-neutral: 0 0 12px rgba(148, 163, 184, 0.30);
+  --glow-dynamic-sm: 0 0 10px var(--ui-glow-color, rgba(217, 144, 47, 0.32));
+  --glow-dynamic-md: 0 0 15px var(--ui-glow-color, rgba(217, 144, 47, 0.32));
+  --glow-dynamic-lg: 0 0 20px var(--ui-glow-color, rgba(217, 144, 47, 0.32));
+  --glow-dynamic-xl: 0 0 30px var(--ui-glow-color, rgba(217, 144, 47, 0.32));
+  --glow-gold-pulse-low: 0 0 10px rgba(245, 158, 11, 0.40), inset 0 0 10px rgba(245, 158, 11, 0.20);
+  --glow-gold-pulse-high: 0 0 25px rgba(245, 158, 11, 0.90), inset 0 0 15px rgba(245, 158, 11, 0.40);
 
   /* Accessibility / input */
   --touch-target-min: 44px;
