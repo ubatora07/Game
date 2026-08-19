@@ -40,6 +40,7 @@ export type ModifierSourceType =
   | 'karma'
   | 'title'
   | 'mercenary'
+  | 'settlement'
   | 'rhythm'
   | 'temporary'
   | 'permanent_passive';

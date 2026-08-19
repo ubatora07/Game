@@ -67,7 +67,7 @@ export class SettlementStorySystem {
     }
 
     this.reapplyPathModifiers();
-    events.emit('settlement:story_path_chosen' as any, { path });
+    events.emit('settlement:story_path_chosen', { path });
     analytics.trackEvent('settlement_story_path_chosen', { path });
     return true;
   }

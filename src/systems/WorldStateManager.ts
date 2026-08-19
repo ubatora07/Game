@@ -141,7 +141,7 @@ export class WorldStateManager {
   }
 
   private setupListeners(): void {
-    events.on('karma:major_choice_recorded' as any, (data: any) => {
+    events.on('karma:major_choice_recorded', (data) => {
       if (data?.flagId === 'refugees_sheltered') {
         this.setFlag('refugees_accepted', true);
         this.setFlag('village_saved', true);
@@ -154,13 +154,13 @@ export class WorldStateManager {
       }
     });
 
-    events.on('settlement:story_path_chosen' as any, (data: any) => {
+    events.on('settlement:story_path_chosen', (data) => {
       if (data?.path === 'lord') {
         this.setFlag('sovereign_citadel_erected', true);
       }
     });
 
-    events.on('karma:changed' as any, (data: any) => {
+    events.on('karma:changed', (data) => {
       if (data?.score >= 50) {
         this.setFlag('kingdom_trusted', true);
         this.setFlag('dark_reputation', false);
@@ -180,7 +180,7 @@ export class WorldStateManager {
       this.state.legacyWorldChronicle[id] = true;
     }
 
-    events.emit('world:flag_changed' as any, { flagId: id, value });
+    events.emit('world:flag_changed', { flagId: id, value });
     analytics.trackEvent('world_flag_changed', { flagId: id, value });
   }
 

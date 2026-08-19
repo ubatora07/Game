@@ -297,7 +297,7 @@ export class SettlementSystem {
   }
 
   public reapplySettlementModifiers(): void {
-    modifierResolver.clearBySourceType('settlement' as any);
+    modifierResolver.clearBySourceType('settlement');
 
     if (!this.state.isOwned) return;
 
@@ -313,7 +313,7 @@ export class SettlementSystem {
           type: mod.type,
           value: mod.valuePerLevel * bState.level,
           source: `Settlement: ${def.defaultName} Lv.${bState.level}`,
-          sourceType: 'settlement' as any,
+          sourceType: 'settlement',
         });
       }
     }

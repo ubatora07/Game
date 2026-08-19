@@ -6,6 +6,7 @@ import { modalManager } from '../components/ModalManager';
 import { events } from '../../core/EventBus';
 import { SettlementBuildingId, SettlementNPCId } from '../../core/settlement/SettlementTypes';
 import { t } from '../../services/i18n/I18nService';
+import { worldStateManager } from '../../systems/WorldStateManager';
 
 export class SettlementScreen {
   private el: HTMLElement;
@@ -28,6 +29,7 @@ export class SettlementScreen {
     events.on('settlement:unlocked' as any, () => this.render());
     events.on('settlement:harvested' as any, () => this.render());
     events.on('settlement:npc_interacted' as any, () => this.render());
+    events.on('world:flag_changed', () => this.render());
     document.addEventListener('i18n:change', () => this.render());
   }
 
@@ -64,6 +66,7 @@ export class SettlementScreen {
     const mats = settlementSystem.getMaterials();
     const buildings = sState.buildings;
     const npcs = sState.npcs;
+    const worldFlagIds = worldStateManager.getActiveVisualConsequences().map(({ flagId }) => flagId);
 
     this.el.innerHTML = `
       <!-- Settlement Header Bar -->
@@ -130,6 +133,7 @@ export class SettlementScreen {
       <!-- Panoramic Visual Canvas with Interactive Building Plots -->
       <div class="settlement-canvas-wrapper" style="position:relative; width:100%; height:260px; min-height:240px; border:2px solid #78350f; border-radius:6px; overflow:hidden; box-shadow:0 0 20px rgba(0,0,0,0.8); background:#0c0a09;">
         ${SettlementVisualRenderer.getSettlementPanoramaSvg(buildings, sState.settlementLevel)}
+        ${SettlementVisualRenderer.getWorldConsequenceOverlaySvg(worldFlagIds)}
 
         <!-- Interactive Building Plots Placed on Canvas -->
         <div class="settlement-interactive-layer" style="position:absolute; top:0; left:0; width:100%; height:100%; display:grid; grid-template-columns:repeat(4, 1fr); grid-template-rows:1fr 1fr; gap:6px; padding:12px; box-sizing:border-box; pointer-events:none;">

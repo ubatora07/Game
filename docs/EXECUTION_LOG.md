@@ -211,3 +211,43 @@ Validation:
 
 Important boundary:
 Phase 8 fixes **runtime art identity resolution**, not final art quality. Procedural SVG/CSS remains an explicit fallback. Phase 9 is the production World 1 vertical slice that replaces these sources with real seamless pixel-art layers and sprite atlases without changing gameplay routing.
+
+## 2026-08-19 — Phase 9 vertical-slice authoring lock
+
+Status: **PALETTE + RUNTIME PARALLAX CONTRACT COMPLETE / FINAL RASTER ART PENDING**
+
+- Locked World 1 palette and four-layer 192px seamless authoring specification in `docs/WORLD1_VERTICAL_SLICE_ART_SPEC.md`.
+- The four-speed runtime parallax implementation from Phase 8 satisfies P9-06.
+- Production raster layer/sprite/VFX checkboxes remain open until actual final assets exist and can be visually validated in a fresh browser build.
+- No procedural fallback is being mislabeled as final production pixel art.
+
+
+## 2026-08-19 — Phase 10 Gameplay Integration
+
+Status: **SOURCE COMPLETE / INDEPENDENT RUNTIME HARNESS 10/10 PASS**
+
+Completed:
+- corrected campaign first-clear semantics so stage bonuses are awarded only on actual stage completion;
+- deferred authoritative combat reward events until after the GameStore transaction notifies subscribers;
+- verified hero-skill and duplicate-death paths cannot grant the same campaign kill reward twice;
+- verified party modifier application is idempotent;
+- defined active focus as loadout/editing focus and connected Equipment Inventory to the authoritative party focus without changing combat power;
+- typed party-focus, mercenary, settlement-story and world-flag EventBus contracts;
+- promoted `settlement` to a real ModifierSourceType instead of `as any`;
+- verified mercenary expiry deletes contracts and clears modifier sources, including after deserialize;
+- verified pet synergy can be satisfied by either unlocked party character;
+- connected WorldState consequences to Settlement visual output through a text-free overlay and live `world:flag_changed` rerender;
+- verified the shared damage path applies boss shield mechanics consistently;
+- verified serialize/deserialize cycles do not leak or stack modifier sources;
+- added `tests/gameplay-integration-v2.test.ts` and updated campaign reward tests to the corrected first-clear contract;
+- documented cross-system rules in `docs/GAMEPLAY_INTEGRATION_CONTRACTS_V1.md`.
+
+Validation:
+- `npx tsc --noEmit -p tsconfig.json` PASS
+- selective TypeScript compile for campaign + gameplay integration tests PASS
+- independent Phase 10 Node runtime harness PASS **10/10**
+- `node scripts/i18n-audit.cjs` PASS
+- `node scripts/terminology-audit.cjs` PASS
+- `node scripts/art-registry-audit.cjs` PASS
+- `git diff --check` PASS
+- full Vitest/Vite/Playwright execution remains environment-blocked by Windows-only Rollup native dependencies in supplied `node_modules`.

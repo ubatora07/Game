@@ -1,6 +1,7 @@
 import { SettlementBuildingId, SettlementBuildingState, SettlementNPCId } from '../../core/settlement/SettlementTypes';
 import { SETTLEMENT_NPCS } from '../../content/settlementNPCs';
 import { t } from '../../services/i18n/I18nService';
+import { WorldFlagId } from '../../core/world/WorldStateTypes';
 
 export class SettlementVisualRenderer {
   /**
@@ -217,6 +218,88 @@ export class SettlementVisualRenderer {
           </svg>
         `;
     }
+  }
+
+  /**
+   * Renders decorative settlement consequences driven by persistent WorldState flags.
+   * The overlay is intentionally text-free so narrative copy remains owned by i18n UI.
+   */
+  public static getWorldConsequenceOverlaySvg(flagIds: WorldFlagId[]): string {
+    if (flagIds.length === 0) return '';
+
+    const active = new Set(flagIds);
+    const fragments: string[] = [];
+
+    if (active.has('village_saved') || active.has('refugees_accepted')) {
+      fragments.push(`
+        <g data-consequence="prosperity">
+          <rect x="92" y="302" width="4" height="24" fill="#92400e"/>
+          <rect x="96" y="302" width="18" height="10" fill="#f59e0b"/>
+          <rect x="112" y="306" width="4" height="6" fill="#fef08a"/>
+          <rect x="626" y="296" width="4" height="26" fill="#92400e"/>
+          <rect x="630" y="296" width="18" height="10" fill="#4ade80"/>
+        </g>
+      `);
+    }
+
+    if (active.has('village_ruined')) {
+      fragments.push(`
+        <g data-consequence="ruined" opacity="0.88">
+          <rect x="130" y="350" width="12" height="4" fill="#7f1d1d"/>
+          <rect x="142" y="342" width="5" height="12" fill="#ef4444"/>
+          <rect x="658" y="348" width="10" height="4" fill="#7f1d1d"/>
+          <rect x="665" y="338" width="4" height="10" fill="#f97316"/>
+        </g>
+      `);
+    }
+
+    if (active.has('smuggler_alliance')) {
+      fragments.push(`
+        <g data-consequence="shadow-alley">
+          <rect x="710" y="330" width="5" height="22" fill="#3b0764"/>
+          <rect x="704" y="328" width="17" height="7" fill="#7e22ce"/>
+          <rect x="709" y="330" width="7" height="4" fill="#d8b4fe"/>
+        </g>
+      `);
+    }
+
+    if (active.has('kingdom_trusted')) {
+      fragments.push(`
+        <g data-consequence="royal-trust">
+          <rect x="388" y="228" width="5" height="48" fill="#78350f"/>
+          <path d="M393 230 H424 V250 L408 244 L393 250 Z" fill="#d97706"/>
+          <rect x="401" y="236" width="8" height="8" fill="#fde047"/>
+        </g>
+      `);
+    }
+
+    if (active.has('dark_reputation')) {
+      fragments.push(`
+        <g data-consequence="dark-reputation">
+          <rect x="388" y="228" width="5" height="48" fill="#450a0a"/>
+          <path d="M393 230 H424 V250 L408 244 L393 250 Z" fill="#991b1b"/>
+          <rect x="402" y="236" width="6" height="8" fill="#f87171"/>
+        </g>
+      `);
+    }
+
+    if (active.has('sovereign_citadel_erected')) {
+      fragments.push(`
+        <g data-consequence="legacy-citadel">
+          <rect x="365" y="162" width="70" height="66" fill="#292524" stroke="#b45309" stroke-width="3"/>
+          <rect x="374" y="148" width="14" height="24" fill="#44403c" stroke="#b45309" stroke-width="2"/>
+          <rect x="412" y="148" width="14" height="24" fill="#44403c" stroke="#b45309" stroke-width="2"/>
+          <rect x="395" y="183" width="10" height="45" fill="#78350f"/>
+          <rect x="398" y="157" width="4" height="20" fill="#f59e0b"/>
+        </g>
+      `);
+    }
+
+    return `
+      <svg class="settlement-world-consequence-overlay" data-world-flags="${flagIds.join(',')}" viewBox="0 0 800 420" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute; inset:0; pointer-events:none; image-rendering:pixelated; shape-rendering:crispEdges; z-index:1;">
+        ${fragments.join('')}
+      </svg>
+    `;
   }
 
   /**

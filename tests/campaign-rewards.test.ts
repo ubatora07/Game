@@ -19,9 +19,11 @@ describe('Phase 34 — Campaign Reward Economy Tests', () => {
     const goldBefore = state.gold;
     const powerBefore = state.power;
 
-    // Normal kill (Stage 1-1: first clear)
+    // A normal encounter pays base rewards, but does not consume the stage first-clear
+    // until the final encounter actually completes the stage.
+    let result: any;
     store.set((draft) => {
-      CampaignProgressionSystem.onEnemyDefeated(draft, 'forest_goblin', false);
+      result = CampaignProgressionSystem.onEnemyDefeated(draft, 'forest_goblin', false);
     });
 
     const stateAfter = store.get();
@@ -29,6 +31,8 @@ describe('Phase 34 — Campaign Reward Economy Tests', () => {
     expect(stateAfter.power).toBeGreaterThan(powerBefore);
     expect(stateAfter.stats.campaignGoldEarned).toBeGreaterThan(0);
     expect(stateAfter.stats.campaignPowerEarned).toBeGreaterThan(0);
+    expect(result.isFirstClear).toBe(false);
+    expect(stateAfter.campaign.firstClears).not.toContain(stage.id);
   });
 
   it('P34-02: Elite enemies grant boosted rewards compared to normal enemies', () => {
@@ -75,32 +79,47 @@ describe('Phase 34 — Campaign Reward Economy Tests', () => {
     expect(stateAfter.stats.campaignCrystalsEarned).toBeGreaterThan(0);
   });
 
-  it('P34-04 & P34-07: First-clear reward is awarded exactly once per stage and never re-awarded', () => {
+  it('P34-04 & P34-07: First-clear reward is awarded on stage completion exactly once', () => {
     const freshState = createInitialState();
     freshState.campaign.currentStageId = '1-1';
     store.replace(freshState);
+    const stage = getCampaignStageById('1-1')!;
 
-    // 1st Clear: (first-clear table gives 5x rewards)
+    // All encounters before the final one pay normal rewards and must not consume first-clear.
+    for (let encounter = 1; encounter < stage.enemyCount; encounter++) {
+      let encounterResult: any;
+      store.set((draft) => {
+        encounterResult = CampaignProgressionSystem.onEnemyDefeated(draft, 'forest_goblin', false);
+      });
+      expect(encounterResult.isFirstClear).toBe(false);
+      expect(encounterResult.stageCleared).toBe(false);
+      expect(store.get().campaign.firstClears).not.toContain(stage.id);
+    }
+
+    // The final encounter atomically completes the stage and awards the first-clear table.
     let firstClearResult: any;
     store.set((draft) => {
       firstClearResult = CampaignProgressionSystem.onEnemyDefeated(draft, 'forest_goblin', false);
     });
-
+    expect(firstClearResult.stageCleared).toBe(true);
     expect(firstClearResult.isFirstClear).toBe(true);
-    expect(store.get().campaign.firstClears).toContain('1-1');
+    expect(firstClearResult.rewards).toEqual(stage.firstClearRewards);
+    expect(store.get().campaign.firstClears).toContain(stage.id);
 
-    const goldAfterFirst = store.get().gold;
+    // Replay the same stage; no encounter can award first-clear again.
+    store.set((draft) => {
+      draft.campaign.currentStageId = stage.id;
+      draft.campaign.currentWorldId = stage.worldId;
+      draft.campaign.currentEncounter = 1;
+      draft.campaign.campaignMode = 'farm';
+    });
 
-    // 2nd Clear (repeat on 1-1):
     let repeatResult: any;
     store.set((draft) => {
       repeatResult = CampaignProgressionSystem.onEnemyDefeated(draft, 'forest_goblin', false);
     });
-
     expect(repeatResult.isFirstClear).toBe(false);
-    // Repeat reward should be strictly smaller than first clear reward
     expect(repeatResult.rewards.gold).toBeLessThan(firstClearResult.rewards.gold);
-    expect(store.get().gold).toBe(goldAfterFirst + repeatResult.rewards.gold);
   });
 
   it('P34-08: getCampaignRewardBreakdown returns accurate analytics breakdown', () => {
@@ -147,11 +166,14 @@ describe('Phase 34 — Campaign Reward Economy Tests', () => {
     state.campaign.currentStageId = '1-2';
     store.replace(state);
 
-    // Clear 1-2
-    store.set((draft) => {
-      CampaignProgressionSystem.onEnemyDefeated(draft, 'forest_goblin', false);
-    });
-    expect(store.get().campaign.firstClears).toContain('1-2');
+    // Clear the whole stage. First-clear must only become persistent after completion.
+    const stage = getCampaignStageById('1-2')!;
+    for (let encounter = 0; encounter < stage.enemyCount; encounter++) {
+      store.set((draft) => {
+        CampaignProgressionSystem.onEnemyDefeated(draft, 'forest_goblin', false);
+      });
+    }
+    expect(store.get().campaign.firstClears).toContain(stage.id);
 
     // Simulate save/load round-trip
     const serialized = JSON.stringify(store.get());

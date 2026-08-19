@@ -85,7 +85,7 @@ export class MercenarySystem {
       type: 'success',
     });
 
-    events.emit('mercenary:hired' as any, { mercId: id, durationMinutes: def.contractDurationMinutes });
+    events.emit('mercenary:hired', { mercId: id, durationMinutes: def.contractDurationMinutes });
     analytics.trackEvent('mercenary_hired', { mercId: id, durationMinutes: def.contractDurationMinutes });
 
     return { success: true };
@@ -106,7 +106,7 @@ export class MercenarySystem {
           type: 'info',
         });
 
-        events.emit('mercenary:expired' as any, { mercId: id });
+        events.emit('mercenary:expired', { mercId: id });
       }
     }
 
@@ -116,7 +116,7 @@ export class MercenarySystem {
   }
 
   public reapplyMercenaryModifiers(): void {
-    modifierResolver.clearBySourceType('mercenary' as any);
+    modifierResolver.clearBySourceType('mercenary');
     const now = Date.now();
 
     for (const contract of Object.values(this.state.activeContracts)) {
@@ -132,7 +132,7 @@ export class MercenarySystem {
           type: mod.type,
           value: mod.value,
           source: `Mercenary: ${def.defaultName}`,
-          sourceType: 'mercenary' as any,
+          sourceType: 'mercenary',
         });
       }
     }

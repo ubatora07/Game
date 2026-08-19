@@ -19,6 +19,10 @@ export interface DefeatEnemyResult {
   nextWorldId?: number;
 }
 
+export interface DefeatEnemyOptions {
+  emitEvents?: boolean;
+}
+
 export class CampaignProgressionSystem {
   /**
    * Initializes or repairs campaign state defaults if missing.
@@ -86,26 +90,29 @@ export class CampaignProgressionSystem {
   /**
    * Called when an enemy is defeated in the current encounter.
    */
-  public static onEnemyDefeated(state: GameStateData, enemyId?: string, isBossEntity?: boolean): DefeatEnemyResult {
+  public static onEnemyDefeated(
+    state: GameStateData,
+    enemyId?: string,
+    isBossEntity?: boolean,
+    options: DefeatEnemyOptions = {},
+  ): DefeatEnemyResult {
     this.ensureCampaignState(state);
     const currentStage = this.getCurrentStage(state);
     const stageId = currentStage.id;
-    const isFirstTime = this.isFirstClear(state, stageId);
+    const stageWasUncleared = this.isFirstClear(state, stageId);
+    const willClearStage = state.campaign.currentEncounter >= currentStage.enemyCount;
 
-    // Calculate rewards scaled by enemy type
+    // First-clear rewards belong to a completed stage, never to its first encounter.
+    // Until the final encounter, first-time stages pay their normal encounter reward.
     let rewards: CampaignRewards;
     const enemyConfig = enemyId ? getCampaignEnemyById(enemyId) : null;
     const rewardMult = enemyConfig?.rewardMultiplier || 1.0;
 
-    if (isFirstTime) {
-      // Full generous first clear reward table
+    if (willClearStage && stageWasUncleared) {
       rewards = { ...currentStage.firstClearRewards };
-      state.campaign.firstClears.push(stageId);
     } else if (isBossEntity || currentStage.isBoss) {
-      // Boss repeat rewards
       rewards = { ...currentStage.baseRewards };
     } else {
-      // Normal / Elite repeat rewards scaled by multiplier
       rewards = {
         gold: Math.max(1, Math.floor(currentStage.baseRewards.gold * rewardMult)),
         power: Math.max(1, Math.floor(currentStage.baseRewards.power * rewardMult)),
@@ -137,15 +144,20 @@ export class CampaignProgressionSystem {
 
     let stageCleared = false;
     let worldCleared = false;
+    let firstClearAwarded = false;
     let nextStageId: string | undefined;
     let nextWorldId: number | undefined;
 
     // Advance encounter or clear stage
-    if (state.campaign.currentEncounter >= currentStage.enemyCount) {
-      // Stage Cleared!
+    if (willClearStage) {
       stageCleared = true;
       state.stats.campaignStagesCleared = (state.stats.campaignStagesCleared || 0) + 1;
       state.campaign.currentEncounter = 1;
+
+      if (stageWasUncleared) {
+        state.campaign.firstClears.push(stageId);
+        firstClearAwarded = true;
+      }
 
       // Update highest stage tracking
       const currentHighest = getCampaignStageById(state.campaign.highestStageReached);
@@ -187,37 +199,47 @@ export class CampaignProgressionSystem {
       state.campaign.currentEncounter++;
     }
 
-    events.emit('campaign:enemy_defeated', {
-      stageId,
+    const result: DefeatEnemyResult = {
       rewards,
-      isFirstClear: isFirstTime,
-      stageCleared,
-      worldCleared,
-    });
-
-    if (stageCleared) {
-      events.emit('campaign:stage_cleared', {
-        stageId,
-        isFirstClear: isFirstTime,
-        nextStageId,
-      });
-    }
-
-    if (worldCleared) {
-      events.emit('campaign:world_cleared', {
-        worldId: currentStage.worldId,
-      });
-    }
-
-    return {
-      rewards,
-      isFirstClear: isFirstTime,
+      isFirstClear: firstClearAwarded,
       encounterFinished: true,
       stageCleared,
       worldCleared,
       nextStageId,
       nextWorldId,
     };
+
+    if (options.emitEvents !== false) {
+      this.emitDefeatEvents(result, stageId, currentStage.worldId);
+    }
+
+    return result;
+  }
+
+  /**
+   * Emits progression events after the caller's state transaction has completed.
+   * CombatService uses this to prevent listeners from observing a half-mutated GameState.
+   */
+  public static emitDefeatEvents(result: DefeatEnemyResult, stageId: string, worldId: number): void {
+    events.emit('campaign:enemy_defeated', {
+      stageId,
+      rewards: result.rewards,
+      isFirstClear: result.isFirstClear,
+      stageCleared: result.stageCleared,
+      worldCleared: result.worldCleared,
+    });
+
+    if (result.stageCleared) {
+      events.emit('campaign:stage_cleared', {
+        stageId,
+        isFirstClear: result.isFirstClear,
+        nextStageId: result.nextStageId,
+      });
+    }
+
+    if (result.worldCleared) {
+      events.emit('campaign:world_cleared', { worldId });
+    }
   }
 
   /**

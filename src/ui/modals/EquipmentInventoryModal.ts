@@ -2,11 +2,13 @@ import { ModalInstance, modalManager } from '../components/ModalManager';
 import { craftingEquipmentSystem } from '../../systems/CraftingEquipmentSystem';
 import { EquipmentSlot } from '../../core/crafting/CraftingTypes';
 import { t } from '../../services/i18n/I18nService';
+import { partyTeamSystem } from '../../systems/PartyTeamSystem';
+import { MainCharacterSlotId } from '../../core/characters/MainCharacterTypes';
 
 export const EquipmentInventoryModal: ModalInstance = {
   id: 'equipment_inventory_modal',
   render: () => {
-    let activeCharSlot: 'char_1' | 'char_2' = 'char_1';
+    let activeCharSlot: MainCharacterSlotId = partyTeamSystem.getActiveFocusSlot();
     let currentSlotFilter: EquipmentSlot | 'all' = 'all';
     let selectedItemId: string | null = null;
 
@@ -232,8 +234,11 @@ export const EquipmentInventoryModal: ModalInstance = {
       // Event listeners
       el.querySelectorAll('.btn-char-slot').forEach((btn) => {
         btn.addEventListener('click', () => {
-          activeCharSlot = btn.getAttribute('data-slot') as any;
-          refresh();
+          const requestedSlot = btn.getAttribute('data-slot') as MainCharacterSlotId | null;
+          if (requestedSlot && partyTeamSystem.setActiveFocusSlot(requestedSlot)) {
+            activeCharSlot = requestedSlot;
+            refresh();
+          }
         });
       });
 

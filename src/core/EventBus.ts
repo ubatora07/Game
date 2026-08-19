@@ -45,6 +45,7 @@ export type GameEventMap = {
   'class:respec': {};
   'party:character_class_selected': { slotId: string; classId: string };
   'party:second_character_unlocked': { slotId: 'char_2'; name: string; classId?: string };
+  'party:active_focus_changed': { slotId: 'char_1' | 'char_2' };
 
   // Real-time Combat Events
   'combat:enemy_spawned': { enemy: any; stageId: string; encounterIndex: number };
@@ -70,6 +71,10 @@ export type GameEventMap = {
   'pet:evolved': { petId: string; stage: number };
   'crafting:item_crafted': { item: any; recipeId: string; totalCraftedCount: number };
   'market:purchased': { offerId: string; isBlackMarket: boolean; totalPurchasesCount: number };
+  'mercenary:hired': { mercId: string; durationMinutes: number };
+  'mercenary:expired': { mercId: string };
+  'settlement:story_path_chosen': { path: 'lord' | 'adventurer' };
+  'world:flag_changed': { flagId: string; value: boolean };
 };
 
 type EventCallback<T> = (data: T) => void;

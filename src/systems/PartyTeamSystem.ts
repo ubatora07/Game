@@ -55,14 +55,21 @@ export class PartyTeamSystem {
     return this.activeFocusCharId;
   }
 
-  public setActiveFocusSlot(slotId: MainCharacterSlotId): void {
-    if (this.characters[slotId].isUnlocked) {
-      this.activeFocusCharId = slotId;
-      events.emit('toast:show', {
-        message: t('toast.party.focus', { name: this.characters[slotId].name }),
-        type: 'info',
-      });
-    }
+  public getFocusedCharacter(): MainCharacterState {
+    return this.characters[this.activeFocusCharId];
+  }
+
+  public setActiveFocusSlot(slotId: MainCharacterSlotId): boolean {
+    if (!this.characters[slotId].isUnlocked) return false;
+    if (this.activeFocusCharId === slotId) return true;
+
+    this.activeFocusCharId = slotId;
+    events.emit('party:active_focus_changed', { slotId });
+    events.emit('toast:show', {
+      message: t('toast.party.focus', { name: this.characters[slotId].name }),
+      type: 'info',
+    });
+    return true;
   }
 
   public unlockSecondCharacter(name: string = 'Soul Partner', classId?: CharacterClassId): boolean {

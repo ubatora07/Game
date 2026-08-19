@@ -36,7 +36,8 @@
 - [x] Title 5-craft / 5-purchase milestone bugs fixed.
 - [x] Source TypeScript check passes: `tsc --noEmit`.
 - [x] New regression suites + `save.test.ts` type-check cleanly.
-- [x] Independent runtime contract harness passes **7/7** assertions.
+- [x] Independent runtime contract harness passes **7/7** Save/Rebirth assertions.
+- [x] Independent Phase 10 gameplay integration harness passes **10/10** assertions.
 - [x] `git diff --check` passes.
 - [x] Build-time `qa:release-safety` gate added and chained into `npm run build`.
 - [x] Existing stale `dist` correctly FAILS release-safety because it predates P0 hardening.
@@ -57,11 +58,12 @@
 ## Validation evidence — 2026-08-19
 
 - Full source checkout: exact audited Git commit.
-- Unit test inventory: **85** `tests/*.test.ts` files after adding the new regression suites.
+- Unit test inventory: **88** `tests/*.test.ts` files after adding the new regression suites.
 - E2E inventory: **3** Playwright specs (`campaign-interaction-v2`, `interaction-qa`, `responsive-qa`).
 - `tsc --noEmit`: PASS.
 - New regression-suite typecheck: PASS.
-- Runtime contract harness: **7/7 PASS**.
+- Save/Rebirth runtime contract harness: **7/7 PASS**.
+- Gameplay integration runtime harness: **10/10 PASS**.
 - `git diff --check`: PASS.
 - Old/pre-fix `dist` release-safety audit: EXPECTED FAIL with `BALANCE DEV`, `CHEATS`, rank/currency/spawn controls, Test Ad and `__DISABLE_SAVE__` markers.
 - Vitest/Vite execution is not counted as pass because the uploaded dependency tree contains Windows-only Rollup native modules.
@@ -359,12 +361,12 @@
 
 **Priority:** P1
 
-- [ ] `P9-01` Lock World 1 palette
+- [x] `P9-01` Lock World 1 palette
 - [ ] `P9-02` Create seamless sky/far layer
 - [ ] `P9-03` Create seamless distant forest layer
 - [ ] `P9-04` Create seamless midground layer
 - [ ] `P9-05` Create seamless foreground layer
-- [ ] `P9-06` Implement four-speed parallax
+- [x] `P9-06` Implement four-speed parallax
 - [ ] `P9-07` Create protagonist idle sprite
 - [ ] `P9-08` Create protagonist attack sprite
 - [ ] `P9-09` Create protagonist crit sprite
@@ -399,26 +401,26 @@
 - [x] `P10-02` Apply pet damage through CampaignCombatService mechanics
 - [x] `P10-03` Emit pet combat events
 - [x] `P10-04` Render pet combat action feedback
-- [ ] `P10-05` Verify hero skills do not duplicate rewards
-- [ ] `P10-06` Verify party modifiers apply once
+- [x] `P10-05` Verify hero skills do not duplicate rewards
+- [x] `P10-06` Verify party modifiers apply once
 - [x] `P10-07` Verify ClassSystem and PartyTeamSystem class ownership do not conflict
 - [x] `P10-08` Choose one authoritative protagonist class state
 - [x] `P10-09` Migrate duplicate class state safely
-- [ ] `P10-10` Verify mercenary modifiers lifecycle
-- [ ] `P10-11` Verify expired contracts clear modifiers
+- [x] `P10-10` Verify mercenary modifiers lifecycle
+- [x] `P10-11` Verify expired contracts clear modifiers
 - [x] `P10-12` Verify titles unlock at real thresholds
 - [x] `P10-13` Fix Master Artisan 5-craft condition
 - [x] `P10-14` Fix Baron of Commerce 5-purchase condition
 - [x] `P10-15` Fix Karma major-choice event contract
 - [x] `P10-16` Fix Karma reset modifier reapplication
-- [ ] `P10-17` Verify world flag visual consequences are consumed
-- [ ] `P10-18` Verify story choices update world flags
-- [ ] `P10-19` Verify pet class synergy with both characters
-- [ ] `P10-20` Verify active-focus switching has intended mechanical meaning
-- [ ] `P10-21` Verify boss special mechanics with pet/hero damage
-- [ ] `P10-22` Verify reward transaction remains atomic
-- [ ] `P10-23` Verify no kill reward duplication
-- [ ] `P10-24` Verify no modifier source leaks after reload
+- [x] `P10-17` Verify world flag visual consequences are consumed
+- [x] `P10-18` Verify story choices update world flags
+- [x] `P10-19` Verify pet class synergy with both characters
+- [x] `P10-20` Verify active-focus switching has intended mechanical meaning
+- [x] `P10-21` Verify boss special mechanics with pet/hero damage
+- [x] `P10-22` Verify reward transaction remains atomic
+- [x] `P10-23` Verify no kill reward duplication
+- [x] `P10-24` Verify no modifier source leaks after reload
 
 ## PHASE 11 — UI Production Pass
 

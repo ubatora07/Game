@@ -518,20 +518,28 @@ export class CampaignCombatService {
 
     sound.playEnemyHit();
 
-    // Process progression rewards & stage advancement
+    // Process the full reward/progression transaction first. Events are emitted only
+    // after GameStore has committed/notified, so listeners never observe partial state.
+    const defeatedStageId = this.combatState.stageId;
+    const defeatedWorldId = this.combatState.worldId;
+    let resolvedResult!: DefeatEnemyResult;
     store.set((draft) => {
-      const result: DefeatEnemyResult = CampaignProgressionSystem.onEnemyDefeated(draft, enemy?.id, enemy?.isBoss);
+      resolvedResult = CampaignProgressionSystem.onEnemyDefeated(
+        draft,
+        enemy?.id,
+        enemy?.isBoss,
+        { emitEvents: false },
+      );
+    });
+    const result = resolvedResult;
 
-      events.emit('combat:reward_dropped', {
-        rewards: result.rewards,
-      });
-
-      events.emit('combat:enemy_killed', {
-        enemyId: enemy?.id || 'unknown',
-        rewards: result.rewards,
-        stageCleared: result.stageCleared,
-        worldCleared: result.worldCleared,
-      });
+    CampaignProgressionSystem.emitDefeatEvents(result, defeatedStageId, defeatedWorldId);
+    events.emit('combat:reward_dropped', { rewards: result.rewards });
+    events.emit('combat:enemy_killed', {
+      enemyId: enemy?.id || 'unknown',
+      rewards: result.rewards,
+      stageCleared: result.stageCleared,
+      worldCleared: result.worldCleared,
     });
 
     if (immediate) {
