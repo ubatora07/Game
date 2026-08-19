@@ -244,31 +244,31 @@
 
 **Priority:** P1
 
-- [ ] `P5-01` Lock primary fantasy as western/dark/heroic pixel fantasy RPG
-- [ ] `P5-02` Define exact role of anime influence
-- [ ] `P5-03` Define forbidden xianxia-facing terminology
-- [ ] `P5-04` Define allowed legacy internal identifiers
-- [ ] `P5-05` Define world technology ceiling
-- [ ] `P5-06` Define magic vocabulary
-- [ ] `P5-07` Define kingdom/faction vocabulary
-- [ ] `P5-08` Define protagonist fantasy
-- [ ] `P5-09` Define settlement fantasy
-- [ ] `P5-10` Define rebirth fantasy
-- [ ] `P5-11` Define rank ladder fantasy
-- [ ] `P5-12` Define soul/legacy resource fantasy
-- [ ] `P5-13` Define naming morphology for humans
-- [ ] `P5-14` Define naming morphology for monsters
-- [ ] `P5-15` Define naming morphology for items
-- [ ] `P5-16` Define naming morphology for locations
-- [ ] `P5-17` Define naming morphology for titles
-- [ ] `P5-18` Define adjective-density limits
-- [ ] `P5-19` Define Sovereign/Celestial/Astral/Cosmic usage limits
-- [ ] `P5-20` Audit game title ANIME INFINITE ASCENSION
-- [ ] `P5-21` Produce candidate title shortlist
+- [x] `P5-01` Lock primary fantasy as western/dark/heroic pixel fantasy RPG
+- [x] `P5-02` Define exact role of anime influence
+- [x] `P5-03` Define forbidden xianxia-facing terminology
+- [x] `P5-04` Define allowed legacy internal identifiers
+- [x] `P5-05` Define world technology ceiling
+- [x] `P5-06` Define magic vocabulary
+- [x] `P5-07` Define kingdom/faction vocabulary
+- [x] `P5-08` Define protagonist fantasy
+- [x] `P5-09` Define settlement fantasy
+- [x] `P5-10` Define rebirth fantasy
+- [x] `P5-11` Define rank ladder fantasy
+- [x] `P5-12` Define soul/legacy resource fantasy
+- [x] `P5-13` Define naming morphology for humans
+- [x] `P5-14` Define naming morphology for monsters
+- [x] `P5-15` Define naming morphology for items
+- [x] `P5-16` Define naming morphology for locations
+- [x] `P5-17` Define naming morphology for titles
+- [x] `P5-18` Define adjective-density limits
+- [x] `P5-19` Define Sovereign/Celestial/Astral/Cosmic usage limits
+- [x] `P5-20` Audit game title ANIME INFINITE ASCENSION
+- [x] `P5-21` Produce candidate title shortlist
 - [ ] `P5-22` Choose player-facing title before store-art lock
 - [ ] `P5-23` Update app title/subtitle only after decision
-- [ ] `P5-24` Create world bible
-- [ ] `P5-25` Create terminology migration map
+- [x] `P5-24` Create world bible
+- [x] `P5-25` Create terminology migration map
 
 ## PHASE 6 — Xianxia Legacy Migration
 

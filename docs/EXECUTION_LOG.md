@@ -99,6 +99,18 @@ Status: **APPLIED / SOURCE TYPECHECK PASS / ROUTE HARNESS PASS / BROWSER QA PEND
 - Updated unit and Playwright selectors from the stale five-tab contract.
 - `P4-01` through `P4-26` are source-complete; browser visual Gate C remains intentionally open until a fresh Linux-compatible build can be produced.
 
+### Batch 09 — Product Identity V2 Foundation
+
+Status: **DOCUMENTED / COMPATIBILITY-SAFE / TITLE DECISION OPEN**
+
+- Added `docs/PRODUCT_IDENTITY_V2.md` locking the player-facing direction to western/dark heroic pixel fantasy while preserving anime as a visual/cinematic influence rather than the default cultural vocabulary.
+- Defined technology ceiling, magic vocabulary, faction language, protagonist fantasy, settlement fantasy, Rebirth/Legacy framing, rank semantics, naming morphology and adjective-density limits.
+- Added `docs/NAMING_AND_WORLD_BIBLE_V2.md` with a coherent five-region migration direction anchored on Mountain Haven / Eldoria.
+- Added `docs/TERMINOLOGY_MIGRATION_MAP.md` separating player-facing retheme from stable save/content/analytics identifiers.
+- Audited the current `ANIME INFINITE ASCENSION` title and produced a working shortlist.
+- `P5-01` through `P5-21` and `P5-24/P5-25` are complete.
+- `P5-22/P5-23` intentionally remain open: no final store-facing game title is selected or applied without availability review and explicit product choice.
+
 ## Validation results
 
 - `git diff --check`: **PASS**.
