@@ -2,12 +2,14 @@ import { events } from '../core/EventBus';
 import { AdventureEventDefinition, AdventureEventContext } from '../core/events/AdventureEventTypes';
 import { getCampaignStageById } from '../content/campaignStages';
 import { getCampaignWorldById } from '../content/campaignWorlds';
+import { PARTNER_AWAKENING_EVENT_ID, PARTNER_AWAKENING_TRIGGER_STAGE_ID } from '../content/partnerUnlock';
 import { store } from '../core/GameState';
 import { analytics } from '../services/analytics/AnalyticsService';
 import { adventureEventSystem } from './AdventureEventSystem';
 import { campaignCombatService } from './CampaignCombatService';
 import { karmaSystem } from './KarmaSystem';
 import { partyTeamSystem } from './PartyTeamSystem';
+import { partnerUnlockSystem } from './PartnerUnlockSystem';
 
 /**
  * Bridges Campaign progression into the Adventure Event framework.
@@ -51,7 +53,7 @@ export class AdventureEventDirector {
       gold: state.gold,
     };
 
-    const selected = adventureEventSystem.selectWeightedEvent(
+    const selected = this.selectMilestoneEvent(stageId, context) ?? adventureEventSystem.selectWeightedEvent(
       context,
       Date.now(),
       (eventDef) => eventDef.choices.some((choice) => adventureEventSystem.isChoiceEligible(choice))
@@ -75,6 +77,17 @@ export class AdventureEventDirector {
     });
 
     return selected;
+  }
+
+  private selectMilestoneEvent(stageId: string, context: AdventureEventContext): AdventureEventDefinition | null {
+    if (stageId !== PARTNER_AWAKENING_TRIGGER_STAGE_ID || partnerUnlockSystem.isPartnerUnlocked() || partnerUnlockSystem.hasAwakeningInvitation()) {
+      return null;
+    }
+
+    const partnerEvent = adventureEventSystem.getEventById(PARTNER_AWAKENING_EVENT_ID);
+    if (!partnerEvent || !adventureEventSystem.isEventEligible(partnerEvent, context)) return null;
+    if (!partnerEvent.choices.some((choice) => adventureEventSystem.isChoiceEligible(choice))) return null;
+    return partnerEvent;
   }
 
   public releasePresentationPause(): void {

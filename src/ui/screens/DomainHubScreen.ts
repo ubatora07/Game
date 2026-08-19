@@ -13,6 +13,7 @@ export interface DomainHubAction {
   labelKey: string;
   descriptionKey: string;
   accent: string;
+  isVisible?: () => boolean;
 }
 
 export interface DomainHubConfig {
@@ -52,7 +53,7 @@ export class DomainHubScreen {
         </header>
 
         <div class="domain-hub-grid">
-          ${this.config.actions.map((action, focusIndex) => `
+          ${this.config.actions.filter((action) => action.isVisible?.() ?? true).map((action, focusIndex) => `
             <button
               type="button"
               class="domain-hub-action"
@@ -92,6 +93,10 @@ export class DomainHubScreen {
         }
       });
     });
+  }
+
+  protected refresh(): void {
+    this.render();
   }
 
   private getActionButtons(): HTMLButtonElement[] {

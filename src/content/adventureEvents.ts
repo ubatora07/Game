@@ -1,7 +1,27 @@
 import { AdventureEventDefinition } from '../core/events/AdventureEventTypes';
 import { NARRATIVE_CHAIN_EVENTS } from './narrativeChainsCatalog';
+import { PARTNER_AWAKENING_EVENT_ID } from './partnerUnlock';
 
 export const ADVENTURE_EVENTS: AdventureEventDefinition[] = [
+  // Milestone story encounter: deterministic on the first World 1 boss clear.
+  // Weight 0 keeps it out of ordinary weighted Adventure selection.
+  {
+    id: PARTNER_AWAKENING_EVENT_ID,
+    titleKey: 'event.partner_oath.title',
+    descKey: 'event.partner_oath.desc',
+    icon: '🤝',
+    category: 'story',
+    weight: 0,
+    cooldownSeconds: 0,
+    requirements: { minWorldId: 1, maxWorldId: 1, onceOnly: true },
+    choices: [
+      {
+        id: 'answer_the_oath',
+        labelKey: 'event.partner_oath.opt_answer',
+        outcome: { offerPartnerAwakening: true, resultTextKey: 'event.partner_oath.res_answer' },
+      },
+    ],
+  },
   // ==========================================
   // 1. CHESTS & LOOT (5 Events)
   // ==========================================

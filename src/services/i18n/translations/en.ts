@@ -75,7 +75,7 @@ export const en = {
   'domain.team.title': 'Team',
   'domain.team.subtitle': 'Manage the partner, recruited heroes, companion pet and hired support.',
   'domain.team.partner': 'Partner',
-  'domain.team.partner_desc': 'Awaken and configure the second main-character slot.',
+  'domain.team.partner_desc': 'Name and train the companion who answered your oath.',
   'domain.team.roster': 'Hero Roster',
   'domain.team.roster_desc': 'Review recruited heroes, rarity and star progression.',
   'domain.team.recruit': 'Recruitment',
@@ -893,11 +893,20 @@ export const en = {
   'event.category.choice': 'CHOICE',
 
   // Partner Awakening Modal
-  'modal.partner_awakening.title': 'Soul Resonance: Partner Awakened',
-  'modal.partner_awakening.desc': 'By conquering the ancient trial, your soul resonance has called forth a sworn companion! Choose your partner\'s combat specialization to complete your duo.',
-  'modal.partner_awakening.name_label': 'Partner Name',
+  'modal.partner_awakening.title': 'Oathbound Companion',
+  'modal.partner_awakening.desc': 'The trial at the Ruined Gate revealed a fighter willing to stand beside you. Name your companion and choose their combat class.',
+  'modal.partner_awakening.name_label': 'Companion Name',
   'modal.partner_awakening.class_label': 'Select Combat Class',
-  'modal.partner_awakening.confirm_btn': 'Bond Souls & Awaken',
+  'modal.partner_awakening.confirm_btn': 'Seal the Oath',
+  'modal.partner_awakening.default_name': 'Rowan',
+  'modal.partner_awakening.locked_title': 'No Companion Yet',
+  'modal.partner_awakening.locked_desc': 'Continue the campaign. A decisive victory may bring someone willing to join your journey.',
+
+  // World 1 partner milestone story
+  'event.partner_oath.title': 'The Oath at the Ruined Gate',
+  'event.partner_oath.desc': 'Beyond the fallen guardian, another survivor steps from the shattered gate. They fought the same darkness from the other side and offer an oath: face the frontier together.',
+  'event.partner_oath.opt_answer': 'Accept the Oath',
+  'event.partner_oath.res_answer': 'The pact is sealed. Choose your companion\'s name and combat class.',
 
   // Rhythm Master Easter Egg
   'easter_egg.rhythm.badge': 'SECRET EASTER EGG',

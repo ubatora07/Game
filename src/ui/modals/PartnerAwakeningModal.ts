@@ -1,5 +1,5 @@
 import { ModalInstance, modalManager } from '../components/ModalManager';
-import { partyTeamSystem } from '../../systems/PartyTeamSystem';
+import { partnerUnlockSystem } from '../../systems/PartnerUnlockSystem';
 import { getAllClasses, CharacterClassId } from '../../content/classes';
 import { t } from '../../services/i18n/I18nService';
 
@@ -8,11 +8,19 @@ export const PartnerAwakeningModal: ModalInstance = {
   render: (data?: { defaultClass?: CharacterClassId }) => {
     const classes = getAllClasses();
     let selectedClass: CharacterClassId = data?.defaultClass ?? 'swordsman';
-    let partnerName = 'Ren the Shadow';
+    let partnerName = t('modal.partner_awakening.default_name');
 
     const el = document.createElement('div');
     el.className = 'partner-awakening-container';
     el.style.cssText = 'text-align:center; max-width:460px;';
+
+    if (!partnerUnlockSystem.canAwakenPartner()) {
+      el.innerHTML = `
+        <h2 style="font-family:var(--font-display); font-size:20px; color:#c084fc; margin-bottom:var(--space-08);">${t('modal.partner_awakening.locked_title')}</h2>
+        <p style="color:var(--text-muted); font-size:12px; line-height:1.5; margin:0;">${t('modal.partner_awakening.locked_desc')}</p>
+      `;
+      return el;
+    }
 
     el.innerHTML = `
       <div style="font-size:48px; margin-bottom:var(--space-08); animation:heroFloat 2s ease-in-out infinite;">
@@ -81,10 +89,11 @@ export const PartnerAwakeningModal: ModalInstance = {
 
     el.querySelector('#btn-awaken-partner')?.addEventListener('click', () => {
       const input = el.querySelector<HTMLInputElement>('#partnerNameInput');
-      const finalName = input?.value.trim() || 'Ren the Shadow';
+      const finalName = input?.value.trim() || t('modal.partner_awakening.default_name');
 
-      partyTeamSystem.unlockSecondCharacter(finalName, selectedClass);
-      modalManager.close('partner_awakening');
+      if (partnerUnlockSystem.completeAwakening(finalName, selectedClass)) {
+        modalManager.close('partner_awakening');
+      }
     });
 
     return el;

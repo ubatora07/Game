@@ -78,6 +78,13 @@ requireText('src/systems/AdventureEventDirector.ts', 'campaignCombatService.setP
 requireText('src/systems/AdventureEventDirector.ts', "modalId: 'adventure_event_modal'", 'adventure-live-scheduler');
 requireText('src/ui/modals/AdventureEventModal.ts', 'dismissible: false', 'adventure-decision-integrity');
 requireText('src/ui/components/ModalManager.ts', 'modalDef.dismissible !== false', 'modal-dismiss-contract');
+requireText('src/content/adventureEvents.ts', 'PARTNER_AWAKENING_EVENT_ID', 'partner-milestone-story');
+requireText('src/systems/AdventureEventDirector.ts', 'PARTNER_AWAKENING_TRIGGER_STAGE_ID', 'partner-milestone-story');
+requireText('src/systems/PartnerUnlockSystem.ts', 'public canAwakenPartner(): boolean', 'partner-progression-gate');
+requireText('src/systems/PartnerUnlockSystem.ts', 'if (!this.canAwakenPartner()) return false', 'partner-direct-bypass');
+requireText('src/ui/modals/PartnerAwakeningModal.ts', 'partnerUnlockSystem.canAwakenPartner()', 'partner-modal-gate');
+requireText('src/ui/modals/PartnerAwakeningModal.ts', 'partnerUnlockSystem.completeAwakening', 'partner-modal-gate');
+requireText('src/ui/screens/TeamHubScreen.ts', 'isVisible: () => partnerUnlockSystem.canAwakenPartner()', 'partner-progressive-disclosure');
 
 // Player-facing duplicate identities need to be intentional and explicit.
 const allowedDuplicateNames = new Map([
@@ -117,4 +124,4 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
-console.log('[content-coherence] PASS: progression gates are centralized, Settlement/Mercenary bypasses are blocked, Adventure scheduling is first-clear boss-only, and duplicate player identities are controlled.');
+console.log('[content-coherence] PASS: progression gates are centralized, Settlement/Mercenary bypasses are blocked, Adventure scheduling is first-clear boss-only, Partner Awakening is milestone-gated, and duplicate player identities are controlled.');

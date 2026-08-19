@@ -21,7 +21,7 @@ export class PartyTeamSystem {
     },
     char_2: {
       slotId: 'char_2',
-      name: 'Soul Partner',
+      name: 'Oathbound Companion',
       isUnlocked: false,
       classId: null,
       level: 1,
@@ -72,7 +72,7 @@ export class PartyTeamSystem {
     return true;
   }
 
-  public unlockSecondCharacter(name: string = 'Soul Partner', classId?: CharacterClassId): boolean {
+  public unlockSecondCharacter(name: string = 'Oathbound Companion', classId?: CharacterClassId): boolean {
     if (this.characters.char_2.isUnlocked) {
       return false; // Already unlocked
     }
@@ -324,7 +324,7 @@ export class PartyTeamSystem {
       },
       char_2: {
         slotId: 'char_2',
-        name: 'Soul Partner',
+        name: 'Oathbound Companion',
         isUnlocked: false,
         classId: null,
         level: 1,

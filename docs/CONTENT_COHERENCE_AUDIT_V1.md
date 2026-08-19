@@ -32,7 +32,7 @@ The automated audit scans **222 `defaultName`/`name` fields** in `src/content`; 
 ### Still open
 1. **Adventure scheduler disconnect:** the event pool, resolver, cooldowns and modal exist, but no live gameplay system currently calls weighted selection/opening. This is now tracked as `P13-29` and must be wired without inventing an unvalidated event cadence.
 2. **Hero recruitment timing:** Rank B catalog declaration conflicts with UX V3's earlier 5–15 minute summoning target.
-3. **Second-character timing:** Partner Awakening modal can be reached from Team and needs a validated discovery gate.
+3. **Second-character timing:** RESOLVED — first World 1 boss clear presents a dedicated oath story; accepting it persists the invitation and reveals the Partner setup in Team.
 4. **Mercenary surfacing:** Team can still open the Guild as a locked teaser before Tavern construction, but no hire/purchase can bypass progression. Browser/onboarding validation must decide whether the teaser itself is too early.
 5. **Pet discovery timing:** collection UI can be inspected before acquisition; whether that is teaser or overload needs browser/onboarding validation.
 6. Remaining Phase 13 category audits need qualitative review of roles, progression chains and unlock pacing; they are intentionally left unchecked until that work is performed.
@@ -47,3 +47,14 @@ The automated audit scans **222 `defaultName`/`name` fields** in `src/content`; 
 - Adventure presentation pauses campaign combat and the modal is non-dismissible by backdrop/Escape.
 - Choosing an outcome closes the Adventure modal first, releases its pause, then executes the outcome so hero/pet follow-up modals can open cleanly.
 - No arbitrary timer/probability cadence was invented; cadence expansion remains a future browser/onboarding balance decision.
+
+
+## Partner Awakening milestone contract — BATCH-17
+
+- Fresh saves cannot awaken the second Main Character directly.
+- The first clear of World 1 final stage (`1-10`) prioritizes the dedicated `evt_story_oathbound_partner` Adventure story instead of a random encounter.
+- Accepting the oath persists `story_partner_oath_invitation` in Karma major-choice history and opens the Partner class/name setup.
+- The Team Partner action is progressively disclosed only while the invitation is available and the Partner is still locked.
+- `PartnerUnlockSystem.completeAwakening` is the production completion path and fails closed without the invitation.
+- The invitation survives save/reload through the existing Karma V7 domain, so dismissing the setup cannot permanently lose the unlock.
+- Player-facing identity was moved from legacy “Soul Resonance / Soul Partner” language to an oathbound frontier companion without renaming stable internal slot IDs.

@@ -24,6 +24,7 @@ export interface AdventureEventOutcome {
   unlockHeroId?: string;
   unlockPetId?: string;
   unlockTitleId?: string;
+  offerPartnerAwakening?: boolean;
   materialId?: string;
   materialCount?: number;
   flagId?: string;

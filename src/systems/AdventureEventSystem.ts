@@ -20,6 +20,7 @@ import { CraftingMaterialId } from '../core/crafting/CraftingTypes';
 import { t } from '../services/i18n/I18nService';
 import { RANKS } from '../content/ranks';
 import { partyTeamSystem } from './PartyTeamSystem';
+import { partnerUnlockSystem } from './PartnerUnlockSystem';
 
 export class AdventureEventSystem {
   private static instance: AdventureEventSystem;
@@ -266,6 +267,11 @@ export class AdventureEventSystem {
 
     if (outcome.unlockTitleId) {
       titleSystem.unlockTitle(outcome.unlockTitleId);
+    }
+
+    if (outcome.offerPartnerAwakening) {
+      partnerUnlockSystem.grantAwakeningInvitation();
+      events.emit('modal:open', { modalId: 'partner_awakening' });
     }
 
     if (outcome.materialId && outcome.materialCount) {

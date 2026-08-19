@@ -1,3 +1,6 @@
+import { events } from '../../core/EventBus';
+import { PARTNER_AWAKENING_INVITATION_FLAG } from '../../content/partnerUnlock';
+import { partnerUnlockSystem } from '../../systems/PartnerUnlockSystem';
 import { DomainHubScreen, DomainHubAction } from './DomainHubScreen';
 
 const TEAM_ACTIONS: readonly DomainHubAction[] = [
@@ -9,6 +12,7 @@ const TEAM_ACTIONS: readonly DomainHubAction[] = [
     labelKey: 'domain.team.partner',
     descriptionKey: 'domain.team.partner_desc',
     accent: '#c084fc',
+    isVisible: () => partnerUnlockSystem.canAwakenPartner(),
   },
   {
     id: 'roster',
@@ -58,5 +62,10 @@ export class TeamHubScreen extends DomainHubScreen {
       subtitleKey: 'domain.team.subtitle',
       actions: TEAM_ACTIONS,
     });
+
+    events.on('karma:major_choice_recorded', ({ flagId }) => {
+      if (flagId === PARTNER_AWAKENING_INVITATION_FLAG) this.refresh();
+    });
+    events.on('party:second_character_unlocked', () => this.refresh());
   }
 }

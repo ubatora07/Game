@@ -524,3 +524,31 @@ Validation target:
 Roadmap effect:
 - `P13-29` live Adventure scheduler COMPLETE at conservative first-clear world-boss cadence.
 - Partner Awakening timing remains intentionally separate; it will not be stacked onto the same World 1 boss modal flow without explicit sequencing.
+
+
+## 2026-08-19 — Partner Awakening Milestone Story (BATCH-17)
+
+Status: **SOURCE COMPLETE / PROGRESSION BYPASS CLOSED / BROWSER QA PENDING**
+
+Completed:
+- converted the historical Phase 81 “memorable gameplay event / quest” requirement into a deterministic World 1 final-boss story milestone;
+- added the zero-weight dedicated oath Adventure event so it cannot leak into ordinary random selection;
+- made AdventureEventDirector prioritize that story on the first `1-10` clear when the second Main Character is still undiscovered;
+- added `PartnerUnlockSystem` with a Karma-backed persisted invitation and fail-closed production completion path;
+- removed fresh-save Partner disclosure from Team and reveal it only after the story invitation;
+- guarded PartnerAwakeningModal itself so direct runtime modal calls cannot bypass progression;
+- renamed new/default player-facing partner identity from legacy Soul Resonance language to an oathbound frontier companion;
+- added EN/RU story/onboarding copy and focused progression regressions.
+
+Validation target:
+- EN/RU i18n parity and terminology regression gate;
+- source TypeScript and focused Partner/Adventure test typecheck;
+- content coherence/source safety/governance/art/UI source gates;
+- `git diff --check`;
+- browser behavior remains pending until a Linux-capable fresh Vite build can run.
+
+Roadmap effect:
+- `P13-02` second-character identity audit COMPLETE;
+- `P13-32` milestone story gate COMPLETE;
+- `P13-33` direct awakening bypass + persisted invitation COMPLETE;
+- `P13-27` first-hour overload reduction remains OPEN because Hero roster timing still conflicts across design/runtime sources.

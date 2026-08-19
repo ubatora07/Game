@@ -499,7 +499,7 @@
 **Priority:** P2
 
 - [ ] `P13-01` Audit main protagonist identity
-- [ ] `P13-02` Audit second character identity
+- [x] `P13-02` Audit second character identity
 - [ ] `P13-03` Audit gacha hero roster
 - [ ] `P13-04` Audit four base classes
 - [ ] `P13-05` Audit skill trees
@@ -529,6 +529,8 @@
 - [x] `P13-29` Wire AdventureEvent scheduler into the live gameplay loop
 - [x] `P13-30` Enforce AdventureEvent minRank eligibility
 - [x] `P13-31` Enforce AdventureEvent choice requirements in UI and execution
+- [x] `P13-32` Gate Partner Awakening behind a memorable World 1 milestone story
+- [x] `P13-33` Prevent fresh-save/direct Partner Awakening bypass and persist the invitation
 
 ## PHASE 14 — Audio & Feel
 

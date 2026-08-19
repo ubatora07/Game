@@ -66,7 +66,7 @@ function sanitizePartyTeam(raw: unknown): DualTeamSaveState | undefined {
   if (!isRecord(raw)) return undefined;
   const characters = isRecord(raw.characters) ? raw.characters : {};
   const char1 = sanitizeCharacter(characters.char_1, 'char_1', 'Ascendant Hero', true);
-  const char2 = sanitizeCharacter(characters.char_2, 'char_2', 'Soul Partner', false);
+  const char2 = sanitizeCharacter(characters.char_2, 'char_2', 'Oathbound Companion', false);
   char1.isUnlocked = true;
   const requestedFocus = raw.activeFocusCharId === 'char_2' ? 'char_2' : 'char_1';
   return {

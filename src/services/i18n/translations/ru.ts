@@ -75,7 +75,7 @@ export const ru = {
   'domain.team.title': 'Команда',
   'domain.team.subtitle': 'Управляйте напарником, героями, питомцем и нанятой поддержкой.',
   'domain.team.partner': 'Напарник',
-  'domain.team.partner_desc': 'Откройте и настройте второй слот основного персонажа.',
+  'domain.team.partner_desc': 'Назовите и развивайте соратника, принявшего вашу клятву.',
   'domain.team.roster': 'Состав героев',
   'domain.team.roster_desc': 'Просматривайте нанятых героев, редкость и развитие звёзд.',
   'domain.team.recruit': 'Найм героев',
@@ -893,11 +893,20 @@ export const ru = {
   'event.category.choice': 'ВЫБОР',
 
   // Partner Awakening Modal
-  'modal.partner_awakening.title': 'Резонанс Душ: Пробуждение Напарника',
-  'modal.partner_awakening.desc': 'Пройдя древнее испытание, резонанс вашей души призвал верного соратника! Выберите боевую специализацию напарника, чтобы завершить ваш дуэт.',
-  'modal.partner_awakening.name_label': 'Имя Напарника',
+  'modal.partner_awakening.title': 'Соратник по Клятве',
+  'modal.partner_awakening.desc': 'Испытание у Разрушенных Врат открыло бойца, готового встать рядом с вами. Дайте соратнику имя и выберите его боевой класс.',
+  'modal.partner_awakening.name_label': 'Имя Соратника',
   'modal.partner_awakening.class_label': 'Боевой Класс',
-  'modal.partner_awakening.confirm_btn': 'Связать Души и Пробудить',
+  'modal.partner_awakening.confirm_btn': 'Скрепить Клятву',
+  'modal.partner_awakening.default_name': 'Роуэн',
+  'modal.partner_awakening.locked_title': 'Соратник Ещё Не Встречен',
+  'modal.partner_awakening.locked_desc': 'Продолжайте кампанию. Решительная победа может привести того, кто захочет присоединиться к вашему пути.',
+
+  // World 1 partner milestone story
+  'event.partner_oath.title': 'Клятва у Разрушенных Врат',
+  'event.partner_oath.desc': 'За поверженным стражем из разбитых врат выходит ещё один выживший. Он сражался с той же тьмой с другой стороны и предлагает клятву: встретить опасности пограничья вместе.',
+  'event.partner_oath.opt_answer': 'Принять Клятву',
+  'event.partner_oath.res_answer': 'Союз заключён. Выберите имя и боевой класс своего соратника.',
 
   // Rhythm Master Easter Egg
   'easter_egg.rhythm.badge': 'СЕКРЕТНАЯ ПАСХАЛКА',
