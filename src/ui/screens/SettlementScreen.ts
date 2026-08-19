@@ -5,6 +5,7 @@ import { SettlementVisualRenderer } from '../art/SettlementVisualRenderer';
 import { modalManager } from '../components/ModalManager';
 import { events } from '../../core/EventBus';
 import { SettlementBuildingId, SettlementNPCId } from '../../core/settlement/SettlementTypes';
+import { t } from '../../services/i18n/I18nService';
 
 export class SettlementScreen {
   private el: HTMLElement;
@@ -27,6 +28,7 @@ export class SettlementScreen {
     events.on('settlement:unlocked' as any, () => this.render());
     events.on('settlement:harvested' as any, () => this.render());
     events.on('settlement:npc_interacted' as any, () => this.render());
+    document.addEventListener('i18n:change', () => this.render());
   }
 
   public render(): void {
@@ -97,6 +99,33 @@ export class SettlementScreen {
           </button>
         </div>
       </div>
+
+      <!-- UX IA V3: Settlement domain services -->
+      <section class="settlement-services-panel" aria-label="${t('domain.settlement.actions')}">
+        <div class="settlement-services-heading">${t('domain.settlement.actions')}</div>
+        <div class="settlement-services-grid">
+          <button type="button" class="settlement-service-action" data-modal-id="forge_crafting_modal">
+            <span class="settlement-service-icon" aria-hidden="true">◆</span>
+            <span><strong>${t('nav.forge')}</strong><small>${t('domain.settlement.forge_desc')}</small></span>
+          </button>
+          <button type="button" class="settlement-service-action" data-modal-id="market_modal">
+            <span class="settlement-service-icon" aria-hidden="true">◇</span>
+            <span><strong>${t('nav.market')}</strong><small>${t('domain.settlement.market_desc')}</small></span>
+          </button>
+          <button type="button" class="settlement-service-action" data-modal-id="mercenary_guild_modal">
+            <span class="settlement-service-icon" aria-hidden="true">⚑</span>
+            <span><strong>${t('nav.mercenaries')}</strong><small>${t('domain.settlement.mercenaries_desc')}</small></span>
+          </button>
+          <button type="button" class="settlement-service-action" data-modal-id="settlement_raid_modal">
+            <span class="settlement-service-icon" aria-hidden="true">⚔</span>
+            <span><strong>${t('nav.raid_defense')}</strong><small>${t('domain.settlement.raids_desc')}</small></span>
+          </button>
+          <button type="button" class="settlement-service-action" data-modal-id="settlement_story_modal">
+            <span class="settlement-service-icon" aria-hidden="true">▤</span>
+            <span><strong>${t('nav.chronicles')}</strong><small>${t('domain.settlement.chronicles_desc')}</small></span>
+          </button>
+        </div>
+      </section>
 
       <!-- Panoramic Visual Canvas with Interactive Building Plots -->
       <div class="settlement-canvas-wrapper" style="position:relative; width:100%; height:260px; min-height:240px; border:2px solid #78350f; border-radius:6px; overflow:hidden; box-shadow:0 0 20px rgba(0,0,0,0.8); background:#0c0a09;">
@@ -171,6 +200,16 @@ export class SettlementScreen {
         </div>
       </div>
     `;
+
+    // Bind settlement-domain service shortcuts.
+    this.el.querySelectorAll<HTMLElement>('.settlement-service-action').forEach((button) => {
+      button.addEventListener('click', () => {
+        const modalId = button.dataset.modalId;
+        if (modalId) {
+          events.emit('modal:open', { modalId });
+        }
+      });
+    });
 
     // Bind Plot clicks
     this.el.querySelectorAll('.settlement-plot-node, .building-card-tile').forEach(plot => {

@@ -38,11 +38,11 @@ test.describe('Phase 27 — Full Interaction QA', () => {
     expect(await parseFormatted(await textOf(page, '#headerGold'))).toBe(0);
     expect(await parseFormatted(await textOf(page, '#headerCrystals'))).toBe(150);
 
-    // Phase 49: 5-tab bottom navigation (Hero, Sect, Battle, Heroes, More)
-    for (const subTab of ['tower', 'expeditions', 'summon', 'souls', 'relics', 'quests', 'dailies']) {
-      expect(await page.$(`#navBtn_${subTab}`), `subTab ${subTab} not in bottom bar`).toBeNull();
+    // UX IA V3: exactly six primary domains; deep routes do not leak into the bottom bar.
+    for (const subTab of ['home', 'sect', 'ascension', 'tower', 'expeditions', 'summon', 'heroes', 'souls', 'relics', 'quests', 'dailies']) {
+      expect(await page.$(`#navBtn_${subTab}`), `deep route ${subTab} not in bottom bar`).toBeNull();
     }
-    for (const primaryTab of ['home', 'ascension', 'battle', 'heroes', 'more']) {
+    for (const primaryTab of ['hero', 'team', 'battle', 'settlement', 'world', 'more']) {
       expect(await page.$(`#navBtn_${primaryTab}`), `primary tab ${primaryTab}`).not.toBeNull();
     }
 
@@ -355,7 +355,9 @@ test.describe('Phase 27 — Full Interaction QA', () => {
     await page.waitForSelector('#modalLayer', { state: 'hidden' });
 
     // hero appears in Heroes screen
-    await page.click('#navBtn_heroes');
+    await page.click('#navBtn_team');
+    await page.waitForSelector('#teamDomainHub');
+    await page.click('[data-domain-action="roster"]');
     await page.waitForSelector('#heroesGrid .hero-card');
     expect(await textOf(page, '#heroesHeaderTitle')).toMatch(/\(1 \/ /);
     expect(await page.$('#heroesGrid .hero-card .star-up-btn')).not.toBeNull();
@@ -369,6 +371,7 @@ test.describe('Phase 27 — Full Interaction QA', () => {
 
     // own every hero -> every pull is a duplicate -> deterministic essence gain
     const ownedHeroes = await page.evaluate(async () => {
+      // @ts-expect-error Vite dev-server absolute module path used intentionally in browser context.
       const { HEROES } = await import('/src/content/heroes.ts');
       const heroes: Record<string, { stars: number; duplicates: number }> = {};
       for (const h of HEROES) heroes[h.id] = { stars: 1, duplicates: 0 };
@@ -389,7 +392,9 @@ test.describe('Phase 27 — Full Interaction QA', () => {
     await page.click('#closeSummonResultBtn');
 
     // essence increased from duplicates
-    await page.click('#navBtn_heroes');
+    await page.click('#navBtn_team');
+    await page.waitForSelector('#teamDomainHub');
+    await page.click('[data-domain-action="roster"]');
     await page.waitForSelector('#heroesEssenceDisplay');
     const essence = parseFormatted(await textOf(page, '#heroesEssenceDisplay'));
     expect(essence).toBeGreaterThan(500);
@@ -510,16 +515,16 @@ test.describe('Phase 27 — Full Interaction QA', () => {
     // switch to RU
     await page.selectOption('#setLang', 'ru');
     await page.waitForSelector('#modalLayer', { state: 'hidden' });
-    const navLabelRu = await textOf(page, '#navBtn_home .nav-label');
-    expect(navLabelRu).toBe('Секта');
+    const navLabelRu = await textOf(page, '#navBtn_team .nav-label');
+    expect(navLabelRu).toBe('Команда');
 
     // switch to EN
     await page.click('#headerSettingsBtn');
     await page.waitForSelector('#setLang');
     await page.selectOption('#setLang', 'en');
     await page.waitForSelector('#modalLayer', { state: 'hidden' });
-    const navLabelEn = await textOf(page, '#navBtn_home .nav-label');
-    expect(navLabelEn).toBe('Sect');
+    const navLabelEn = await textOf(page, '#navBtn_team .nav-label');
+    expect(navLabelEn).toBe('Team');
 
     // close via button
     await page.click('#headerSettingsBtn');

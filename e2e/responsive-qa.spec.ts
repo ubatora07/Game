@@ -149,12 +149,13 @@ test.describe('Phase 59 — Responsive QA v2', () => {
       expect(headerPowerText).not.toBe('');
       await checkNoHorizontalOverflow(page);
 
-      // 4. Test Navigation Across 5 Primary Bottom Tabs
+      // 4. Test Navigation Across UX IA V3 Primary Bottom Tabs
       const primaryTabs = [
-        { id: '#navBtn_home', screenSel: '#trainActionBtn' },
-        { id: '#navBtn_ascension', screenSel: '#ascensionCardsList' },
+        { id: '#navBtn_hero', screenSel: '#heroDomainHub' },
+        { id: '#navBtn_team', screenSel: '#teamDomainHub' },
         { id: '#navBtn_battle', screenSel: '#trainActionBtn' },
-        { id: '#navBtn_heroes', screenSel: '#heroesGrid' },
+        { id: '#navBtn_settlement', screenSel: '.settlement-screen-container' },
+        { id: '#navBtn_world', screenSel: '#worldDomainHub' },
       ];
 
       for (const tab of primaryTabs) {
@@ -162,6 +163,12 @@ test.describe('Phase 59 — Responsive QA v2', () => {
         await page.waitForSelector(tab.screenSel);
         await checkNoHorizontalOverflow(page);
       }
+
+
+      await page.click('#navBtn_more');
+      await page.waitForSelector('#closeMoreMenuBtn');
+      await checkModalFitsViewport(page);
+      await page.click('#closeMoreMenuBtn');
 
       // 5. Test Secondary Screens via direct screen routing
       const secondaryScreens = [

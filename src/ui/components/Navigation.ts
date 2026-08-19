@@ -6,34 +6,30 @@ import { sound } from '../../services/audio/SoundService';
 import { AscensionSystem } from '../../systems/AscensionSystem';
 import { QUESTS } from '../../content/quests';
 import { QuestSystem } from '../../systems/QuestSystem';
+import {
+  PRIMARY_DOMAINS,
+  PrimaryDomainDefinition,
+  getPrimaryDomainForScreen,
+} from '../navigation/PrimaryDomains';
 
-export interface NavTab {
-  id: string;
-  icon: string;
-  labelKey: string;
-  minRankIndex: number;
-}
+export type NavTab = PrimaryDomainDefinition;
 
-export const NAV_TABS: readonly NavTab[] = [
-  { id: 'ascension', icon: '🥋', labelKey: 'nav.hero', minRankIndex: 0 },
-  { id: 'home', icon: '🏯', labelKey: 'nav.sect', minRankIndex: 0 },
-  { id: 'battle', icon: '⚔️', labelKey: 'nav.battle', minRankIndex: 0 },
-  { id: 'heroes', icon: '👥', labelKey: 'nav.heroes', minRankIndex: 0 },
-  { id: 'more', icon: '✨', labelKey: 'nav.more', minRankIndex: 0 }
-];
+/** @deprecated Prefer PRIMARY_DOMAINS. Kept for compatibility with existing imports/tests. */
+export const NAV_TABS = PRIMARY_DOMAINS;
 
 export class Navigation {
   private el: HTMLElement;
-  private currentScreen: string = 'home';
+  private currentScreen: string = 'battle';
   private badgeCheckInterval: number;
 
   constructor() {
     this.el = document.createElement('nav');
     this.el.className = 'app-bottom-nav';
+    this.el.setAttribute('aria-label', t('nav.primary'));
     this.render();
     this.bind();
 
-    // Periodically check for notification badges
+    // Periodically check for notification badges.
     this.badgeCheckInterval = window.setInterval(() => this.updateBadges(), 1000);
   }
 
@@ -62,6 +58,7 @@ export class Navigation {
 
     document.addEventListener('i18n:change', () => {
       this.lastRankIndex = -1;
+      this.el.setAttribute('aria-label', t('nav.primary'));
       this.render();
     });
   }
@@ -71,27 +68,28 @@ export class Navigation {
     this.lastRankIndex = s.rankIndex;
     this.el.innerHTML = '';
 
-    NAV_TABS.forEach((tab) => {
+    PRIMARY_DOMAINS.forEach((tab) => {
       const isUnlocked = s.rankIndex >= tab.minRankIndex;
       if (!isUnlocked) return;
 
       const isBattle = tab.id === 'battle';
       const btn = document.createElement('button');
+      btn.type = 'button';
       btn.className = `nav-tab-btn ${isBattle ? 'nav-tab-battle' : ''}`;
       btn.id = `navBtn_${tab.id}`;
       btn.style.position = 'relative';
+      btn.setAttribute('aria-label', t(tab.labelKey));
 
       if (isBattle) {
-        btn.style.background = 'linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(245, 158, 11, 0.35))';
-        btn.style.border = '1px solid rgba(245, 158, 11, 0.5)';
-        btn.style.borderRadius = 'var(--radius-md)';
-        btn.style.boxShadow = '0 0 12px rgba(245, 158, 11, 0.3)';
+        btn.style.background = 'linear-gradient(135deg, rgba(120, 53, 15, 0.72), rgba(127, 29, 29, 0.72))';
+        btn.style.border = '1px solid rgba(245, 158, 11, 0.55)';
+        btn.style.boxShadow = '0 0 12px rgba(245, 158, 11, 0.24)';
       }
 
       btn.innerHTML = `
-        <span class="nav-icon" style="${isBattle ? 'font-size: 22px; filter: drop-shadow(0 0 6px #f59e0b);' : ''}">${tab.icon}</span>
-        <span class="nav-label" style="${isBattle ? 'color: #fde047; font-weight: 900;' : ''}">${t(tab.labelKey)}</span>
-        <div class="nav-badge" style="display:none; position:absolute; top:3px; right:10px; width:10px; height:10px; background:var(--color-crimson, #ef4444); border-radius:50%; box-shadow:0 0 8px #ef4444;"></div>
+        <span class="nav-icon" aria-hidden="true">${tab.icon}</span>
+        <span class="nav-label">${t(tab.labelKey)}</span>
+        <span class="nav-badge" aria-hidden="true"></span>
       `;
 
       btn.addEventListener('click', (e) => {
@@ -112,65 +110,52 @@ export class Navigation {
     this.updateBadges();
   }
 
+  private setBadge(tabId: string, visible: boolean): void {
+    const button = this.el.querySelector(`#navBtn_${tabId}`);
+    const badge = button?.querySelector('.nav-badge') as HTMLElement | null;
+    if (badge) {
+      badge.style.display = visible ? 'block' : 'none';
+    }
+  }
+
   private updateBadges(): void {
     const state = store.get();
     const now = Date.now();
 
-    // 1. Hero / Ascension badge
-    const heroBtn = this.el.querySelector('#navBtn_ascension');
-    if (heroBtn) {
-      const badge = heroBtn.querySelector('.nav-badge') as HTMLElement;
-      if (badge) {
-        const canAscend = AscensionSystem.canAscend();
-        badge.style.display = canAscend ? 'block' : 'none';
-      }
-    }
+    // Hero: advancement is available.
+    this.setBadge('hero', AscensionSystem.canAscend());
 
-    // 2. Heroes / Summon badge (free summon ready)
-    const heroesBtn = this.el.querySelector('#navBtn_heroes');
-    if (heroesBtn) {
-      const badge = heroesBtn.querySelector('.nav-badge') as HTMLElement;
-      if (badge) {
-        const isAdSummonReady = (now - (state.lastFreeSummonAdAt || 0)) >= (5 * 60 * 1000);
-        badge.style.display = isAdSummonReady ? 'block' : 'none';
-      }
-    }
+    // Team: free recruitment is available.
+    const isAdSummonReady = (now - (state.lastFreeSummonAdAt || 0)) >= (5 * 60 * 1000);
+    this.setBadge('team', isAdSummonReady);
 
-    // 3. More Menu badge (quests ready to claim, daily unclaimed, expeditions completed)
-    const moreBtn = this.el.querySelector('#navBtn_more');
-    if (moreBtn) {
-      const badge = moreBtn.querySelector('.nav-badge') as HTMLElement;
-      if (badge) {
-        const hasClaimableQuest = QUESTS.some(q => QuestSystem.isQuestReadyToClaim(q.id));
-        const hasDailyClaim = !state.loginRewardClaimed || state.dailyQuests.some(q => {
-          if (q.claimed) return false;
-          const template = getDailyQuestTemplate(q.templateId);
-          return template && q.progress >= template.target;
-        });
-        const hasExpeditionDone = state.expeditions.some(e => now >= e.startedAt + e.durationMs);
+    // World: claimable quest or completed expedition.
+    const hasClaimableQuest = QUESTS.some((quest) => QuestSystem.isQuestReadyToClaim(quest.id));
+    const hasExpeditionDone = state.expeditions.some((expedition) => now >= expedition.startedAt + expedition.durationMs);
+    this.setBadge('world', hasClaimableQuest || hasExpeditionDone);
 
-        badge.style.display = (hasClaimableQuest || hasDailyClaim || hasExpeditionDone) ? 'block' : 'none';
-      }
-    }
+    // More: daily/login meta reward is waiting.
+    const hasDailyClaim = !state.loginRewardClaimed || state.dailyQuests.some((quest) => {
+      if (quest.claimed) return false;
+      const template = getDailyQuestTemplate(quest.templateId);
+      return Boolean(template && quest.progress >= template.target);
+    });
+    this.setBadge('more', hasDailyClaim);
   }
 
   private updateActiveState(): void {
     this.el.querySelectorAll('.nav-tab-btn').forEach((btn) => {
       btn.classList.remove('active');
+      btn.removeAttribute('aria-current');
     });
 
-    let activeTabId = this.currentScreen;
-    if (this.currentScreen === 'home' || this.currentScreen === 'battle') {
-      activeTabId = 'battle';
-    } else if (this.currentScreen === 'summon') {
-      activeTabId = 'heroes';
-    } else if (['quests', 'tower', 'expeditions', 'relics', 'souls', 'dailies'].includes(this.currentScreen)) {
-      activeTabId = 'more';
-    }
+    const activeTabId = getPrimaryDomainForScreen(this.currentScreen);
+    if (!activeTabId) return;
 
     const activeBtn = this.el.querySelector(`#navBtn_${activeTabId}`);
     if (activeBtn) {
       activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-current', 'page');
     }
   }
 

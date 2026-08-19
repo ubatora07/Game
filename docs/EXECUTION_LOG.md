@@ -79,6 +79,26 @@ Status: **APPLIED / TYPECHECK PASS / RUNTIME CONTRACT PASS**
 - Invalid class IDs, unknown pets, bad numeric values, fake world flags and malformed cooldowns are rejected/clamped.
 - Added corrupted-V7 regression coverage.
 
+
+### Batch 08 — UX Information Architecture V3
+
+Status: **APPLIED / SOURCE TYPECHECK PASS / ROUTE HARNESS PASS / BROWSER QA PENDING**
+
+- Primary navigation replaced with the authoritative six-domain order: Hero / Team / Battle / Settlement / World / More.
+- Added `PrimaryDomains.ts` as the single source of truth for primary-domain order and deep-route ownership.
+- Added dedicated Hero, Team and World domain hub screens instead of overloading Ascension/Heroes as primary tabs.
+- Battle is now the default startup route; legacy `home` remains a backward-compatible Battle alias only.
+- Legacy Sect management is reachable through an explicit `sect` route under More, eliminating the old Sect -> home -> Battle mismatch.
+- Settlement now surfaces Forge, Market, Mercenaries, Raid Defense and Chronicles directly inside the Settlement domain.
+- More reduced from 18 mixed destinations to 7 legacy/meta destinations.
+- Added centralized `ScreenRouteRegistry` plus direct-route smoke coverage.
+- Deep routes now map back to the correct active primary domain (Ascension -> Hero, Heroes/Summon -> Team, Tower/Expeditions/Quests -> World, legacy/meta -> More).
+- Navigation is six equal-width touch targets with the existing 44px minimum target token; no horizontal scrolling is required by the source layout contract.
+- Added accessible primary-nav label/current-page state and keyboard-native button actions.
+- Added `screen_change` analytics telemetry.
+- Updated unit and Playwright selectors from the stale five-tab contract.
+- `P4-01` through `P4-26` are source-complete; browser visual Gate C remains intentionally open until a fresh Linux-compatible build can be produced.
+
 ## Validation results
 
 - `git diff --check`: **PASS**.
@@ -92,6 +112,7 @@ Status: **APPLIED / TYPECHECK PASS / RUNTIME CONTRACT PASS**
   5. Title milestone thresholds
   6. AdventureEvent persistence
   7. Rebirth transaction
+- UX IA V3 route harness: **PASS** (six-domain order, deep-route ownership, screen registry aliases).
 - Test inventory: 85 Vitest suites.
 - E2E inventory: 3 Playwright specs.
 
@@ -106,10 +127,12 @@ and does not contain the Linux optional native package `@rollup/rollup-linux-x64
 
 ## Next execution gate
 
-Before release or moving into broad UI/identity work:
+Navigation IA V3 is source-implemented. Before release, it still requires a fresh browser build on Linux-compatible dependencies to close Gate C at 390x844 / 1366x768 / 1920x1080.
 
-1. Install dependencies for the actual build OS (or run `npm ci` on a normal connected machine).
-2. Run `npm test`.
-3. Run `npm run build` — this now includes the mandatory release-safety audit.
-4. Run the three Playwright suites.
-5. Only after those gates pass, replace stale `dist` and continue Navigation IA V3 / product-identity consolidation.
+Implementation can continue independently into **Phase 5 — Product Identity V2**, while preserving these rules:
+
+1. Player-facing terminology changes must not rename save keys or stable internal IDs without migration coverage.
+2. Western/dark-fantasy vocabulary should be centralized before mass string replacement.
+3. RU and EN must migrate together.
+4. Historical docs stay historical; current source-of-truth docs receive explicit supersession status.
+5. Fresh build/test/Playwright gates remain open until Linux Rollup dependencies are available.

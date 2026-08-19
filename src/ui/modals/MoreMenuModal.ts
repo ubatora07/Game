@@ -10,24 +10,14 @@ export const MoreMenuModal: ModalInstance = {
     el.style.textAlign = 'center';
 
     const menuItems = [
-      { id: 'settlement', icon: '🏰', labelKey: 'nav.settlement', color: '#f59e0b', type: 'screen' },
-      { id: 'equipment_inventory_modal', icon: '⚔️', labelKey: 'nav.armory', color: '#38bdf8', type: 'modal' },
-      { id: 'forge_crafting_modal', icon: '🔨', labelKey: 'nav.forge', color: '#ef4444', type: 'modal' },
-      { id: 'market_modal', icon: '🏮', labelKey: 'nav.market', color: '#f59e0b', type: 'modal' },
-      { id: 'mercenary_guild_modal', icon: '🛡️', labelKey: 'nav.mercenaries', color: '#fb923c', type: 'modal' },
-      { id: 'title_selection_modal', icon: '👑', labelKey: 'nav.titles', color: '#fde047', type: 'modal' },
-      { id: 'pet_modal', icon: '🐾', labelKey: 'nav.pets', color: '#10b981', type: 'modal' },
-      { id: 'settlement_story_modal', icon: '📜', labelKey: 'nav.chronicles', color: '#f59e0b', type: 'modal' },
-      { id: 'settlement_raid_modal', icon: '⚔️', labelKey: 'nav.raid_defense', color: '#ef4444', type: 'modal' },
-      { id: 'legacy_codex_modal', icon: '🌌', labelKey: 'nav.legacy_codex', color: '#a855f7', type: 'modal' },
-      { id: 'quests', icon: '📜', labelKey: 'nav.quests', color: '#f59e0b', type: 'screen' },
-      { id: 'tower', icon: '🏯', labelKey: 'nav.tower', color: '#38bdf8', type: 'screen' },
-      { id: 'expeditions', icon: '🗺️', labelKey: 'nav.expeditions', color: '#10b981', type: 'screen' },
-      { id: 'relics', icon: '🏺', labelKey: 'nav.relics', color: '#a855f7', type: 'screen' },
-      { id: 'souls', icon: '🌀', labelKey: 'nav.souls', color: '#ec4899', type: 'screen' },
-      { id: 'dailies', icon: '📅', labelKey: 'nav.dailies', color: '#eab308', type: 'screen' },
-      { id: 'stats', icon: '📊', labelKey: 'btn.stats', color: '#06b6d4', type: 'modal' },
-      { id: 'settings', icon: '⚙️', labelKey: 'nav.settings', color: '#94a3b8', type: 'modal' }
+      // UX IA V3: More is reserved for legacy/meta systems, not primary-domain overflow.
+      { id: 'sect', icon: '◆', labelKey: 'nav.sect', color: '#f59e0b', type: 'screen' },
+      { id: 'souls', icon: '◎', labelKey: 'nav.souls', color: '#ec4899', type: 'screen' },
+      { id: 'relics', icon: '◇', labelKey: 'nav.relics', color: '#a855f7', type: 'screen' },
+      { id: 'dailies', icon: '▣', labelKey: 'nav.dailies', color: '#eab308', type: 'screen' },
+      { id: 'legacy_codex_modal', icon: '✦', labelKey: 'nav.legacy_codex', color: '#a855f7', type: 'modal' },
+      { id: 'stats', icon: '▥', labelKey: 'btn.stats', color: '#06b6d4', type: 'modal' },
+      { id: 'settings', icon: '⚙', labelKey: 'nav.settings', color: '#94a3b8', type: 'modal' }
     ];
 
     const gridHtml = menuItems.map(item => `

@@ -74,6 +74,11 @@ import { RelicsScreen } from './ui/screens/RelicsScreen';
 import { ExpeditionsScreen } from './ui/screens/ExpeditionsScreen';
 import { DailyScreen } from './ui/screens/DailyScreen';
 import { SettlementScreen } from './ui/screens/SettlementScreen';
+import { HomeScreen } from './ui/screens/HomeScreen';
+import { HeroHubScreen } from './ui/screens/HeroHubScreen';
+import { TeamHubScreen } from './ui/screens/TeamHubScreen';
+import { WorldHubScreen } from './ui/screens/WorldHubScreen';
+import { createScreenRouteRegistry } from './ui/navigation/ScreenRouteRegistry';
 
 class GameApp {
   private screens: Map<string, HTMLElement> = new Map();
@@ -238,26 +243,35 @@ class GameApp {
     const expeditionsScreen = new ExpeditionsScreen();
     const dailyScreen = new DailyScreen();
     const settlementScreen = new SettlementScreen();
+    const sectScreen = new HomeScreen(this.particleCanvas);
+    const heroHubScreen = new HeroHubScreen();
+    const teamHubScreen = new TeamHubScreen();
+    const worldHubScreen = new WorldHubScreen();
 
-    this.screens.set('home', battleScreen.getElement());
-    this.screens.set('battle', battleScreen.getElement());
-    this.screens.set('ascension', ascensionScreen.getElement());
-    this.screens.set('tower', towerScreen.getElement());
-    this.screens.set('heroes', heroesScreen.getElement());
-    this.screens.set('summon', summonScreen.getElement());
-    this.screens.set('souls', soulTreeScreen.getElement());
-    this.screens.set('quests', questsScreen.getElement());
-    this.screens.set('relics', relicsScreen.getElement());
-    this.screens.set('expeditions', expeditionsScreen.getElement());
-    this.screens.set('dailies', dailyScreen.getElement());
-    this.screens.set('settlement', settlementScreen.getElement());
+    this.screens = createScreenRouteRegistry({
+      hero: heroHubScreen.getElement(),
+      team: teamHubScreen.getElement(),
+      battle: battleScreen.getElement(),
+      settlement: settlementScreen.getElement(),
+      world: worldHubScreen.getElement(),
+      sect: sectScreen.getElement(),
+      ascension: ascensionScreen.getElement(),
+      tower: towerScreen.getElement(),
+      heroes: heroesScreen.getElement(),
+      summon: summonScreen.getElement(),
+      souls: soulTreeScreen.getElement(),
+      quests: questsScreen.getElement(),
+      relics: relicsScreen.getElement(),
+      expeditions: expeditionsScreen.getElement(),
+      dailies: dailyScreen.getElement(),
+    });
 
     // Screen change event handler
     events.on('screen:change', ({ screenId }) => {
       this.switchScreen(screenId);
     });
 
-    this.switchScreen('home');
+    this.switchScreen('battle');
 
     // 5. Calculate Offline Progress on launch
     const offlineGains = OfflineSystem.calculateOfflineGains(store.get());

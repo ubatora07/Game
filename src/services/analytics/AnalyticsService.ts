@@ -135,6 +135,11 @@ export class AnalyticsService {
       this.trackEvent('game_start', { saveVersion: e.saveVersion });
     });
 
+
+    events.on('screen:change', (e) => {
+      this.trackEvent('screen_change', { screenId: e.screenId });
+    });
+
     events.on('building:buy', (e) => {
       this.trackEvent('building_buy', { buildingId: e.buildingId, count: e.count });
     });

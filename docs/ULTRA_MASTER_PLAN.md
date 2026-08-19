@@ -213,32 +213,32 @@
 
 **Priority:** P1
 
-- [ ] `P4-01` Replace legacy 5-domain navigation contract
-- [ ] `P4-02` Implement HERO domain route
-- [ ] `P4-03` Implement TEAM domain route
-- [ ] `P4-04` Keep BATTLE as default center route
-- [ ] `P4-05` Implement SETTLEMENT domain route
-- [ ] `P4-06` Implement WORLD domain route
-- [ ] `P4-07` Keep MORE for meta/secondary destinations only
-- [ ] `P4-08` Remove Sect -> home -> Battle routing mismatch
-- [ ] `P4-09` Remove Hero -> Ascension semantic mismatch
-- [ ] `P4-10` Define desktop navigation composition
-- [ ] `P4-11` Define mobile navigation composition
-- [ ] `P4-12` Define tablet navigation composition
-- [ ] `P4-13` Move protagonist/class/equipment into Hero domain
-- [ ] `P4-14` Move partner/heroes/pets/mercenaries into Team domain
-- [ ] `P4-15` Move forge/market/tavern/raids/story into Settlement domain
-- [ ] `P4-16` Move campaign map/tower/expeditions into World domain
-- [ ] `P4-17` Move settings/stats/dailies/legacy/meta into More
-- [ ] `P4-18` Reduce More menu destination count
-- [ ] `P4-19` Update screen registry
-- [ ] `P4-20` Update navigation active-state logic
-- [ ] `P4-21` Update keyboard/focus behavior
-- [ ] `P4-22` Update route analytics
-- [ ] `P4-23` Update navigation unit tests
-- [ ] `P4-24` Update responsive E2E selectors
-- [ ] `P4-25` Add direct-route smoke tests for six domains
-- [ ] `P4-26` Add browser back/reload route expectations if routing evolves
+- [x] `P4-01` Replace legacy 5-domain navigation contract
+- [x] `P4-02` Implement HERO domain route
+- [x] `P4-03` Implement TEAM domain route
+- [x] `P4-04` Keep BATTLE as default center route
+- [x] `P4-05` Implement SETTLEMENT domain route
+- [x] `P4-06` Implement WORLD domain route
+- [x] `P4-07` Keep MORE for meta/secondary destinations only
+- [x] `P4-08` Remove Sect -> home -> Battle routing mismatch
+- [x] `P4-09` Remove Hero -> Ascension semantic mismatch
+- [x] `P4-10` Define desktop navigation composition
+- [x] `P4-11` Define mobile navigation composition
+- [x] `P4-12` Define tablet navigation composition
+- [x] `P4-13` Move protagonist/class/equipment into Hero domain
+- [x] `P4-14` Move partner/heroes/pets/mercenaries into Team domain
+- [x] `P4-15` Move forge/market/tavern/raids/story into Settlement domain
+- [x] `P4-16` Move campaign map/tower/expeditions into World domain
+- [x] `P4-17` Move settings/stats/dailies/legacy/meta into More
+- [x] `P4-18` Reduce More menu destination count
+- [x] `P4-19` Update screen registry
+- [x] `P4-20` Update navigation active-state logic
+- [x] `P4-21` Update keyboard/focus behavior
+- [x] `P4-22` Update route analytics
+- [x] `P4-23` Update navigation unit tests
+- [x] `P4-24` Update responsive E2E selectors
+- [x] `P4-25` Add direct-route smoke tests for six domains
+- [x] `P4-26` Add browser back/reload route expectations if routing evolves — N/A for this batch; event-based routing intentionally retained
 
 ## PHASE 5 — Product Identity V2
 
@@ -550,7 +550,7 @@
 - [ ] `P15-06` Add reload integration suite
 - [ ] `P15-07` Add rebirth integration suite
 - [ ] `P15-08` Add modifier lifecycle integration suite
-- [ ] `P15-09` Add six-domain navigation suite
+- [x] `P15-09` Add six-domain navigation suite
 - [ ] `P15-10` Add asset resolver suite
 - [ ] `P15-11` Add hardcoded localization suite
 - [ ] `P15-12` Add production debug-leak suite
