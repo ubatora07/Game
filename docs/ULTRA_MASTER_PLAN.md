@@ -40,6 +40,9 @@
 - [x] Independent Phase 10 gameplay integration harness passes **10/10** assertions.
 - [x] `git diff --check` passes.
 - [x] Build-time `qa:release-safety` gate added and chained into `npm run build`.
+- [x] Build-time `qa:source-safety` gate added before Vite/TypeScript release build.
+- [x] Production platform fallback changed from reward-simulating Mock to fail-closed no-op service.
+- [x] Yandex ad calls fail closed when SDK is unavailable/uninitialized.
 - [x] Save V7 external RPG orchestration centralized in `RpgSaveAggregate`.
 - [x] Save V7 full round-trip / clear-reset / cloud-selection contracts runtime-verified.
 - [x] Rebirth requirements centralized and aligned to Rank S / 2B lifetime power.
@@ -61,6 +64,7 @@
 - [x] `BATCH-07` AdventureEvent once-only/cooldown persistence + strict V7 sanitizer pass.
 - [x] `BATCH-08` Save V7 aggregate orchestration + full persistence/idempotency regression coverage.
 - [x] `BATCH-09` RebirthRequirements + exactly-once reset ordering + immediate persistence contract.
+- [x] `BATCH-10` Production platform fail-closed hardening + source-safety audit/runbook.
 
 ## Validation evidence — 2026-08-19
 
@@ -109,13 +113,13 @@
 - [x] `P1-03` Audit all global window debug hooks
 - [x] `P1-04` Audit __DISABLE_SAVE__ exposure
 - [x] `P1-05` Audit cheat buttons and test-ad controls for production reachability
-- [ ] `P1-06` Audit console-only debug commands
-- [ ] `P1-07` Add test asserting DevOverlay is unavailable in production mode
+- [x] `P1-06` Audit console-only debug commands
+- [x] `P1-07` Add test asserting DevOverlay is unavailable in production mode
 - [x] `P1-08` Add build-time release assertion for debug markers
-- [ ] `P1-09` Audit test fixtures accidentally imported by runtime
-- [ ] `P1-10` Audit mock platform activation rules
-- [ ] `P1-11` Audit ad test paths
-- [ ] `P1-12` Audit development telemetry UI
+- [x] `P1-09` Audit test fixtures accidentally imported by runtime
+- [x] `P1-10` Audit mock platform activation rules
+- [x] `P1-11` Audit ad test paths
+- [x] `P1-12` Audit development telemetry UI
 - [x] `P1-13` Audit forced rank manipulation paths
 - [x] `P1-14` Audit direct currency mutation controls
 - [x] `P1-15` Audit time-skip controls
@@ -123,7 +127,7 @@
 - [x] `P1-17` Add release grep for BALANCE DEV
 - [x] `P1-18` Add release grep for CHEATS
 - [x] `P1-19` Add release grep for Test Ad
-- [ ] `P1-20` Document emergency rollback if production debug leak is found
+- [x] `P1-20` Document emergency rollback if production debug leak is found
 
 ## PHASE 2 — Save Aggregate V7
 
@@ -624,4 +628,4 @@
 
 ## Task count
 
-**Concrete checklist tasks:** 493 (including status/evidence checklists and global gates).
+**Concrete checklist tasks:** 497 (including status/evidence checklists and global gates).

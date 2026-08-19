@@ -1,5 +1,6 @@
 import { IPlatformService } from './PlatformService';
 import { MockPlatformService } from './MockPlatformService';
+import { UnavailablePlatformService } from './UnavailablePlatformService';
 import { GameStateData } from '../../core/GameState';
 import { SaveMigrations } from '../save/SaveMigrations';
 
@@ -21,7 +22,6 @@ export class YandexGamesService implements IPlatformService {
     try {
       if (typeof window !== 'undefined' && window.YaGames) {
         this.ysdk = await window.YaGames.init();
-        window.ysdk = this.ysdk;
         this.ready = true;
 
         try {
@@ -53,7 +53,7 @@ export class YandexGamesService implements IPlatformService {
   }
 
   public async showFullscreenAd(): Promise<boolean> {
-    if (!this.isReady()) return true;
+    if (!this.isReady()) return false;
 
     return new Promise((resolve) => {
       this.ysdk.adv.showFullscreenAdv({
@@ -76,7 +76,7 @@ export class YandexGamesService implements IPlatformService {
   }
 
   public async showRewardedAd(placement: string): Promise<boolean> {
-    if (!this.isReady()) return true;
+    if (!this.isReady()) return false;
 
     return new Promise((resolve) => {
       let rewardEarned = false;
@@ -175,11 +175,14 @@ export class YandexGamesService implements IPlatformService {
 }
 
 // Factory to resolve platform
-export function createPlatformService(): IPlatformService {
+export function createPlatformService(isDev: boolean = import.meta.env.DEV): IPlatformService {
   if (typeof window !== 'undefined' && window.YaGames) {
     return new YandexGamesService();
   }
-  return new MockPlatformService();
+  if (isDev) {
+    return new MockPlatformService();
+  }
+  return new UnavailablePlatformService();
 }
 
 export const platform = createPlatformService();

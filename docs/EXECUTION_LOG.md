@@ -330,3 +330,28 @@ Validation:
 Roadmap effect:
 - Phase 2 Save Aggregate V7: **51/51 complete**.
 - Phase 3 Rebirth / Legacy Reset Contract: **32/32 complete**.
+
+## 2026-08-19 — P0 Production Platform Safety (BATCH-10)
+
+Status: **SOURCE SAFETY PASS / PLATFORM FAIL-CLOSED RUNTIME HARNESS 5/5 / FRESH BUNDLE PROOF STILL BLOCKED**
+
+Completed:
+- replaced production fallback from `MockPlatformService` with `UnavailablePlatformService`;
+- retained MockPlatform only behind the explicit DEV factory path;
+- changed uninitialized Yandex fullscreen/rewarded ad behavior from simulated success to fail-closed `false`;
+- removed mutable `window.ysdk` exposure;
+- added build-enforced `qa:source-safety` before the existing content/type/Vite gates;
+- source-safety scans runtime imports for test fixtures, suspicious window debug hooks, DevOverlay import shape, Mock activation, fail-closed ads and DEV analytics logging;
+- added `tests/production-safety.test.ts` source/platform regression coverage;
+- added `docs/PRODUCTION_SAFETY_RUNBOOK.md` with emergency rollback procedure.
+
+Validation:
+- `npm run qa:source-safety` PASS: 179 runtime source files scanned;
+- selective TypeScript compile of production-safety regression test PASS;
+- independent platform runtime harness PASS **5/5**;
+- source `tsc --noEmit -p tsconfig.json` PASS;
+- terminology/i18n/art-registry/ui-production gates PASS;
+- `git diff --check` PASS.
+
+Still open by evidence rule:
+- `P1-02` remains open until a fresh Vite production bundle can be generated and scanned. The supplied dependencies still lack the Linux Rollup native module required by this sandbox.
