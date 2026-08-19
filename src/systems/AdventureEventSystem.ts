@@ -128,8 +128,12 @@ export class AdventureEventSystem {
     return this.getAllEvents().filter((evt) => this.isEventEligible(evt, context, now));
   }
 
-  public selectWeightedEvent(context: AdventureEventContext, now: number = Date.now()): AdventureEventDefinition | null {
-    const eligible = this.getEligibleEvents(context, now);
+  public selectWeightedEvent(
+    context: AdventureEventContext,
+    now: number = Date.now(),
+    candidateFilter?: (eventDef: AdventureEventDefinition) => boolean
+  ): AdventureEventDefinition | null {
+    const eligible = this.getEligibleEvents(context, now).filter((eventDef) => candidateFilter?.(eventDef) ?? true);
     if (eligible.length === 0) return null;
 
     const rareEventMult = modifierResolver.resolve('rareEventChance', 1.0);

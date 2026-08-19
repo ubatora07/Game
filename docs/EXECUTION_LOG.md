@@ -497,3 +497,30 @@ Roadmap effect:
 - `P13-30` Adventure min-rank enforcement COMPLETE;
 - `P13-31` Adventure choice requirements COMPLETE;
 - `P13-29` live Adventure scheduler remains OPEN and explicit.
+
+
+## 2026-08-19 — Live Adventure Event Director (BATCH-16)
+
+Status: **SOURCE COMPLETE / CONSERVATIVE LIVE CADENCE / BROWSER QA PENDING**
+
+Completed:
+- added `AdventureEventDirector` as the explicit Campaign → Adventure bridge;
+- schedule only after first-clear final world boss stages, preventing farm-mode repeat events;
+- build event context from the cleared world plus live Party/Karma/Rank/Gold state;
+- exclude events with no currently eligible choices from weighted selection;
+- pause campaign combat while the Adventure decision is active and restore the previous pause state on close;
+- made Adventure decisions non-dismissible by backdrop/Escape so first-clear events cannot be silently lost;
+- close the Adventure decision before executing outcomes so Hero/Pet follow-up modals do not collide with the active modal;
+- added focused director regressions and a content-coherence regression gate for scheduler wiring/cadence.
+
+Validation target:
+- source `npx tsc --noEmit -p tsconfig.json`;
+- focused Adventure test typecheck;
+- `npm run qa:content-coherence`;
+- full available source QA matrix;
+- `git diff --check`;
+- full Vitest/Vite/Playwright remains environment-blocked by the supplied Windows-only Rollup native dependency.
+
+Roadmap effect:
+- `P13-29` live Adventure scheduler COMPLETE at conservative first-clear world-boss cadence.
+- Partner Awakening timing remains intentionally separate; it will not be stacked onto the same World 1 boss modal flow without explicit sequencing.

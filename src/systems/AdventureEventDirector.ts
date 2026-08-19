@@ -1,0 +1,92 @@
+import { events } from '../core/EventBus';
+import { AdventureEventDefinition, AdventureEventContext } from '../core/events/AdventureEventTypes';
+import { getCampaignStageById } from '../content/campaignStages';
+import { getCampaignWorldById } from '../content/campaignWorlds';
+import { store } from '../core/GameState';
+import { analytics } from '../services/analytics/AnalyticsService';
+import { adventureEventSystem } from './AdventureEventSystem';
+import { campaignCombatService } from './CampaignCombatService';
+import { karmaSystem } from './KarmaSystem';
+import { partyTeamSystem } from './PartyTeamSystem';
+
+/**
+ * Bridges Campaign progression into the Adventure Event framework.
+ *
+ * The initial production cadence is intentionally conservative and deterministic:
+ * one scheduling opportunity after the FIRST clear of each world's final boss stage.
+ * This prevents farm-mode event spam while making the existing event system reachable.
+ */
+export class AdventureEventDirector {
+  private initialized = false;
+  private presentationActive = false;
+  private previousCombatPauseState = false;
+
+  public init(): void {
+    if (this.initialized) return;
+    this.initialized = true;
+
+    events.on('campaign:stage_cleared', ({ stageId, isFirstClear }) => {
+      this.tryScheduleForStageClear(stageId, isFirstClear);
+    });
+  }
+
+  public tryScheduleForStageClear(stageId: string, isFirstClear: boolean): AdventureEventDefinition | null {
+    if (!isFirstClear || this.presentationActive) return null;
+
+    const stage = getCampaignStageById(stageId);
+    if (!stage) return null;
+
+    const world = getCampaignWorldById(stage.worldId);
+    if (!world || stage.stageNumber !== world.stageCount) return null;
+
+    const state = store.get();
+    const context: AdventureEventContext = {
+      worldId: stage.worldId,
+      activeClasses: partyTeamSystem
+        .getAllCharacters()
+        .filter((character) => character.isUnlocked && character.classId)
+        .map((character) => character.classId!),
+      currentKarma: karmaSystem.getScore(),
+      rank: state.rankId,
+      gold: state.gold,
+    };
+
+    const selected = adventureEventSystem.selectWeightedEvent(
+      context,
+      Date.now(),
+      (eventDef) => eventDef.choices.some((choice) => adventureEventSystem.isChoiceEligible(choice))
+    );
+    if (!selected) return null;
+
+    this.previousCombatPauseState = campaignCombatService.getCombatState().isPaused;
+    this.presentationActive = true;
+    campaignCombatService.setPaused(true);
+
+    analytics.trackEvent('adventure_event_scheduled', {
+      eventId: selected.id,
+      stageId,
+      worldId: stage.worldId,
+      cadence: 'first_world_boss_clear',
+    });
+
+    events.emit('modal:open', {
+      modalId: 'adventure_event_modal',
+      data: { event: selected },
+    });
+
+    return selected;
+  }
+
+  public releasePresentationPause(): void {
+    if (!this.presentationActive) return;
+    this.presentationActive = false;
+    campaignCombatService.setPaused(this.previousCombatPauseState);
+    this.previousCombatPauseState = false;
+  }
+
+  public isPresentationActive(): boolean {
+    return this.presentationActive;
+  }
+}
+
+export const adventureEventDirector = new AdventureEventDirector();

@@ -13,6 +13,7 @@ import { towerSystem } from './systems/TowerSystem';
 import { campaignCombatService } from './systems/CampaignCombatService';
 import { TrainingSystem } from './systems/TrainingSystem';
 import { RandomEventSystem } from './systems/RandomEventSystem';
+import { adventureEventDirector } from './systems/AdventureEventDirector';
 import { RelicSystem } from './systems/RelicSystem';
 import { DailySystem } from './systems/DailySystem';
 import { sound } from './services/audio/SoundService';
@@ -152,6 +153,10 @@ class GameApp {
     modalManager.register(SettlementRaidModal);
     modalManager.register(SettlementStoryModal);
     modalManager.register(LegacyCodexModal);
+
+    // Adventure events become reachable only after modal registration. The director
+    // listens for first-clear world boss stages and is idempotent across bootstrap calls.
+    adventureEventDirector.init();
 
     // Toast Container
     const toastContainer = document.createElement('div');

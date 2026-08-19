@@ -526,7 +526,7 @@
 - [ ] `P13-26` Remove duplicate fantasy roles
 - [ ] `P13-27` Reduce system overload in first 60 minutes
 - [x] `P13-28` Create unlock pacing matrix
-- [ ] `P13-29` Wire AdventureEvent scheduler into the live gameplay loop
+- [x] `P13-29` Wire AdventureEvent scheduler into the live gameplay loop
 - [x] `P13-30` Enforce AdventureEvent minRank eligibility
 - [x] `P13-31` Enforce AdventureEvent choice requirements in UI and execution
 

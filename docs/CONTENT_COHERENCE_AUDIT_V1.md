@@ -36,3 +36,14 @@ The automated audit scans **222 `defaultName`/`name` fields** in `src/content`; 
 4. **Mercenary surfacing:** Team can still open the Guild as a locked teaser before Tavern construction, but no hire/purchase can bypass progression. Browser/onboarding validation must decide whether the teaser itself is too early.
 5. **Pet discovery timing:** collection UI can be inspected before acquisition; whether that is teaser or overload needs browser/onboarding validation.
 6. Remaining Phase 13 category audits need qualitative review of roles, progression chains and unlock pacing; they are intentionally left unchecked until that work is performed.
+
+
+## Adventure live cadence contract — BATCH-16
+
+- Scheduling opportunity occurs only on `campaign:stage_cleared` where `isFirstClear === true`.
+- The cleared stage must be the world final stage (`stageNumber === world.stageCount`).
+- Weighted selection still respects event eligibility, once-only history and cooldowns.
+- Events with no currently eligible choice are excluded from selection to prevent decision deadlocks.
+- Adventure presentation pauses campaign combat and the modal is non-dismissible by backdrop/Escape.
+- Choosing an outcome closes the Adventure modal first, releases its pause, then executes the outcome so hero/pet follow-up modals can open cleanly.
+- No arbitrary timer/probability cadence was invented; cadence expansion remains a future browser/onboarding balance decision.

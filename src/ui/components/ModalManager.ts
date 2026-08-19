@@ -4,6 +4,7 @@ export interface ModalInstance {
   id: string;
   render: (data?: any) => HTMLElement;
   onClose?: () => void;
+  dismissible?: boolean;
 }
 
 export class ModalManager {
@@ -62,7 +63,9 @@ export class ModalManager {
       background: rgba(4, 3, 2, 0.88);
       z-index: 100;
     `;
-    backdrop.addEventListener('click', () => this.close(modalId));
+    if (modalDef.dismissible !== false) {
+      backdrop.addEventListener('click', () => this.close(modalId));
+    }
 
     const contentWrapper = document.createElement('div');
     contentWrapper.className = 'modal-content-animated';
@@ -118,7 +121,10 @@ export class ModalManager {
     if (typeof window !== 'undefined') {
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && this.activeModalId) {
-          this.close(this.activeModalId);
+          const modalDef = this.registeredModals.get(this.activeModalId);
+          if (modalDef?.dismissible !== false) {
+            this.close(this.activeModalId);
+          }
         }
       });
     }

@@ -2,9 +2,12 @@ import { ModalInstance, modalManager } from '../components/ModalManager';
 import { adventureEventSystem } from '../../systems/AdventureEventSystem';
 import { AdventureEventDefinition } from '../../core/events/AdventureEventTypes';
 import { t } from '../../services/i18n/I18nService';
+import { adventureEventDirector } from '../../systems/AdventureEventDirector';
 
 export const AdventureEventModal: ModalInstance = {
   id: 'adventure_event_modal',
+  dismissible: false,
+  onClose: () => adventureEventDirector.releasePresentationPause(),
   render: (data?: { event?: AdventureEventDefinition }) => {
     const evt = data?.event;
     const el = document.createElement('div');
@@ -60,8 +63,10 @@ export const AdventureEventModal: ModalInstance = {
         const choiceId = btn.getAttribute('data-choice-id');
         const choice = evt.choices.find((c) => c.id === choiceId);
         if (choice && adventureEventSystem.isChoiceEligible(choice)) {
-          adventureEventSystem.executeChoice(evt, choice);
+          // Close the decision modal first so follow-up hero/pet modals can open cleanly.
+          // onClose also releases the combat pause owned by AdventureEventDirector.
           modalManager.close('adventure_event_modal');
+          adventureEventSystem.executeChoice(evt, choice);
         }
       });
     });

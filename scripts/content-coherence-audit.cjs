@@ -70,6 +70,14 @@ requireText('src/systems/AdventureEventSystem.ts', 'if (req?.minRank)', 'adventu
 requireText('src/systems/AdventureEventSystem.ts', 'public isChoiceEligible(choice: AdventureEventChoice)', 'adventure-choice-gate');
 requireText('src/systems/AdventureEventSystem.ts', 'if (!this.isChoiceEligible(choice))', 'adventure-choice-gate');
 requireText('src/ui/modals/AdventureEventModal.ts', 'adventureEventSystem.isChoiceEligible(c)', 'adventure-choice-ui');
+requireText('src/main.ts', 'adventureEventDirector.init()', 'adventure-live-scheduler');
+requireText('src/systems/AdventureEventDirector.ts', "events.on('campaign:stage_cleared'", 'adventure-live-scheduler');
+requireText('src/systems/AdventureEventDirector.ts', 'if (!isFirstClear || this.presentationActive) return null', 'adventure-no-farm-repeat');
+requireText('src/systems/AdventureEventDirector.ts', 'stage.stageNumber !== world.stageCount', 'adventure-world-boss-cadence');
+requireText('src/systems/AdventureEventDirector.ts', 'campaignCombatService.setPaused(true)', 'adventure-presentation-pause');
+requireText('src/systems/AdventureEventDirector.ts', "modalId: 'adventure_event_modal'", 'adventure-live-scheduler');
+requireText('src/ui/modals/AdventureEventModal.ts', 'dismissible: false', 'adventure-decision-integrity');
+requireText('src/ui/components/ModalManager.ts', 'modalDef.dismissible !== false', 'modal-dismiss-contract');
 
 // Player-facing duplicate identities need to be intentional and explicit.
 const allowedDuplicateNames = new Map([
@@ -104,9 +112,9 @@ const unresolvedHeroTiming = read('src/content/progressionUnlocks.ts').includes(
   && read('src/content/progressionUnlocks.ts').includes("enforcement: 'declared'");
 if (!unresolvedHeroTiming) errors.push('[pacing-evidence] hero roster timing conflict must remain explicitly declared until resolved');
 
-console.log(`content coherence audit: player names=${[...byName.values()].flat().length}, duplicate groups=${duplicateGroups}, shared progression gate=on, mercenary tavern gate=on, adventure eligibility gate=on`);
+console.log(`content coherence audit: player names=${[...byName.values()].flat().length}, duplicate groups=${duplicateGroups}, shared progression gate=on, mercenary tavern gate=on, adventure eligibility/scheduler gate=on`);
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
-console.log('[content-coherence] PASS: progression gates are centralized, Settlement/Mercenary bypasses are blocked, and duplicate player identities are controlled.');
+console.log('[content-coherence] PASS: progression gates are centralized, Settlement/Mercenary bypasses are blocked, Adventure scheduling is first-clear boss-only, and duplicate player identities are controlled.');
