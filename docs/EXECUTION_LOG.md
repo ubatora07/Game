@@ -383,3 +383,30 @@ Roadmap effect:
 - `P11-20` radius normalization COMPLETE;
 - `P11-21` shadow normalization COMPLETE;
 - `P11-24..26` remain open until a fresh browser-build path is available for 390x844 / 1366x768 / 1920x1080 validation.
+
+## 2026-08-19 — Governance & Release Packaging Contract (BATCH-12)
+
+Status: **SOURCE GOVERNANCE PASS / STALE ARTIFACT CORRECTLY REFUSED**
+
+Completed:
+- defined authoritative document precedence in `docs/PROJECT_GOVERNANCE.md`;
+- defined S/M/L/XL effort and LOW/MEDIUM/HIGH migration-risk semantics;
+- added a reusable acceptance-criteria template and mandatory rollback rules for save-sensitive HIGH-risk changes;
+- defined the production-only verification checklist and explicit BLOCKED / NOT VERIFIED evidence rule;
+- marked root `PLAN*.md` and `CHECKLIST*.md` files as historical and redirected readers to the active master plan;
+- added `npm run package:release` as the canonical packaging command;
+- replaced the Windows-only release packager with a cross-platform `dist/`-only packager (PowerShell on Windows, zip/Python fallback elsewhere);
+- packaging now reruns `release-safety` before creating an archive and requires `dist/index.html`;
+- added build-enforced `qa:governance` to prevent roadmap precedence / packaging safety regression.
+
+Validation:
+- `npm run qa:governance` PASS;
+- `node --check scripts/package-release.cjs` PASS;
+- `node --check scripts/governance-audit.cjs` PASS;
+- `npx tsc --noEmit -p tsconfig.json` PASS;
+- `git diff --check` PASS;
+- `npm run package:release` against the stale pre-fix `dist/` correctly FAILS before archive creation because release-safety detects debug/cheat markers.
+
+Roadmap effect:
+- Phase 0 Baseline & Governance is now **20/20 complete**.
+- Positive release ZIP generation remains a release-candidate task because a fresh Vite build is still environment-blocked by the missing Linux Rollup native dependency.

@@ -1,4 +1,9 @@
 # PLAN.md — Anime Infinite Ascension
+
+> **HISTORICAL — NOT THE ACTIVE ROADMAP.**
+> Current implementation authority is `docs/ULTRA_MASTER_PLAN.md`; precedence and evidence rules are defined in `docs/PROJECT_GOVERNANCE.md`.
+> Keep this file only as historical design/context unless an active roadmap task explicitly references it.
+
 ## Continuation: Phase 29+ — Pixel-Anime Campaign Autobattler Pivot
 
 > **Project state:** Phases 0–28 are considered completed.

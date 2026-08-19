@@ -1,4 +1,9 @@
 # PLAN.md — Anime Infinite Ascension
+
+> **HISTORICAL — NOT THE ACTIVE ROADMAP.**
+> Current implementation authority is `docs/ULTRA_MASTER_PLAN.md`; precedence and evidence rules are defined in `docs/PROJECT_GOVERNANCE.md`.
+> Keep this file only as historical design/context unless an active roadmap task explicitly references it.
+
 ## Continuation: Phase 71+ — Builds, Rhythm, Adventure, Karma, Settlement & World Systems
 
 > **Project state:** all phases from the previous roadmap are considered completed unless the repository audit proves otherwise.

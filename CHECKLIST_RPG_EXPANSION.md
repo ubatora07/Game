@@ -1,4 +1,9 @@
 # CHECKLIST_RPG_EXPANSION.md — Anime Infinite Ascension (Phase 71–124)
+
+> **HISTORICAL — NOT THE ACTIVE ROADMAP.**
+> Current implementation authority is `docs/ULTRA_MASTER_PLAN.md`; precedence and evidence rules are defined in `docs/PROJECT_GOVERNANCE.md`.
+> Keep this file only as historical design/context unless an active roadmap task explicitly references it.
+
 ## RPG Expansion: Builds, Rhythm, Adventure, Karma, Settlement & World Systems
 
 ---

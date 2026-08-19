@@ -85,23 +85,23 @@
 
 - [x] `P0-01` Pin audited HEAD SHA 010304d4c1395efa1667fee190cb85126c1669ab in the working log
 - [x] `P0-02` Create a single active roadmap and mark legacy phase reports historical
-- [ ] `P0-03` Define source-of-truth document precedence
+- [x] `P0-03` Define source-of-truth document precedence
 - [x] `P0-04` Record current save version and legacy keys
 - [x] `P0-05` Record current primary navigation routes
 - [x] `P0-06` Record current runtime entry points
 - [x] `P0-07` Record current automated test inventory
 - [x] `P0-08` Record current E2E viewport matrix
 - [x] `P0-09` Record production build command
-- [ ] `P0-10` Record release packaging command
+- [x] `P0-10` Record release packaging command
 - [x] `P0-11` Define P0/P1/P2/P3/P4 severity semantics
-- [ ] `P0-12` Define S/M/L/XL effort semantics
-- [ ] `P0-13` Define LOW/MEDIUM/HIGH migration risk semantics
-- [ ] `P0-14` Define acceptance criteria template
-- [ ] `P0-15` Define rollback requirements for save-sensitive changes
+- [x] `P0-12` Define S/M/L/XL effort semantics
+- [x] `P0-13` Define LOW/MEDIUM/HIGH migration risk semantics
+- [x] `P0-14` Define acceptance criteria template
+- [x] `P0-15` Define rollback requirements for save-sensitive changes
 - [x] `P0-16` Define no-balance-change rule for consolidation phases
 - [x] `P0-17` Define no-internal-ID-rename rule until player-facing migration is stable
 - [x] `P0-18` Define player-facing vs internal terminology boundary
-- [ ] `P0-19` Define production-only verification checklist
+- [x] `P0-19` Define production-only verification checklist
 - [x] `P0-20` Create execution log section updated after each batch
 
 ## PHASE 1 — P0 Production Safety
