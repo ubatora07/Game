@@ -29,7 +29,7 @@ export class SoulTreeScreen {
   }
 
   private buildDOM(): void {
-    const requiredRank = ReincarnationSystem.getRequiredRank();
+    const requiredRank = ReincarnationSystem.getRequirements().requiredRank;
     this.el.innerHTML = `
       <div style="padding:16px; max-width:680px; margin:0 auto; width:100%;">
         <!-- Reincarnation Banner Card -->
@@ -149,9 +149,10 @@ export class SoulTreeScreen {
   private update(): void {
     if (!this.isDOMBuilt) return;
     const s = store.get();
-    const potentialSouls = ReincarnationSystem.getPotentialSouls();
-    const canReincarnate = ReincarnationSystem.canReincarnate();
-    const requiredRank = ReincarnationSystem.getRequiredRank();
+    const requirements = ReincarnationSystem.getRequirements();
+    const potentialSouls = requirements.potentialSouls;
+    const canReincarnate = requirements.canRebirth;
+    const requiredRank = requirements.requiredRank;
 
     const ownedDisplay = this.el.querySelector('#soulOwnedDisplay');
     const potentialDisplay = this.el.querySelector('#soulPotentialDisplay');

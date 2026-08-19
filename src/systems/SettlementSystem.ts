@@ -62,9 +62,6 @@ export class SettlementSystem {
       }
     });
 
-    events.on('reincarnate:complete', () => {
-      this.resetForSamsara();
-    });
   }
 
   public static getInstance(): SettlementSystem {

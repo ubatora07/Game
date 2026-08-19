@@ -1,9 +1,9 @@
 import { store } from '../core/GameState';
-import { calculateReincarnationSouls, getSoulSkillById, calculateSoulSkillCost } from '../content/soulTree';
+import { getSoulSkillById, calculateSoulSkillCost } from '../content/soulTree';
 import { events } from '../core/EventBus';
 import { sound } from '../services/audio/SoundService';
 import { CampaignProgressionSystem } from './CampaignProgressionSystem';
-import { getRankById, RankDefinition } from '../content/ranks';
+import { RankDefinition } from '../content/ranks';
 import { settlementSystem } from './SettlementSystem';
 import { craftingEquipmentSystem } from './CraftingEquipmentSystem';
 import { marketSystem } from './MarketSystem';
@@ -14,27 +14,30 @@ import { settlementStorySystem } from './SettlementStorySystem';
 import { legacyEndingSystem } from './LegacyEndingSystem';
 import { karmaSystem } from './KarmaSystem';
 import { worldStateManager } from './WorldStateManager';
+import { campaignCombatService } from './CampaignCombatService';
+import { RebirthRequirementStatus, RebirthRequirements } from './rebirth/RebirthRequirements';
 
 export class ReincarnationSystem {
+  public static getRequirements(): RebirthRequirementStatus {
+    return RebirthRequirements.evaluate(store.get());
+  }
+
   public static getRequiredRank(): RankDefinition {
-    return getRankById('S');
+    return this.getRequirements().requiredRank;
   }
 
   public static getPotentialSouls(): number {
-    const state = store.get();
-    const rebirthLevel = state.soulSkills['soul_rebirth'] || 0;
-    return calculateReincarnationSouls(state.stats.lifetimePower, state.towerFloor, rebirthLevel);
+    return this.getRequirements().potentialSouls;
   }
 
   public static canReincarnate(): boolean {
-    const state = store.get();
-    const requiredRank = this.getRequiredRank();
-    return state.rankIndex >= requiredRank.index && this.getPotentialSouls() > 0;
+    return this.getRequirements().canRebirth;
   }
 
   public static reincarnate(): boolean {
-    const soulsGained = this.getPotentialSouls();
-    if (soulsGained <= 0) return false;
+    const requirements = this.getRequirements();
+    if (!requirements.canRebirth) return false;
+    const soulsGained = requirements.potentialSouls;
 
     store.set((draft) => {
       draft.souls += soulsGained;
@@ -63,6 +66,10 @@ export class ReincarnationSystem {
     legacyEndingSystem.resetForSamsara();
     karmaSystem.resetCurrentLifeKarma();
     worldStateManager.resetForSamsara();
+
+    // Combat state is not serialized, but it must be rebuilt only after every
+    // persistent/current-life subsystem has completed its reset policy.
+    campaignCombatService.resetAfterProgressionReset();
 
     sound.playReincarnation();
 

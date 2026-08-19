@@ -40,6 +40,10 @@
 - [x] Independent Phase 10 gameplay integration harness passes **10/10** assertions.
 - [x] `git diff --check` passes.
 - [x] Build-time `qa:release-safety` gate added and chained into `npm run build`.
+- [x] Save V7 external RPG orchestration centralized in `RpgSaveAggregate`.
+- [x] Save V7 full round-trip / clear-reset / cloud-selection contracts runtime-verified.
+- [x] Rebirth requirements centralized and aligned to Rank S / 2B lifetime power.
+- [x] Rebirth persistence, preservation, combat respawn and idempotency runtime-verified.
 - [x] Build-time `qa:ui-production` gate enforces opaque RPG surfaces, semantic icons, and 44px targets.
 - [x] Existing stale `dist` correctly FAILS release-safety because it predates P0 hardening.
 - [ ] Full `npm test` execution — environment-blocked: uploaded `node_modules` contains only Windows Rollup native packages, sandbox is Linux.
@@ -55,6 +59,8 @@
 - [x] `BATCH-05` Pet combat integration + active-pet event wiring.
 - [x] `BATCH-06` Production debug-surface hardening + mandatory release-safety build gate.
 - [x] `BATCH-07` AdventureEvent once-only/cooldown persistence + strict V7 sanitizer pass.
+- [x] `BATCH-08` Save V7 aggregate orchestration + full persistence/idempotency regression coverage.
+- [x] `BATCH-09` RebirthRequirements + exactly-once reset ordering + immediate persistence contract.
 
 ## Validation evidence — 2026-08-19
 
@@ -129,7 +135,7 @@
 - [x] `P2-04` Add typed save fields for karma
 - [x] `P2-05` Add typed save fields for class selection or explicitly retire duplicate ClassSystem ownership
 - [x] `P2-06` Add typed save field for worldState
-- [ ] `P2-07` Replace new any save subdomains with concrete types incrementally
+- [x] `P2-07` Replace new any save subdomains with concrete types incrementally
 - [x] `P2-08` Bump CURRENT_SAVE_VERSION from 6 to 7
 - [x] `P2-09` Preserve all ANIME_ASCENSION_SAVE legacy read keys
 - [x] `P2-10` Define V6 to V7 migration defaults
@@ -150,25 +156,25 @@
 - [x] `P2-25` Deserialize class during bootstrap if retained
 - [x] `P2-26` Reapply all derived modifiers after hydration
 - [x] `P2-27` Prevent double-application of class modifiers after hydration
-- [ ] `P2-28` Prevent double-application of pet modifiers after hydration
-- [ ] `P2-29` Prevent double-application of karma modifiers after hydration
+- [x] `P2-28` Prevent double-application of pet modifiers after hydration
+- [x] `P2-29` Prevent double-application of karma modifiers after hydration
 - [x] `P2-30` Add V6 -> V7 migration unit test
 - [x] `P2-31` Add corrupted V7 payload sanitization test
-- [ ] `P2-32` Add save/reload party test
+- [x] `P2-32` Add save/reload party test
 - [x] `P2-33` Add save/reload pet ownership test
-- [ ] `P2-34` Add save/reload pet evolution test
+- [x] `P2-34` Add save/reload pet evolution test
 - [x] `P2-35` Add save/reload active pet test
-- [ ] `P2-36` Add save/reload karma score test
-- [ ] `P2-37` Add save/reload major choice flags test
-- [ ] `P2-38` Add save/reload faction reputation test
-- [ ] `P2-39` Add save/reload world flag test
-- [ ] `P2-40` Add save/reload legacy world chronicle test
-- [ ] `P2-41` Add save/reload active focus character test
-- [ ] `P2-42` Add save/reload second character unlock test
+- [x] `P2-36` Add save/reload karma score test
+- [x] `P2-37` Add save/reload major choice flags test
+- [x] `P2-38` Add save/reload faction reputation test
+- [x] `P2-39` Add save/reload world flag test
+- [x] `P2-40` Add save/reload legacy world chronicle test
+- [x] `P2-41` Add save/reload active focus character test
+- [x] `P2-42` Add save/reload second character unlock test
 - [x] `P2-43` Add old save non-regression test
-- [ ] `P2-44` Add clear-save reset test for all V7 domains
-- [ ] `P2-45` Add cloud-vs-local selection test with V7 payload
-- [ ] `P2-46` Document exact preservation rules for every subdomain
+- [x] `P2-44` Add clear-save reset test for all V7 domains
+- [x] `P2-45` Add cloud-vs-local selection test with V7 payload
+- [x] `P2-46` Document exact preservation rules for every subdomain
 - [x] `P2-47` Persist AdventureEvent once-only completion state
 - [x] `P2-48` Persist AdventureEvent cooldown timestamps
 - [x] `P2-49` Drop expired/invalid AdventureEvent cooldowns during hydrate
@@ -179,14 +185,14 @@
 
 **Priority:** P0
 
-- [ ] `P3-01` Create a single RebirthRequirements source of truth
+- [x] `P3-01` Create a single RebirthRequirements source of truth
 - [x] `P3-02` Remove hardcoded 1M requirement copy
-- [ ] `P3-03` Reconcile Rank S 2B requirement with soul formula 1B lifetime threshold
-- [ ] `P3-04` Define whether both rank and lifetime thresholds are intentional
-- [ ] `P3-05` Expose structured canRebirth reason
-- [ ] `P3-06` Expose structured potential reward
+- [x] `P3-03` Reconcile Rank S 2B requirement with soul formula 1B lifetime threshold
+- [x] `P3-04` Define whether both rank and lifetime thresholds are intentional
+- [x] `P3-05` Expose structured canRebirth reason
+- [x] `P3-06` Expose structured potential reward
 - [x] `P3-07` Make SoulTree UI consume RebirthRequirements
-- [ ] `P3-08` Make ReincarnateModal consume RebirthRequirements
+- [x] `P3-08` Make ReincarnateModal consume RebirthRequirements
 - [x] `P3-09` Create reset coordinator or explicit reset event contract
 - [x] `P3-10` Reset run economy exactly once
 - [x] `P3-11` Reset campaign exactly once
@@ -194,9 +200,9 @@
 - [x] `P3-13` Reset current-life world flags
 - [x] `P3-14` Preserve permanent world chronicle flags
 - [x] `P3-15` Preserve titles according to design
-- [ ] `P3-16` Define pet preservation through rebirth
-- [ ] `P3-17` Define party/partner preservation through rebirth
-- [ ] `P3-18` Define class preservation through rebirth
+- [x] `P3-16` Define pet preservation through rebirth
+- [x] `P3-17` Define party/partner preservation through rebirth
+- [x] `P3-18` Define class preservation through rebirth
 - [x] `P3-19` Define equipment preservation through rebirth
 - [x] `P3-20` Define settlement preservation through rebirth
 - [x] `P3-21` Define crafting inventory preservation through rebirth
@@ -205,12 +211,12 @@
 - [x] `P3-24` Define story state reset behavior
 - [x] `P3-25` Define legacy ending preservation
 - [x] `P3-26` Reapply all modifier sources after reset
-- [ ] `P3-27` Immediately save after successful rebirth
-- [ ] `P3-28` Respawn campaign only after reset transaction completes
-- [ ] `P3-29` Add rebirth persistence test
-- [ ] `P3-30` Add rebirth + reload test
-- [ ] `P3-31` Add repeated rebirth idempotency test
-- [ ] `P3-32` Add rebirth with corrupt optional domains test
+- [x] `P3-27` Immediately save after successful rebirth
+- [x] `P3-28` Respawn campaign only after reset transaction completes
+- [x] `P3-29` Add rebirth persistence test
+- [x] `P3-30` Add rebirth + reload test
+- [x] `P3-31` Add repeated rebirth idempotency test
+- [x] `P3-32` Add rebirth with corrupt optional domains test
 
 ## PHASE 4 — Navigation IA V3
 
@@ -618,4 +624,4 @@
 
 ## Task count
 
-**Concrete checklist tasks:** 454 (including global gates).
+**Concrete checklist tasks:** 493 (including status/evidence checklists and global gates).

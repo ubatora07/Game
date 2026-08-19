@@ -3,19 +3,7 @@ import { SAVE_KEY } from './SaveSchema';
 import { SaveMigrations } from './SaveMigrations';
 import { events } from '../../core/EventBus';
 import { platform } from '../platform/YandexGamesService';
-import { settlementSystem } from '../../systems/SettlementSystem';
-import { craftingEquipmentSystem } from '../../systems/CraftingEquipmentSystem';
-import { marketSystem } from '../../systems/MarketSystem';
-import { mercenarySystem } from '../../systems/MercenarySystem';
-import { titleSystem } from '../../systems/TitleSystem';
-import { settlementDefenseSystem } from '../../systems/SettlementDefenseSystem';
-import { settlementStorySystem } from '../../systems/SettlementStorySystem';
-import { legacyEndingSystem } from '../../systems/LegacyEndingSystem';
-import { worldStateManager } from '../../systems/WorldStateManager';
-import { partyTeamSystem } from '../../systems/PartyTeamSystem';
-import { petSystem } from '../../systems/PetSystem';
-import { karmaSystem } from '../../systems/KarmaSystem';
-import { adventureEventSystem } from '../../systems/AdventureEventSystem';
+import { RpgSaveAggregate } from './RpgSaveAggregate';
 
 export interface OfflineGains {
   seconds: number;
@@ -64,6 +52,12 @@ export class SaveService {
       if (this.isSaveDisabledForTest()) return;
       this.saveLocal();
     });
+
+    // Rebirth is a critical persistence boundary. The event is emitted only
+    // after the reset transaction and combat respawn have completed.
+    events.on('reincarnate:complete', () => {
+      this.saveLocal();
+    });
   }
 
   private isSaveDisabledForTest(): boolean {
@@ -77,19 +71,7 @@ export class SaveService {
     try {
       store.set((draft) => {
         draft.lastSeenAt = Date.now();
-        draft.settlement = settlementSystem.serialize();
-        draft.crafting = craftingEquipmentSystem.serialize();
-        draft.market = marketSystem.serialize();
-        draft.mercenaries = mercenarySystem.serialize();
-        draft.titles = titleSystem.serialize();
-        draft.settlementDefense = settlementDefenseSystem.serialize();
-        draft.settlementStory = settlementStorySystem.serialize();
-        draft.legacyEndings = legacyEndingSystem.serialize();
-        draft.partyTeam = partyTeamSystem.serialize();
-        draft.pets = petSystem.serialize();
-        draft.karma = karmaSystem.serialize();
-        draft.adventureEvents = adventureEventSystem.serialize();
-        draft.worldState = worldStateManager.serialize();
+        RpgSaveAggregate.captureInto(draft);
       });
 
       const json = JSON.stringify(store.get());
@@ -149,19 +131,7 @@ export class SaveService {
 
       // Reset every mutable subsystem outside GameStore before saveLocal()
       // serializes the fresh aggregate.
-      settlementSystem.resetAll();
-      craftingEquipmentSystem.resetAll();
-      marketSystem.resetAll();
-      mercenarySystem.resetAll();
-      titleSystem.resetAll();
-      settlementDefenseSystem.resetAll();
-      settlementStorySystem.resetAll();
-      legacyEndingSystem.resetAll();
-      partyTeamSystem.resetAll();
-      petSystem.resetAll();
-      adventureEventSystem.resetAll();
-      karmaSystem.resetAll();
-      worldStateManager.resetAll();
+      RpgSaveAggregate.resetAll();
 
       const initial = SaveMigrations.migrate(null);
       store.replace(initial);

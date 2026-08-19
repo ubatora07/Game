@@ -271,7 +271,6 @@ export class AdventureEventSystem {
   public resetAll(): void {
     this.completedOnceOnlyEvents.clear();
     this.eventCooldowns.clear();
-    karmaSystem.resetAll();
   }
 
   public serialize(): AdventureEventSaveState {

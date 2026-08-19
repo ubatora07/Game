@@ -1,3 +1,4 @@
+import { getRankById } from './ranks';
 export type SoulBranch = 'strength' | 'wealth' | 'spirit' | 'ascension';
 
 export interface SoulSkillDefinition {
@@ -164,15 +165,17 @@ export function calculateSoulSkillCost(skill: SoulSkillDefinition, currentLevel:
 }
 
 /**
- * Formula for souls gained on Reincarnation
+ * Formula for souls gained on Reincarnation.
+ * The reward floor is intentionally aligned with the actual Rank S rebirth gate.
  */
+export const REINCARNATION_MIN_LIFETIME_POWER = getRankById('S').reqPower;
+
 export function calculateReincarnationSouls(
   totalLifetimePower: number,
   towerFloor: number = 1,
   soulRebirthLevel: number = 0
 ): number {
-  const minReq = 1000000000; // Requires at least 1B lifetime power (Rank S region)
-  if (totalLifetimePower < minReq) return 0;
+  if (totalLifetimePower < REINCARNATION_MIN_LIFETIME_POWER) return 0;
   const base = Math.pow(totalLifetimePower / 15000000, 0.45);
   const towerBonus = 1 + Math.min(3.0, (towerFloor - 1) * 0.03);
   const rebirthBonus = 1 + soulRebirthLevel * 0.15;

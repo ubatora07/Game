@@ -569,6 +569,18 @@ export class CampaignCombatService {
   }
 
   /**
+   * Rebuilds the ephemeral combat state after a progression reset/rebirth.
+   * The persisted campaign state is already authoritative at this point.
+   */
+  public resetAfterProgressionReset(): void {
+    this.isResolvingDeath = false;
+    this.deathTransitionTimer = 0;
+    this.autoAttackTimer = 0;
+    this.isSpawning = false;
+    this.spawnCurrentEncounter();
+  }
+
+  /**
    * Resets combat state to a specific stage (e.g. on load or test)
    */
   public resetToStage(stageId: string): void {

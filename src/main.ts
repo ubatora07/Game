@@ -3,6 +3,8 @@ import { gameLoop } from './core/GameLoop';
 import { events } from './core/EventBus';
 import { platform } from './services/platform/YandexGamesService';
 import { saveService } from './services/save/SaveService';
+import { RpgSaveAggregate } from './services/save/RpgSaveAggregate';
+import { selectMostRecentSave } from './services/save/SaveSelection';
 import { i18n } from './services/i18n/I18nService';
 import { EconomyEngine } from './economy/EconomyEngine';
 import { OfflineSystem } from './systems/OfflineSystem';
@@ -13,19 +15,6 @@ import { TrainingSystem } from './systems/TrainingSystem';
 import { RandomEventSystem } from './systems/RandomEventSystem';
 import { RelicSystem } from './systems/RelicSystem';
 import { DailySystem } from './systems/DailySystem';
-import { settlementSystem } from './systems/SettlementSystem';
-import { craftingEquipmentSystem } from './systems/CraftingEquipmentSystem';
-import { marketSystem } from './systems/MarketSystem';
-import { mercenarySystem } from './systems/MercenarySystem';
-import { titleSystem } from './systems/TitleSystem';
-import { settlementDefenseSystem } from './systems/SettlementDefenseSystem';
-import { settlementStorySystem } from './systems/SettlementStorySystem';
-import { legacyEndingSystem } from './systems/LegacyEndingSystem';
-import { worldStateManager } from './systems/WorldStateManager';
-import { partyTeamSystem } from './systems/PartyTeamSystem';
-import { petSystem } from './systems/PetSystem';
-import { karmaSystem } from './systems/KarmaSystem';
-import { adventureEventSystem } from './systems/AdventureEventSystem';
 import { sound } from './services/audio/SoundService';
 
 // UI
@@ -103,49 +92,11 @@ class GameApp {
     // 2. Load Save Data (Local Storage with fallback to Cloud Save)
     const localSave = saveService.loadLocal();
     const cloudSave = await platform.loadCloudSave();
-    const activeSave = cloudSave && cloudSave.lastSeenAt > (localSave?.lastSeenAt || 0) ? cloudSave : localSave;
+    const activeSave = selectMostRecentSave(localSave, cloudSave);
 
     if (activeSave) {
       store.replace(activeSave);
-      if (activeSave.settlement) {
-        settlementSystem.deserialize(activeSave.settlement);
-      }
-      if (activeSave.crafting) {
-        craftingEquipmentSystem.deserialize(activeSave.crafting);
-      }
-      if (activeSave.market) {
-        marketSystem.deserialize(activeSave.market);
-      }
-      if (activeSave.mercenaries) {
-        mercenarySystem.deserialize(activeSave.mercenaries);
-      }
-      if (activeSave.titles) {
-        titleSystem.deserialize(activeSave.titles);
-      }
-      if (activeSave.settlementDefense) {
-        settlementDefenseSystem.deserialize(activeSave.settlementDefense);
-      }
-      if (activeSave.settlementStory) {
-        settlementStorySystem.deserialize(activeSave.settlementStory);
-      }
-      if (activeSave.legacyEndings) {
-        legacyEndingSystem.deserialize(activeSave.legacyEndings);
-      }
-      if (activeSave.partyTeam) {
-        partyTeamSystem.deserialize(activeSave.partyTeam);
-      }
-      if (activeSave.karma) {
-        karmaSystem.deserialize(activeSave.karma);
-      }
-      if (activeSave.pets) {
-        petSystem.deserialize(activeSave.pets);
-      }
-      if (activeSave.adventureEvents) {
-        adventureEventSystem.deserialize(activeSave.adventureEvents);
-      }
-      if (activeSave.worldState) {
-        worldStateManager.deserialize(activeSave.worldState);
-      }
+      RpgSaveAggregate.hydrate(activeSave);
     }
 
     // Sync combat states with the (possibly loaded) save.

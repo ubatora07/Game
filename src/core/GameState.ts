@@ -5,6 +5,14 @@ import { PetSaveState } from './pets/PetTypes';
 import { KarmaState } from './karma/KarmaTypes';
 import { WorldSaveState } from './world/WorldStateTypes';
 import { AdventureEventSaveState } from './events/AdventureEventTypes';
+import { SettlementSaveState } from './settlement/SettlementTypes';
+import { CraftingSaveState } from './crafting/CraftingTypes';
+import { MarketSaveState } from './market/MarketTypes';
+import { MercenarySaveState } from './mercenaries/MercenaryTypes';
+import { TitleSaveState } from './titles/TitleTypes';
+import { SettlementDefenseSaveState } from './settlement/SettlementDefenseTypes';
+import { SettlementStorySaveState } from './settlement/SettlementStoryTypes';
+import { LegacyEndingSaveState } from './legacy/LegacyEndingTypes';
 
 export interface PlayerStats {
   totalClicks: number;
@@ -124,14 +132,14 @@ export interface GameStateData {
   };
   settings: PlayerSettings;
   lastSeenAt: number;
-  settlement?: any;
-  crafting?: any;
-  market?: any;
-  mercenaries?: any;
-  titles?: any;
-  settlementDefense?: any;
-  settlementStory?: any;
-  legacyEndings?: any;
+  settlement?: SettlementSaveState;
+  crafting?: CraftingSaveState;
+  market?: MarketSaveState;
+  mercenaries?: MercenarySaveState;
+  titles?: TitleSaveState;
+  settlementDefense?: SettlementDefenseSaveState;
+  settlementStory?: SettlementStorySaveState;
+  legacyEndings?: LegacyEndingSaveState;
   partyTeam?: DualTeamSaveState;
   pets?: PetSaveState;
   karma?: KarmaState;

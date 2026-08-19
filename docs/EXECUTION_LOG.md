@@ -294,3 +294,39 @@ Validation:
 - Tokenized all layout.css spacing/radius/shadow declarations; raw pixel spacing/radius/shadow now fail `qa:ui-production`.
 - Added controlled nav/hub/toast shadow tokens and explicit micro-spacing tokens for dense optical exceptions.
 - P11-12 is complete. P11-19/P11-20/P11-21 remain open because active legacy screen-local inline styles still contain raw geometry values.
+
+## 2026-08-19 — P0 Save/Rebirth Closure (BATCH-08/09)
+
+Status: **SOURCE COMPLETE / INDEPENDENT RUNTIME HARNESS 6/6 PASS**
+
+Completed:
+- replaced remaining external RPG `any` fields in `GameStateData` with concrete save-state types;
+- centralized capture/hydrate/clear-reset orchestration in `RpgSaveAggregate`;
+- extracted deterministic local-vs-cloud selection into `selectMostRecentSave`;
+- added full V7 round-trip coverage for party, second character, active focus, pet evolution/active pet, Karma score/flags/reputation and World current/legacy flags;
+- verified repeated hydration is idempotent for Pet and Karma modifier sources;
+- removed AdventureEvent -> Karma reset ownership leakage;
+- documented the exact Save V7 and Rebirth preservation matrix;
+- created structured `RebirthRequirements` as the single eligibility/reward contract;
+- aligned the legacy 1B reward floor to the actual Rank S / 2B rebirth gate;
+- updated Soul Tree and Rebirth modal to consume the structured requirements object;
+- removed the duplicate Settlement `reincarnate:complete` reset listener so reset policies execute exactly once;
+- added an explicit post-reset campaign-combat rebuild before `reincarnate:complete`;
+- made `SaveService` persist immediately on the post-transaction rebirth event;
+- verified party/class/partner/pet preservation, current-life World reset, legacy World preservation and immediate second-rebirth idempotency;
+- added corrupted-optional-domain rebirth regression coverage.
+
+Validation:
+- `tsc --noEmit -p tsconfig.json` PASS;
+- selective TypeScript compile of Save V7 + Rebirth regression suites PASS;
+- independent P0 Save/Rebirth Node runtime harness PASS **6/6**;
+- `npm run qa:terminology` PASS;
+- `npm run qa:i18n` PASS;
+- `npm run qa:art-registry` PASS;
+- `npm run qa:ui-production` PASS;
+- `git diff --check` PASS;
+- full Vitest/Vite/Playwright remains environment-blocked by the supplied Windows-only Rollup native dependency, so those gates remain explicitly open.
+
+Roadmap effect:
+- Phase 2 Save Aggregate V7: **51/51 complete**.
+- Phase 3 Rebirth / Legacy Reset Contract: **32/32 complete**.
