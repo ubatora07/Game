@@ -385,6 +385,7 @@ export const en = {
   'combat.world_conquered': 'WORLD {worldId} CONQUERED!',
   'combat.boss_warning': 'BOSS: {bossName}',
   'combat.unknown_boss': 'ANCIENT WARLORD',
+  'combat.unknown_enemy': 'Unknown Enemy',
   'combat.hp': 'HP',
   'combat.boss_encounter': 'BOSS ENCOUNTER',
   'combat.enemy_boss': 'BOSS',

@@ -9,8 +9,12 @@ import { sound } from '../../services/audio/SoundService';
 import { t } from '../../services/i18n/I18nService';
 import { HeroSystem } from '../../systems/HeroSystem';
 import { getCampaignWorldById, CAMPAIGN_WORLDS } from '../../content/campaignWorlds';
-import { PixelSpriteRenderer, CharacterAnimationState, GoblinTier } from '../art/PixelSpriteRenderer';
+import type { CharacterAnimationState, GoblinTier } from '../art/PixelSpriteRenderer';
+import { ArtRuntimeRenderer } from '../art/runtime/ArtRuntimeRenderer';
+import { resolveEnemySprite } from '../art/runtime/EnemySpriteRegistry';
+import { resolveWorldArt } from '../art/runtime/WorldArtRegistry';
 import { petSystem } from '../../systems/PetSystem';
+import { partyTeamSystem } from '../../systems/PartyTeamSystem';
 
 export class BattlefieldViewport {
   private el: HTMLElement;
@@ -19,6 +23,8 @@ export class BattlefieldViewport {
   private petAvatarEl: HTMLElement | null = null;
   private enemyAvatarEl: HTMLElement | null = null;
   private enemyHpFillEl: HTMLElement | null = null;
+  private worldArtHostEl: HTMLElement | null = null;
+  private currentWorldArtSignature: string = '';
   private enemyHpTextEl: HTMLElement | null = null;
   private bossTimerBarEl: HTMLElement | null = null;
   private bossTimerTextEl: HTMLElement | null = null;
@@ -77,6 +83,11 @@ export class BattlefieldViewport {
     events.on('pet:active_changed', () => this.updatePetDisplay());
     events.on('pet:acquired', () => this.updatePetDisplay());
     events.on('pet:evolved', () => this.updatePetDisplay());
+    events.on('class:selected', () => this.updateHeroSprite());
+    events.on('class:respec', () => this.updateHeroSprite());
+    events.on('party:character_class_selected', (data) => {
+      if (data.slotId === 'char_1') this.updateHeroSprite();
+    });
 
     // Interactive Tap on Battlefield to attack
     this.el.addEventListener('pointerdown', (e: MouseEvent | TouchEvent) => {
@@ -108,7 +119,8 @@ export class BattlefieldViewport {
     if (!this.heroAvatarEl) return;
     const state = store.get();
     const rank = getRankById(state.rankId);
-    this.heroAvatarEl.innerHTML = PixelSpriteRenderer.getSwordsmanSprite(this.heroAnimState, rank.color);
+    const classId = partyTeamSystem.getCharacter('char_1').classId;
+    this.heroAvatarEl.innerHTML = ArtRuntimeRenderer.renderPlayer(classId, this.heroAnimState, rank.color);
   }
 
   private updatePetDisplay(): void {
@@ -116,10 +128,14 @@ export class BattlefieldViewport {
     const activePet = petSystem.getActivePet();
     if (activePet) {
       this.petAvatarEl.style.display = 'block';
-      this.petAvatarEl.innerHTML = PixelSpriteRenderer.getPetSprite(activePet.evolutionStage);
+      this.petAvatarEl.innerHTML = ArtRuntimeRenderer.renderPet(activePet.id, activePet.evolutionStage);
+      this.petAvatarEl.dataset.petId = activePet.id;
+      this.petAvatarEl.dataset.petEvolution = String(activePet.evolutionStage);
     } else {
       this.petAvatarEl.style.display = 'none';
       this.petAvatarEl.innerHTML = '';
+      delete this.petAvatarEl.dataset.petId;
+      delete this.petAvatarEl.dataset.petEvolution;
     }
   }
 
@@ -445,12 +461,30 @@ export class BattlefieldViewport {
     }
   }
 
+  private syncWorldPresentation(): void {
+    const state = store.get();
+    const combat = campaignCombatService.getCombatState();
+    const world = getCampaignWorldById(combat.worldId || state.campaign.currentWorldId) || CAMPAIGN_WORLDS[0];
+    const worldArt = resolveWorldArt(world.bgAsset);
+    const signature = `${worldArt.bgAsset}:${state.settings.reducedMotion ? 'reduced' : 'motion'}`;
+
+    if (this.worldArtHostEl && this.currentWorldArtSignature !== signature) {
+      this.worldArtHostEl.innerHTML = ArtRuntimeRenderer.renderWorld(world.bgAsset, state.settings.reducedMotion);
+      this.worldArtHostEl.dataset.bgAsset = worldArt.bgAsset;
+      this.currentWorldArtSignature = signature;
+    }
+
+    sound.setWorldTheme(combat.activeEnemy?.isBoss ? 'boss' : worldArt.ambienceTheme);
+  }
+
   public update(): void {
     const state = store.get();
     const rank = getRankById(state.rankId);
     const combat = campaignCombatService.getCombatState();
     const enemy = combat.activeEnemy;
     const world = getCampaignWorldById(combat.worldId || state.campaign.currentWorldId) || CAMPAIGN_WORLDS[0];
+
+    this.syncWorldPresentation();
 
     const worldBadge = this.el.querySelector('#worldBadgeText') as HTMLElement;
     if (worldBadge) {
@@ -502,11 +536,11 @@ export class BattlefieldViewport {
     const enemyTitleEl = this.el.querySelector('#enemyTitleText') as HTMLElement;
     const enemySpriteHolder = this.el.querySelector('#enemySpriteHolder') as HTMLElement;
 
-    if (enemyNameEl) enemyNameEl.textContent = enemy.defaultName;
+    if (enemyNameEl) enemyNameEl.textContent = t(enemy.nameKey);
     if (enemyTitleEl) {
       if (enemy.isBoss && enemy.defaultBossTitle) {
         enemyTitleEl.style.display = 'block';
-        enemyTitleEl.textContent = `👑 ${enemy.defaultBossTitle}`;
+        enemyTitleEl.textContent = `👑 ${enemy.bossTitleKey ? t(enemy.bossTitleKey) : enemy.defaultBossTitle}`;
       } else {
         enemyTitleEl.style.display = 'none';
       }
@@ -514,7 +548,13 @@ export class BattlefieldViewport {
 
     if (enemySpriteHolder) {
       const tier: GoblinTier = enemy.isBoss ? 'boss' : enemy.archetype === 'elite' ? 'elite' : 'minion';
-      enemySpriteHolder.innerHTML = PixelSpriteRenderer.getGoblinSprite(tier);
+      const spriteDef = resolveEnemySprite(enemy.spriteId);
+      enemySpriteHolder.innerHTML = ArtRuntimeRenderer.renderEnemy(enemy.spriteId, tier);
+      enemySpriteHolder.dataset.spriteId = enemy.spriteId;
+      enemySpriteHolder.dataset.artRole = spriteDef.presentation.role;
+      enemySpriteHolder.style.filter = enemy.isBoss
+        ? `drop-shadow(0 4px 10px rgba(0,0,0,0.8)) drop-shadow(0 0 10px ${spriteDef.presentation.bossAura || spriteDef.accentColor})`
+        : 'drop-shadow(0 4px 10px rgba(0,0,0,0.8))';
     }
 
     this.update();
@@ -528,10 +568,14 @@ export class BattlefieldViewport {
     const world = getCampaignWorldById(combat.worldId || state.campaign.currentWorldId) || CAMPAIGN_WORLDS[0];
 
     const enemyTier: GoblinTier = enemy?.isBoss ? 'boss' : enemy?.archetype === 'elite' ? 'elite' : 'minion';
+    const classId = partyTeamSystem.getCharacter('char_1').classId;
+    const enemySpriteDef = enemy ? resolveEnemySprite(enemy.spriteId) : null;
 
     this.el.innerHTML = `
-      <!-- Multi-Layer Pixel Art Forest Background -->
-      ${PixelSpriteRenderer.getForestBackground()}
+      <!-- ID-driven four-layer seamless world art host -->
+      <div id="battleWorldArtHost" data-bg-asset="${world.bgAsset}" style="position:absolute;inset:0;pointer-events:none;">
+        ${ArtRuntimeRenderer.renderWorld(world.bgAsset, state.settings.reducedMotion)}
+      </div>
 
       <!-- Top Pixel Fantasy Header Bar -->
       <div style="width:100%; display:flex; justify-content:space-between; align-items:center; max-width:480px; margin:0 auto; padding:4px 8px; background:rgba(18,15,23,0.92); border:1px solid #78350f; border-radius:6px; z-index:10; box-shadow:0 2px 8px rgba(0,0,0,0.8);">
@@ -552,10 +596,10 @@ export class BattlefieldViewport {
         <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
           <div>
             <div id="enemyTitleText" style="font-size:10px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; display:${enemy?.isBoss ? 'block' : 'none'};">
-              👑 ${enemy?.defaultBossTitle || ''}
+              👑 ${enemy?.bossTitleKey ? t(enemy.bossTitleKey) : enemy?.defaultBossTitle || ''}
             </div>
             <div id="enemyNameText" style="font-size:13px; font-weight:bold; color:#f8fafc; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-family:var(--font-display);">
-              ${enemy?.defaultName || 'Forest Goblin Grunt'}
+              ${enemy ? t(enemy.nameKey) : t('combat.unknown_enemy')}
             </div>
           </div>
           <div id="enemyHpText" style="font-size:11px; font-weight:bold; color:#cbd5e1; font-family:var(--font-display);">
@@ -597,7 +641,7 @@ export class BattlefieldViewport {
           <!-- Swordsman Protagonist Sprite -->
           <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
             <div id="battleHeroAvatar" style="width:84px; height:84px; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.8));">
-              ${PixelSpriteRenderer.getSwordsmanSprite(this.heroAnimState, rank.color)}
+              ${ArtRuntimeRenderer.renderPlayer(classId, this.heroAnimState, rank.color)}
             </div>
             
             <div id="heroRankTitle" style="font-size:10px; font-weight:bold; color:${rank.color}; text-shadow:0 1px 3px #000; text-transform:uppercase; letter-spacing:0.5px; font-family:var(--font-display);">
@@ -616,8 +660,8 @@ export class BattlefieldViewport {
 
         <!-- Right: Active Enemy Entity (Goblin Family) -->
         <div id="battleEnemyAvatar" style="display:flex; flex-direction:column; align-items:center; gap:2px; cursor:pointer; position:relative;">
-          <div id="enemySpriteHolder" style="width:${enemy?.isBoss ? '110px' : enemy?.archetype === 'elite' ? '92px' : '74px'}; height:${enemy?.isBoss ? '110px' : enemy?.archetype === 'elite' ? '92px' : '74px'}; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.8));">
-            ${PixelSpriteRenderer.getGoblinSprite(enemyTier)}
+          <div id="enemySpriteHolder" data-sprite-id="${enemy?.spriteId || ''}" data-art-role="${enemySpriteDef?.presentation.role || 'minion'}" style="width:${enemy?.isBoss ? '110px' : enemy?.archetype === 'elite' ? '92px' : '74px'}; height:${enemy?.isBoss ? '110px' : enemy?.archetype === 'elite' ? '92px' : '74px'}; filter:${enemy?.isBoss && enemySpriteDef ? `drop-shadow(0 4px 10px rgba(0,0,0,0.8)) drop-shadow(0 0 10px ${enemySpriteDef.presentation.bossAura || enemySpriteDef.accentColor})` : 'drop-shadow(0 4px 10px rgba(0,0,0,0.8))'};">
+            ${enemy ? ArtRuntimeRenderer.renderEnemy(enemy.spriteId, enemyTier) : ''}
           </div>
           
           <div style="font-size:10px; font-weight:bold; color:${enemy?.isBoss ? '#f87171' : '#cbd5e1'}; font-family:var(--font-display); background:rgba(18,15,23,0.8); border:1px solid #451a03; padding:1px 6px; border-radius:3px;">
@@ -626,6 +670,11 @@ export class BattlefieldViewport {
         </div>
       </div>
     `;
+
+    this.worldArtHostEl = this.el.querySelector('#battleWorldArtHost');
+    const initialWorldArt = resolveWorldArt(world.bgAsset);
+    this.currentWorldArtSignature = `${initialWorldArt.bgAsset}:${state.settings.reducedMotion ? 'reduced' : 'motion'}`;
+    sound.setWorldTheme(enemy?.isBoss ? 'boss' : initialWorldArt.ambienceTheme);
 
     this.heroAvatarEl = this.el.querySelector('#battleHeroAvatar');
     this.petAvatarEl = this.el.querySelector('#battlePetAvatar');

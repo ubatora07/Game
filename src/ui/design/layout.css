@@ -658,3 +658,13 @@
     font-size: 21px;
   }
 }
+
+/* Runtime art pipeline: horizontally seamless parallax layers. */
+@keyframes battle-parallax-scroll {
+  from { background-position-x: 0; }
+  to { background-position-x: -192px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .battle-parallax-layer { animation: none !important; }
+}

@@ -385,6 +385,7 @@ export const ru = {
   'combat.world_conquered': 'МИР {worldId} ПОКОРЁН!',
   'combat.boss_warning': 'БОСС: {bossName}',
   'combat.unknown_boss': 'ДРЕВНИЙ ВОЕВОДА',
+  'combat.unknown_enemy': 'Неизвестный враг',
   'combat.hp': 'ОЗ',
   'combat.boss_encounter': 'БОЙ С БОССОМ',
   'combat.enemy_boss': 'БОСС',

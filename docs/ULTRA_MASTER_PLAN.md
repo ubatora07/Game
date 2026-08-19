@@ -330,30 +330,30 @@
 
 **Priority:** P1
 
-- [ ] `P8-01` Create WorldArtRegistry contract
-- [ ] `P8-02` Create EnemySpriteRegistry contract
-- [ ] `P8-03` Create PlayerSpriteRegistry contract
-- [ ] `P8-04` Create PetSpriteRegistry contract
-- [ ] `P8-05` Create UIIconRegistry contract
-- [ ] `P8-06` Wire campaignWorld.bgAsset to battlefield renderer
-- [ ] `P8-07` Wire enemy.spriteId to enemy renderer
-- [ ] `P8-08` Wire boss.spriteId to boss renderer
-- [ ] `P8-09` Wire protagonist class to player renderer
-- [ ] `P8-10` Wire active pet id + evolution to pet renderer
-- [ ] `P8-11` Define atlas metadata contract
-- [ ] `P8-12` Define animation frame metadata contract
-- [ ] `P8-13` Define pixel scale rules
-- [ ] `P8-14` Define fallback asset behavior
-- [ ] `P8-15` Define missing-asset diagnostics in dev only
-- [ ] `P8-16` Eliminate forest-for-every-world rendering
-- [ ] `P8-17` Eliminate goblin-for-every-enemy rendering
-- [ ] `P8-18` Eliminate swordsman-for-every-class rendering
-- [ ] `P8-19` Eliminate Ignis-for-every-pet rendering
-- [ ] `P8-20` Define parallax layer contract
-- [ ] `P8-21` Define seamless repeat contract
-- [ ] `P8-22` Define world ambience hooks
-- [ ] `P8-23` Define boss presentation hooks
-- [ ] `P8-24` Add asset-resolution unit tests
+- [x] `P8-01` Create WorldArtRegistry contract
+- [x] `P8-02` Create EnemySpriteRegistry contract
+- [x] `P8-03` Create PlayerSpriteRegistry contract
+- [x] `P8-04` Create PetSpriteRegistry contract
+- [x] `P8-05` Create UIIconRegistry contract
+- [x] `P8-06` Wire campaignWorld.bgAsset to battlefield renderer
+- [x] `P8-07` Wire enemy.spriteId to enemy renderer
+- [x] `P8-08` Wire boss.spriteId to boss renderer
+- [x] `P8-09` Wire protagonist class to player renderer
+- [x] `P8-10` Wire active pet id + evolution to pet renderer
+- [x] `P8-11` Define atlas metadata contract
+- [x] `P8-12` Define animation frame metadata contract
+- [x] `P8-13` Define pixel scale rules
+- [x] `P8-14` Define fallback asset behavior
+- [x] `P8-15` Define missing-asset diagnostics in dev only
+- [x] `P8-16` Eliminate forest-for-every-world rendering
+- [x] `P8-17` Eliminate goblin-for-every-enemy rendering
+- [x] `P8-18` Eliminate swordsman-for-every-class rendering
+- [x] `P8-19` Eliminate Ignis-for-every-pet rendering
+- [x] `P8-20` Define parallax layer contract
+- [x] `P8-21` Define seamless repeat contract
+- [x] `P8-22` Define world ambience hooks
+- [x] `P8-23` Define boss presentation hooks
+- [x] `P8-24` Add asset-resolution unit tests
 
 ## PHASE 9 — World 1 Production Vertical Slice
 

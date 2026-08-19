@@ -181,3 +181,33 @@ Validation:
 - `node scripts/terminology-audit.cjs` PASS
 - `git diff --check` PASS
 - fresh Vite/Vitest/Playwright build remains blocked by Windows-only Rollup native package in supplied `node_modules`.
+
+## 2026-08-19 — Phase 8 Real Art Runtime Architecture
+
+Status: **SOURCE COMPLETE / ART REGISTRY GATE PASS / PRODUCTION ASSET REPLACEMENT PENDING PHASE 9**
+
+Completed:
+- added typed World, Enemy/Boss, Player, Pet and UI Icon registries;
+- extended the existing art-pipeline contract with nearest-neighbor/integer pixel scaling and a 192px seamless tile rule;
+- wired `CampaignWorld.bgAsset`, combat `spriteId`, authoritative protagonist class and active `petId + evolutionStage` into Battlefield;
+- replaced forest-for-every-world with five distinct four-layer procedural parallax fallbacks;
+- replaced goblin-for-every-enemy with explicit coverage for 35 enemy/boss sprite IDs and multiple silhouettes;
+- replaced swordsman-for-every-class with distinct Mage/Swordsman/Archer/Assassin fallback paths;
+- replaced Ignis-for-every-pet with independent Ignis/Fenrir/Sylph/Aegis fallback paths;
+- added DEV-only missing-art diagnostics and safe production fallback behavior;
+- synchronized world/boss ambience hooks through the existing SoundService theme API;
+- added boss presentation metadata/aura hooks;
+- added `tests/art-asset-resolution.test.ts` and build-enforced `qa:art-registry`;
+- documented the runtime art boundary in `docs/ART_RUNTIME_ARCHITECTURE_V2.md`.
+
+Validation:
+- `npx tsc --noEmit -p tsconfig.json` PASS
+- selective TypeScript compile of `tests/art-asset-resolution.test.ts` PASS
+- `node scripts/art-registry-audit.cjs` PASS: 5 worlds / 35 enemy+boss sprites / 4 classes / 4 pets / 6 UI icons
+- `node scripts/i18n-audit.cjs` PASS
+- `node scripts/terminology-audit.cjs` PASS
+- `git diff --check` PASS
+- Vitest/Vite/Playwright execution remains environment-blocked by the supplied Windows-only Rollup native dependency; no browser-art verification is claimed.
+
+Important boundary:
+Phase 8 fixes **runtime art identity resolution**, not final art quality. Procedural SVG/CSS remains an explicit fallback. Phase 9 is the production World 1 vertical slice that replaces these sources with real seamless pixel-art layers and sprite atlases without changing gameplay routing.

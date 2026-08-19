@@ -140,3 +140,17 @@ export const PIXEL_RENDER_CSS = `
   image-rendering: crisp-edges;
   transform: translateZ(0);
 `;
+
+/**
+ * Runtime pixel-art scaling contract.
+ * Production raster/atlas assets must use nearest-neighbor sampling and integer display scaling.
+ * Procedural fallbacks follow the same logical canvas sizes so they can be replaced without layout changes.
+ */
+export const PIXEL_SCALE_RULES = {
+  interpolation: 'nearest-neighbor' as const,
+  nativeScale: 1,
+  allowedIntegerScales: [1, 2, 3, 4] as const,
+  requireIntegerScaleForRaster: true,
+  allowFractionalContainerFit: false,
+  seamlessWorldTileWidthPx: 192,
+};
