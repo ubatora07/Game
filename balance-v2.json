@@ -1,0 +1,2315 @@
+{
+  "version": "2.0.0",
+  "timestamp": "2026-08-19T12:23:14.935Z",
+  "buildings": [
+    {
+      "id": "dojo",
+      "nameKey": "building.dojo.name",
+      "descKey": "building.dojo.desc",
+      "icon": "🥋",
+      "baseCost": 10,
+      "costGrowth": 1.15,
+      "baseProduction": 1,
+      "baseGoldProduction": 1,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "meditation_chamber",
+      "nameKey": "building.chamber.name",
+      "descKey": "building.chamber.desc",
+      "icon": "🧘",
+      "baseCost": 100,
+      "costGrowth": 1.15,
+      "baseProduction": 8,
+      "baseGoldProduction": 4,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "spirit_shrine",
+      "nameKey": "building.shrine.name",
+      "descKey": "building.shrine.desc",
+      "icon": "⛩️",
+      "baseCost": 1000,
+      "costGrowth": 1.15,
+      "baseProduction": 60,
+      "baseGoldProduction": 25,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "warrior_academy",
+      "nameKey": "building.academy.name",
+      "descKey": "building.academy.desc",
+      "icon": "🏯",
+      "baseCost": 12000,
+      "costGrowth": 1.15,
+      "baseProduction": 450,
+      "baseGoldProduction": 160,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "arcane_forge",
+      "nameKey": "building.forge.name",
+      "descKey": "building.forge.desc",
+      "icon": "⚒️",
+      "baseCost": 150000,
+      "costGrowth": 1.15,
+      "baseProduction": 3500,
+      "baseGoldProduction": 1100,
+      "requiredRankIndex": 2
+    },
+    {
+      "id": "mana_reactor",
+      "nameKey": "building.reactor.name",
+      "descKey": "building.reactor.desc",
+      "icon": "🌀",
+      "baseCost": 2000000,
+      "costGrowth": 1.15,
+      "baseProduction": 30000,
+      "baseGoldProduction": 8500,
+      "requiredRankIndex": 3
+    },
+    {
+      "id": "celestial_temple",
+      "nameKey": "building.temple.name",
+      "descKey": "building.temple.desc",
+      "icon": "✨",
+      "baseCost": 30000000,
+      "costGrowth": 1.15,
+      "baseProduction": 275000,
+      "baseGoldProduction": 70000,
+      "requiredRankIndex": 4
+    },
+    {
+      "id": "dimensional_gate",
+      "nameKey": "building.gate.name",
+      "descKey": "building.gate.desc",
+      "icon": "🌌",
+      "baseCost": 500000000,
+      "costGrowth": 1.15,
+      "baseProduction": 2700000,
+      "baseGoldProduction": 600000,
+      "requiredRankIndex": 5
+    },
+    {
+      "id": "star_fortress",
+      "nameKey": "building.fortress.name",
+      "descKey": "building.fortress.desc",
+      "icon": "🪐",
+      "baseCost": 10000000000,
+      "costGrowth": 1.15,
+      "baseProduction": 30000000,
+      "baseGoldProduction": 6000000,
+      "requiredRankIndex": 6
+    },
+    {
+      "id": "infinite_core",
+      "nameKey": "building.core.name",
+      "descKey": "building.core.desc",
+      "icon": "🔮",
+      "baseCost": 250000000000,
+      "costGrowth": 1.15,
+      "baseProduction": 380000000,
+      "baseGoldProduction": 70000000,
+      "requiredRankIndex": 7
+    }
+  ],
+  "buildingMilestones": [
+    {
+      "count": 10,
+      "multiplier": 2
+    },
+    {
+      "count": 25,
+      "multiplier": 2
+    },
+    {
+      "count": 50,
+      "multiplier": 2
+    },
+    {
+      "count": 100,
+      "multiplier": 2
+    },
+    {
+      "count": 150,
+      "multiplier": 1.5
+    },
+    {
+      "count": 200,
+      "multiplier": 2
+    },
+    {
+      "count": 300,
+      "multiplier": 1.5
+    },
+    {
+      "count": 400,
+      "multiplier": 1.5
+    },
+    {
+      "count": 500,
+      "multiplier": 2
+    },
+    {
+      "count": 750,
+      "multiplier": 2
+    },
+    {
+      "count": 1000,
+      "multiplier": 3
+    }
+  ],
+  "ranks": [
+    {
+      "id": "E",
+      "index": 0,
+      "nameKey": "rank.e.name",
+      "titleKey": "rank.e.title",
+      "reqPower": 0,
+      "multiplier": 1,
+      "color": "#94a3b8",
+      "glowColor": "rgba(148, 163, 184, 0.4)",
+      "auraStyle": "aura-none",
+      "avatarIcon": "🥋",
+      "weaponVisual": "Wooden Blade",
+      "trailColor": "#94a3b8",
+      "descriptionKey": "rank.e.desc",
+      "avatarIndex": 0
+    },
+    {
+      "id": "D",
+      "index": 1,
+      "nameKey": "rank.d.name",
+      "titleKey": "rank.d.title",
+      "reqPower": 1200,
+      "multiplier": 1.15,
+      "color": "#38bdf8",
+      "glowColor": "rgba(56, 189, 248, 0.5)",
+      "auraStyle": "aura-subtle",
+      "avatarIcon": "🧘",
+      "weaponVisual": "Iron Katana",
+      "trailColor": "#38bdf8",
+      "unlockedFeature": "upgrades_tier2",
+      "descriptionKey": "rank.d.desc",
+      "avatarIndex": 1
+    },
+    {
+      "id": "C",
+      "index": 2,
+      "nameKey": "rank.c.name",
+      "titleKey": "rank.c.title",
+      "reqPower": 25000,
+      "multiplier": 1.35,
+      "color": "#4ade80",
+      "glowColor": "rgba(74, 222, 128, 0.5)",
+      "auraStyle": "aura-spirit",
+      "avatarIcon": "⛩️",
+      "weaponVisual": "Spirit Blade",
+      "trailColor": "#4ade80",
+      "unlockedFeature": "tower",
+      "descriptionKey": "rank.c.desc",
+      "avatarIndex": 2
+    },
+    {
+      "id": "B",
+      "index": 3,
+      "nameKey": "rank.b.name",
+      "titleKey": "rank.b.title",
+      "reqPower": 750000,
+      "multiplier": 1.65,
+      "color": "#c084fc",
+      "glowColor": "rgba(192, 132, 252, 0.6)",
+      "auraStyle": "aura-spirit",
+      "avatarIcon": "⚔️",
+      "weaponVisual": "Soul Greatsword",
+      "trailColor": "#c084fc",
+      "unlockedFeature": "heroes",
+      "descriptionKey": "rank.b.desc",
+      "avatarIndex": 3
+    },
+    {
+      "id": "A",
+      "index": 4,
+      "nameKey": "rank.a.name",
+      "titleKey": "rank.a.title",
+      "reqPower": 30000000,
+      "multiplier": 2,
+      "color": "#fbbf24",
+      "glowColor": "rgba(251, 191, 36, 0.6)",
+      "auraStyle": "aura-flame",
+      "avatarIcon": "🏯",
+      "weaponVisual": "Domain Glaive",
+      "trailColor": "#fbbf24",
+      "unlockedFeature": "advanced_upgrades",
+      "descriptionKey": "rank.a.desc",
+      "avatarIndex": 4
+    },
+    {
+      "id": "S",
+      "index": 5,
+      "nameKey": "rank.s.name",
+      "titleKey": "rank.s.title",
+      "reqPower": 2000000000,
+      "multiplier": 2.5,
+      "color": "#f87171",
+      "glowColor": "rgba(248, 113, 113, 0.7)",
+      "auraStyle": "aura-flame",
+      "avatarIcon": "🔥",
+      "weaponVisual": "Dragon Flamberge",
+      "trailColor": "#f87171",
+      "unlockedFeature": "reincarnation",
+      "descriptionKey": "rank.s.desc",
+      "avatarIndex": 5
+    },
+    {
+      "id": "SS",
+      "index": 6,
+      "nameKey": "rank.ss.name",
+      "titleKey": "rank.ss.title",
+      "reqPower": 250000000000,
+      "multiplier": 3.25,
+      "color": "#ec4899",
+      "glowColor": "rgba(236, 72, 153, 0.8)",
+      "auraStyle": "aura-void",
+      "avatarIcon": "🌌",
+      "weaponVisual": "Void Saber",
+      "trailColor": "#ec4899",
+      "unlockedFeature": "hero_stars",
+      "descriptionKey": "rank.ss.desc",
+      "avatarIndex": 6
+    },
+    {
+      "id": "SSS",
+      "index": 7,
+      "nameKey": "rank.sss.name",
+      "titleKey": "rank.sss.title",
+      "reqPower": 50000000000000,
+      "multiplier": 4.25,
+      "color": "#e11d48",
+      "glowColor": "rgba(225, 29, 72, 0.85)",
+      "auraStyle": "aura-void",
+      "avatarIcon": "🔮",
+      "weaponVisual": "Abyssal Scythe",
+      "trailColor": "#e11d48",
+      "unlockedFeature": "soul_mastery",
+      "descriptionKey": "rank.sss.desc",
+      "avatarIndex": 7
+    },
+    {
+      "id": "AWAKENED",
+      "index": 8,
+      "nameKey": "rank.awakened.name",
+      "titleKey": "rank.awakened.title",
+      "reqPower": 15000000000000000,
+      "multiplier": 5.75,
+      "color": "#818cf8",
+      "glowColor": "rgba(129, 140, 248, 0.9)",
+      "auraStyle": "aura-celestial",
+      "avatarIcon": "⚡",
+      "weaponVisual": "Astral Lightning Lance",
+      "trailColor": "#818cf8",
+      "descriptionKey": "rank.awakened.desc",
+      "avatarIndex": 8
+    },
+    {
+      "id": "TRANSCENDENT",
+      "index": 9,
+      "nameKey": "rank.transcendent.name",
+      "titleKey": "rank.transcendent.title",
+      "reqPower": 5000000000000000000,
+      "multiplier": 8,
+      "color": "#38bdf8",
+      "glowColor": "rgba(56, 189, 248, 0.95)",
+      "auraStyle": "aura-celestial",
+      "avatarIcon": "💫",
+      "weaponVisual": "Ether Calamity",
+      "trailColor": "#38bdf8",
+      "descriptionKey": "rank.transcendent.desc",
+      "avatarIndex": 9
+    },
+    {
+      "id": "CELESTIAL",
+      "index": 10,
+      "nameKey": "rank.celestial.name",
+      "titleKey": "rank.celestial.title",
+      "reqPower": 1e+21,
+      "multiplier": 10,
+      "color": "#facc15",
+      "glowColor": "rgba(250, 204, 21, 1)",
+      "auraStyle": "aura-godlike",
+      "avatarIcon": "👑",
+      "weaponVisual": "Celestial Sol Sovereign",
+      "trailColor": "#facc15",
+      "descriptionKey": "rank.celestial.desc",
+      "avatarIndex": 10
+    },
+    {
+      "id": "IMMORTAL",
+      "index": 11,
+      "nameKey": "rank.immortal.name",
+      "titleKey": "rank.immortal.title",
+      "reqPower": 5e+23,
+      "multiplier": 12,
+      "color": "#f43f5e",
+      "glowColor": "rgba(244, 63, 94, 1)",
+      "auraStyle": "aura-infinite",
+      "avatarIcon": "🌟",
+      "weaponVisual": "Infinite Primordial Blade",
+      "trailColor": "#f43f5e",
+      "descriptionKey": "rank.immortal.desc",
+      "avatarIndex": 11
+    }
+  ],
+  "upgrades": [
+    {
+      "id": "iron_fist",
+      "nameKey": "upgrade.iron_fist.name",
+      "descKey": "upgrade.iron_fist.desc",
+      "icon": "👊",
+      "category": "click",
+      "baseCost": 25,
+      "costGrowth": 2.5,
+      "effectType": "click_power_mult",
+      "effectValue": 2,
+      "maxLevel": 10,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "chi_flow",
+      "nameKey": "upgrade.chi_flow.name",
+      "descKey": "upgrade.chi_flow.desc",
+      "icon": "⚡",
+      "category": "click",
+      "baseCost": 80,
+      "costGrowth": 2.8,
+      "effectType": "click_power_flat",
+      "effectValue": 3,
+      "maxLevel": 10,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "eagle_eye",
+      "nameKey": "upgrade.eagle_eye.name",
+      "descKey": "upgrade.eagle_eye.desc",
+      "icon": "🎯",
+      "category": "click",
+      "baseCost": 250,
+      "costGrowth": 3,
+      "effectType": "crit_chance",
+      "effectValue": 0.04,
+      "maxLevel": 5,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "lethal_strike",
+      "nameKey": "upgrade.lethal_strike.name",
+      "descKey": "upgrade.lethal_strike.desc",
+      "icon": "💥",
+      "category": "click",
+      "baseCost": 1500,
+      "costGrowth": 3,
+      "effectType": "crit_mult",
+      "effectValue": 1,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "dojo_mastery",
+      "nameKey": "upgrade.dojo_mastery.name",
+      "descKey": "upgrade.dojo_mastery.desc",
+      "icon": "🥋",
+      "category": "building",
+      "targetBuildingId": "dojo",
+      "baseCost": 100,
+      "costGrowth": 3,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "chamber_zen",
+      "nameKey": "upgrade.chamber_zen.name",
+      "descKey": "upgrade.chamber_zen.desc",
+      "icon": "🧘",
+      "category": "building",
+      "targetBuildingId": "meditation_chamber",
+      "baseCost": 800,
+      "costGrowth": 3,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "shrine_blessing",
+      "nameKey": "upgrade.shrine_blessing.name",
+      "descKey": "upgrade.shrine_blessing.desc",
+      "icon": "⛩️",
+      "category": "building",
+      "targetBuildingId": "spirit_shrine",
+      "baseCost": 8000,
+      "costGrowth": 3,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "academy_drills",
+      "nameKey": "upgrade.academy_drills.name",
+      "descKey": "upgrade.academy_drills.desc",
+      "icon": "🏯",
+      "category": "building",
+      "targetBuildingId": "warrior_academy",
+      "baseCost": 90000,
+      "costGrowth": 3,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "forge_pyro",
+      "nameKey": "upgrade.forge_pyro.name",
+      "descKey": "upgrade.forge_pyro.desc",
+      "icon": "⚒️",
+      "category": "building",
+      "targetBuildingId": "arcane_forge",
+      "baseCost": 1000000,
+      "costGrowth": 3,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 2
+    },
+    {
+      "id": "reactor_overcharge",
+      "nameKey": "upgrade.reactor_overcharge.name",
+      "descKey": "upgrade.reactor_overcharge.desc",
+      "icon": "🌀",
+      "category": "building",
+      "targetBuildingId": "mana_reactor",
+      "baseCost": 15000000,
+      "costGrowth": 3,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 3
+    },
+    {
+      "id": "temple_sanctity",
+      "nameKey": "upgrade.temple_sanctity.name",
+      "descKey": "upgrade.temple_sanctity.desc",
+      "icon": "✨",
+      "category": "building",
+      "targetBuildingId": "celestial_temple",
+      "baseCost": 250000000,
+      "costGrowth": 3,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 4
+    },
+    {
+      "id": "gate_expansion",
+      "nameKey": "upgrade.gate_expansion.name",
+      "descKey": "upgrade.gate_expansion.desc",
+      "icon": "🌌",
+      "category": "building",
+      "targetBuildingId": "dimensional_gate",
+      "baseCost": 4000000000,
+      "costGrowth": 3,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 5
+    },
+    {
+      "id": "spirit_education",
+      "nameKey": "upgrade.spirit_education.name",
+      "descKey": "upgrade.spirit_education.desc",
+      "icon": "📜",
+      "category": "synergy",
+      "targetBuildingId": "meditation_chamber",
+      "sourceBuildingId": "warrior_academy",
+      "baseCost": 150000,
+      "costGrowth": 3.5,
+      "effectType": "synergy_boost",
+      "effectValue": 0.03,
+      "maxLevel": 5,
+      "requiredRankIndex": 2
+    },
+    {
+      "id": "celestial_discipline",
+      "nameKey": "upgrade.celestial_discipline.name",
+      "descKey": "upgrade.celestial_discipline.desc",
+      "icon": "🌟",
+      "category": "synergy",
+      "targetBuildingId": "dojo",
+      "sourceBuildingId": "celestial_temple",
+      "baseCost": 50000000,
+      "costGrowth": 3.5,
+      "effectType": "synergy_boost",
+      "effectValue": 0.05,
+      "maxLevel": 5,
+      "requiredRankIndex": 4
+    },
+    {
+      "id": "dimensional_training",
+      "nameKey": "upgrade.dimensional_training.name",
+      "descKey": "upgrade.dimensional_training.desc",
+      "icon": "🌀",
+      "category": "synergy",
+      "targetBuildingId": "warrior_academy",
+      "sourceBuildingId": "dimensional_gate",
+      "baseCost": 800000000,
+      "costGrowth": 3.5,
+      "effectType": "synergy_boost",
+      "effectValue": 0.04,
+      "maxLevel": 5,
+      "requiredRankIndex": 5
+    },
+    {
+      "id": "golden_fortune",
+      "nameKey": "upgrade.golden_fortune.name",
+      "descKey": "upgrade.golden_fortune.desc",
+      "icon": "💰",
+      "category": "economy",
+      "baseCost": 1000,
+      "costGrowth": 2.8,
+      "effectType": "global_gold_mult",
+      "effectValue": 0.2,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "architect_wisdom",
+      "nameKey": "upgrade.architect_wisdom.name",
+      "descKey": "upgrade.architect_wisdom.desc",
+      "icon": "📐",
+      "category": "economy",
+      "baseCost": 15000,
+      "costGrowth": 3.2,
+      "effectType": "building_cost_reduction",
+      "effectValue": 0.03,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "spirit_resonance",
+      "nameKey": "upgrade.spirit_resonance.name",
+      "descKey": "upgrade.spirit_resonance.desc",
+      "icon": "✨",
+      "category": "global",
+      "baseCost": 5000,
+      "costGrowth": 3.5,
+      "effectType": "global_power_mult",
+      "effectValue": 0.25,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "cosmic_flow",
+      "nameKey": "upgrade.cosmic_flow.name",
+      "descKey": "upgrade.cosmic_flow.desc",
+      "icon": "🌌",
+      "category": "global",
+      "baseCost": 150000,
+      "costGrowth": 4,
+      "effectType": "global_power_mult",
+      "effectValue": 0.5,
+      "maxLevel": 5,
+      "requiredRankIndex": 2
+    },
+    {
+      "id": "god_domain_expansion",
+      "nameKey": "upgrade.god_domain.name",
+      "descKey": "upgrade.god_domain.desc",
+      "icon": "👑",
+      "category": "global",
+      "baseCost": 50000000,
+      "costGrowth": 5,
+      "effectType": "global_power_mult",
+      "effectValue": 1,
+      "maxLevel": 5,
+      "requiredRankIndex": 4
+    },
+    {
+      "id": "astral_slumber",
+      "nameKey": "upgrade.astral_slumber.name",
+      "descKey": "upgrade.astral_slumber.desc",
+      "icon": "⏳",
+      "category": "special",
+      "baseCost": 20000,
+      "costGrowth": 3,
+      "effectType": "offline_cap_hours",
+      "effectValue": 2,
+      "maxLevel": 4,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "tower_conqueror",
+      "nameKey": "upgrade.tower_conqueror.name",
+      "descKey": "upgrade.tower_conqueror.desc",
+      "icon": "🏰",
+      "category": "special",
+      "baseCost": 100000,
+      "costGrowth": 3,
+      "effectType": "tower_dps_mult",
+      "effectValue": 0.35,
+      "maxLevel": 5,
+      "requiredRankIndex": 2
+    }
+  ],
+  "heroes": [
+    {
+      "id": "hiro",
+      "nameKey": "hero.hiro.name",
+      "titleKey": "hero.hiro.title",
+      "rarity": "common",
+      "descriptionKey": "hero.hiro.desc",
+      "element": "wind",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.1
+      },
+      "avatarSeed": "hiro-blade",
+      "icon": "🗡️",
+      "skill": {
+        "nameKey": "hero.hiro.skill_name",
+        "descKey": "hero.hiro.skill_desc",
+        "icon": "🌪️",
+        "type": "direct_damage",
+        "cooldownSeconds": 8,
+        "multiplier": 2.5
+      }
+    },
+    {
+      "id": "lin",
+      "nameKey": "hero.lin.name",
+      "titleKey": "hero.lin.title",
+      "rarity": "common",
+      "descriptionKey": "hero.lin.desc",
+      "element": "water",
+      "modifier": {
+        "type": "gold_pct",
+        "baseValue": 0.15
+      },
+      "avatarSeed": "lin-staff",
+      "icon": "🌸",
+      "skill": {
+        "nameKey": "hero.lin.skill_name",
+        "descKey": "hero.lin.skill_desc",
+        "icon": "🌊",
+        "type": "gold_burst",
+        "cooldownSeconds": 10,
+        "multiplier": 3
+      }
+    },
+    {
+      "id": "tatsu",
+      "nameKey": "hero.tatsu.name",
+      "titleKey": "hero.tatsu.title",
+      "rarity": "common",
+      "descriptionKey": "hero.tatsu.desc",
+      "element": "fire",
+      "modifier": {
+        "type": "offline_pct",
+        "baseValue": 0.15
+      },
+      "avatarSeed": "tatsu-fist",
+      "icon": "🥊",
+      "skill": {
+        "nameKey": "hero.tatsu.skill_name",
+        "descKey": "hero.tatsu.skill_desc",
+        "icon": "🔥",
+        "type": "direct_damage",
+        "cooldownSeconds": 8,
+        "multiplier": 2.8
+      }
+    },
+    {
+      "id": "mei",
+      "nameKey": "hero.mei.name",
+      "titleKey": "hero.mei.title",
+      "rarity": "common",
+      "descriptionKey": "hero.mei.desc",
+      "element": "wind",
+      "modifier": {
+        "type": "crit_chance",
+        "baseValue": 0.03
+      },
+      "avatarSeed": "mei-bow",
+      "icon": "🏹",
+      "skill": {
+        "nameKey": "hero.mei.skill_name",
+        "descKey": "hero.mei.skill_desc",
+        "icon": "🎯",
+        "type": "crit_mark",
+        "cooldownSeconds": 9,
+        "multiplier": 2.5
+      }
+    },
+    {
+      "id": "kael",
+      "nameKey": "hero.kael.name",
+      "titleKey": "hero.kael.title",
+      "rarity": "rare",
+      "descriptionKey": "hero.kael.desc",
+      "element": "void",
+      "modifier": {
+        "type": "crit_mult",
+        "baseValue": 0.35
+      },
+      "avatarSeed": "kael-daggers",
+      "icon": "🗡️",
+      "skill": {
+        "nameKey": "hero.kael.skill_name",
+        "descKey": "hero.kael.skill_desc",
+        "icon": "🌑",
+        "type": "direct_damage",
+        "cooldownSeconds": 8,
+        "multiplier": 3.2
+      }
+    },
+    {
+      "id": "yuna",
+      "nameKey": "hero.yuna.name",
+      "titleKey": "hero.yuna.title",
+      "rarity": "rare",
+      "descriptionKey": "hero.yuna.desc",
+      "element": "light",
+      "modifier": {
+        "type": "offline_pct",
+        "baseValue": 0.2
+      },
+      "avatarSeed": "yuna-orb",
+      "icon": "🔮",
+      "skill": {
+        "nameKey": "hero.yuna.skill_name",
+        "descKey": "hero.yuna.skill_desc",
+        "icon": "✨",
+        "type": "power_burst",
+        "cooldownSeconds": 10,
+        "multiplier": 3.5
+      }
+    },
+    {
+      "id": "shin",
+      "nameKey": "hero.shin.name",
+      "titleKey": "hero.shin.title",
+      "rarity": "rare",
+      "descriptionKey": "hero.shin.desc",
+      "element": "lightning",
+      "modifier": {
+        "type": "tower_atk_pct",
+        "baseValue": 0.2
+      },
+      "avatarSeed": "shin-katana",
+      "icon": "⚡",
+      "skill": {
+        "nameKey": "hero.shin.skill_name",
+        "descKey": "hero.shin.skill_desc",
+        "icon": "⚡",
+        "type": "direct_damage",
+        "cooldownSeconds": 7,
+        "multiplier": 3.5
+      }
+    },
+    {
+      "id": "hana",
+      "nameKey": "hero.hana.name",
+      "titleKey": "hero.hana.title",
+      "rarity": "rare",
+      "descriptionKey": "hero.hana.desc",
+      "element": "water",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.18
+      },
+      "avatarSeed": "hana-bloom",
+      "icon": "🌺",
+      "skill": {
+        "nameKey": "hero.hana.skill_name",
+        "descKey": "hero.hana.skill_desc",
+        "icon": "🌸",
+        "type": "power_burst",
+        "cooldownSeconds": 9,
+        "multiplier": 3.2
+      }
+    },
+    {
+      "id": "ren",
+      "nameKey": "hero.ren.name",
+      "titleKey": "hero.ren.title",
+      "rarity": "epic",
+      "descriptionKey": "hero.ren.desc",
+      "element": "void",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.25
+      },
+      "avatarSeed": "ren-reaper",
+      "icon": "🌑",
+      "skill": {
+        "nameKey": "hero.ren.skill_name",
+        "descKey": "hero.ren.skill_desc",
+        "icon": "💀",
+        "type": "direct_damage",
+        "cooldownSeconds": 8,
+        "multiplier": 4
+      }
+    },
+    {
+      "id": "ayaka",
+      "nameKey": "hero.ayaka.name",
+      "titleKey": "hero.ayaka.title",
+      "rarity": "epic",
+      "descriptionKey": "hero.ayaka.desc",
+      "element": "fire",
+      "modifier": {
+        "type": "tower_atk_pct",
+        "baseValue": 0.3
+      },
+      "avatarSeed": "ayaka-spear",
+      "icon": "🔥",
+      "skill": {
+        "nameKey": "hero.ayaka.skill_name",
+        "descKey": "hero.ayaka.skill_desc",
+        "icon": "💥",
+        "type": "direct_damage",
+        "cooldownSeconds": 8,
+        "multiplier": 4.2
+      }
+    },
+    {
+      "id": "daiki",
+      "nameKey": "hero.daiki.name",
+      "titleKey": "hero.daiki.title",
+      "rarity": "epic",
+      "descriptionKey": "hero.daiki.desc",
+      "element": "lightning",
+      "modifier": {
+        "type": "gold_pct",
+        "baseValue": 0.3
+      },
+      "avatarSeed": "daiki-hammer",
+      "icon": "🔨",
+      "skill": {
+        "nameKey": "hero.daiki.skill_name",
+        "descKey": "hero.daiki.skill_desc",
+        "icon": "⚡",
+        "type": "direct_damage",
+        "cooldownSeconds": 9,
+        "multiplier": 4.5
+      }
+    },
+    {
+      "id": "sora",
+      "nameKey": "hero.sora.name",
+      "titleKey": "hero.sora.title",
+      "rarity": "epic",
+      "descriptionKey": "hero.sora.desc",
+      "element": "wind",
+      "modifier": {
+        "type": "crit_chance",
+        "baseValue": 0.05
+      },
+      "avatarSeed": "sora-feathers",
+      "icon": "🦅",
+      "skill": {
+        "nameKey": "hero.sora.skill_name",
+        "descKey": "hero.sora.skill_desc",
+        "icon": "🌪️",
+        "type": "crit_mark",
+        "cooldownSeconds": 8,
+        "multiplier": 4
+      }
+    },
+    {
+      "id": "akari",
+      "nameKey": "hero.akari.name",
+      "titleKey": "hero.akari.title",
+      "rarity": "legendary",
+      "descriptionKey": "hero.akari.desc",
+      "element": "light",
+      "modifier": {
+        "type": "all_pct",
+        "baseValue": 0.25
+      },
+      "avatarSeed": "akari-sun",
+      "icon": "☀️",
+      "skill": {
+        "nameKey": "hero.akari.skill_name",
+        "descKey": "hero.akari.skill_desc",
+        "icon": "☀️",
+        "type": "power_burst",
+        "cooldownSeconds": 10,
+        "multiplier": 5.5
+      }
+    },
+    {
+      "id": "ryu",
+      "nameKey": "hero.ryu.name",
+      "titleKey": "hero.ryu.title",
+      "rarity": "legendary",
+      "descriptionKey": "hero.ryu.desc",
+      "element": "fire",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.4
+      },
+      "avatarSeed": "ryu-dragon",
+      "icon": "🐉",
+      "skill": {
+        "nameKey": "hero.ryu.skill_name",
+        "descKey": "hero.ryu.skill_desc",
+        "icon": "🐲",
+        "type": "direct_damage",
+        "cooldownSeconds": 8,
+        "multiplier": 6
+      }
+    },
+    {
+      "id": "tsukiko",
+      "nameKey": "hero.tsukiko.name",
+      "titleKey": "hero.tsukiko.title",
+      "rarity": "legendary",
+      "descriptionKey": "hero.tsukiko.desc",
+      "element": "void",
+      "modifier": {
+        "type": "essence_pct",
+        "baseValue": 0.35
+      },
+      "avatarSeed": "tsukiko-moon",
+      "icon": "🌙",
+      "skill": {
+        "nameKey": "hero.tsukiko.skill_name",
+        "descKey": "hero.tsukiko.skill_desc",
+        "icon": "🌙",
+        "type": "gold_burst",
+        "cooldownSeconds": 10,
+        "multiplier": 6
+      }
+    },
+    {
+      "id": "kuro",
+      "nameKey": "hero.kuro.name",
+      "titleKey": "hero.kuro.title",
+      "rarity": "mythic",
+      "descriptionKey": "hero.kuro.desc",
+      "element": "void",
+      "modifier": {
+        "type": "all_pct",
+        "baseValue": 0.45
+      },
+      "avatarSeed": "kuro-sovereign",
+      "icon": "👑",
+      "skill": {
+        "nameKey": "hero.kuro.skill_name",
+        "descKey": "hero.kuro.skill_desc",
+        "icon": "🌌",
+        "type": "direct_damage",
+        "cooldownSeconds": 8,
+        "multiplier": 8
+      }
+    },
+    {
+      "id": "amaterasu",
+      "nameKey": "hero.amaterasu.name",
+      "titleKey": "hero.amaterasu.title",
+      "rarity": "mythic",
+      "descriptionKey": "hero.amaterasu.desc",
+      "element": "light",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.5
+      },
+      "avatarSeed": "amaterasu-sun",
+      "icon": "☀️",
+      "skill": {
+        "nameKey": "hero.amaterasu.skill_name",
+        "descKey": "hero.amaterasu.skill_desc",
+        "icon": "✨",
+        "type": "power_burst",
+        "cooldownSeconds": 10,
+        "multiplier": 8.5
+      }
+    }
+  ],
+  "heroRarities": {
+    "common": {
+      "color": "#94a3b8",
+      "glow": "rgba(148, 163, 184, 0.4)",
+      "nameKey": "rarity.common",
+      "pullRate": 55,
+      "duplicateEssence": 10
+    },
+    "rare": {
+      "color": "#38bdf8",
+      "glow": "rgba(56, 189, 248, 0.5)",
+      "nameKey": "rarity.rare",
+      "pullRate": 28,
+      "duplicateEssence": 25
+    },
+    "epic": {
+      "color": "#c084fc",
+      "glow": "rgba(192, 132, 252, 0.6)",
+      "nameKey": "rarity.epic",
+      "pullRate": 12,
+      "duplicateEssence": 75
+    },
+    "legendary": {
+      "color": "#fbbf24",
+      "glow": "rgba(251, 191, 36, 0.7)",
+      "nameKey": "rarity.legendary",
+      "pullRate": 4,
+      "duplicateEssence": 250
+    },
+    "mythic": {
+      "color": "#f43f5e",
+      "glow": "rgba(244, 63, 94, 0.85)",
+      "nameKey": "rarity.mythic",
+      "pullRate": 1,
+      "duplicateEssence": 1000
+    }
+  },
+  "soulTree": [
+    {
+      "id": "soul_power",
+      "branch": "strength",
+      "nameKey": "soul.power.name",
+      "descKey": "soul.power.desc",
+      "icon": "⚡",
+      "baseCost": 1,
+      "costGrowth": 1.45,
+      "maxLevel": 50,
+      "baseEffect": 0.15
+    },
+    {
+      "id": "soul_train",
+      "branch": "strength",
+      "nameKey": "soul.train.name",
+      "descKey": "soul.train.desc",
+      "icon": "👊",
+      "baseCost": 1,
+      "costGrowth": 1.45,
+      "maxLevel": 50,
+      "baseEffect": 0.25
+    },
+    {
+      "id": "soul_building",
+      "branch": "strength",
+      "nameKey": "soul.building.name",
+      "descKey": "soul.building.desc",
+      "icon": "🏯",
+      "baseCost": 2,
+      "costGrowth": 1.55,
+      "maxLevel": 50,
+      "baseEffect": 0.15
+    },
+    {
+      "id": "soul_gold",
+      "branch": "wealth",
+      "nameKey": "soul.gold.name",
+      "descKey": "soul.gold.desc",
+      "icon": "💰",
+      "baseCost": 1,
+      "costGrowth": 1.45,
+      "maxLevel": 50,
+      "baseEffect": 0.2
+    },
+    {
+      "id": "soul_cost",
+      "branch": "wealth",
+      "nameKey": "soul.cost.name",
+      "descKey": "soul.cost.desc",
+      "icon": "📐",
+      "baseCost": 3,
+      "costGrowth": 1.75,
+      "maxLevel": 15,
+      "baseEffect": 0.02
+    },
+    {
+      "id": "soul_quest",
+      "branch": "wealth",
+      "nameKey": "soul.quest.name",
+      "descKey": "soul.quest.desc",
+      "icon": "📜",
+      "baseCost": 2,
+      "costGrowth": 1.6,
+      "maxLevel": 30,
+      "baseEffect": 0.15
+    },
+    {
+      "id": "soul_offline",
+      "branch": "spirit",
+      "nameKey": "soul.offline.name",
+      "descKey": "soul.offline.desc",
+      "icon": "⏳",
+      "baseCost": 2,
+      "costGrowth": 1.65,
+      "maxLevel": 25,
+      "baseEffect": 0.15
+    },
+    {
+      "id": "soul_crit",
+      "branch": "spirit",
+      "nameKey": "soul.crit.name",
+      "descKey": "soul.crit.desc",
+      "icon": "💥",
+      "baseCost": 3,
+      "costGrowth": 1.8,
+      "maxLevel": 20,
+      "baseEffect": 0.02
+    },
+    {
+      "id": "soul_essence",
+      "branch": "spirit",
+      "nameKey": "soul.essence.name",
+      "descKey": "soul.essence.desc",
+      "icon": "✨",
+      "baseCost": 4,
+      "costGrowth": 1.85,
+      "maxLevel": 20,
+      "baseEffect": 0.3
+    },
+    {
+      "id": "soul_tower",
+      "branch": "ascension",
+      "nameKey": "soul.tower.name",
+      "descKey": "soul.tower.desc",
+      "icon": "🏰",
+      "baseCost": 2,
+      "costGrowth": 1.65,
+      "maxLevel": 30,
+      "baseEffect": 0.25
+    },
+    {
+      "id": "soul_rank",
+      "branch": "ascension",
+      "nameKey": "soul.rank.name",
+      "descKey": "soul.rank.desc",
+      "icon": "👑",
+      "baseCost": 5,
+      "costGrowth": 1.95,
+      "maxLevel": 20,
+      "baseEffect": 0.1
+    },
+    {
+      "id": "soul_rebirth",
+      "branch": "ascension",
+      "nameKey": "soul.rebirth.name",
+      "descKey": "soul.rebirth.desc",
+      "icon": "🔄",
+      "baseCost": 5,
+      "costGrowth": 1.95,
+      "maxLevel": 15,
+      "baseEffect": 0.15
+    }
+  ],
+  "simulationSummary": {
+    "ACTIVE": {
+      "1m": {
+        "timeSeconds": 60,
+        "power": 30664,
+        "gold": 68,
+        "powerPerSec": 540,
+        "goldPerSec": 312,
+        "rank": "C",
+        "totalBuildings": 39,
+        "upgradesPurchased": 7,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 22,
+          "C": 57
+        }
+      },
+      "5m": {
+        "timeSeconds": 300,
+        "power": 803802259,
+        "gold": 360486,
+        "powerPerSec": 14059081,
+        "goldPerSec": 1800103,
+        "rank": "A",
+        "totalBuildings": 280,
+        "upgradesPurchased": 73,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 23,
+          "C": 56,
+          "B": 113,
+          "A": 191
+        }
+      },
+      "10m": {
+        "timeSeconds": 600,
+        "power": 58229770025,
+        "gold": 2210846,
+        "powerPerSec": 525118451,
+        "goldPerSec": 23673427,
+        "rank": "S",
+        "totalBuildings": 441,
+        "upgradesPurchased": 92,
+        "potentialSouls": 41,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 22,
+          "C": 59,
+          "B": 114,
+          "A": 190,
+          "S": 345
+        }
+      },
+      "15m": {
+        "timeSeconds": 900,
+        "power": 548441218573,
+        "gold": 287047451,
+        "powerPerSec": 2816771630,
+        "goldPerSec": 79082598,
+        "rank": "SS",
+        "totalBuildings": 526,
+        "upgradesPurchased": 97,
+        "potentialSouls": 113,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 22,
+          "C": 58,
+          "B": 115,
+          "A": 194,
+          "S": 345,
+          "SS": 777
+        }
+      },
+      "30m": {
+        "timeSeconds": 1800,
+        "power": 12294314684456,
+        "gold": 3629503463,
+        "powerPerSec": 26734209486,
+        "goldPerSec": 572941209,
+        "rank": "SS",
+        "totalBuildings": 667,
+        "upgradesPurchased": 107,
+        "potentialSouls": 458,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 23,
+          "C": 59,
+          "B": 109,
+          "A": 192,
+          "S": 345,
+          "SS": 780
+        }
+      },
+      "1h": {
+        "timeSeconds": 3600,
+        "power": 267598334851016,
+        "gold": 46070123926,
+        "powerPerSec": 355620038654,
+        "goldPerSec": 4168705484,
+        "rank": "SSS",
+        "totalBuildings": 821,
+        "upgradesPurchased": 116,
+        "potentialSouls": 1832,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 23,
+          "C": 58,
+          "B": 113,
+          "A": 192,
+          "S": 346,
+          "SS": 787,
+          "SSS": 2617
+        }
+      },
+      "2h": {
+        "timeSeconds": 7200,
+        "power": 3003343731332212,
+        "gold": 212764725546,
+        "powerPerSec": 1958269108785,
+        "goldPerSec": 21224367155,
+        "rank": "SSS",
+        "totalBuildings": 968,
+        "upgradesPurchased": 119,
+        "potentialSouls": 5441,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 23,
+          "C": 59,
+          "B": 112,
+          "A": 195,
+          "S": 344,
+          "SS": 776,
+          "SSS": 2592
+        }
+      },
+      "4h": {
+        "timeSeconds": 14400,
+        "power": 24534595084237880,
+        "gold": 199527486895,
+        "powerPerSec": 4125024129876,
+        "goldPerSec": 32081993856,
+        "rank": "AWAKENED",
+        "totalBuildings": 1105,
+        "upgradesPurchased": 119,
+        "potentialSouls": 14001,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 22,
+          "C": 56,
+          "B": 110,
+          "A": 189,
+          "S": 343,
+          "SS": 778,
+          "SSS": 2602,
+          "AWAKENED": 12008
+        }
+      },
+      "8h": {
+        "timeSeconds": 28800,
+        "power": 101937713699059870,
+        "gold": 2370099654125,
+        "powerPerSec": 6528921939072,
+        "goldPerSec": 48781907456,
+        "rank": "AWAKENED",
+        "totalBuildings": 1194,
+        "upgradesPurchased": 119,
+        "potentialSouls": 26577,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 22,
+          "C": 59,
+          "B": 115,
+          "A": 193,
+          "S": 346,
+          "SS": 778,
+          "SSS": 2594,
+          "AWAKENED": 12008
+        }
+      },
+      "24h": {
+        "timeSeconds": 86400,
+        "power": 552830571063617340,
+        "gold": 46376283628273,
+        "powerPerSec": 8658351831168,
+        "goldPerSec": 64758439936,
+        "rank": "AWAKENED",
+        "totalBuildings": 1310,
+        "upgradesPurchased": 119,
+        "potentialSouls": 56875,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 23,
+          "C": 56,
+          "B": 110,
+          "A": 197,
+          "S": 351,
+          "SS": 791,
+          "SSS": 2613,
+          "AWAKENED": 12019
+        }
+      },
+      "7d": {
+        "timeSeconds": 604800,
+        "power": 9973299917796000000,
+        "gold": 249591660180326,
+        "powerPerSec": 28688258756352,
+        "goldPerSec": 150628959488,
+        "rank": "TRANSCENDENT",
+        "totalBuildings": 1504,
+        "upgradesPurchased": 119,
+        "potentialSouls": 209043,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 22,
+          "C": 59,
+          "B": 113,
+          "A": 194,
+          "S": 349,
+          "SS": 789,
+          "SSS": 2611,
+          "AWAKENED": 12017,
+          "TRANSCENDENT": 427645
+        }
+      }
+    },
+    "OPTIMAL": {
+      "1m": {
+        "timeSeconds": 60,
+        "power": 163330,
+        "gold": 252,
+        "powerPerSec": 2181,
+        "goldPerSec": 1252,
+        "rank": "C",
+        "totalBuildings": 47,
+        "upgradesPurchased": 12,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 15,
+          "C": 39
+        }
+      },
+      "5m": {
+        "timeSeconds": 300,
+        "power": 871497304,
+        "gold": 540879,
+        "powerPerSec": 18146160,
+        "goldPerSec": 927784,
+        "rank": "A",
+        "totalBuildings": 260,
+        "upgradesPurchased": 48,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 16,
+          "C": 39,
+          "B": 85,
+          "A": 163
+        }
+      },
+      "10m": {
+        "timeSeconds": 600,
+        "power": 35202013157,
+        "gold": 98564,
+        "powerPerSec": 210008990,
+        "goldPerSec": 6562288,
+        "rank": "S",
+        "totalBuildings": 392,
+        "upgradesPurchased": 54,
+        "potentialSouls": 32,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 16,
+          "C": 40,
+          "B": 83,
+          "A": 163,
+          "S": 340
+        }
+      },
+      "15m": {
+        "timeSeconds": 900,
+        "power": 161010942116,
+        "gold": 16098243,
+        "powerPerSec": 661148685,
+        "goldPerSec": 14407920,
+        "rank": "S",
+        "totalBuildings": 444,
+        "upgradesPurchased": 58,
+        "potentialSouls": 65,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 16,
+          "C": 39,
+          "B": 84,
+          "A": 163,
+          "S": 341
+        }
+      },
+      "30m": {
+        "timeSeconds": 1800,
+        "power": 2504504722631,
+        "gold": 507132181,
+        "powerPerSec": 3986836308,
+        "goldPerSec": 52964224,
+        "rank": "SS",
+        "totalBuildings": 549,
+        "upgradesPurchased": 62,
+        "potentialSouls": 223,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 17,
+          "C": 40,
+          "B": 86,
+          "A": 165,
+          "S": 344,
+          "SS": 1021
+        }
+      },
+      "1h": {
+        "timeSeconds": 3600,
+        "power": 33254330159438,
+        "gold": 5599325285,
+        "powerPerSec": 30647209320,
+        "goldPerSec": 286473472,
+        "rank": "SS",
+        "totalBuildings": 673,
+        "upgradesPurchased": 68,
+        "potentialSouls": 717,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 16,
+          "C": 38,
+          "B": 85,
+          "A": 164,
+          "S": 341,
+          "SS": 1015
+        }
+      },
+      "2h": {
+        "timeSeconds": 7200,
+        "power": 612494821645518,
+        "gold": 50614921046,
+        "powerPerSec": 346330631088,
+        "goldPerSec": 2011978496,
+        "rank": "SSS",
+        "totalBuildings": 817,
+        "upgradesPurchased": 73,
+        "potentialSouls": 2660,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 16,
+          "C": 39,
+          "B": 85,
+          "A": 163,
+          "S": 343,
+          "SS": 1017,
+          "SSS": 4021
+        }
+      },
+      "4h": {
+        "timeSeconds": 14400,
+        "power": 5356784316009371,
+        "gold": 264686596429,
+        "powerPerSec": 1158339276432,
+        "goldPerSec": 6286124416,
+        "rank": "SSS",
+        "totalBuildings": 949,
+        "upgradesPurchased": 75,
+        "potentialSouls": 7059,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 16,
+          "C": 39,
+          "B": 83,
+          "A": 165,
+          "S": 342,
+          "SS": 1016,
+          "SSS": 4020
+        }
+      },
+      "8h": {
+        "timeSeconds": 28800,
+        "power": 50214671346179220,
+        "gold": 884742787437,
+        "powerPerSec": 3920608776864,
+        "goldPerSec": 15219289856,
+        "rank": "AWAKENED",
+        "totalBuildings": 1088,
+        "upgradesPurchased": 75,
+        "potentialSouls": 19325,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 15,
+          "C": 39,
+          "B": 84,
+          "A": 166,
+          "S": 341,
+          "SS": 1020,
+          "SSS": 4014,
+          "AWAKENED": 19094
+        }
+      },
+      "24h": {
+        "timeSeconds": 86400,
+        "power": 380399678994415550,
+        "gold": 11520002417174,
+        "powerPerSec": 6911612565312,
+        "goldPerSec": 25615091712,
+        "rank": "AWAKENED",
+        "totalBuildings": 1223,
+        "upgradesPurchased": 75,
+        "potentialSouls": 48069,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 15,
+          "C": 39,
+          "B": 85,
+          "A": 164,
+          "S": 342,
+          "SS": 1011,
+          "SSS": 4024,
+          "AWAKENED": 19080
+        }
+      },
+      "7d": {
+        "timeSeconds": 604800,
+        "power": 5457045490453671000,
+        "gold": 252812559824426,
+        "powerPerSec": 20061301318656,
+        "goldPerSec": 51564264192,
+        "rank": "TRANSCENDENT",
+        "totalBuildings": 1409,
+        "upgradesPurchased": 75,
+        "potentialSouls": 159363,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 16,
+          "C": 40,
+          "B": 84,
+          "A": 163,
+          "S": 340,
+          "SS": 1010,
+          "SSS": 4023,
+          "AWAKENED": 19079,
+          "TRANSCENDENT": 581791
+        }
+      }
+    },
+    "CASUAL": {
+      "1m": {
+        "timeSeconds": 60,
+        "power": 4668,
+        "gold": 140,
+        "powerPerSec": 128,
+        "goldPerSec": 100,
+        "rank": "D",
+        "totalBuildings": 25,
+        "upgradesPurchased": 4,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 42
+        }
+      },
+      "5m": {
+        "timeSeconds": 300,
+        "power": 126441827,
+        "gold": 66226,
+        "powerPerSec": 4851374,
+        "goldPerSec": 834442,
+        "rank": "A",
+        "totalBuildings": 242,
+        "upgradesPurchased": 63,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 41,
+          "C": 88,
+          "B": 157,
+          "A": 260
+        }
+      },
+      "10m": {
+        "timeSeconds": 600,
+        "power": 41328960044,
+        "gold": 4993420,
+        "powerPerSec": 336431613,
+        "goldPerSec": 18962451,
+        "rank": "S",
+        "totalBuildings": 431,
+        "upgradesPurchased": 89,
+        "potentialSouls": 35,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 41,
+          "C": 86,
+          "B": 151,
+          "A": 254,
+          "S": 392
+        }
+      },
+      "15m": {
+        "timeSeconds": 900,
+        "power": 445500734454,
+        "gold": 159786911,
+        "powerPerSec": 2725260735,
+        "goldPerSec": 76645299,
+        "rank": "SS",
+        "totalBuildings": 519,
+        "upgradesPurchased": 97,
+        "potentialSouls": 102,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 42,
+          "C": 89,
+          "B": 153,
+          "A": 252,
+          "S": 390,
+          "SS": 814
+        }
+      },
+      "30m": {
+        "timeSeconds": 1800,
+        "power": 11196455580694,
+        "gold": 3292768237,
+        "powerPerSec": 26479906814,
+        "goldPerSec": 567562137,
+        "rank": "SS",
+        "totalBuildings": 662,
+        "upgradesPurchased": 107,
+        "potentialSouls": 439,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 42,
+          "C": 85,
+          "B": 152,
+          "A": 254,
+          "S": 392,
+          "SS": 818
+        }
+      },
+      "1h": {
+        "timeSeconds": 3600,
+        "power": 261546573904920,
+        "gold": 29439495905,
+        "powerPerSec": 355553310091,
+        "goldPerSec": 4167534438,
+        "rank": "SSS",
+        "totalBuildings": 820,
+        "upgradesPurchased": 116,
+        "potentialSouls": 1814,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 41,
+          "C": 89,
+          "B": 158,
+          "A": 259,
+          "S": 396,
+          "SS": 822,
+          "SSS": 2649
+        }
+      },
+      "2h": {
+        "timeSeconds": 7200,
+        "power": 2936753700515710,
+        "gold": 445526603038,
+        "powerPerSec": 1929066769905,
+        "goldPerSec": 20908653619,
+        "rank": "SSS",
+        "totalBuildings": 966,
+        "upgradesPurchased": 119,
+        "potentialSouls": 5386,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 44,
+          "C": 89,
+          "B": 153,
+          "A": 256,
+          "S": 394,
+          "SS": 812,
+          "SSS": 2626
+        }
+      },
+      "4h": {
+        "timeSeconds": 14400,
+        "power": 24352806019396880,
+        "gold": 2058406437698,
+        "powerPerSec": 4085909476116,
+        "goldPerSec": 31770173568,
+        "rank": "AWAKENED",
+        "totalBuildings": 1104,
+        "upgradesPurchased": 119,
+        "potentialSouls": 13954,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 43,
+          "C": 85,
+          "B": 152,
+          "A": 254,
+          "S": 393,
+          "SS": 817,
+          "SSS": 2644,
+          "AWAKENED": 12053
+        }
+      },
+      "8h": {
+        "timeSeconds": 28800,
+        "power": 101637567637903140,
+        "gold": 126058898602,
+        "powerPerSec": 6528921939072,
+        "goldPerSec": 48781907456,
+        "rank": "AWAKENED",
+        "totalBuildings": 1194,
+        "upgradesPurchased": 119,
+        "potentialSouls": 26541,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 44,
+          "C": 86,
+          "B": 154,
+          "A": 254,
+          "S": 389,
+          "SS": 818,
+          "SSS": 2645,
+          "AWAKENED": 12054
+        }
+      },
+      "24h": {
+        "timeSeconds": 86400,
+        "power": 552585658068243000,
+        "gold": 44562947542255,
+        "powerPerSec": 8658351831168,
+        "goldPerSec": 64758439936,
+        "rank": "AWAKENED",
+        "totalBuildings": 1310,
+        "upgradesPurchased": 119,
+        "potentialSouls": 56864,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 42,
+          "C": 89,
+          "B": 151,
+          "A": 255,
+          "S": 390,
+          "SS": 821,
+          "SSS": 2639,
+          "AWAKENED": 12048
+        }
+      },
+      "7d": {
+        "timeSeconds": 604800,
+        "power": 9972574256250980000,
+        "gold": 245825767997385,
+        "powerPerSec": 28688258756352,
+        "goldPerSec": 150628959488,
+        "rank": "TRANSCENDENT",
+        "totalBuildings": 1504,
+        "upgradesPurchased": 119,
+        "potentialSouls": 209036,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 42,
+          "C": 85,
+          "B": 152,
+          "A": 254,
+          "S": 392,
+          "SS": 815,
+          "SSS": 2629,
+          "AWAKENED": 12043,
+          "TRANSCENDENT": 427670
+        }
+      }
+    },
+    "IDLE": {
+      "1m": {
+        "timeSeconds": 60,
+        "power": 1230,
+        "gold": 2,
+        "powerPerSec": 92,
+        "goldPerSec": 76,
+        "rank": "D",
+        "totalBuildings": 19,
+        "upgradesPurchased": 4,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 59
+        }
+      },
+      "5m": {
+        "timeSeconds": 300,
+        "power": 49208042,
+        "gold": 83750,
+        "powerPerSec": 1538782,
+        "goldPerSec": 393896,
+        "rank": "A",
+        "totalBuildings": 219,
+        "upgradesPurchased": 55,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286
+        }
+      },
+      "10m": {
+        "timeSeconds": 600,
+        "power": 31170628900,
+        "gold": 25275330,
+        "powerPerSec": 252617432,
+        "goldPerSec": 16337414,
+        "rank": "S",
+        "totalBuildings": 420,
+        "upgradesPurchased": 88,
+        "potentialSouls": 31,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422
+        }
+      },
+      "15m": {
+        "timeSeconds": 900,
+        "power": 350566547610,
+        "gold": 228200719,
+        "powerPerSec": 2094407811,
+        "goldPerSec": 70251494,
+        "rank": "SS",
+        "totalBuildings": 512,
+        "upgradesPurchased": 95,
+        "potentialSouls": 92,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422,
+          "SS": 850
+        }
+      },
+      "30m": {
+        "timeSeconds": 1800,
+        "power": 11026680539846,
+        "gold": 3062616155,
+        "powerPerSec": 24167694314,
+        "goldPerSec": 526762137,
+        "rank": "SS",
+        "totalBuildings": 662,
+        "upgradesPurchased": 106,
+        "potentialSouls": 436,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 59,
+          "C": 110,
+          "B": 184,
+          "A": 281,
+          "S": 414,
+          "SS": 837
+        }
+      },
+      "1h": {
+        "timeSeconds": 3600,
+        "power": 258430454752314,
+        "gold": 50003877080,
+        "powerPerSec": 353067060091,
+        "goldPerSec": 4143534438,
+        "rank": "SSS",
+        "totalBuildings": 819,
+        "upgradesPurchased": 116,
+        "potentialSouls": 1804,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 59,
+          "C": 110,
+          "B": 184,
+          "A": 281,
+          "S": 414,
+          "SS": 837,
+          "SSS": 2652
+        }
+      },
+      "2h": {
+        "timeSeconds": 7200,
+        "power": 2886599120134502,
+        "gold": 369506133652,
+        "powerPerSec": 1929065496945,
+        "goldPerSec": 20908628019,
+        "rank": "SSS",
+        "totalBuildings": 965,
+        "upgradesPurchased": 119,
+        "potentialSouls": 5344,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 59,
+          "C": 110,
+          "B": 184,
+          "A": 281,
+          "S": 414,
+          "SS": 837,
+          "SSS": 2652
+        }
+      },
+      "4h": {
+        "timeSeconds": 14400,
+        "power": 24217969038933230,
+        "gold": 1009950431279,
+        "powerPerSec": 4085909476116,
+        "goldPerSec": 31770173568,
+        "rank": "AWAKENED",
+        "totalBuildings": 1104,
+        "upgradesPurchased": 119,
+        "potentialSouls": 13919,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422,
+          "SS": 850,
+          "SSS": 2677,
+          "AWAKENED": 12086
+        }
+      },
+      "8h": {
+        "timeSeconds": 28800,
+        "power": 101558799815170800,
+        "gold": 10941273118041,
+        "powerPerSec": 6528821475072,
+        "goldPerSec": 48780781056,
+        "rank": "AWAKENED",
+        "totalBuildings": 1193,
+        "upgradesPurchased": 119,
+        "potentialSouls": 26532,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 59,
+          "C": 110,
+          "B": 184,
+          "A": 281,
+          "S": 414,
+          "SS": 837,
+          "SSS": 2652,
+          "AWAKENED": 12066
+        }
+      },
+      "24h": {
+        "timeSeconds": 86400,
+        "power": 552256665099055170,
+        "gold": 42102078562265,
+        "powerPerSec": 8658351831168,
+        "goldPerSec": 64758439936,
+        "rank": "AWAKENED",
+        "totalBuildings": 1310,
+        "upgradesPurchased": 119,
+        "potentialSouls": 56848,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422,
+          "SS": 850,
+          "SSS": 2677,
+          "AWAKENED": 12086
+        }
+      },
+      "7d": {
+        "timeSeconds": 604800,
+        "power": 9971341082435918000,
+        "gold": 239348657505545,
+        "powerPerSec": 28688258756352,
+        "goldPerSec": 150628959488,
+        "rank": "TRANSCENDENT",
+        "totalBuildings": 1504,
+        "upgradesPurchased": 119,
+        "potentialSouls": 209024,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422,
+          "SS": 850,
+          "SSS": 2677,
+          "AWAKENED": 12086,
+          "TRANSCENDENT": 427713
+        }
+      }
+    }
+  },
+  "multiRunPrestigeSummary": [
+    {
+      "runIndex": 1,
+      "durationSeconds": 3600,
+      "finalPower": 33301717037145.574,
+      "soulsEarned": 717,
+      "totalSouls": 686,
+      "highestRank": "SS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 2,
+      "durationSeconds": 3600,
+      "finalPower": 80886176949344.3,
+      "soulsEarned": 1230,
+      "totalSouls": 1866,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 3,
+      "durationSeconds": 3600,
+      "finalPower": 172490744957393.88,
+      "soulsEarned": 1955,
+      "totalSouls": 3727,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 4,
+      "durationSeconds": 3600,
+      "finalPower": 357360292352000,
+      "soulsEarned": 3027,
+      "totalSouls": 6582,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 5,
+      "durationSeconds": 3600,
+      "finalPower": 797752574634997.2,
+      "soulsEarned": 4794,
+      "totalSouls": 11063,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 6,
+      "durationSeconds": 3600,
+      "finalPower": 1460444231610296.5,
+      "soulsEarned": 6883,
+      "totalSouls": 17372,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 7,
+      "durationSeconds": 3600,
+      "finalPower": 2322992668536333.5,
+      "soulsEarned": 9209,
+      "totalSouls": 25518,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 8,
+      "durationSeconds": 3600,
+      "finalPower": 3563995635555668.5,
+      "soulsEarned": 12047,
+      "totalSouls": 35598,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 9,
+      "durationSeconds": 3600,
+      "finalPower": 5403168777649437,
+      "soulsEarned": 15590,
+      "totalSouls": 47531,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 10,
+      "durationSeconds": 3600,
+      "finalPower": 7619981297679661,
+      "soulsEarned": 19440,
+      "totalSouls": 60138,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 11,
+      "durationSeconds": 3600,
+      "finalPower": 10515222577350828,
+      "soulsEarned": 23906,
+      "totalSouls": 71239,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 12,
+      "durationSeconds": 3600,
+      "finalPower": 14004693865059384,
+      "soulsEarned": 28828,
+      "totalSouls": 75989,
+      "highestRank": "SSS",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 13,
+      "durationSeconds": 3600,
+      "finalPower": 20084874718120384,
+      "soulsEarned": 35826,
+      "totalSouls": 66382,
+      "highestRank": "AWAKENED",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 14,
+      "durationSeconds": 3600,
+      "finalPower": 33926547450933904,
+      "soulsEarned": 47788,
+      "totalSouls": 28199,
+      "highestRank": "AWAKENED",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 15,
+      "durationSeconds": 3600,
+      "finalPower": 50922165601001736,
+      "soulsEarned": 60287,
+      "totalSouls": 40319,
+      "highestRank": "AWAKENED",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 16,
+      "durationSeconds": 3600,
+      "finalPower": 69357150994650020,
+      "soulsEarned": 69280,
+      "totalSouls": 36815,
+      "highestRank": "AWAKENED",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 17,
+      "durationSeconds": 3600,
+      "finalPower": 84906736887959020,
+      "soulsEarned": 75883,
+      "totalSouls": 57144,
+      "highestRank": "AWAKENED",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 18,
+      "durationSeconds": 3600,
+      "finalPower": 104970787973143540,
+      "soulsEarned": 83483,
+      "totalSouls": 44131,
+      "highestRank": "AWAKENED",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 19,
+      "durationSeconds": 3600,
+      "finalPower": 128274602172157120,
+      "soulsEarned": 91365,
+      "totalSouls": 10145,
+      "highestRank": "AWAKENED",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    },
+    {
+      "runIndex": 20,
+      "durationSeconds": 3600,
+      "finalPower": 148766483418623600,
+      "soulsEarned": 97667,
+      "totalSouls": 26713,
+      "highestRank": "AWAKENED",
+      "highestFloor": 1,
+      "highestStage": "5-10"
+    }
+  ]
+}

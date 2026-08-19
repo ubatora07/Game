@@ -1,0 +1,24 @@
+{
+  "name": "anime-infinite-ascension",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "qa:interaction": "playwright test interaction-qa",
+    "qa:interaction:headed": "playwright test interaction-qa --headed",
+    "qa:responsive": "playwright test responsive-qa",
+    "qa:all": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.45",
+    "playwright": "1.45",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
+  }
+}

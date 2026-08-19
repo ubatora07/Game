@@ -1,0 +1,1365 @@
+{
+  "buildings": [
+    {
+      "id": "dojo",
+      "nameKey": "building.dojo.name",
+      "descKey": "building.dojo.desc",
+      "icon": "🥋",
+      "baseCost": 15,
+      "costGrowth": 1.15,
+      "baseProduction": 1,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "meditation_chamber",
+      "nameKey": "building.chamber.name",
+      "descKey": "building.chamber.desc",
+      "icon": "🧘",
+      "baseCost": 100,
+      "costGrowth": 1.15,
+      "baseProduction": 8,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "spirit_shrine",
+      "nameKey": "building.shrine.name",
+      "descKey": "building.shrine.desc",
+      "icon": "⛩️",
+      "baseCost": 1100,
+      "costGrowth": 1.15,
+      "baseProduction": 47,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "warrior_academy",
+      "nameKey": "building.academy.name",
+      "descKey": "building.academy.desc",
+      "icon": "🏯",
+      "baseCost": 12000,
+      "costGrowth": 1.15,
+      "baseProduction": 260,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "arcane_forge",
+      "nameKey": "building.forge.name",
+      "descKey": "building.forge.desc",
+      "icon": "⚒️",
+      "baseCost": 130000,
+      "costGrowth": 1.15,
+      "baseProduction": 1400,
+      "requiredRankIndex": 2
+    },
+    {
+      "id": "mana_reactor",
+      "nameKey": "building.reactor.name",
+      "descKey": "building.reactor.desc",
+      "icon": "🌀",
+      "baseCost": 1400000,
+      "costGrowth": 1.15,
+      "baseProduction": 8000,
+      "requiredRankIndex": 3
+    },
+    {
+      "id": "celestial_temple",
+      "nameKey": "building.temple.name",
+      "descKey": "building.temple.desc",
+      "icon": "✨",
+      "baseCost": 20000000,
+      "costGrowth": 1.15,
+      "baseProduction": 47000,
+      "requiredRankIndex": 4
+    },
+    {
+      "id": "dimensional_gate",
+      "nameKey": "building.gate.name",
+      "descKey": "building.gate.desc",
+      "icon": "🌌",
+      "baseCost": 330000000,
+      "costGrowth": 1.15,
+      "baseProduction": 260000,
+      "requiredRankIndex": 5
+    },
+    {
+      "id": "star_fortress",
+      "nameKey": "building.fortress.name",
+      "descKey": "building.fortress.desc",
+      "icon": "🪐",
+      "baseCost": 5100000000,
+      "costGrowth": 1.15,
+      "baseProduction": 1500000,
+      "requiredRankIndex": 6
+    },
+    {
+      "id": "infinite_core",
+      "nameKey": "building.core.name",
+      "descKey": "building.core.desc",
+      "icon": "🔮",
+      "baseCost": 100000000000,
+      "costGrowth": 1.15,
+      "baseProduction": 10000000,
+      "requiredRankIndex": 7
+    }
+  ],
+  "upgrades": [
+    {
+      "id": "iron_fist",
+      "nameKey": "upgrade.iron_fist.name",
+      "descKey": "upgrade.iron_fist.desc",
+      "icon": "👊",
+      "category": "click",
+      "baseCost": 50,
+      "costGrowth": 2.5,
+      "effectType": "click_power_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "eagle_eye",
+      "nameKey": "upgrade.eagle_eye.name",
+      "descKey": "upgrade.eagle_eye.desc",
+      "icon": "🎯",
+      "category": "click",
+      "baseCost": 250,
+      "costGrowth": 3,
+      "effectType": "crit_chance",
+      "effectValue": 0.05,
+      "maxLevel": 5,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "lethal_strike",
+      "nameKey": "upgrade.lethal_strike.name",
+      "descKey": "upgrade.lethal_strike.desc",
+      "icon": "💥",
+      "category": "click",
+      "baseCost": 1500,
+      "costGrowth": 3,
+      "effectType": "crit_mult",
+      "effectValue": 1.5,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "dojo_mastery",
+      "nameKey": "upgrade.dojo_mastery.name",
+      "descKey": "upgrade.dojo_mastery.desc",
+      "icon": "🥋",
+      "category": "building",
+      "targetBuildingId": "dojo",
+      "baseCost": 100,
+      "costGrowth": 2.5,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "chamber_zen",
+      "nameKey": "upgrade.chamber_zen.name",
+      "descKey": "upgrade.chamber_zen.desc",
+      "icon": "🧘",
+      "category": "building",
+      "targetBuildingId": "meditation_chamber",
+      "baseCost": 800,
+      "costGrowth": 2.5,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 0
+    },
+    {
+      "id": "shrine_blessing",
+      "nameKey": "upgrade.shrine_blessing.name",
+      "descKey": "upgrade.shrine_blessing.desc",
+      "icon": "⛩️",
+      "category": "building",
+      "targetBuildingId": "spirit_shrine",
+      "baseCost": 8000,
+      "costGrowth": 2.5,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "academy_drills",
+      "nameKey": "upgrade.academy_drills.name",
+      "descKey": "upgrade.academy_drills.desc",
+      "icon": "🏯",
+      "category": "building",
+      "targetBuildingId": "warrior_academy",
+      "baseCost": 90000,
+      "costGrowth": 2.5,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "forge_pyro",
+      "nameKey": "upgrade.forge_pyro.name",
+      "descKey": "upgrade.forge_pyro.desc",
+      "icon": "⚒️",
+      "category": "building",
+      "targetBuildingId": "arcane_forge",
+      "baseCost": 1000000,
+      "costGrowth": 2.5,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 2
+    },
+    {
+      "id": "reactor_overcharge",
+      "nameKey": "upgrade.reactor_overcharge.name",
+      "descKey": "upgrade.reactor_overcharge.desc",
+      "icon": "🌀",
+      "category": "building",
+      "targetBuildingId": "mana_reactor",
+      "baseCost": 12000000,
+      "costGrowth": 2.5,
+      "effectType": "building_mult",
+      "effectValue": 2,
+      "maxLevel": 5,
+      "requiredRankIndex": 3
+    },
+    {
+      "id": "spirit_resonance",
+      "nameKey": "upgrade.spirit_resonance.name",
+      "descKey": "upgrade.spirit_resonance.desc",
+      "icon": "✨",
+      "category": "global",
+      "baseCost": 5000,
+      "costGrowth": 3.5,
+      "effectType": "global_power_mult",
+      "effectValue": 0.25,
+      "maxLevel": 5,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "cosmic_flow",
+      "nameKey": "upgrade.cosmic_flow.name",
+      "descKey": "upgrade.cosmic_flow.desc",
+      "icon": "🌌",
+      "category": "global",
+      "baseCost": 150000,
+      "costGrowth": 4,
+      "effectType": "global_power_mult",
+      "effectValue": 0.5,
+      "maxLevel": 5,
+      "requiredRankIndex": 2
+    },
+    {
+      "id": "god_domain_expansion",
+      "nameKey": "upgrade.god_domain.name",
+      "descKey": "upgrade.god_domain.desc",
+      "icon": "👑",
+      "category": "global",
+      "baseCost": 50000000,
+      "costGrowth": 5,
+      "effectType": "global_power_mult",
+      "effectValue": 1,
+      "maxLevel": 5,
+      "requiredRankIndex": 4
+    },
+    {
+      "id": "astral_slumber",
+      "nameKey": "upgrade.astral_slumber.name",
+      "descKey": "upgrade.astral_slumber.desc",
+      "icon": "⏳",
+      "category": "special",
+      "baseCost": 20000,
+      "costGrowth": 3,
+      "effectType": "offline_cap_hours",
+      "effectValue": 2,
+      "maxLevel": 4,
+      "requiredRankIndex": 1
+    },
+    {
+      "id": "tower_conqueror",
+      "nameKey": "upgrade.tower_conqueror.name",
+      "descKey": "upgrade.tower_conqueror.desc",
+      "icon": "🏰",
+      "category": "special",
+      "baseCost": 100000,
+      "costGrowth": 3,
+      "effectType": "tower_dps_mult",
+      "effectValue": 0.35,
+      "maxLevel": 5,
+      "requiredRankIndex": 2
+    }
+  ],
+  "ranks": [
+    {
+      "id": "E",
+      "index": 0,
+      "nameKey": "rank.e.name",
+      "titleKey": "rank.e.title",
+      "reqPower": 0,
+      "multiplier": 1,
+      "color": "#94a3b8",
+      "glowColor": "rgba(148, 163, 184, 0.4)",
+      "auraStyle": "aura-none",
+      "descriptionKey": "rank.e.desc",
+      "avatarIndex": 0
+    },
+    {
+      "id": "D",
+      "index": 1,
+      "nameKey": "rank.d.name",
+      "titleKey": "rank.d.title",
+      "reqPower": 150,
+      "multiplier": 1.8,
+      "color": "#38bdf8",
+      "glowColor": "rgba(56, 189, 248, 0.5)",
+      "auraStyle": "aura-subtle",
+      "unlockedFeature": "upgrades_tier2",
+      "descriptionKey": "rank.d.desc",
+      "avatarIndex": 1
+    },
+    {
+      "id": "C",
+      "index": 2,
+      "nameKey": "rank.c.name",
+      "titleKey": "rank.c.title",
+      "reqPower": 1500,
+      "multiplier": 3,
+      "color": "#4ade80",
+      "glowColor": "rgba(74, 222, 128, 0.5)",
+      "auraStyle": "aura-spirit",
+      "unlockedFeature": "tower",
+      "descriptionKey": "rank.c.desc",
+      "avatarIndex": 2
+    },
+    {
+      "id": "B",
+      "index": 3,
+      "nameKey": "rank.b.name",
+      "titleKey": "rank.b.title",
+      "reqPower": 15000,
+      "multiplier": 6,
+      "color": "#c084fc",
+      "glowColor": "rgba(192, 132, 252, 0.6)",
+      "auraStyle": "aura-spirit",
+      "unlockedFeature": "heroes",
+      "descriptionKey": "rank.b.desc",
+      "avatarIndex": 3
+    },
+    {
+      "id": "A",
+      "index": 4,
+      "nameKey": "rank.a.name",
+      "titleKey": "rank.a.title",
+      "reqPower": 150000,
+      "multiplier": 15,
+      "color": "#fbbf24",
+      "glowColor": "rgba(251, 191, 36, 0.6)",
+      "auraStyle": "aura-flame",
+      "unlockedFeature": "summon",
+      "descriptionKey": "rank.a.desc",
+      "avatarIndex": 4
+    },
+    {
+      "id": "S",
+      "index": 5,
+      "nameKey": "rank.s.name",
+      "titleKey": "rank.s.title",
+      "reqPower": 2000000,
+      "multiplier": 40,
+      "color": "#f87171",
+      "glowColor": "rgba(248, 113, 113, 0.7)",
+      "auraStyle": "aura-flame",
+      "unlockedFeature": "reincarnation",
+      "descriptionKey": "rank.s.desc",
+      "avatarIndex": 5
+    },
+    {
+      "id": "SS",
+      "index": 6,
+      "nameKey": "rank.ss.name",
+      "titleKey": "rank.ss.title",
+      "reqPower": 30000000,
+      "multiplier": 120,
+      "color": "#ec4899",
+      "glowColor": "rgba(236, 72, 153, 0.8)",
+      "auraStyle": "aura-void",
+      "unlockedFeature": "soul_tree",
+      "descriptionKey": "rank.ss.desc",
+      "avatarIndex": 6
+    },
+    {
+      "id": "SSS",
+      "index": 7,
+      "nameKey": "rank.sss.name",
+      "titleKey": "rank.sss.title",
+      "reqPower": 500000000,
+      "multiplier": 400,
+      "color": "#e11d48",
+      "glowColor": "rgba(225, 29, 72, 0.85)",
+      "auraStyle": "aura-void",
+      "descriptionKey": "rank.sss.desc",
+      "avatarIndex": 7
+    },
+    {
+      "id": "AWAKENED",
+      "index": 8,
+      "nameKey": "rank.awakened.name",
+      "titleKey": "rank.awakened.title",
+      "reqPower": 10000000000,
+      "multiplier": 1500,
+      "color": "#818cf8",
+      "glowColor": "rgba(129, 140, 248, 0.9)",
+      "auraStyle": "aura-celestial",
+      "descriptionKey": "rank.awakened.desc",
+      "avatarIndex": 8
+    },
+    {
+      "id": "TRANSCENDENT",
+      "index": 9,
+      "nameKey": "rank.transcendent.name",
+      "titleKey": "rank.transcendent.title",
+      "reqPower": 250000000000,
+      "multiplier": 6000,
+      "color": "#38bdf8",
+      "glowColor": "rgba(56, 189, 248, 0.95)",
+      "auraStyle": "aura-celestial",
+      "descriptionKey": "rank.transcendent.desc",
+      "avatarIndex": 9
+    },
+    {
+      "id": "CELESTIAL",
+      "index": 10,
+      "nameKey": "rank.celestial.name",
+      "titleKey": "rank.celestial.title",
+      "reqPower": 10000000000000,
+      "multiplier": 30000,
+      "color": "#facc15",
+      "glowColor": "rgba(250, 204, 21, 1)",
+      "auraStyle": "aura-godlike",
+      "descriptionKey": "rank.celestial.desc",
+      "avatarIndex": 10
+    },
+    {
+      "id": "IMMORTAL",
+      "index": 11,
+      "nameKey": "rank.immortal.name",
+      "titleKey": "rank.immortal.title",
+      "reqPower": 500000000000000,
+      "multiplier": 150000,
+      "color": "#f43f5e",
+      "glowColor": "rgba(244, 63, 94, 1)",
+      "auraStyle": "aura-infinite",
+      "descriptionKey": "rank.immortal.desc",
+      "avatarIndex": 11
+    }
+  ],
+  "quests": [
+    {
+      "id": "quest_train_10",
+      "nameKey": "quest.train_10.name",
+      "descKey": "quest.train_10.desc",
+      "targetCount": 10,
+      "reward": {
+        "gold": 100,
+        "crystals": 10
+      }
+    },
+    {
+      "id": "quest_train_50",
+      "nameKey": "quest.train_50.name",
+      "descKey": "quest.train_50.desc",
+      "targetCount": 50,
+      "reward": {
+        "gold": 500,
+        "crystals": 30
+      }
+    },
+    {
+      "id": "quest_train_250",
+      "nameKey": "quest.train_250.name",
+      "descKey": "quest.train_250.desc",
+      "targetCount": 250,
+      "reward": {
+        "gold": 5000,
+        "crystals": 60
+      }
+    },
+    {
+      "id": "quest_train_1000",
+      "nameKey": "quest.train_1000.name",
+      "descKey": "quest.train_1000.desc",
+      "targetCount": 1000,
+      "reward": {
+        "gold": 25000,
+        "crystals": 120
+      }
+    },
+    {
+      "id": "quest_build_1",
+      "nameKey": "quest.build_1.name",
+      "descKey": "quest.build_1.desc",
+      "targetCount": 1,
+      "reward": {
+        "gold": 50,
+        "crystals": 15
+      }
+    },
+    {
+      "id": "quest_build_10_dojo",
+      "nameKey": "quest.dojo_10.name",
+      "descKey": "quest.dojo_10.desc",
+      "targetCount": 10,
+      "reward": {
+        "gold": 300,
+        "crystals": 25
+      }
+    },
+    {
+      "id": "quest_build_10_chamber",
+      "nameKey": "quest.chamber_10.name",
+      "descKey": "quest.chamber_10.desc",
+      "targetCount": 10,
+      "reward": {
+        "gold": 1500,
+        "crystals": 40
+      }
+    },
+    {
+      "id": "quest_build_10_shrine",
+      "nameKey": "quest.shrine_10.name",
+      "descKey": "quest.shrine_10.desc",
+      "targetCount": 10,
+      "reward": {
+        "gold": 15000,
+        "crystals": 60
+      }
+    },
+    {
+      "id": "quest_build_total_25",
+      "nameKey": "quest.build_25.name",
+      "descKey": "quest.build_25.desc",
+      "targetCount": 25,
+      "reward": {
+        "gold": 2000,
+        "crystals": 50
+      }
+    },
+    {
+      "id": "quest_build_total_50",
+      "nameKey": "quest.build_50.name",
+      "descKey": "quest.build_50.desc",
+      "targetCount": 50,
+      "reward": {
+        "gold": 10000,
+        "crystals": 80
+      }
+    },
+    {
+      "id": "quest_build_total_100",
+      "nameKey": "quest.build_100.name",
+      "descKey": "quest.build_100.desc",
+      "targetCount": 100,
+      "reward": {
+        "gold": 100000,
+        "crystals": 150
+      }
+    },
+    {
+      "id": "quest_power_1k",
+      "nameKey": "quest.power_1k.name",
+      "descKey": "quest.power_1k.desc",
+      "targetCount": 1000,
+      "reward": {
+        "gold": 1000,
+        "crystals": 30
+      }
+    },
+    {
+      "id": "quest_power_50k",
+      "nameKey": "quest.power_50k.name",
+      "descKey": "quest.power_50k.desc",
+      "targetCount": 50000,
+      "reward": {
+        "gold": 20000,
+        "crystals": 60
+      }
+    },
+    {
+      "id": "quest_power_1m",
+      "nameKey": "quest.power_1m.name",
+      "descKey": "quest.power_1m.desc",
+      "targetCount": 1000000,
+      "reward": {
+        "gold": 500000,
+        "crystals": 150
+      }
+    },
+    {
+      "id": "quest_power_100m",
+      "nameKey": "quest.power_100m.name",
+      "descKey": "quest.power_100m.desc",
+      "targetCount": 100000000,
+      "reward": {
+        "gold": 20000000,
+        "crystals": 300
+      }
+    },
+    {
+      "id": "quest_tower_5",
+      "nameKey": "quest.tower_5.name",
+      "descKey": "quest.tower_5.desc",
+      "targetCount": 5,
+      "reward": {
+        "crystals": 50,
+        "essence": 20
+      }
+    },
+    {
+      "id": "quest_tower_10",
+      "nameKey": "quest.tower_10.name",
+      "descKey": "quest.tower_10.desc",
+      "targetCount": 10,
+      "reward": {
+        "crystals": 80,
+        "essence": 40
+      }
+    },
+    {
+      "id": "quest_tower_25",
+      "nameKey": "quest.tower_25.name",
+      "descKey": "quest.tower_25.desc",
+      "targetCount": 25,
+      "reward": {
+        "crystals": 120,
+        "essence": 80
+      }
+    },
+    {
+      "id": "quest_tower_50",
+      "nameKey": "quest.tower_50.name",
+      "descKey": "quest.tower_50.desc",
+      "targetCount": 50,
+      "reward": {
+        "crystals": 250,
+        "essence": 150
+      }
+    },
+    {
+      "id": "quest_tower_100",
+      "nameKey": "quest.tower_100.name",
+      "descKey": "quest.tower_100.desc",
+      "targetCount": 100,
+      "reward": {
+        "crystals": 500,
+        "essence": 300
+      }
+    },
+    {
+      "id": "quest_summon_1",
+      "nameKey": "quest.summon_1.name",
+      "descKey": "quest.summon_1.desc",
+      "targetCount": 1,
+      "reward": {
+        "gold": 5000,
+        "crystals": 50
+      }
+    },
+    {
+      "id": "quest_summon_5",
+      "nameKey": "quest.summon_5.name",
+      "descKey": "quest.summon_5.desc",
+      "targetCount": 5,
+      "reward": {
+        "gold": 25000,
+        "crystals": 150
+      }
+    },
+    {
+      "id": "quest_heroes_3",
+      "nameKey": "quest.heroes_3.name",
+      "descKey": "quest.heroes_3.desc",
+      "targetCount": 3,
+      "reward": {
+        "essence": 50,
+        "crystals": 100
+      }
+    },
+    {
+      "id": "quest_heroes_8",
+      "nameKey": "quest.heroes_8.name",
+      "descKey": "quest.heroes_8.desc",
+      "targetCount": 8,
+      "reward": {
+        "essence": 150,
+        "crystals": 250
+      }
+    },
+    {
+      "id": "quest_rank_d",
+      "nameKey": "quest.rank_d.name",
+      "descKey": "quest.rank_d.desc",
+      "targetCount": 1,
+      "reward": {
+        "gold": 2000,
+        "crystals": 50
+      }
+    },
+    {
+      "id": "quest_rank_b",
+      "nameKey": "quest.rank_b.name",
+      "descKey": "quest.rank_b.desc",
+      "targetCount": 3,
+      "reward": {
+        "crystals": 100,
+        "essence": 30
+      }
+    },
+    {
+      "id": "quest_rank_s",
+      "nameKey": "quest.rank_s.name",
+      "descKey": "quest.rank_s.desc",
+      "targetCount": 5,
+      "reward": {
+        "crystals": 300,
+        "essence": 100
+      }
+    },
+    {
+      "id": "quest_reincarnate_1",
+      "nameKey": "quest.reincarnate_1.name",
+      "descKey": "quest.reincarnate_1.desc",
+      "targetCount": 1,
+      "reward": {
+        "crystals": 500,
+        "essence": 200
+      }
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first_training",
+      "nameKey": "achieve.first_train.name",
+      "descKey": "achieve.first_train.desc",
+      "icon": "👊",
+      "rewardCrystals": 20
+    },
+    {
+      "id": "train_100",
+      "nameKey": "achieve.train_100.name",
+      "descKey": "achieve.train_100.desc",
+      "icon": "🥋",
+      "rewardCrystals": 50
+    },
+    {
+      "id": "train_1000",
+      "nameKey": "achieve.train_1000.name",
+      "descKey": "achieve.train_1000.desc",
+      "icon": "⚡",
+      "rewardCrystals": 150
+    },
+    {
+      "id": "crit_50",
+      "nameKey": "achieve.crit_50.name",
+      "descKey": "achieve.crit_50.desc",
+      "icon": "💥",
+      "rewardCrystals": 75
+    },
+    {
+      "id": "first_building",
+      "nameKey": "achieve.first_building.name",
+      "descKey": "achieve.first_building.desc",
+      "icon": "🏗️",
+      "rewardCrystals": 30
+    },
+    {
+      "id": "buildings_50",
+      "nameKey": "achieve.buildings_50.name",
+      "descKey": "achieve.buildings_50.desc",
+      "icon": "🏯",
+      "rewardCrystals": 100
+    },
+    {
+      "id": "buildings_150",
+      "nameKey": "achieve.buildings_150.name",
+      "descKey": "achieve.buildings_150.desc",
+      "icon": "🌆",
+      "rewardCrystals": 250
+    },
+    {
+      "id": "rank_d",
+      "nameKey": "achieve.rank_d.name",
+      "descKey": "achieve.rank_d.desc",
+      "icon": "🌀",
+      "rewardCrystals": 50
+    },
+    {
+      "id": "rank_c",
+      "nameKey": "achieve.rank_c.name",
+      "descKey": "achieve.rank_c.desc",
+      "icon": "🥉",
+      "rewardCrystals": 100
+    },
+    {
+      "id": "rank_b",
+      "nameKey": "achieve.rank_b.name",
+      "descKey": "achieve.rank_b.desc",
+      "icon": "🥈",
+      "rewardCrystals": 150
+    },
+    {
+      "id": "rank_a",
+      "nameKey": "achieve.rank_a.name",
+      "descKey": "achieve.rank_a.desc",
+      "icon": "🥇",
+      "rewardCrystals": 250
+    },
+    {
+      "id": "rank_s",
+      "nameKey": "achieve.rank_s.name",
+      "descKey": "achieve.rank_s.desc",
+      "icon": "👑",
+      "rewardCrystals": 500
+    },
+    {
+      "id": "rank_transcendent",
+      "nameKey": "achieve.rank_trans.name",
+      "descKey": "achieve.rank_trans.desc",
+      "icon": "🌌",
+      "rewardCrystals": 1500
+    },
+    {
+      "id": "power_1m",
+      "nameKey": "achieve.power_1m.name",
+      "descKey": "achieve.power_1m.desc",
+      "icon": "🔥",
+      "rewardCrystals": 150
+    },
+    {
+      "id": "power_1b",
+      "nameKey": "achieve.power_1b.name",
+      "descKey": "achieve.power_1b.desc",
+      "icon": "💫",
+      "rewardCrystals": 500
+    },
+    {
+      "id": "tower_10",
+      "nameKey": "achieve.tower_10.name",
+      "descKey": "achieve.tower_10.desc",
+      "icon": "🏰",
+      "rewardCrystals": 100
+    },
+    {
+      "id": "tower_50",
+      "nameKey": "achieve.tower_50.name",
+      "descKey": "achieve.tower_50.desc",
+      "icon": "🌸",
+      "rewardCrystals": 300
+    },
+    {
+      "id": "tower_100",
+      "nameKey": "achieve.tower_100.name",
+      "descKey": "achieve.tower_100.desc",
+      "icon": "👹",
+      "rewardCrystals": 750
+    },
+    {
+      "id": "heroes_3",
+      "nameKey": "achieve.heroes_3.name",
+      "descKey": "achieve.heroes_3.desc",
+      "icon": "👥",
+      "rewardCrystals": 100
+    },
+    {
+      "id": "heroes_10",
+      "nameKey": "achieve.heroes_10.name",
+      "descKey": "achieve.heroes_10.desc",
+      "icon": "🌟",
+      "rewardCrystals": 500
+    },
+    {
+      "id": "first_reincarnation",
+      "nameKey": "achieve.reincarnate_1.name",
+      "descKey": "achieve.reincarnate_1.desc",
+      "icon": "🔄",
+      "rewardCrystals": 300
+    }
+  ],
+  "heroes": [
+    {
+      "id": "hiro",
+      "nameKey": "hero.hiro.name",
+      "titleKey": "hero.hiro.title",
+      "rarity": "common",
+      "descriptionKey": "hero.hiro.desc",
+      "element": "wind",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.15
+      },
+      "avatarSeed": "hiro-blade"
+    },
+    {
+      "id": "lin",
+      "nameKey": "hero.lin.name",
+      "titleKey": "hero.lin.title",
+      "rarity": "common",
+      "descriptionKey": "hero.lin.desc",
+      "element": "water",
+      "modifier": {
+        "type": "gold_pct",
+        "baseValue": 0.2
+      },
+      "avatarSeed": "lin-staff"
+    },
+    {
+      "id": "tatsu",
+      "nameKey": "hero.tatsu.name",
+      "titleKey": "hero.tatsu.title",
+      "rarity": "common",
+      "descriptionKey": "hero.tatsu.desc",
+      "element": "fire",
+      "modifier": {
+        "type": "offline_pct",
+        "baseValue": 0.25
+      },
+      "avatarSeed": "tatsu-fist"
+    },
+    {
+      "id": "mei",
+      "nameKey": "hero.mei.name",
+      "titleKey": "hero.mei.title",
+      "rarity": "common",
+      "descriptionKey": "hero.mei.desc",
+      "element": "wind",
+      "modifier": {
+        "type": "crit_chance",
+        "baseValue": 0.03
+      },
+      "avatarSeed": "mei-bow"
+    },
+    {
+      "id": "kael",
+      "nameKey": "hero.kael.name",
+      "titleKey": "hero.kael.title",
+      "rarity": "rare",
+      "descriptionKey": "hero.kael.desc",
+      "element": "void",
+      "modifier": {
+        "type": "crit_mult",
+        "baseValue": 0.5
+      },
+      "avatarSeed": "kael-daggers"
+    },
+    {
+      "id": "yuna",
+      "nameKey": "hero.yuna.name",
+      "titleKey": "hero.yuna.title",
+      "rarity": "rare",
+      "descriptionKey": "hero.yuna.desc",
+      "element": "light",
+      "modifier": {
+        "type": "offline_pct",
+        "baseValue": 0.35
+      },
+      "avatarSeed": "yuna-orb"
+    },
+    {
+      "id": "shin",
+      "nameKey": "hero.shin.name",
+      "titleKey": "hero.shin.title",
+      "rarity": "rare",
+      "descriptionKey": "hero.shin.desc",
+      "element": "lightning",
+      "modifier": {
+        "type": "tower_atk_pct",
+        "baseValue": 0.3
+      },
+      "avatarSeed": "shin-katana"
+    },
+    {
+      "id": "hana",
+      "nameKey": "hero.hana.name",
+      "titleKey": "hero.hana.title",
+      "rarity": "rare",
+      "descriptionKey": "hero.hana.desc",
+      "element": "water",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.3
+      },
+      "avatarSeed": "hana-bloom"
+    },
+    {
+      "id": "ren",
+      "nameKey": "hero.ren.name",
+      "titleKey": "hero.ren.title",
+      "rarity": "epic",
+      "descriptionKey": "hero.ren.desc",
+      "element": "void",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.5
+      },
+      "avatarSeed": "ren-reaper"
+    },
+    {
+      "id": "ayaka",
+      "nameKey": "hero.ayaka.name",
+      "titleKey": "hero.ayaka.title",
+      "rarity": "epic",
+      "descriptionKey": "hero.ayaka.desc",
+      "element": "fire",
+      "modifier": {
+        "type": "tower_atk_pct",
+        "baseValue": 0.55
+      },
+      "avatarSeed": "ayaka-spear"
+    },
+    {
+      "id": "daiki",
+      "nameKey": "hero.daiki.name",
+      "titleKey": "hero.daiki.title",
+      "rarity": "epic",
+      "descriptionKey": "hero.daiki.desc",
+      "element": "lightning",
+      "modifier": {
+        "type": "gold_pct",
+        "baseValue": 0.6
+      },
+      "avatarSeed": "daiki-hammer"
+    },
+    {
+      "id": "sora",
+      "nameKey": "hero.sora.name",
+      "titleKey": "hero.sora.title",
+      "rarity": "epic",
+      "descriptionKey": "hero.sora.desc",
+      "element": "wind",
+      "modifier": {
+        "type": "crit_chance",
+        "baseValue": 0.08
+      },
+      "avatarSeed": "sora-feathers"
+    },
+    {
+      "id": "akari",
+      "nameKey": "hero.akari.name",
+      "titleKey": "hero.akari.title",
+      "rarity": "legendary",
+      "descriptionKey": "hero.akari.desc",
+      "element": "light",
+      "modifier": {
+        "type": "all_pct",
+        "baseValue": 0.5
+      },
+      "avatarSeed": "akari-sun"
+    },
+    {
+      "id": "ryu",
+      "nameKey": "hero.ryu.name",
+      "titleKey": "hero.ryu.title",
+      "rarity": "legendary",
+      "descriptionKey": "hero.ryu.desc",
+      "element": "fire",
+      "modifier": {
+        "type": "power_pct",
+        "baseValue": 0.9
+      },
+      "avatarSeed": "ryu-dragon"
+    },
+    {
+      "id": "tsukiko",
+      "nameKey": "hero.tsukiko.name",
+      "titleKey": "hero.tsukiko.title",
+      "rarity": "legendary",
+      "descriptionKey": "hero.tsukiko.desc",
+      "element": "void",
+      "modifier": {
+        "type": "essence_pct",
+        "baseValue": 0.5
+      },
+      "avatarSeed": "tsukiko-moon"
+    },
+    {
+      "id": "kuro",
+      "nameKey": "hero.kuro.name",
+      "titleKey": "hero.kuro.title",
+      "rarity": "mythic",
+      "descriptionKey": "hero.kuro.desc",
+      "element": "void",
+      "modifier": {
+        "type": "all_pct",
+        "baseValue": 1.2
+      },
+      "avatarSeed": "kuro-sovereign"
+    }
+  ],
+  "heroRarities": {
+    "common": {
+      "color": "#94a3b8",
+      "glow": "rgba(148, 163, 184, 0.4)",
+      "nameKey": "rarity.common",
+      "pullRate": 55,
+      "duplicateEssence": 10
+    },
+    "rare": {
+      "color": "#38bdf8",
+      "glow": "rgba(56, 189, 248, 0.5)",
+      "nameKey": "rarity.rare",
+      "pullRate": 30,
+      "duplicateEssence": 25
+    },
+    "epic": {
+      "color": "#c084fc",
+      "glow": "rgba(192, 132, 252, 0.6)",
+      "nameKey": "rarity.epic",
+      "pullRate": 11,
+      "duplicateEssence": 75
+    },
+    "legendary": {
+      "color": "#fbbf24",
+      "glow": "rgba(251, 191, 36, 0.7)",
+      "nameKey": "rarity.legendary",
+      "pullRate": 3.5,
+      "duplicateEssence": 250
+    },
+    "mythic": {
+      "color": "#f43f5e",
+      "glow": "rgba(244, 63, 94, 0.85)",
+      "nameKey": "rarity.mythic",
+      "pullRate": 0.5,
+      "duplicateEssence": 1000
+    }
+  },
+  "soulTree": [
+    {
+      "id": "soul_power",
+      "nameKey": "soul.power.name",
+      "descKey": "soul.power.desc",
+      "icon": "⚡",
+      "baseCost": 1,
+      "costGrowth": 1.5,
+      "maxLevel": 50,
+      "baseEffect": 0.25
+    },
+    {
+      "id": "soul_gold",
+      "nameKey": "soul.gold.name",
+      "descKey": "soul.gold.desc",
+      "icon": "💰",
+      "baseCost": 1,
+      "costGrowth": 1.5,
+      "maxLevel": 50,
+      "baseEffect": 0.3
+    },
+    {
+      "id": "soul_offline",
+      "nameKey": "soul.offline.name",
+      "descKey": "soul.offline.desc",
+      "icon": "⏳",
+      "baseCost": 3,
+      "costGrowth": 1.8,
+      "maxLevel": 25,
+      "baseEffect": 0.25
+    },
+    {
+      "id": "soul_crit",
+      "nameKey": "soul.crit.name",
+      "descKey": "soul.crit.desc",
+      "icon": "💥",
+      "baseCost": 5,
+      "costGrowth": 2,
+      "maxLevel": 20,
+      "baseEffect": 0.04
+    },
+    {
+      "id": "soul_tower",
+      "nameKey": "soul.tower.name",
+      "descKey": "soul.tower.desc",
+      "icon": "🏰",
+      "baseCost": 4,
+      "costGrowth": 1.8,
+      "maxLevel": 30,
+      "baseEffect": 0.35
+    },
+    {
+      "id": "soul_essence",
+      "nameKey": "soul.essence.name",
+      "descKey": "soul.essence.desc",
+      "icon": "✨",
+      "baseCost": 8,
+      "costGrowth": 2.2,
+      "maxLevel": 15,
+      "baseEffect": 0.4
+    }
+  ],
+  "worlds": [
+    {
+      "worldIndex": 1,
+      "minFloor": 1,
+      "maxFloor": 50,
+      "nameKey": "world.forest.name",
+      "bgGradient": "radial-gradient(ellipse at bottom, #064e3b 0%, #022c22 70%, #030712 100%)",
+      "accentColor": "#10b981",
+      "ambientParticles": "leaves",
+      "monsterTypes": [
+        {
+          "nameKey": "monster.goblin",
+          "icon": "👺",
+          "descriptionKey": "monster.goblin.desc"
+        },
+        {
+          "nameKey": "monster.shadow_wolf",
+          "icon": "🐺",
+          "descriptionKey": "monster.shadow_wolf.desc"
+        },
+        {
+          "nameKey": "monster.forest_treant",
+          "icon": "🪵",
+          "descriptionKey": "monster.treant.desc"
+        }
+      ],
+      "bosses": [
+        {
+          "nameKey": "boss.forest_king",
+          "icon": "🧌",
+          "descriptionKey": "boss.forest_king.desc"
+        }
+      ]
+    },
+    {
+      "worldIndex": 2,
+      "minFloor": 51,
+      "maxFloor": 100,
+      "nameKey": "world.sakura.name",
+      "bgGradient": "radial-gradient(ellipse at bottom, #831843 0%, #4c0519 70%, #030712 100%)",
+      "accentColor": "#f43f5e",
+      "ambientParticles": "petals",
+      "monsterTypes": [
+        {
+          "nameKey": "monster.ronin_spirit",
+          "icon": "⚔️",
+          "descriptionKey": "monster.ronin.desc"
+        },
+        {
+          "nameKey": "monster.kitsune",
+          "icon": "🦊",
+          "descriptionKey": "monster.kitsune.desc"
+        },
+        {
+          "nameKey": "monster.corrupted_monk",
+          "icon": "📿",
+          "descriptionKey": "monster.monk.desc"
+        }
+      ],
+      "bosses": [
+        {
+          "nameKey": "boss.shadow_shogun",
+          "icon": "👹",
+          "descriptionKey": "boss.shogun.desc"
+        }
+      ]
+    },
+    {
+      "worldIndex": 3,
+      "minFloor": 101,
+      "maxFloor": 150,
+      "nameKey": "world.abyss.name",
+      "bgGradient": "radial-gradient(ellipse at bottom, #7f1d1d 0%, #450a0a 70%, #030712 100%)",
+      "accentColor": "#ef4444",
+      "ambientParticles": "embers",
+      "monsterTypes": [
+        {
+          "nameKey": "monster.hellhound",
+          "icon": "🐕‍🦺",
+          "descriptionKey": "monster.hellhound.desc"
+        },
+        {
+          "nameKey": "monster.fire_demon",
+          "icon": "👿",
+          "descriptionKey": "monster.fire_demon.desc"
+        },
+        {
+          "nameKey": "monster.lava_golem",
+          "icon": "🌋",
+          "descriptionKey": "monster.lava_golem.desc"
+        }
+      ],
+      "bosses": [
+        {
+          "nameKey": "boss.abyssal_dragon",
+          "icon": "🐉",
+          "descriptionKey": "boss.dragon.desc"
+        }
+      ]
+    },
+    {
+      "worldIndex": 4,
+      "minFloor": 151,
+      "maxFloor": 200,
+      "nameKey": "world.frozen.name",
+      "bgGradient": "radial-gradient(ellipse at bottom, #0c4a6e 0%, #082f49 70%, #030712 100%)",
+      "accentColor": "#38bdf8",
+      "ambientParticles": "snow",
+      "monsterTypes": [
+        {
+          "nameKey": "monster.frost_golem",
+          "icon": "🧊",
+          "descriptionKey": "monster.frost_golem.desc"
+        },
+        {
+          "nameKey": "monster.ice_specter",
+          "icon": "👻",
+          "descriptionKey": "monster.ice_specter.desc"
+        },
+        {
+          "nameKey": "monster.blizzard_hawk",
+          "icon": "🦅",
+          "descriptionKey": "monster.blizzard_hawk.desc"
+        }
+      ],
+      "bosses": [
+        {
+          "nameKey": "boss.frost_monarch",
+          "icon": "❄️",
+          "descriptionKey": "boss.frost_monarch.desc"
+        }
+      ]
+    },
+    {
+      "worldIndex": 5,
+      "minFloor": 201,
+      "maxFloor": null,
+      "nameKey": "world.void.name",
+      "bgGradient": "radial-gradient(ellipse at bottom, #4c1d95 0%, #2e1065 70%, #030712 100%)",
+      "accentColor": "#a855f7",
+      "ambientParticles": "void-stars",
+      "monsterTypes": [
+        {
+          "nameKey": "monster.void_phantom",
+          "icon": "👤",
+          "descriptionKey": "monster.void_phantom.desc"
+        },
+        {
+          "nameKey": "monster.astral_knight",
+          "icon": "🛡️",
+          "descriptionKey": "monster.astral_knight.desc"
+        },
+        {
+          "nameKey": "monster.chaos_orb",
+          "icon": "🔮",
+          "descriptionKey": "monster.chaos_orb.desc"
+        }
+      ],
+      "bosses": [
+        {
+          "nameKey": "boss.cosmic_sovereign",
+          "icon": "👁️",
+          "descriptionKey": "boss.cosmic_sovereign.desc"
+        }
+      ]
+    }
+  ]
+}
