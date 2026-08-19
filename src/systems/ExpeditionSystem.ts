@@ -3,6 +3,7 @@ import { getExpeditionById } from '../content/expeditions';
 import { getHeroById } from '../content/heroes';
 import { EconomyEngine } from '../economy/EconomyEngine';
 import { events } from '../core/EventBus';
+import { t } from '../services/i18n/I18nService';
 
 export class ExpeditionSystem {
   
@@ -50,7 +51,7 @@ export class ExpeditionSystem {
       draft.expeditions.push(newExpedition);
     });
 
-    events.emit('toast:show', { message: `Hero dispatched on expedition!`, type: 'info' });
+    events.emit('toast:show', { message: t('toast.expedition.dispatched', { expedition: t(template.nameKey) }), type: 'info' });
     return true;
   }
 
@@ -87,7 +88,7 @@ export class ExpeditionSystem {
     });
 
     events.emit('toast:show', { 
-      message: `Expedition Complete! +${crystals} Crystals, +${essence} Essence, +${gold} Gold`, 
+      message: t('toast.expedition.complete', { expedition: t(template.nameKey), crystals, essence, gold }),
       type: 'success' 
     });
 

@@ -304,27 +304,27 @@
 
 **Priority:** P1
 
-- [ ] `P7-01` Inventory all hardcoded player-facing English strings
-- [ ] `P7-02` Move SoulTree literals to i18n
-- [ ] `P7-03` Move Battlefield literals to i18n
-- [ ] `P7-04` Move SettlementScreen literals to i18n
-- [ ] `P7-05` Move settlement modals to i18n
-- [ ] `P7-06` Move pet modal literals to i18n
-- [ ] `P7-07` Move equipment modal literals to i18n
-- [ ] `P7-08` Move market modal literals to i18n
-- [ ] `P7-09` Move title modal literals to i18n
-- [ ] `P7-10` Move mercenary modal literals to i18n
-- [ ] `P7-11` Move toast strings to i18n
-- [ ] `P7-12` Move boss warning strings to i18n
-- [ ] `P7-13` Move world-clear strings to i18n
-- [ ] `P7-14` Add EN keys
-- [ ] `P7-15` Add RU keys
-- [ ] `P7-16` Check interpolation safety
-- [ ] `P7-17` Check pluralization-sensitive strings
+- [x] `P7-01` Inventory all hardcoded player-facing English strings
+- [x] `P7-02` Move SoulTree literals to i18n
+- [x] `P7-03` Move Battlefield literals to i18n
+- [x] `P7-04` Move SettlementScreen literals to i18n
+- [x] `P7-05` Move settlement modals to i18n
+- [x] `P7-06` Move pet modal literals to i18n
+- [x] `P7-07` Move equipment modal literals to i18n
+- [x] `P7-08` Move market modal literals to i18n
+- [x] `P7-09` Move title modal literals to i18n
+- [x] `P7-10` Move mercenary modal literals to i18n
+- [x] `P7-11` Move toast strings to i18n
+- [x] `P7-12` Move boss warning strings to i18n
+- [x] `P7-13` Move world-clear strings to i18n
+- [x] `P7-14` Add EN keys
+- [x] `P7-15` Add RU keys
+- [x] `P7-16` Check interpolation safety
+- [x] `P7-17` Check pluralization-sensitive strings
 - [ ] `P7-18` Check 390px Russian string overflow
 - [ ] `P7-19` Check 1366 desktop Russian strings
-- [ ] `P7-20` Add missing-key test
-- [ ] `P7-21` Add hardcoded-player-copy lint/audit script
+- [x] `P7-20` Add missing-key test
+- [x] `P7-21` Add hardcoded-player-copy lint/audit script
 
 ## PHASE 8 — Real Art Runtime Architecture
 

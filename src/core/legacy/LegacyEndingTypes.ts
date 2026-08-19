@@ -10,14 +10,18 @@ export interface LegacyEndingDefinition {
   id: LegacyEndingId;
   titleKey: string;
   defaultTitle: string;
+  subtitleKey: string;
   subtitle: string;
+  requirementKey: string;
   requirementDesc: string;
+  epilogueKey: string;
   epilogueText: string;
   iconSvg: string;
   permanentModifier: {
     target: ModifierTarget;
     type: ModifierType;
     value: number;
+    labelKey: string;
     label: string;
   };
 }

@@ -2,6 +2,7 @@ import { store } from '../core/GameState';
 import { EconomyEngine } from '../economy/EconomyEngine';
 import { events } from '../core/EventBus';
 import { sound } from '../services/audio/SoundService';
+import { t } from '../services/i18n/I18nService';
 
 export class RandomEventSystem {
   private static nextSpawnTime: number = Date.now() + 60000; // First spawn in 60s
@@ -57,17 +58,17 @@ export class RandomEventSystem {
         draft.power += bonusPower;
         draft.crystals += 25;
         draft.stats.lifetimePower += bonusPower;
-        rewardDesc = `+${bonusPower} Power & +25 Crystals!`;
+        rewardDesc = t('toast.random.power_reward', { power: bonusPower, crystals: 25 });
       } else {
         draft.buffs.frenzyEndsAt = now + 30000; // 30s 3x frenzy
-        rewardDesc = `CELESTIAL FRENZY! 3x Power for 30s!`;
+        rewardDesc = t('toast.random.frenzy_reward', { multiplier: 3, seconds: 30 });
       }
     });
 
     sound.playVictory();
 
     events.emit('toast:show', {
-      message: `✨ Golden Spirit: ${rewardDesc}`,
+      message: t('toast.random.golden_spirit', { reward: rewardDesc }),
       type: 'gold'
     });
 

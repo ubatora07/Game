@@ -43,6 +43,7 @@ export interface MarketOfferDefinition {
   iconSvg: string;
   stockMax: number;
   isBlackMarket: boolean;
+  tradeOffKey?: string;
   tradeOffDesc?: string;
   unlockCondition?: {
     minWorld?: number;

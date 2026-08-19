@@ -1,5 +1,6 @@
 import { SettlementBuildingId, SettlementBuildingState, SettlementNPCId } from '../../core/settlement/SettlementTypes';
 import { SETTLEMENT_NPCS } from '../../content/settlementNPCs';
+import { t } from '../../services/i18n/I18nService';
 
 export class SettlementVisualRenderer {
   /**
@@ -75,7 +76,7 @@ export class SettlementVisualRenderer {
           <rect x="38" y="44" width="4" height="14" fill="#78350f"/>
           <!-- Ropes & Blueprint Chalk -->
           <line x1="16" y1="36" x2="48" y2="36" stroke="#f59e0b" stroke-width="2" stroke-dasharray="2,2"/>
-          <text x="32" y="30" font-size="8" fill="#f59e0b" font-weight="bold" text-anchor="middle" font-family="monospace">PLOT</text>
+          <text x="32" y="30" font-size="8" fill="#f59e0b" font-weight="bold" text-anchor="middle" font-family="monospace">${t('settlement.plot')}</text>
         </svg>
       `;
     }

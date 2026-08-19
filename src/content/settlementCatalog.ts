@@ -21,6 +21,7 @@ export const SETTLEMENT_BUILDINGS: Record<SettlementBuildingId, SettlementBuildi
       { id: 'throne_gold', target: 'goldMultiplier', type: 'percent_add', valuePerLevel: 0.10 },
       { id: 'throne_power', target: 'powerMultiplier', type: 'percent_add', valuePerLevel: 0.08 },
     ],
+    functionalityKey: 'settlement.building.throne_hall.functionality',
     functionalityDescription: 'Increases Settlement Tier and raises Global Gold & Power multipliers.',
   },
 
@@ -44,6 +45,7 @@ export const SETTLEMENT_BUILDINGS: Record<SettlementBuildingId, SettlementBuildi
       { id: 'forge_atk', target: 'attack', type: 'percent_add', valuePerLevel: 0.08 },
       { id: 'forge_boss', target: 'bossDamage', type: 'percent_add', valuePerLevel: 0.06 },
     ],
+    functionalityKey: 'settlement.building.forge.functionality',
     functionalityDescription: 'Unlocks Equipment Crafting, Weapon Enhancement, and Refinement loops.',
   },
 
@@ -67,6 +69,7 @@ export const SETTLEMENT_BUILDINGS: Record<SettlementBuildingId, SettlementBuildi
       { id: 'market_loot', target: 'lootChance', type: 'percent_add', valuePerLevel: 0.05 },
       { id: 'market_gold', target: 'goldMultiplier', type: 'percent_add', valuePerLevel: 0.06 },
     ],
+    functionalityKey: 'settlement.building.market.functionality',
     functionalityDescription: 'Unlocks Material Trading, Currency Conversion, and Rare LiveOps stock.',
   },
 
@@ -89,6 +92,7 @@ export const SETTLEMENT_BUILDINGS: Record<SettlementBuildingId, SettlementBuildi
     modifiers: [
       { id: 'tavern_crit_dmg', target: 'critDamage', type: 'percent_add', valuePerLevel: 0.08 },
     ],
+    functionalityKey: 'settlement.building.tavern.functionality',
     functionalityDescription: 'Unlocks Mercenary Hiring, Rumor Quests, and Karma-reactive NPC stories.',
   },
 
@@ -112,6 +116,7 @@ export const SETTLEMENT_BUILDINGS: Record<SettlementBuildingId, SettlementBuildi
       { id: 'barracks_def', target: 'settlementDefense', type: 'percent_add', valuePerLevel: 0.15 },
       { id: 'barracks_elite', target: 'eliteDamage', type: 'percent_add', valuePerLevel: 0.08 },
     ],
+    functionalityKey: 'settlement.building.barracks.functionality',
     functionalityDescription: 'Provides Settlement Defense Rating and unlocks Garrison Defense Missions.',
   },
 
@@ -133,6 +138,7 @@ export const SETTLEMENT_BUILDINGS: Record<SettlementBuildingId, SettlementBuildi
     modifiers: [
       { id: 'farm_gold', target: 'goldMultiplier', type: 'percent_add', valuePerLevel: 0.05 },
     ],
+    functionalityKey: 'settlement.building.farm.functionality',
     functionalityDescription: 'Passively produces Wood (+2/min), Stone (+1.5/min), and Iron (+0.5/min) per level.',
   },
 
@@ -155,6 +161,7 @@ export const SETTLEMENT_BUILDINGS: Record<SettlementBuildingId, SettlementBuildi
     modifiers: [
       { id: 'alchemy_crit', target: 'critChance', type: 'percent_add', valuePerLevel: 0.03 },
     ],
+    functionalityKey: 'settlement.building.alchemy.functionality',
     functionalityDescription: 'Enables Potion Brewing, Combat Elixir synthesis, and buff duration scaling.',
   },
 
@@ -176,6 +183,7 @@ export const SETTLEMENT_BUILDINGS: Record<SettlementBuildingId, SettlementBuildi
     modifiers: [
       { id: 'pet_house_dmg', target: 'petDamage', type: 'percent_add', valuePerLevel: 0.10 },
     ],
+    functionalityKey: 'settlement.building.pet_house.functionality',
     functionalityDescription: 'Boosts Pet Experience gains by +20% per level and unlocks Pet Sanctuary tasks.',
   },
 };

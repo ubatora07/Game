@@ -2,6 +2,7 @@ import { RhythmEvaluation, RhythmRating, RhythmConfig } from '../core/rhythm/Rhy
 import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class RhythmAttackSystem {
   private static instance: RhythmAttackSystem;
@@ -188,7 +189,7 @@ export class RhythmAttackSystem {
     if (this.currentStreak >= 500 && !this.easterEggClaimed) {
       this.easterEggClaimed = true;
       events.emit('modal:open', { modalId: 'rhythm_master_easter_egg', data: { streak: this.currentStreak } });
-      events.emit('toast:show', { message: '🏆 Easter Egg Unlocked: Rhythm God!', type: 'epic' });
+      events.emit('toast:show', { message: t('toast.rhythm.master_unlocked'), type: 'epic' });
       analytics.trackEvent('rhythm_easter_egg_unlocked', { streak: this.currentStreak });
     }
 
@@ -209,7 +210,7 @@ export class RhythmAttackSystem {
   public triggerEasterEggDebug(): void {
     this.easterEggClaimed = true;
     events.emit('modal:open', { modalId: 'rhythm_master_easter_egg', data: { streak: 500 } });
-    events.emit('toast:show', { message: '🏆 Easter Egg Unlocked: Rhythm God!', type: 'epic' });
+    events.emit('toast:show', { message: t('toast.rhythm.master_unlocked'), type: 'epic' });
     analytics.trackEvent('rhythm_easter_egg_unlocked', { streak: 500, isDebug: true });
   }
 

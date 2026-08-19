@@ -2,6 +2,7 @@ import { ModalInstance, modalManager } from '../components/ModalManager';
 import { mercenarySystem } from '../../systems/MercenarySystem';
 import { getAllMercenaryDefs } from '../../content/mercenariesCatalog';
 import { store } from '../../core/GameState';
+import { t } from '../../services/i18n/I18nService';
 
 export const MercenaryGuildModal: ModalInstance = {
   id: 'mercenary_guild_modal',
@@ -19,10 +20,10 @@ export const MercenaryGuildModal: ModalInstance = {
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1.5px solid #78350f; padding-bottom:8px; flex-wrap:wrap; gap:8px;">
           <div>
             <div style="font-size:9px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; font-family:var(--font-display);">
-              ✦ TAVERN MERCENARY GUILD ✦
+              ✦ ${t('mercenary.guild_label')} ✦
             </div>
             <h3 style="font-family:var(--font-display); font-size:17px; color:#fef08a; margin:1px 0 0 0;">
-              Sellswords & Adventurers for Hire
+              ${t('mercenary.guild_title')}
             </h3>
           </div>
 
@@ -32,7 +33,7 @@ export const MercenaryGuildModal: ModalInstance = {
         </div>
 
         <p style="font-size:11px; color:#cbd5e1; margin:0 0 12px 0;">
-          Hire elite adventurers on timed contracts. Their combat proficiencies directly bolster your party and domain defenses.
+          ${t('mercenary.guild_desc')}
         </p>
 
         <!-- Mercenaries List -->
@@ -51,8 +52,8 @@ export const MercenaryGuildModal: ModalInstance = {
                     <div style="width:22px; height:22px;">${m.avatarSvg}</div>
                   </div>
                   <div>
-                    <div style="font-size:12px; font-weight:bold; color:#fef08a; font-family:var(--font-display);">${m.defaultName}</div>
-                    <div style="font-size:9px; color:#38bdf8;">${m.defaultTitle} • ${m.specialtyTag}</div>
+                    <div style="font-size:12px; font-weight:bold; color:#fef08a; font-family:var(--font-display);">${t(m.nameKey)}</div>
+                    <div style="font-size:9px; color:#38bdf8;">${t(m.titleKey)} • ${m.specialtyTag}</div>
                     <div style="font-size:10px; color:#34d399; margin-top:2px;">
                       ${m.modifiers.map((mod) => `<b>${mod.label}</b>`).join(' • ')}
                     </div>
@@ -63,15 +64,15 @@ export const MercenaryGuildModal: ModalInstance = {
                   ${
                     isActive
                       ? `
-                    <div style="font-size:10px; color:#34d399; font-weight:bold; margin-bottom:4px;">✓ ACTIVE (${remainingMin}m)</div>
+                    <div style="font-size:10px; color:#34d399; font-weight:bold; margin-bottom:4px;">✓ ${t('mercenary.active_time', { minutes: remainingMin })}</div>
                     <button disabled style="padding:4px 8px; background:#064e3b; border:1px solid #059669; border-radius:3px; color:#6ee7b7; font-size:10px; font-family:var(--font-display); font-weight:bold;">
-                      HIRED
+                      ${t('mercenary.hired')}
                     </button>
                   `
                       : `
-                    <div style="font-size:10px; color:#fde047; font-weight:bold; margin-bottom:4px;">🪙 ${m.costGold} (${m.contractDurationMinutes}m)</div>
+                    <div style="font-size:10px; color:#fde047; font-weight:bold; margin-bottom:4px;">🪙 ${t('mercenary.cost_time', { gold: m.costGold, minutes: m.contractDurationMinutes })}</div>
                     <button class="btn-hire-merc" data-merc-id="${m.id}" ${!canHire ? 'disabled' : ''} style="padding:4px 10px; background:${canHire ? 'linear-gradient(135deg, #10b981, #059669)' : '#292524'}; border:1px solid ${canHire ? '#34d399' : '#451a03'}; border-radius:3px; color:${canHire ? '#ffffff' : '#78716c'}; font-size:10px; font-family:var(--font-display); font-weight:bold; cursor:${canHire ? 'pointer' : 'not-allowed'};">
-                      HIRE
+                      ${t('mercenary.hire')}
                     </button>
                   `
                   }
@@ -83,7 +84,7 @@ export const MercenaryGuildModal: ModalInstance = {
         </div>
 
         <button id="btn-close-merc-guild" style="width:100%; padding:8px; background:#1c1917; border:1px solid #78350f; border-radius:4px; color:#cbd5e1; font-family:var(--font-display); font-size:12px; cursor:pointer;">
-          Exit Tavern
+          ${t('mercenary.exit')}
         </button>
       `;
 

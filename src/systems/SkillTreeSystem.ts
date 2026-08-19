@@ -2,6 +2,7 @@ import { SkillNodeDefinition } from '../content/skillTrees';
 import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export interface SkillTreeSaveState {
   unlockedNodeIds: string[];
@@ -111,7 +112,7 @@ export class SkillTreeSystem {
     }
 
     events.emit('toast:show', {
-      message: `Node Mastered: ${node.defaultName}!`,
+      message: t('toast.skill.node_mastered', { name: node.defaultName }),
       type: 'epic',
     });
 
@@ -142,7 +143,7 @@ export class SkillTreeSystem {
     modifierResolver.clearBySourceType('skill_node');
 
     events.emit('toast:show', {
-      message: `Skill Tree reset. Refunded ${refundedPoints} points.`,
+      message: t('toast.skill.tree_reset', { points: refundedPoints }),
       type: 'info',
     });
   }

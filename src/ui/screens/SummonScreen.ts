@@ -54,14 +54,14 @@ export class SummonScreen {
         <!-- Rates Table -->
         <div style="width:100%; background:rgba(30,41,59,0.5); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px 14px; margin-bottom:16px;">
           <div style="font-size:11px; font-weight:bold; color:var(--text-muted); margin-bottom:6px; text-transform:uppercase;">
-            Drop Probabilities & Essence:
+            ${t('summon.rates_title')}
           </div>
           <div style="display:flex; justify-content:space-between; font-size:11px;">
-            <span style="color:#f43f5e; font-weight:bold;">Mythic: 0.5%</span>
-            <span style="color:#fbbf24; font-weight:bold;">Legendary: 3.5%</span>
-            <span style="color:#c084fc; font-weight:bold;">Epic: 11%</span>
-            <span style="color:#38bdf8; font-weight:bold;">Rare: 30%</span>
-            <span style="color:#94a3b8; font-weight:bold;">Common: 55%</span>
+            <span style="color:#f43f5e; font-weight:bold;">${t('summon.rate_line', { rarity: t('rarity.mythic'), percent: '0.5' })}</span>
+            <span style="color:#fbbf24; font-weight:bold;">${t('summon.rate_line', { rarity: t('rarity.legendary'), percent: '3.5' })}</span>
+            <span style="color:#c084fc; font-weight:bold;">${t('summon.rate_line', { rarity: t('rarity.epic'), percent: '11' })}</span>
+            <span style="color:#38bdf8; font-weight:bold;">${t('summon.rate_line', { rarity: t('rarity.rare'), percent: '30' })}</span>
+            <span style="color:#94a3b8; font-weight:bold;">${t('summon.rate_line', { rarity: t('rarity.common'), percent: '55' })}</span>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ export class SummonScreen {
               cursor: pointer;
             ">
               <div>${t('btn.summon_10')}</div>
-              <div style="font-size:11px; color:#fde047;">900 💎 (10% OFF)</div>
+              <div style="font-size:11px; color:#fde047;">900 💎 (${t('summon.discount', { percent: 10 })})</div>
             </button>
           </div>
           <button id="summonAdBtn" style="
@@ -115,7 +115,7 @@ export class SummonScreen {
             box-shadow: 0 4px 15px rgba(16,185,129,0.3);
           ">
             <span>🎬</span>
-            <span>Free Summon</span>
+            <span>${t('summon.free')}</span>
             <span id="summonAdCooldown" style="font-size:11px; color:#a7f3d0; margin-left:8px;"></span>
           </button>
         </div>

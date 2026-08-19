@@ -7,9 +7,15 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     defaultName: 'Elder Aldric',
     titleKey: 'settlement.npc.aldric.title',
     defaultTitle: 'Domain Warden & Sage',
+    roleKey: 'settlement.npc.aldric.role',
     role: 'Settlement Governance',
     linkedBuildingId: 'throne_hall',
     avatarSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/><path d="M12 13v4M10 15h4"/></svg>`,
+    karmaDialogueKeys: {
+      virtuous: 'settlement.npc.aldric.karma.virtuous',
+      infamous: 'settlement.npc.aldric.karma.infamous',
+      neutral: 'settlement.npc.aldric.karma.neutral',
+    },
     karmaDialogueVariants: {
       virtuous: 'Blessings upon your path, noble Sovereign. Your righteousness brings peace and harvest to our lands.',
       infamous: 'I know the dread your blade commands, Sovereign... We will do as you bid without question.',
@@ -18,11 +24,13 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     dialogues: [
       {
         id: 'aldric_1',
+        textKey: 'settlement.npc.aldric.dialogue.1',
         text: 'Our Stronghold stands firm. Expanding our borders will draw craftsmen and warriors from afar.',
         textRu: 'Наша крепость нерушима. Расширение границ привлечет ремесленников и воинов со всего света.',
       },
       {
         id: 'aldric_2',
+        textKey: 'settlement.npc.aldric.dialogue.2',
         text: 'Keep our garrison reinforced. The Whispering Forest hides ancient evils that covet our wealth.',
         textRu: 'Укрепляйте гарнизон. Шепчущий лес таит древнее зло, жаждущее наших богатств.',
       },
@@ -35,9 +43,15 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     defaultName: 'Master Goran',
     titleKey: 'settlement.npc.goran.title',
     defaultTitle: 'Runeforge Grandmaster',
+    roleKey: 'settlement.npc.goran.role',
     role: 'Weapons & Armor Forging',
     linkedBuildingId: 'forge',
     avatarSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+    karmaDialogueKeys: {
+      virtuous: 'settlement.npc.goran.karma.virtuous',
+      infamous: 'settlement.npc.goran.karma.infamous',
+      neutral: 'settlement.npc.goran.karma.neutral',
+    },
     karmaDialogueVariants: {
       virtuous: 'A warrior of honor deserves the sharpest steel! My anvil rings in your name, Hero!',
       infamous: 'Cold steel cares not for morality, only strength. Bring me iron, and I will forge terror.',
@@ -46,6 +60,7 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     dialogues: [
       {
         id: 'goran_1',
+        textKey: 'settlement.npc.goran.dialogue.1',
         text: 'Bring me ore from your campaigns. With enough meteorite iron, we can awaken runic equipment.',
         textRu: 'Приноси руду из походов. С метеоритным железом я смогу выковать руническое снаряжение.',
         serviceAction: 'open_forge',
@@ -59,9 +74,15 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     defaultName: 'Lyanna the Far-Trader',
     titleKey: 'settlement.npc.lyanna.title',
     defaultTitle: 'Silk & Relic Broker',
+    roleKey: 'settlement.npc.lyanna.role',
     role: 'Market & Exotic Trade',
     linkedBuildingId: 'market',
     avatarSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    karmaDialogueKeys: {
+      virtuous: 'settlement.npc.lyanna.karma.virtuous',
+      infamous: 'settlement.npc.lyanna.karma.infamous',
+      neutral: 'settlement.npc.lyanna.karma.neutral',
+    },
     karmaDialogueVariants: {
       virtuous: 'Always a pleasure dealing with a righteous protector! I have reserved our finest wares for you.',
       infamous: 'I ask no questions about how you acquired those treasures... Gold is gold, my friend.',
@@ -70,6 +91,7 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     dialogues: [
       {
         id: 'lyanna_1',
+        textKey: 'settlement.npc.lyanna.dialogue.1',
         text: 'My trade caravans just arrived from the Eastern Sands with exotic crafting essences.',
         textRu: 'Мои караваны только что прибыли из Восточных Песков с редкими эссенциями для крафта.',
         serviceAction: 'open_market',
@@ -83,9 +105,15 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     defaultName: 'Captain Valerius',
     titleKey: 'settlement.npc.valerius.title',
     defaultTitle: 'Fortress Vanguard Commander',
+    roleKey: 'settlement.npc.valerius.role',
     role: 'Settlement Defense & Patrols',
     linkedBuildingId: 'barracks',
     avatarSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    karmaDialogueKeys: {
+      virtuous: 'settlement.npc.valerius.karma.virtuous',
+      infamous: 'settlement.npc.valerius.karma.infamous',
+      neutral: 'settlement.npc.valerius.karma.neutral',
+    },
     karmaDialogueVariants: {
       virtuous: 'The guards stand proud under your just banner. We will lay down our lives for the realm!',
       infamous: 'Discipline is ironclad. None dare whisper defiance in our ranks, Sovereign.',
@@ -94,6 +122,7 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     dialogues: [
       {
         id: 'valerius_1',
+        textKey: 'settlement.npc.valerius.dialogue.1',
         text: 'High defense ratings suppress monster raid frequency and grant combat damage reduction.',
         textRu: 'Высокий рейтинг защиты снижает частоту набегов и дает снижение получаемого урона.',
         serviceAction: 'claim_daily_bounty',
@@ -107,9 +136,15 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     defaultName: 'Apothecary Zara',
     titleKey: 'settlement.npc.zara.title',
     defaultTitle: 'Arcane Herbalist & Brewer',
+    roleKey: 'settlement.npc.zara.role',
     role: 'Potions & Combat Elixirs',
     linkedBuildingId: 'alchemy',
     avatarSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2"><path d="M10 2v7.31L4.62 17.5A2 2 0 0 0 6.38 20.5h11.24a2 2 0 0 0 1.76-3L14 9.31V2"/></svg>`,
+    karmaDialogueKeys: {
+      virtuous: 'settlement.npc.zara.karma.virtuous',
+      infamous: 'settlement.npc.zara.karma.infamous',
+      neutral: 'settlement.npc.zara.karma.neutral',
+    },
     karmaDialogueVariants: {
       virtuous: 'Your pure soul resonates with celestial herbs. May these soothing elixirs heal your party.',
       infamous: 'Ah, a kindred spirit of forbidden brews... Nether venoms and corrosive draughts await.',
@@ -118,6 +153,7 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     dialogues: [
       {
         id: 'zara_1',
+        textKey: 'settlement.npc.zara.dialogue.1',
         text: 'Brewing combat draughts boosts critical strikes and reduces ability cooldowns.',
         textRu: 'Боевые эликсиры увеличивают шанс крита и ускоряют перезарядку способностей.',
         serviceAction: 'open_alchemy',
@@ -131,9 +167,15 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     defaultName: 'Milo the Stout',
     titleKey: 'settlement.npc.milo.title',
     defaultTitle: 'Gryphon Master of Hops',
+    roleKey: 'settlement.npc.milo.role',
     role: 'Tavernkeeper & Rumor Master',
     linkedBuildingId: 'tavern',
     avatarSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M17 11h1a3 3 0 0 1 0 6h-1M5 5h12v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5zM9 1v4M13 1v4"/></svg>`,
+    karmaDialogueKeys: {
+      virtuous: 'settlement.npc.milo.karma.virtuous',
+      infamous: 'settlement.npc.milo.karma.infamous',
+      neutral: 'settlement.npc.milo.karma.neutral',
+    },
     karmaDialogueVariants: {
       virtuous: 'A round on the house for the realm’s savior! The bards sing of your triumphs tonight!',
       infamous: 'Keep the peace in here, Sovereign... The mercenaries are nervous around your dark aura.',
@@ -142,6 +184,7 @@ export const SETTLEMENT_NPCS: Record<SettlementNPCId, SettlementNPCDefinition> =
     dialogues: [
       {
         id: 'milo_1',
+        textKey: 'settlement.npc.milo.dialogue.1',
         text: 'Wandering mercenaries rest here between contracts. Want to hire extra blades for your team?',
         textRu: 'Странствующие наемники отдыхают здесь между контрактами. Хотите нанять бойцов?',
         serviceAction: 'open_tavern',

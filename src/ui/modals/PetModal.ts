@@ -59,10 +59,10 @@ export const PetModal: ModalInstance = {
                   <div style="width:20px; height:20px; display:flex; align-items:center; justify-content:center;">${
                     def.evolutions[owned?.evolutionStage ?? 1].iconSvg
                   }</div>
-                  <span style="font-size:12px; font-weight:600;">${def.defaultName.split(' ')[0]}</span>
+                  <span style="font-size:12px; font-weight:600;">${t(def.nameKey).split(' ')[0]}</span>
                   ${
                     isActive
-                      ? `<span style="font-size:9px; background:rgba(16,185,129,0.3); color:#6ee7b7; padding:2px 5px; border-radius:99px; font-weight:bold;">ACTIVE</span>`
+                      ? `<span style="font-size:9px; background:rgba(16,185,129,0.3); color:#6ee7b7; padding:2px 5px; border-radius:99px; font-weight:bold;">${t('common.active')}</span>`
                       : ''
                   }
                   ${!owned ? `<span style="font-size:10px; opacity:0.4;">🔒</span>` : ''}
@@ -78,7 +78,7 @@ export const PetModal: ModalInstance = {
             <div style="width:100px; height:100px; border-radius:12px; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0;">
               <div style="width:48px; height:48px;">${currentEvo.iconSvg}</div>
               <span style="font-size:10px; color:#cbd5e1; font-weight:600; margin-top:4px; text-align:center;">
-                Stage ${currentStage}
+                ${t('pet.stage', { stage: currentStage })}
               </span>
             </div>
 
@@ -86,12 +86,10 @@ export const PetModal: ModalInstance = {
               <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                 <div>
                   <h3 style="font-size:16px; font-weight:bold; color:#f8fafc; margin:0; display:flex; align-items:center; gap:6px;">
-                    ${selectedPet ? selectedPet.name : selectedDef.defaultName}
-                    <span style="font-size:10px; text-transform:uppercase; padding:2px 6px; border-radius:4px; background:rgba(255,255,255,0.1); color:#94a3b8;">${
-                      selectedDef.element
-                    }</span>
+                    ${selectedPet ? selectedPet.name : t(selectedDef.nameKey)}
+                    <span style="font-size:10px; text-transform:uppercase; padding:2px 6px; border-radius:4px; background:rgba(255,255,255,0.1); color:#94a3b8;">${t(`pet.element.${selectedDef.element}`)}</span>
                   </h3>
-                  <div style="font-size:11px; color:#94a3b8; margin-top:2px;">${selectedDef.defaultDesc}</div>
+                  <div style="font-size:11px; color:#94a3b8; margin-top:2px;">${t(selectedDef.descKey)}</div>
                 </div>
 
                 ${
@@ -102,10 +100,10 @@ export const PetModal: ModalInstance = {
                       ? 'background:rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.4);'
                       : 'background:#10b981; color:#0f172a;'
                   }">
-                    ${isEquipped ? 'Unequip' : 'Equip'}
+                    ${isEquipped ? t('btn.unequip') : t('btn.equip')}
                   </button>
                 `
-                    : `<span style="font-size:11px; color:#64748b; font-style:italic;">Not Acquired</span>`
+                    : `<span style="font-size:11px; color:#64748b; font-style:italic;">${t('pet.not_acquired')}</span>`
                 }
               </div>
 
@@ -115,7 +113,7 @@ export const PetModal: ModalInstance = {
                 <!-- Level & XP Bar -->
                 <div style="margin-top:8px;">
                   <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:600; color:#cbd5e1; margin-bottom:3px;">
-                    <span>Level ${selectedPet!.level}</span>
+                    <span>${t('common.level', { level: selectedPet!.level })}</span>
                     <span>${selectedPet!.xp} / ${selectedPet!.xpToNextLevel} XP</span>
                   </div>
                   <div style="width:100%; background:rgba(0,0,0,0.5); height:6px; border-radius:99px; overflow:hidden;">
@@ -142,15 +140,15 @@ export const PetModal: ModalInstance = {
                   <div style="background:linear-gradient(90deg, rgba(234,179,8,0.15), rgba(245,158,11,0.05)); border:1px solid rgba(234,179,8,0.35); border-radius:8px; padding:8px 10px; display:flex; align-items:center; gap:8px;">
                     <span style="font-size:18px;">🔥</span>
                     <div>
-                      <div style="font-size:11px; font-weight:bold; color:#fde047;">${syn.synergyDesc}</div>
-                      <div style="font-size:10px; color:#cbd5e1;">Active Resonance with ${syn.matchingClass?.toUpperCase()} Class</div>
+                      <div style="font-size:11px; font-weight:bold; color:#fde047;">${selectedDef.synergyDescKey ? t(selectedDef.synergyDescKey) : syn.synergyDesc}</div>
+                      <div style="font-size:10px; color:#cbd5e1;">${t('pet.active_resonance', { className: syn.matchingClass ? t(`class.${syn.matchingClass}.name`) : '' })}</div>
                     </div>
                   </div>
                 `;
               } else if (selectedDef.preferredClass) {
                 return `
                   <div style="background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.15); border-radius:8px; padding:6px 10px; font-size:10px; color:#94a3b8;">
-                    💡 <strong style="color:#cbd5e1;">Resonance Synergy:</strong> Pair with <span style="text-transform:uppercase; color:#fde047; font-weight:bold;">${selectedDef.preferredClass}</span> to unlock: ${selectedDef.defaultSynergyDesc}
+                    💡 <strong style="color:#cbd5e1;">${t('pet.resonance_synergy')}:</strong> ${t('pet.resonance_hint', { className: t(`class.${selectedDef.preferredClass}.name`), bonus: selectedDef.synergyDescKey ? t(selectedDef.synergyDescKey) : (selectedDef.defaultSynergyDesc ?? '') })}
                   </div>
                 `;
               }
@@ -160,7 +158,7 @@ export const PetModal: ModalInstance = {
             <!-- Passives & Combat Actions Grid -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
               <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:8px; font-size:11px;">
-                <span style="font-weight:bold; color:#fcd34d; display:block; margin-bottom:4px;">✨ Passive Auras</span>
+                <span style="font-weight:bold; color:#fcd34d; display:block; margin-bottom:4px;">✨ ${t('pet.passive_auras')}</span>
                 ${currentEvo.modifiers
                   .map(
                     (m) =>
@@ -172,19 +170,15 @@ export const PetModal: ModalInstance = {
               </div>
 
               <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:8px; font-size:11px;">
-                <span style="font-weight:bold; color:#38bdf8; display:block; margin-bottom:4px;">⚔️ ${
-                  currentEvo.combatAction.defaultName
-                }</span>
-                <div style="color:#94a3b8; font-size:10px; line-height:1.3;">${
-                  currentEvo.combatAction.defaultDesc
-                }</div>
+                <span style="font-weight:bold; color:#38bdf8; display:block; margin-bottom:4px;">⚔️ ${t(currentEvo.combatAction.nameKey)}</span>
+                <div style="color:#94a3b8; font-size:10px; line-height:1.3;">${t(currentEvo.combatAction.descKey)}</div>
               </div>
             </div>
 
             <!-- Train & Evolve Actions -->
             <div style="display:flex; gap:8px; margin-top:4px;">
               <button id="btn-train-pet" style="flex:1; background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3); color:#fcd34d; font-weight:bold; font-size:11px; padding:8px; border-radius:8px; cursor:pointer;">
-                🍖 Train (+150 XP) — 500g
+                🍖 ${t('pet.train_action', { xp: 150, gold: 500 })}
               </button>
 
               ${
@@ -195,7 +189,7 @@ export const PetModal: ModalInstance = {
                     ? 'background:#8b5cf6; color:#ffffff; box-shadow:0 0 10px rgba(139,92,246,0.5);'
                     : 'background:rgba(255,255,255,0.05); color:#64748b; cursor:not-allowed;'
                 }">
-                  🌟 Evolve to Stage ${currentStage + 1}
+                  🌟 ${t('pet.evolve_stage', { stage: currentStage + 1 })}
                 </button>
               `
                   : ''
@@ -204,7 +198,7 @@ export const PetModal: ModalInstance = {
           `
               : `
             <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; text-align:center; font-size:11px; color:#94a3b8;">
-              This companion wanders in wild realms. Discover its egg through Adventure Events, Village Choices, or the Caravanserai Market!
+              ${t('pet.discovery_hint')}
             </div>
           `
           }
@@ -239,7 +233,7 @@ export const PetModal: ModalInstance = {
       el.querySelector('#btn-train-pet')?.addEventListener('click', () => {
         const state = store.get();
         if (state.gold < 500) {
-          events.emit('toast:show', { message: 'Not enough Gold to train pet!', type: 'warning' });
+          events.emit('toast:show', { message: t('pet.not_enough_gold'), type: 'warning' });
           return;
         }
 
@@ -254,7 +248,7 @@ export const PetModal: ModalInstance = {
       el.querySelector('#btn-evolve-pet')?.addEventListener('click', () => {
         const check = petSystem.canEvolvePet(selectedPetId);
         if (!check.eligible) {
-          events.emit('toast:show', { message: check.reason ?? 'Cannot evolve pet!', type: 'warning' });
+          events.emit('toast:show', { message: check.reason ?? t('pet.cannot_evolve'), type: 'warning' });
           return;
         }
 

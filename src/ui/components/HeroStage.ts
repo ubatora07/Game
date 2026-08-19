@@ -87,8 +87,8 @@ export class HeroStage {
     this.el.innerHTML = `
       <!-- Next Goal HUD Banner -->
       <div id="nextGoalBanner" style="background:rgba(30,41,59,0.7); border:1px solid var(--border-gold); border-radius:var(--radius-full); padding:3px 12px; font-size:11px; font-weight:bold; color:#fde047; margin-bottom:6px; display:flex; align-items:center; gap:6px; z-index:5;">
-        <span>🎯 NEXT:</span>
-        <span id="nextGoalText">Rank D (0%)</span>
+        <span>🎯 ${t('battle.next')}:</span>
+        <span id="nextGoalText">${t('battle.next_rank_initial')}</span>
       </div>
 
       <!-- Power & Rate Header -->
@@ -103,7 +103,7 @@ export class HeroStage {
           +0 / sec
         </div>
         <div id="stageComboDisplay" style="display:none; font-size:11px; color:#f43f5e; font-weight:bold; margin-top:2px;">
-          🔥 COMBO ×1.0 (0 hits)
+          ${t('battle.combo', { multiplier: '1.0', count: 0 })}
         </div>
       </div>
 
@@ -133,7 +133,7 @@ export class HeroStage {
       <!-- Rank & Ascension Progress Bar -->
       <div style="width:100%; max-width:320px; margin-bottom:12px; z-index:5;">
         <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:bold; margin-bottom:4px;">
-          <span id="stageRankName" style="color:var(--text-main);">Rank E</span>
+          <span id="stageRankName" style="color:var(--text-main);">${t('rank.e.name')}</span>
           <span id="stageProgressPct" style="color:var(--color-gold);">0%</span>
         </div>
         <div style="width:100%; height:10px; background:rgba(30,41,59,0.8); border-radius:var(--radius-full); overflow:hidden; border:1px solid var(--border-subtle); position:relative;">
@@ -208,7 +208,7 @@ export class HeroStage {
     if (comboDisplay) {
       if (s.combo && s.combo.count > 1 && s.combo.timer > 0) {
         comboDisplay.style.display = 'block';
-        comboDisplay.innerText = `🔥 COMBO ×${s.combo.multiplier.toFixed(2)} (${s.combo.count} hits)`;
+        comboDisplay.innerText = t('battle.combo', { multiplier: s.combo.multiplier.toFixed(2), count: s.combo.count });
       } else {
         comboDisplay.style.display = 'none';
       }
@@ -271,9 +271,9 @@ export class HeroStage {
         if (ascendQuickBtn) ascendQuickBtn.style.display = 'none';
       }
     } else {
-      if (stageProgressPct) stageProgressPct.innerText = 'MAX';
+      if (stageProgressPct) stageProgressPct.innerText = t('btn.max');
       if (stageProgressBar) stageProgressBar.style.width = '100%';
-      if (nextGoalText) nextGoalText.innerText = 'MAX REACHED';
+      if (nextGoalText) nextGoalText.innerText = t('battle.max_reached');
       if (ascendQuickBtn) ascendQuickBtn.style.display = 'none';
     }
   }

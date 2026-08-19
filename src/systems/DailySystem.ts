@@ -2,6 +2,7 @@ import { store } from '../core/GameState';
 import { TimeService } from '../services/TimeService';
 import { DAILY_QUESTS, getDailyQuestTemplate, DailyQuestType } from '../content/dailyQuests';
 import { events } from '../core/EventBus';
+import { t } from '../services/i18n/I18nService';
 
 export class DailySystem {
   public static checkDailyReset(): void {
@@ -36,7 +37,7 @@ export class DailySystem {
       });
 
       this.generateDailyQuests();
-      events.emit('toast:show', { message: 'A new day has started! Daily quests reset.', type: 'info' });
+      events.emit('toast:show', { message: t('toast.daily.reset'), type: 'info' });
     }
   }
 
@@ -72,7 +73,7 @@ export class DailySystem {
       draft.crystals += crystals;
     });
 
-    events.emit('toast:show', { message: `Daily Login Claimed! +${crystals} Crystals`, type: 'success' });
+    events.emit('toast:show', { message: t('toast.daily.login_claimed', { crystals }), type: 'success' });
     return true;
   }
 
@@ -88,7 +89,7 @@ export class DailySystem {
             if (quest.progress >= template.target) {
               quest.progress = template.target;
               // Auto-claim or let user claim? Let's just emit event that it's complete
-              events.emit('toast:show', { message: `Daily Quest Complete!`, type: 'success' });
+              events.emit('toast:show', { message: t('toast.daily.quest_complete'), type: 'success' });
             }
           }
         }
@@ -112,7 +113,7 @@ export class DailySystem {
       }
     });
 
-    events.emit('toast:show', { message: `Reward claimed: +${template.rewardCrystals} Crystals`, type: 'success' });
+    events.emit('toast:show', { message: t('toast.daily.reward_claimed', { crystals: template.rewardCrystals }), type: 'success' });
     return true;
   }
 }

@@ -10,6 +10,7 @@ export type TitleCategory =
   | 'social';
 
 export interface TitleModifier {
+  labelKey?: string;
   target: ModifierTarget;
   type: ModifierType;
   value: number;
@@ -22,7 +23,9 @@ export interface TitleDefinition {
   defaultName: string;
   category: TitleCategory;
   badgeSvg: string;
+  descriptionKey?: string;
   description: string;
+  unlockHintKey?: string;
   unlockHint: string;
   modifiers?: TitleModifier[];
   unlockCondition: {
@@ -38,6 +41,7 @@ export interface TitleDefinition {
       | 'black_market_purchase'
       | 'market_purchase';
     requirement?: any;
+    descriptionKey?: string;
     description: string;
   };
 }

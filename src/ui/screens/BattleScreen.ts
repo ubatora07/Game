@@ -108,7 +108,7 @@ export class BattleScreen {
               });
               campaignCombatService.spawnCurrentEncounter();
               sound.playAscension();
-              events.emit('toast:show', { message: '🔥 Boss Surge Active: +25% DMG!', type: 'epic' });
+              events.emit('toast:show', { message: t('toast.battle.boss_surge', { percent: 25 }), type: 'epic' });
               this.updateStageHeader();
             }
           });
@@ -217,7 +217,7 @@ export class BattleScreen {
     const modeBadgeEl = this.el.querySelector('#campaignModeBadge') as HTMLElement;
     const autoAdvanceBtn = this.el.querySelector('#autoAdvanceToggleBtn') as HTMLElement;
 
-    if (worldTitleEl) worldTitleEl.textContent = `${t('campaign.world').toUpperCase()} ${stage.worldId} — ${world ? t(world.nameKey).toUpperCase() : 'UNKNOWN'}`;
+    if (worldTitleEl) worldTitleEl.textContent = `${t('campaign.world').toUpperCase()} ${stage.worldId} — ${world ? t(world.nameKey).toUpperCase() : t('common.unknown').toUpperCase()}`;
     if (stageTitleEl) stageTitleEl.textContent = `${t('campaign.stage')} ${stage.id} ${stage.isBoss ? '👑' : ''}`;
 
     if (modeBadgeEl) {
@@ -296,12 +296,12 @@ export class BattleScreen {
     const goldenSpiritOrb = this.el.querySelector('#goldenSpiritOrb') as HTMLElement;
 
     if (stagePowerNumber) stagePowerNumber.textContent = BigNumber.format(state.power);
-    if (stagePowerRate) stagePowerRate.textContent = `+${BigNumber.format(metrics.passivePowerPerSec)} / sec`;
+    if (stagePowerRate) stagePowerRate.textContent = t('battle.per_second', { value: BigNumber.format(metrics.passivePowerPerSec) });
 
     if (stageComboDisplay) {
       if (state.combo && state.combo.count > 0 && state.combo.timer > 0) {
         stageComboDisplay.style.display = 'block';
-        stageComboDisplay.textContent = `🔥 COMBO ×${state.combo.multiplier.toFixed(1)} (${state.combo.count} hits)`;
+        stageComboDisplay.textContent = t('battle.combo', { multiplier: state.combo.multiplier.toFixed(1), count: state.combo.count });
       } else {
         stageComboDisplay.style.display = 'none';
       }
@@ -325,7 +325,7 @@ export class BattleScreen {
         }
       }
     } else {
-      if (nextGoalText) nextGoalText.textContent = 'MAX RANK';
+      if (nextGoalText) nextGoalText.textContent = t('battle.max_rank');
       if (stageProgressPct) stageProgressPct.textContent = '100%';
       if (stageProgressBar) stageProgressBar.style.width = '100%';
       if (ascendQuickBtn) ascendQuickBtn.style.display = 'none';
@@ -408,7 +408,7 @@ export class BattleScreen {
                   ${t(building.nameKey)}
                 </div>
                 <div style="font-size:10px; color:#f59e0b;">
-                  🔒 ${t('sect.unlocked_rank') || 'Unlocks at Rank'} ${building.requiredRankIndex + 1}
+                  🔒 ${t('sect.unlocked_rank')} ${building.requiredRankIndex + 1}
                 </div>
               </div>
             `;
@@ -440,7 +440,7 @@ export class BattleScreen {
               <div style="display:flex; align-items:center; justify-content:space-between; margin-right:8px;">
                 <span style="font-weight:bold; font-size:13px; color:var(--text-main); display:flex; align-items:center; gap:4px;">
                   ${t(building.nameKey)} <span class="b-owned" style="font-size:12px; color:#fde047; font-weight:bold;">×0</span>
-                  <span class="b-best-value" style="display:none; font-size:9px; background:linear-gradient(90deg, #f59e0b, #ef4444); color:#000; font-weight:900; padding:1px 5px; border-radius:3px; letter-spacing:0.5px;">⭐ BEST</span>
+                  <span class="b-best-value" style="display:none; font-size:9px; background:linear-gradient(90deg, #f59e0b, #ef4444); color:#000; font-weight:900; padding:1px 5px; border-radius:3px; letter-spacing:0.5px;">${t('battle.best')}</span>
                 </span>
                 <span class="b-contrib" style="font-size:10px; color:#38bdf8; font-weight:bold;"></span>
               </div>
@@ -646,8 +646,8 @@ export class BattleScreen {
         const costEl = card.querySelector('.upg-cost') as HTMLElement;
         const btn = card.querySelector('.buy-upg-action-btn') as HTMLElement;
 
-        if (lvlEl) lvlEl.innerText = `Lv.${currentLvl}/${upg.maxLevel}`;
-        if (costEl) costEl.innerText = isMax ? 'MAX' : `🪙 ${BigNumber.format(cost)}`;
+        if (lvlEl) lvlEl.innerText = t('common.level_progress', { current: currentLvl, max: upg.maxLevel });
+        if (costEl) costEl.innerText = isMax ? t('btn.max') : `🪙 ${BigNumber.format(cost)}`;
 
         if (btn) {
           if (isMax) {
@@ -767,13 +767,13 @@ export class BattleScreen {
               +0 / sec
             </div>
             <div id="stageComboDisplay" style="display:none; font-size:11px; color:#f43f5e; font-weight:bold; margin-top:2px;">
-              🔥 COMBO ×1.0 (0 hits)
+              ${t('battle.combo', { multiplier: '1.0', count: 0 })}
             </div>
 
             <!-- Rank & Progress Bar -->
             <div style="width:100%; max-width:280px; margin-top:2px;">
               <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:bold; margin-bottom:2px;">
-                <span id="stageRankName" style="color:var(--text-main);">Rank E</span>
+                <span id="stageRankName" style="color:var(--text-main);">${t('rank.e.name')}</span>
                 <span id="stageProgressPct" style="color:var(--color-gold);">0%</span>
               </div>
               <div style="width:100%; height:6px; background:rgba(30,41,59,0.8); border-radius:var(--radius-full); overflow:hidden; border:1px solid var(--border-subtle);">
@@ -791,14 +791,14 @@ export class BattleScreen {
           <div style="background:rgba(15,23,42,0.8); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:8px 12px; display:flex; flex-direction:column; gap:6px;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <div>
-                <div id="campaignWorldTitle" style="font-size:10px; font-weight:bold; color:var(--text-muted); letter-spacing:1px;">WORLD 1 — WHISPERING FOREST</div>
-                <div id="campaignStageTitle" style="font-size:15px; font-weight:900; color:#fde047; font-family:var(--font-display);">Stage 1-1</div>
+                <div id="campaignWorldTitle" style="font-size:10px; font-weight:bold; color:var(--text-muted); letter-spacing:1px;">${t('battle.world_initial')}</div>
+                <div id="campaignStageTitle" style="font-size:15px; font-weight:900; color:#fde047; font-family:var(--font-display);">${t('battle.stage_initial')}</div>
               </div>
 
               <!-- Mode Badge & Controls -->
               <div style="display:flex; gap:6px; align-items:center;">
-                <span id="campaignModeBadge" style="font-size:10px; font-weight:bold; padding:2px 8px; border-radius:var(--radius-full); border:1px solid #0284c7; background:rgba(56,189,248,0.2); color:#38bdf8;">PROGRESS</span>
-                <button id="autoAdvanceToggleBtn" style="padding:3px 8px; font-size:10px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid #10b981; background:rgba(16,185,129,0.2); color:#34d399; cursor:pointer;">AUTO ON</button>
+                <span id="campaignModeBadge" style="font-size:10px; font-weight:bold; padding:2px 8px; border-radius:var(--radius-full); border:1px solid #0284c7; background:rgba(56,189,248,0.2); color:#38bdf8;">${t('campaign.mode_progress').toUpperCase()}</span>
+                <button id="autoAdvanceToggleBtn" style="padding:3px 8px; font-size:10px; font-weight:bold; border-radius:var(--radius-sm); border:1px solid #10b981; background:rgba(16,185,129,0.2); color:#34d399; cursor:pointer;">${t('campaign.auto_advance_on')}</button>
               </div>
             </div>
 
@@ -808,10 +808,10 @@ export class BattleScreen {
             <!-- Boss Retry CTAs (if blocked) -->
             <div id="bossRetryContainer" style="display:none; gap:6px; margin-top:2px;">
               <button id="bossRetryBtn" style="flex:1; padding:6px; font-size:11px; font-weight:bold; border-radius:var(--radius-sm); background:linear-gradient(90deg, #f59e0b, #ef4444); color:#000; cursor:pointer; border:none;">
-                ⚔️ RETRY BOSS
+                ⚔️ ${t('battle.retry_boss')}
               </button>
               <button id="bossBoostedRetryBtn" style="flex:1.2; padding:6px; font-size:11px; font-weight:bold; border-radius:var(--radius-sm); background:linear-gradient(90deg, #8b5cf6, #ec4899); color:#fff; cursor:pointer; border:none; box-shadow:0 0 10px rgba(236,72,153,0.5);">
-                🔥 BOOSTED (+25% 📺)
+                🔥 ${t('battle.boosted_retry', { percent: 25 })}
               </button>
             </div>
           </div>
@@ -824,12 +824,12 @@ export class BattleScreen {
             <!-- Primary Attack Button -->
             <button id="trainActionBtn" class="btn btn-primary" style="flex:1; padding:12px; font-size:16px; font-weight:900; font-family:var(--font-display); letter-spacing:1px; border-radius:var(--radius-md); background:linear-gradient(135deg, #f59e0b, #d97706); box-shadow:0 0 20px rgba(245,158,11,0.5); cursor:pointer; border:none; display:flex; align-items:center; justify-content:center; gap:8px;">
               <span>⚔️</span>
-              <span>ATTACK</span>
+              <span>${t('battle.attack')}</span>
             </button>
 
             <!-- Quick Ascension button (if ready) -->
             <button id="ascendQuickBtn" style="display:none; padding:12px 16px; font-size:13px; font-weight:bold; border-radius:var(--radius-md); background:linear-gradient(135deg, #10b981, #059669); color:#fff; border:none; cursor:pointer; box-shadow:0 0 15px rgba(16,185,129,0.5);">
-              ✨ ASCEND
+              ✨ ${t('btn.ascend')}
             </button>
           </div>
         </div>
@@ -838,8 +838,8 @@ export class BattleScreen {
         <div class="home-col-right" id="homeRightCol" style="gap:12px;">
           <!-- Next Goal Banner -->
           <div id="nextGoalBanner" style="background:rgba(30,41,59,0.7); border:1px solid var(--border-gold); border-radius:var(--radius-md); padding:8px 12px; font-size:12px; font-weight:bold; color:#fde047; display:flex; justify-content:space-between; align-items:center;">
-            <span>🎯 NEXT GOAL:</span>
-            <span id="nextGoalText">Rank D (0%)</span>
+            <span>🎯 ${t('battle.next_goal')}:</span>
+            <span id="nextGoalText">${t('battle.next_rank_initial')}</span>
           </div>
 
           <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:6px;">
@@ -847,18 +847,18 @@ export class BattleScreen {
               📜 ${t('quest.title')}
             </div>
             <button id="viewAllQuestsBtn" style="font-size:11px; color:var(--color-gold); font-weight:bold; cursor:pointer; background:none; border:none;">
-              View All ➔
+              ${t('battle.view_all')} ➔
             </button>
           </div>
           <div id="homeQuickQuests" style="display:flex; flex-direction:column; gap:6px;">
             <div style="font-size:11px; color:var(--text-muted); padding:8px; background:rgba(30,41,59,0.3); border-radius:var(--radius-sm);">
-              Clear Campaign Stages and improve your Sect to earn rewards!
+              ${t('battle.quick_quest_hint')}
             </div>
           </div>
 
           <div style="margin-top:auto; background:rgba(30,41,59,0.5); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:10px; text-align:center;">
             <div style="font-size:11px; color:var(--text-muted);">${t('app.subtitle')}</div>
-            <div style="font-size:10px; color:#94a3b8; margin-top:2px;">Pixel-Anime Campaign Autobattler</div>
+            <div style="font-size:10px; color:#94a3b8; margin-top:2px;">${t('battle.genre_line')}</div>
           </div>
         </div>
       </div>

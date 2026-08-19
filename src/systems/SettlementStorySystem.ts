@@ -14,6 +14,7 @@ import { titleSystem } from './TitleSystem';
 import { store } from '../core/GameState';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class SettlementStorySystem {
   private static instance: SettlementStorySystem;
@@ -54,13 +55,13 @@ export class SettlementStorySystem {
     if (path === 'lord') {
       titleSystem.unlockTitle('title_high_lord');
       events.emit('toast:show', {
-        message: '👑 OATH SWORN: You are now the High Lord of Mountain Haven!',
+        message: t('story.toast.path_lord'),
         type: 'epic',
       });
     } else {
       titleSystem.unlockTitle('title_unbound_vanguard');
       events.emit('toast:show', {
-        message: '🦅 UNBOUND SPIRIT: You walk as an Independent Vanguard of the Realm!',
+        message: t('story.toast.path_adventurer'),
         type: 'epic',
       });
     }
@@ -180,7 +181,7 @@ export class SettlementStorySystem {
     }
 
     events.emit('toast:show', {
-      message: `📜 STORY COMPLETED: ${chap.defaultTitle}!`,
+      message: t('story.toast.completed', { title: t(chap.titleKey) }),
       type: 'epic',
     });
 

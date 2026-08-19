@@ -8,6 +8,7 @@ import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { store } from '../core/GameState';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class MercenarySystem {
   private static instance: MercenarySystem;
@@ -80,7 +81,7 @@ export class MercenarySystem {
     this.reapplyMercenaryModifiers();
 
     events.emit('toast:show', {
-      message: `HIRED: ${def.defaultName} joined for ${def.contractDurationMinutes}m!`,
+      message: t('toast.mercenary.hired', { name: t(def.nameKey), minutes: def.contractDurationMinutes }),
       type: 'success',
     });
 
@@ -101,7 +102,7 @@ export class MercenarySystem {
 
         const def = getMercenaryDef(id as MercenaryId);
         events.emit('toast:show', {
-          message: `CONTRACT EXPIRED: ${def?.defaultName || id} has departed.`,
+          message: t('toast.mercenary.expired', { name: def ? t(def.nameKey) : id }),
           type: 'info',
         });
 

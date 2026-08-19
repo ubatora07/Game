@@ -18,6 +18,7 @@ import { CraftingMaterialId } from '../core/crafting/CraftingTypes';
 import { MercenaryId } from '../core/mercenaries/MercenaryTypes';
 import { petSystem } from './PetSystem';
 import { PetId } from '../core/pets/PetTypes';
+import { t } from '../services/i18n/I18nService';
 
 export class MarketSystem {
   private static instance: MarketSystem;
@@ -104,7 +105,7 @@ export class MarketSystem {
     this.state.lastRefreshTimestamp = Date.now();
 
     events.emit('toast:show', {
-      message: 'Bazaar goods replenished with fresh caravan shipments!',
+      message: t('toast.market.refreshed'),
       type: 'info',
     });
 
@@ -135,7 +136,7 @@ export class MarketSystem {
     }
 
     events.emit('toast:show', {
-      message: 'CLANDESTINE ACCESS: The Smuggler Black Market is now accessible!',
+      message: t('toast.market.black_market_unlocked'),
       type: 'epic',
     });
 
@@ -211,7 +212,7 @@ export class MarketSystem {
     }
 
     events.emit('toast:show', {
-      message: `PURCHASED: ${offer.defaultName}!`,
+      message: t('toast.market.purchased', { name: t(offer.nameKey) }),
       type: offer.isBlackMarket ? 'epic' : 'success',
     });
 

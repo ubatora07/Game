@@ -17,6 +17,7 @@ import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { store } from '../core/GameState';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class CraftingEquipmentSystem {
   private static instance: CraftingEquipmentSystem;
@@ -123,7 +124,7 @@ export class CraftingEquipmentSystem {
 
     const def = getBlacksmithDef(id);
     events.emit('toast:show', {
-      message: `BLACKSMITH RECRUITED: ${def?.defaultName || id} joined the Mountain Forge!`,
+      message: t('toast.crafting.blacksmith_unlocked', { name: def ? t(def.nameKey) : id }),
       type: 'epic',
     });
 
@@ -149,7 +150,7 @@ export class CraftingEquipmentSystem {
 
     const recipe = getCraftingRecipe(recipeId);
     events.emit('toast:show', {
-      message: `BLUEPRINT ACQUIRED: ${recipe?.defaultName || recipeId}!`,
+      message: t('toast.crafting.recipe_unlocked', { name: recipe ? t(recipe.nameKey) : recipeId }),
       type: 'success',
     });
 
@@ -256,7 +257,7 @@ export class CraftingEquipmentSystem {
     this.state.totalCraftedCount += 1;
 
     events.emit('toast:show', {
-      message: `FORGED: ${item.name} (${item.rarity.toUpperCase()})!`,
+      message: t('toast.crafting.forged', { name: t(getEquipmentTemplate(item.templateId)?.nameKey || item.name), rarity: t(`equipment.rarity.${item.rarity}`) }),
       type: 'success',
     });
 
@@ -307,7 +308,7 @@ export class CraftingEquipmentSystem {
     this.reapplyEquipmentModifiers();
 
     events.emit('toast:show', {
-      message: `EQUIPPED: ${item.name} on ${characterSlot === 'char_1' ? 'Protagonist' : 'Partner'}!`,
+      message: t('toast.crafting.equipped', { name: t(getEquipmentTemplate(item.templateId)?.nameKey || item.name), target: t(characterSlot === 'char_1' ? 'team.protagonist' : 'team.partner') }),
       type: 'info',
     });
 
@@ -418,7 +419,7 @@ export class CraftingEquipmentSystem {
     this.reapplyEquipmentModifiers();
 
     events.emit('toast:show', {
-      message: `EQUIPMENT ASCENDED: ${item.name} evolved to Stage ${item.evolutionStage}!`,
+      message: t('toast.crafting.evolved', { name: t(nextTemplate.nameKey), stage: item.evolutionStage }),
       type: 'epic',
     });
 

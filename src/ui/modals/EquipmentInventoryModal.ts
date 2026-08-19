@@ -1,6 +1,7 @@
 import { ModalInstance, modalManager } from '../components/ModalManager';
 import { craftingEquipmentSystem } from '../../systems/CraftingEquipmentSystem';
 import { EquipmentSlot } from '../../core/crafting/CraftingTypes';
+import { t } from '../../services/i18n/I18nService';
 
 export const EquipmentInventoryModal: ModalInstance = {
   id: 'equipment_inventory_modal',
@@ -34,20 +35,20 @@ export const EquipmentInventoryModal: ModalInstance = {
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1.5px solid #78350f; padding-bottom:8px; flex-wrap:wrap; gap:8px;">
           <div>
             <div style="font-size:9px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; font-family:var(--font-display);">
-              ✦ SOVEREIGN ARMORY & INVENTORY ✦
+              ✦ ${t('equipment.armory_label')} ✦
             </div>
             <h3 style="font-family:var(--font-display); font-size:17px; color:#fef08a; margin:1px 0 0 0;">
-              Hero Equipment Loadout
+              ${t('equipment.loadout_title')}
             </h3>
           </div>
 
           <!-- Character Tab Switcher -->
           <div style="display:flex; gap:6px;">
             <button class="btn-char-slot" data-slot="char_1" style="padding:4px 10px; font-size:11px; font-weight:bold; font-family:var(--font-display); background:${activeCharSlot === 'char_1' ? '#d97706' : 'rgba(0,0,0,0.5)'}; border:1px solid #f59e0b; border-radius:3px; color:#ffffff; cursor:pointer;">
-              Protagonist
+              ${t('equipment.protagonist')}
             </button>
             <button class="btn-char-slot" data-slot="char_2" style="padding:4px 10px; font-size:11px; font-weight:bold; font-family:var(--font-display); background:${activeCharSlot === 'char_2' ? '#d97706' : 'rgba(0,0,0,0.5)'}; border:1px solid #f59e0b; border-radius:3px; color:#ffffff; cursor:pointer;">
-              Partner
+              ${t('equipment.partner')}
             </button>
           </div>
         </div>
@@ -60,9 +61,9 @@ export const EquipmentInventoryModal: ModalInstance = {
               ${equippedWeapon ? equippedWeapon.iconSvg : '<span style="font-size:12px; color:#64748b;">⚔️</span>'}
             </div>
             <div style="overflow:hidden;">
-              <div style="font-size:8px; color:#94a3b8; text-transform:uppercase;">WEAPON</div>
+              <div style="font-size:8px; color:#94a3b8; text-transform:uppercase;">${t('equipment.slot.weapon')}</div>
               <div style="font-size:10px; font-weight:bold; color:${equippedWeapon ? '#fef08a' : '#64748b'}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                ${equippedWeapon ? equippedWeapon.name : 'Empty Slot'}
+                ${equippedWeapon ? equippedWeapon.name : t('equipment.empty_slot')}
               </div>
             </div>
           </div>
@@ -73,9 +74,9 @@ export const EquipmentInventoryModal: ModalInstance = {
               ${equippedArmor ? equippedArmor.iconSvg : '<span style="font-size:12px; color:#64748b;">🛡️</span>'}
             </div>
             <div style="overflow:hidden;">
-              <div style="font-size:8px; color:#94a3b8; text-transform:uppercase;">ARMOR</div>
+              <div style="font-size:8px; color:#94a3b8; text-transform:uppercase;">${t('equipment.slot.armor')}</div>
               <div style="font-size:10px; font-weight:bold; color:${equippedArmor ? '#fef08a' : '#64748b'}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                ${equippedArmor ? equippedArmor.name : 'Empty Slot'}
+                ${equippedArmor ? equippedArmor.name : t('equipment.empty_slot')}
               </div>
             </div>
           </div>
@@ -86,9 +87,9 @@ export const EquipmentInventoryModal: ModalInstance = {
               ${equippedAccessory ? equippedAccessory.iconSvg : '<span style="font-size:12px; color:#64748b;">💍</span>'}
             </div>
             <div style="overflow:hidden;">
-              <div style="font-size:8px; color:#94a3b8; text-transform:uppercase;">ACCESSORY</div>
+              <div style="font-size:8px; color:#94a3b8; text-transform:uppercase;">${t('equipment.slot.accessory')}</div>
               <div style="font-size:10px; font-weight:bold; color:${equippedAccessory ? '#fef08a' : '#64748b'}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                ${equippedAccessory ? equippedAccessory.name : 'Empty Slot'}
+                ${equippedAccessory ? equippedAccessory.name : t('equipment.empty_slot')}
               </div>
             </div>
           </div>
@@ -100,7 +101,7 @@ export const EquipmentInventoryModal: ModalInstance = {
             .map(
               (f) => `
             <button class="btn-slot-filter" data-filter="${f}" style="padding:4px 8px; font-size:10px; font-weight:bold; font-family:var(--font-display); background:${currentSlotFilter === f ? '#b45309' : 'rgba(0,0,0,0.5)'}; border:1px solid #78350f; border-radius:3px; color:#ffffff; cursor:pointer;">
-              ${f.toUpperCase()}
+              ${t(`equipment.filter.${f}`)}
             </button>
           `
             )
@@ -124,21 +125,21 @@ export const EquipmentInventoryModal: ModalInstance = {
                       <div style="width:24px; height:24px; flex-shrink:0;">${item.iconSvg}</div>
                       <div style="overflow:hidden;">
                         <div style="font-size:10px; font-weight:bold; color:#fef08a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.name}</div>
-                        <div style="font-size:8px; color:#38bdf8;">Stage ${item.evolutionStage} • ${item.rarity.toUpperCase()}</div>
+                        <div style="font-size:8px; color:#38bdf8;">${t('equipment.stage_rarity', { stage: item.evolutionStage, rarity: item.rarity.toUpperCase() })}</div>
                       </div>
                     </div>
                     ${
                       isEquippedThis
-                        ? '<span style="font-size:8px; background:#10b981; color:#000; padding:1px 4px; border-radius:2px; font-weight:bold;">EQUIPPED</span>'
+                        ? `<span style="font-size:8px; background:#10b981; color:#000; padding:1px 4px; border-radius:2px; font-weight:bold;">${t('equipment.equipped')}</span>`
                         : isEquippedOther
-                        ? '<span style="font-size:8px; background:#64748b; color:#fff; padding:1px 4px; border-radius:2px;">ON PARTNER</span>'
+                        ? `<span style="font-size:8px; background:#64748b; color:#fff; padding:1px 4px; border-radius:2px;">${t('equipment.on_partner')}</span>`
                         : ''
                     }
                   </div>
                 `;
                     })
                     .join('')
-                : '<div style="color:#94a3b8; font-size:11px; text-align:center; padding:20px;">No items in this category. Visit the Forge to craft equipment!</div>'
+                : `<div style="color:#94a3b8; font-size:11px; text-align:center; padding:20px;">${t('equipment.empty_category')}</div>`
             }
           </div>
 
@@ -154,7 +155,7 @@ export const EquipmentInventoryModal: ModalInstance = {
                   </div>
                   <div>
                     <div style="font-size:12px; font-weight:bold; color:#fef08a; font-family:var(--font-display);">${selectedItem.name}</div>
-                    <div style="font-size:9px; color:#38bdf8;">STAGE ${selectedItem.evolutionStage}/${selectedItem.maxEvolutionStage} • ${selectedItem.rarity.toUpperCase()}</div>
+                    <div style="font-size:9px; color:#38bdf8;">${t('equipment.stage_progress', { current: selectedItem.evolutionStage, max: selectedItem.maxEvolutionStage, rarity: selectedItem.rarity.toUpperCase() })}</div>
                   </div>
                 </div>
 
@@ -165,7 +166,7 @@ export const EquipmentInventoryModal: ModalInstance = {
                     const compAtk = comparedItem?.baseStats.attack || 0;
                     const deltaAtk = selAtk - compAtk;
                     return selAtk
-                      ? `<div>⚔️ Attack: <b style="color:#fde047;">+${selAtk}</b> ${!isCurrentlyEquipped && comparedItem ? `<span style="color:${deltaAtk >= 0 ? '#34d399' : '#f43f5e'}; font-weight:bold;">(${deltaAtk >= 0 ? '+' : ''}${deltaAtk} Δ)</span>` : ''}</div>`
+                      ? `<div>⚔️ ${t('equipment.stat.attack')}: <b style="color:#fde047;">+${selAtk}</b> ${!isCurrentlyEquipped && comparedItem ? `<span style="color:${deltaAtk >= 0 ? '#34d399' : '#f43f5e'}; font-weight:bold;">(${deltaAtk >= 0 ? '+' : ''}${deltaAtk} Δ)</span>` : ''}</div>`
                       : '';
                   })()}
 
@@ -174,12 +175,12 @@ export const EquipmentInventoryModal: ModalInstance = {
                     const compDef = comparedItem?.baseStats.defense || 0;
                     const deltaDef = selDef - compDef;
                     return selDef
-                      ? `<div>🛡️ Defense: <b style="color:#38bdf8;">+${selDef}</b> ${!isCurrentlyEquipped && comparedItem ? `<span style="color:${deltaDef >= 0 ? '#34d399' : '#f43f5e'}; font-weight:bold;">(${deltaDef >= 0 ? '+' : ''}${deltaDef} Δ)</span>` : ''}</div>`
+                      ? `<div>🛡️ ${t('equipment.stat.defense')}: <b style="color:#38bdf8;">+${selDef}</b> ${!isCurrentlyEquipped && comparedItem ? `<span style="color:${deltaDef >= 0 ? '#34d399' : '#f43f5e'}; font-weight:bold;">(${deltaDef >= 0 ? '+' : ''}${deltaDef} Δ)</span>` : ''}</div>`
                       : '';
                   })()}
 
-                  ${selectedItem.baseStats.speed ? `<div>⚡ Speed: <b style="color:#34d399;">+${Math.round(selectedItem.baseStats.speed * 100)}%</b></div>` : ''}
-                  ${selectedItem.baseStats.critChance ? `<div>💥 Crit: <b style="color:#f472b6;">+${Math.round(selectedItem.baseStats.critChance * 100)}%</b></div>` : ''}
+                  ${selectedItem.baseStats.speed ? `<div>⚡ ${t('equipment.stat.speed')}: <b style="color:#34d399;">+${Math.round(selectedItem.baseStats.speed * 100)}%</b></div>` : ''}
+                  ${selectedItem.baseStats.critChance ? `<div>💥 ${t('equipment.stat.crit')}: <b style="color:#f472b6;">+${Math.round(selectedItem.baseStats.critChance * 100)}%</b></div>` : ''}
 
                   <!-- Affixes List -->
                   ${selectedItem.affixes
@@ -198,12 +199,12 @@ export const EquipmentInventoryModal: ModalInstance = {
                   isCurrentlyEquipped
                     ? `
                   <button id="btn-unequip-item" style="flex:1; padding:6px; background:#451a03; border:1px solid #78350f; border-radius:4px; color:#ffffff; font-family:var(--font-display); font-weight:bold; font-size:11px; cursor:pointer;">
-                    UNEQUIP
+                    ${t('btn.unequip')}
                   </button>
                 `
                     : `
                   <button id="btn-equip-item" style="flex:1; padding:6px; background:linear-gradient(135deg, #10b981, #059669); border:1px solid #34d399; border-radius:4px; color:#ffffff; font-family:var(--font-display); font-weight:bold; font-size:11px; cursor:pointer; box-shadow:0 0 10px rgba(16,185,129,0.4);">
-                    EQUIP
+                    ${t('btn.equip')}
                   </button>
                 `
                 }
@@ -211,7 +212,7 @@ export const EquipmentInventoryModal: ModalInstance = {
                   selectedItem.evolutionStage < selectedItem.maxEvolutionStage
                     ? `
                   <button id="btn-open-evolution" style="flex:1; padding:6px; background:linear-gradient(135deg, #d97706, #b45309); border:1px solid #f59e0b; border-radius:4px; color:#ffffff; font-family:var(--font-display); font-weight:bold; font-size:11px; cursor:pointer; box-shadow:0 0 10px rgba(217,119,6,0.4);">
-                    ⚡ EVOLVE
+                    ⚡ ${t('equipment.evolve')}
                   </button>
                 `
                     : ''
@@ -219,12 +220,12 @@ export const EquipmentInventoryModal: ModalInstance = {
               </div>
             </div>
           `
-              : '<div style="color:#94a3b8; font-size:11px;">Select an item to inspect.</div>'
+              : `<div style="color:#94a3b8; font-size:11px;">${t('equipment.select_item')}</div>`
           }
         </div>
 
         <button id="btn-close-inventory" style="width:100%; padding:8px; background:#1c1917; border:1px solid #78350f; border-radius:4px; color:#cbd5e1; font-family:var(--font-display); font-size:12px; cursor:pointer;">
-          Close Armory
+          ${t('equipment.close_armory')}
         </button>
       `;
 

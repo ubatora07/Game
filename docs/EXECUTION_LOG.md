@@ -159,3 +159,25 @@ Implementation can continue independently into **Phase 5 — Product Identity V2
 3. RU and EN must migrate together.
 4. Historical docs stay historical; current source-of-truth docs receive explicit supersession status.
 5. Fresh build/test/Playwright gates remain open until Linux Rollup dependencies are available.
+
+## 2026-08-19 — Phase 7 Localization Consolidation
+
+Status: SOURCE COMPLETE except browser overflow gates P7-18/P7-19.
+
+Completed:
+- expanded EN/RU dictionaries to 1645 parity-checked keys;
+- migrated active Battle/Hero/Settlement/World/RPG modal copy to i18n;
+- localized runtime toast/event feedback across gameplay systems;
+- localized settlement, raid, story, Legacy ending, market, title, mercenary and relic content keys;
+- added placeholder-parity, dynamic-content-key and hardcoded-copy enforcement;
+- added global raw-runtime-toast regression gate;
+- fixed Legacy Ascendant ending eligibility to use `reincarnationCount` instead of `rankIndex`;
+- rethemed player-facing Domain/Sovereign/Samsara/Celestial runtime phrases without changing compatibility IDs;
+- documented hardcoded-copy and pluralization-sensitive follow-up.
+
+Validation:
+- `npx tsc --noEmit -p tsconfig.json` PASS
+- `node scripts/i18n-audit.cjs` PASS
+- `node scripts/terminology-audit.cjs` PASS
+- `git diff --check` PASS
+- fresh Vite/Vitest/Playwright build remains blocked by Windows-only Rollup native package in supplied `node_modules`.

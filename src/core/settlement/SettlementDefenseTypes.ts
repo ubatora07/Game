@@ -4,6 +4,8 @@ export interface SettlementRaidDefinition {
   id: string;
   nameKey: string;
   defaultName: string;
+  factionKey?: string;
+  descKey?: string;
   threatLevel: RaidThreatLevel;
   requiredDefense: number;
   attackerFaction: string;

@@ -1,5 +1,6 @@
 import { events } from '../../core/EventBus';
 import { RhythmEvaluation } from '../../core/rhythm/RhythmTypes';
+import { t } from '../../services/i18n/I18nService';
 
 export class RhythmBeatIndicator {
   private element: HTMLElement;
@@ -45,15 +46,15 @@ export class RhythmBeatIndicator {
     if (e.isDebouncedSpam) return;
 
     if (e.rating === 'PERFECT') {
-      this.feedbackEl.textContent = `★ PERFECT CADENCE ×${e.streak}`;
+      this.feedbackEl.textContent = t('rhythm.perfect', { streak: e.streak });
       this.feedbackEl.style.color = '#fde047';
       this.feedbackEl.style.textShadow = '0 0 12px rgba(245,158,11,0.9)';
     } else if (e.rating === 'GOOD') {
-      this.feedbackEl.textContent = `✓ GREAT HIT ×${e.streak}`;
+      this.feedbackEl.textContent = t('rhythm.great', { streak: e.streak });
       this.feedbackEl.style.color = '#38bdf8';
       this.feedbackEl.style.textShadow = '0 0 8px rgba(56,189,248,0.8)';
     } else {
-      this.feedbackEl.textContent = 'MISSED BEAT';
+      this.feedbackEl.textContent = t('rhythm.missed');
       this.feedbackEl.style.color = '#64748b';
       this.feedbackEl.style.textShadow = 'none';
     }

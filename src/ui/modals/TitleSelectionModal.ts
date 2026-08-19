@@ -2,6 +2,7 @@ import { ModalInstance, modalManager } from '../components/ModalManager';
 import { titleSystem } from '../../systems/TitleSystem';
 import { getAllTitleDefs, getTitleDef } from '../../content/titlesCatalog';
 import { TitleCategory } from '../../core/titles/TitleTypes';
+import { t } from '../../services/i18n/I18nService';
 
 export const TitleSelectionModal: ModalInstance = {
   id: 'title_selection_modal',
@@ -28,15 +29,15 @@ export const TitleSelectionModal: ModalInstance = {
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1.5px solid #78350f; padding-bottom:8px; flex-wrap:wrap; gap:8px;">
           <div>
             <div style="font-size:9px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; font-family:var(--font-display);">
-              ✦ SOVEREIGN REPUTATION & TITLES ✦
+              ✦ ${t('titles.reputation_label')} ✦
             </div>
             <h3 style="font-family:var(--font-display); font-size:17px; color:#fef08a; margin:1px 0 0 0;">
-              Player Titles Collection
+              ${t('titles.collection_title')}
             </h3>
           </div>
 
           <div style="font-size:11px; color:#38bdf8;">
-            Equipped: <b style="color:#fde047;">${equipped ? equipped.defaultName : 'None'}</b>
+            ${t('titles.equipped')}: <b style="color:#fde047;">${equipped ? t(equipped.nameKey) : t('common.none')}</b>
           </div>
         </div>
 
@@ -46,7 +47,7 @@ export const TitleSelectionModal: ModalInstance = {
             .map(
               (cat) => `
             <button class="btn-title-cat" data-category="${cat}" style="padding:4px 8px; font-size:10px; font-weight:bold; font-family:var(--font-display); background:${currentCategory === cat ? 'linear-gradient(135deg, #d97706, #b45309)' : 'rgba(0,0,0,0.5)'}; border:1px solid ${currentCategory === cat ? '#f59e0b' : '#78350f'}; border-radius:3px; color:#ffffff; cursor:pointer;">
-              ${cat.toUpperCase()}
+              ${t(`titles.category.${cat}`)}
             </button>
           `
             )
@@ -58,20 +59,20 @@ export const TitleSelectionModal: ModalInstance = {
           <!-- List -->
           <div style="display:flex; flex-direction:column; gap:6px; max-height:220px; overflow-y:auto; padding-right:4px;">
             ${filtered
-              .map((t) => {
-                const unl = titleSystem.isTitleUnlocked(t.id);
-                const isEq = equipped && equipped.id === t.id;
-                const isSel = t.id === selectedTitleId;
+              .map((titleDef) => {
+                const unl = titleSystem.isTitleUnlocked(titleDef.id);
+                const isEq = equipped && equipped.id === titleDef.id;
+                const isSel = titleDef.id === selectedTitleId;
 
                 return `
-                <div class="title-card-tile" data-title-id="${t.id}" style="background:${isSel ? 'rgba(217,119,6,0.25)' : 'rgba(12,10,9,0.7)'}; border:1.5px solid ${isEq ? '#34d399' : isSel ? '#f59e0b' : '#78350f'}; border-radius:4px; padding:6px 8px; cursor:pointer; display:flex; align-items:center; justify-content:space-between;">
+                <div class="title-card-tile" data-title-id="${titleDef.id}" style="background:${isSel ? 'rgba(217,119,6,0.25)' : 'rgba(12,10,9,0.7)'}; border:1.5px solid ${isEq ? '#34d399' : isSel ? '#f59e0b' : '#78350f'}; border-radius:4px; padding:6px 8px; cursor:pointer; display:flex; align-items:center; justify-content:space-between;">
                   <div style="display:flex; align-items:center; gap:6px; overflow:hidden;">
-                    <div style="width:20px; height:20px; flex-shrink:0;">${t.badgeSvg}</div>
+                    <div style="width:20px; height:20px; flex-shrink:0;">${titleDef.badgeSvg}</div>
                     <div style="font-size:10px; font-weight:bold; color:${unl ? '#fef08a' : '#64748b'}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                      ${t.defaultName}
+                      ${t(titleDef.nameKey)}
                     </div>
                   </div>
-                  ${isEq ? '<span style="font-size:8px; color:#34d399; font-weight:bold;">EQUIPPED</span>' : !unl ? '<span style="font-size:8px; color:#64748b;">🔒</span>' : ''}
+                  ${isEq ? `<span style="font-size:8px; color:#34d399; font-weight:bold;">${t('equipment.equipped')}</span>` : !unl ? '<span style="font-size:8px; color:#64748b;">🔒</span>' : ''}
                 </div>
               `;
               })
@@ -89,13 +90,13 @@ export const TitleSelectionModal: ModalInstance = {
                     ${selected.badgeSvg}
                   </div>
                   <div>
-                    <div style="font-size:12px; font-weight:bold; color:#fef08a; font-family:var(--font-display);">${selected.defaultName}</div>
-                    <div style="font-size:9px; color:#38bdf8;">CATEGORY: ${selected.category.toUpperCase()}</div>
+                    <div style="font-size:12px; font-weight:bold; color:#fef08a; font-family:var(--font-display);">${t(selected.nameKey)}</div>
+                    <div style="font-size:9px; color:#38bdf8;">${t('titles.category_label')}: ${t(`titles.category.${selected.category}`)}</div>
                   </div>
                 </div>
 
                 <p style="font-size:10px; color:#cbd5e1; margin:0 0 8px 0; line-height:1.3;">
-                  ${selected.description}
+                  ${selected.descriptionKey ? t(selected.descriptionKey) : selected.description}
                 </p>
 
                 <!-- Modifiers -->
@@ -103,15 +104,15 @@ export const TitleSelectionModal: ModalInstance = {
                   selected.modifiers && selected.modifiers.length > 0
                     ? `
                   <div style="background:rgba(0,0,0,0.4); padding:6px; border-radius:3px; font-size:10px; margin-bottom:8px;">
-                    <div style="color:#34d399; font-weight:bold; font-size:9px;">TITLE ATTRIBUTES:</div>
-                    ${selected.modifiers.map((m) => `<div style="color:#fde047;">✦ ${m.label}</div>`).join('')}
+                    <div style="color:#34d399; font-weight:bold; font-size:9px;">${t('titles.attributes')}:</div>
+                    ${selected.modifiers.map((m) => `<div style="color:#fde047;">✦ ${m.labelKey ? t(m.labelKey) : m.label}</div>`).join('')}
                   </div>
                 `
-                    : '<div style="font-size:9px; color:#94a3b8; margin-bottom:8px;">Honorary Social Title.</div>'
+                    : `<div style="font-size:9px; color:#94a3b8; margin-bottom:8px;">${t('titles.honorary')}</div>`
                 }
 
                 <div style="font-size:9px; color:#94a3b8;">
-                  <b>Unlock Requirement:</b> ${selected.unlockCondition.description}
+                  <b>${t('titles.unlock_requirement')}:</b> ${selected.unlockCondition.descriptionKey ? t(selected.unlockCondition.descriptionKey) : selected.unlockCondition.description}
                 </div>
               </div>
 
@@ -119,23 +120,23 @@ export const TitleSelectionModal: ModalInstance = {
                 isUnlocked
                   ? `
                 <button id="btn-toggle-equip-title" style="width:100%; margin-top:8px; padding:8px; background:${isEquipped ? '#451a03' : 'linear-gradient(135deg, #10b981, #059669)'}; border:1px solid ${isEquipped ? '#78350f' : '#34d399'}; border-radius:4px; color:#ffffff; font-family:var(--font-display); font-weight:bold; font-size:11px; cursor:pointer;">
-                  ${isEquipped ? 'UNEQUIP TITLE' : '✦ EQUIP TITLE ✦'}
+                  ${isEquipped ? t('titles.unequip') : `✦ ${t('titles.equip')} ✦`}
                 </button>
               `
                   : `
                 <div style="text-align:center; padding:6px; background:#292524; border:1px solid #451a03; border-radius:4px; color:#78716c; font-size:10px; font-weight:bold; margin-top:8px;">
-                  🔒 TITLE LOCKED
+                  🔒 ${t('titles.locked')}
                 </div>
               `
               }
             </div>
           `
-              : '<div style="color:#94a3b8; font-size:11px;">Select a title to inspect.</div>'
+              : `<div style="color:#94a3b8; font-size:11px;">${t('titles.select_title')}</div>`
           }
         </div>
 
         <button id="btn-close-titles" style="width:100%; padding:8px; background:#1c1917; border:1px solid #78350f; border-radius:4px; color:#cbd5e1; font-family:var(--font-display); font-size:12px; cursor:pointer;">
-          Close Titles
+          ${t('titles.close')}
         </button>
       `;
 

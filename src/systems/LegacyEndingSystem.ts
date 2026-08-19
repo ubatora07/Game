@@ -11,6 +11,7 @@ import { marketSystem } from './MarketSystem';
 import { store } from '../core/GameState';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class LegacyEndingSystem {
   private static instance: LegacyEndingSystem;
@@ -56,7 +57,7 @@ export class LegacyEndingSystem {
     const karmaScore = karmaSystem.getScore();
     const settlementLevel = settlementSystem.getSettlementLevel();
     const isBlackMarket = marketSystem.isBlackMarketAvailable();
-    const reincarnations = store.get().rankIndex || 0;
+    const reincarnations = store.get().reincarnationCount || 0;
 
     // Savior of Mountain Realm: Virtuous + Citadel Level 3 (or Level 2+ in early world)
     if (karmaScore >= 50 && settlementLevel >= 2) {
@@ -96,7 +97,7 @@ export class LegacyEndingSystem {
 
     const def = getLegacyEndingDef(id)!;
     events.emit('toast:show', {
-      message: `👑 LEGACY ENDING RECORDED: ${def.defaultTitle}!`,
+      message: t('legacy.toast.ending_recorded', { title: t(def.titleKey) }),
       type: 'epic',
     });
 
@@ -117,7 +118,7 @@ export class LegacyEndingSystem {
     if (id) {
       const def = getLegacyEndingDef(id);
       events.emit('toast:show', {
-        message: `✦ ACTIVE LEGACY BOON EQUIPPED: ${def?.defaultTitle || id}!`,
+        message: t('legacy.toast.boon_equipped', { title: def ? t(def.titleKey) : id }),
         type: 'info',
       });
       analytics.trackEvent('legacy_boon_equipped', { endingId: id });
@@ -143,7 +144,7 @@ export class LegacyEndingSystem {
           target: def.permanentModifier.target,
           type: def.permanentModifier.type,
           value: def.permanentModifier.value,
-          source: `Legacy: ${def.defaultTitle}`,
+          source: `Legacy: ${t(def.titleKey)}`,
           sourceType: 'permanent_passive',
         });
       }

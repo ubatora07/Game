@@ -1,6 +1,7 @@
 import { store, GameStateData } from '../core/GameState';
 import { getRelicById, calculateRelicEffect, RelicEffectType } from '../content/relics';
 import { events } from '../core/EventBus';
+import { t } from '../services/i18n/I18nService';
 
 export class RelicSystem {
   /**
@@ -44,13 +45,13 @@ export class RelicSystem {
         if (existing.duplicates >= requiredDupes && existing.level < def.maxLevel) {
           existing.duplicates -= requiredDupes;
           existing.level += 1;
-          events.emit('toast:show', { message: `Relic Level Up: ${relicId} (Lv.${existing.level})`, type: 'success' });
+          events.emit('toast:show', { message: t('toast.relic.level_up', { name: t(def.nameKey), level: existing.level }), type: 'success' });
         } else {
-          events.emit('toast:show', { message: `Duplicate Relic: ${relicId}`, type: 'info' });
+          events.emit('toast:show', { message: t('toast.relic.duplicate', { name: t(def.nameKey) }), type: 'info' });
         }
       } else {
         draft.relics[relicId] = { level: 1, duplicates: 0 };
-        events.emit('toast:show', { message: `New Relic Found: ${relicId}!`, type: 'success' });
+        events.emit('toast:show', { message: t('toast.relic.found', { name: t(def.nameKey) }), type: 'success' });
       }
     });
 

@@ -2,6 +2,7 @@ import { KarmaBand, KarmaState, KarmaBandInfo, KARMA_BANDS } from '../core/karma
 import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class KarmaSystem {
   private static instance: KarmaSystem;
@@ -197,7 +198,7 @@ export class KarmaSystem {
     if (oldBand !== newBand) {
       const bandInfo = KARMA_BANDS[newBand];
       events.emit('toast:show', {
-        message: `Alignment Shifted: ${bandInfo.badge} ${newBand.toUpperCase()}`,
+        message: t('toast.karma.shifted', { badge: bandInfo.badge, band: t(bandInfo.titleKey) }),
         type: newBand === 'virtuous' || newBand === 'positive' ? 'epic' : 'info',
       });
     }

@@ -51,11 +51,11 @@ export class SoulTreeScreen {
 
           <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom:14px;">
             <div>
-              <div style="font-size:11px; color:var(--text-muted);">${t('currency.souls')} (Owned)</div>
+              <div style="font-size:11px; color:var(--text-muted);">${t('soul.owned_label')}</div>
               <div id="soulOwnedDisplay" style="font-size:20px; font-weight:bold; color:#f43f5e;">0 ⚡</div>
             </div>
             <div>
-              <div style="font-size:11px; color:var(--text-muted);">Reset Reward</div>
+              <div style="font-size:11px; color:var(--text-muted);">${t('soul.reset_reward')}</div>
               <div id="soulPotentialDisplay" style="font-size:20px; font-weight:bold; color:#fde047;">+0 ⚡</div>
             </div>
           </div>
@@ -78,7 +78,7 @@ export class SoulTreeScreen {
 
         <!-- Soul Skills List -->
         <h3 style="font-family:var(--font-display); font-size:18px; color:#fde047; margin-bottom:12px;">
-          ✨ Permanent Soul Mastery
+          ✨ ${t('soul.mastery_title')}
         </h3>
 
         <div id="soulSkillsList" style="display:flex; flex-direction:column; gap:10px;">
@@ -98,7 +98,7 @@ export class SoulTreeScreen {
                 </div>
                 <div>
                   <div style="font-weight:bold; font-size:13px; color:var(--text-main);">
-                    ${t(skill.nameKey)} <span class="s-lvl" style="color:#f43f5e; font-size:11px;">Lv.0 / ${skill.maxLevel}</span>
+                    ${t(skill.nameKey)} <span class="s-lvl" style="color:#f43f5e; font-size:11px;">${t('common.level_compact', { current: 0, max: skill.maxLevel })}</span>
                   </div>
                   <div style="font-size:11px; color:var(--text-muted);">
                     ${t(skill.descKey)}
@@ -188,12 +188,12 @@ export class SoulTreeScreen {
       const lvlEl = card.querySelector('.s-lvl') as HTMLElement;
       const btn = card.querySelector('.buy-soul-action-btn') as HTMLElement;
 
-      if (lvlEl) lvlEl.innerText = `Lv.${currentLevel} / ${skill.maxLevel}`;
+      if (lvlEl) lvlEl.innerText = t('common.level_compact', { current: currentLevel, max: skill.maxLevel });
 
       card.style.borderColor = canAfford ? 'rgba(244,63,94,0.6)' : 'var(--border-subtle)';
 
       if (btn) {
-        btn.innerText = isMax ? 'MAX' : `${cost} ⚡`;
+        btn.innerText = isMax ? t('btn.max') : `${cost} ⚡`;
         btn.style.background = isMax ? 'rgba(30,41,59,0.5)' : canAfford ? 'linear-gradient(135deg, #e11d48, #be123c)' : 'rgba(51,65,85,0.5)';
         btn.style.borderColor = canAfford ? '#f43f5e' : 'transparent';
         btn.style.color = isMax ? '#64748b' : canAfford ? '#ffffff' : '#64748b';

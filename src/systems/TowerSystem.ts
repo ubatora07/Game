@@ -5,6 +5,7 @@ import { events } from '../core/EventBus';
 import { sound } from '../services/audio/SoundService';
 import { RelicSystem } from './RelicSystem';
 import { RELICS } from '../content/relics';
+import { t } from '../services/i18n/I18nService';
 
 export interface CombatState {
   currentFloor: number;
@@ -182,7 +183,7 @@ export class TowerSystem {
     let nextFloor = floor + 1;
     const skipChance = RelicSystem.getEquippedEffectValue(store.get(), 'tower_skip');
     if (skipChance > 0 && Math.random() < skipChance) {
-      events.emit('toast:show', { message: `Relic Triggered: Skipped Floor ${nextFloor}!`, type: 'info' });
+      events.emit('toast:show', { message: t('toast.tower.relic_skip', { floor: nextFloor }), type: 'info' });
       nextFloor += 1;
     }
     

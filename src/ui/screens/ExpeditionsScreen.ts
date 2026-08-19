@@ -49,9 +49,9 @@ export class ExpeditionsScreen {
       <h1 style="margin-bottom: 24px; color: var(--color-cyan); text-align: center;">🗺️ ${t('nav.expeditions')}</h1>
       
       <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-lg); margin-bottom: 24px;">
-        <h2 style="margin-bottom: 16px; font-size: 16px;">Active Expeditions</h2>
+        <h2 style="margin-bottom: 16px; font-size: 16px;">${t('expeditions.active')}</h2>
         ${state.expeditions.length === 0 ? 
-          `<div class="empty-state">No heroes are currently on an expedition.</div>` :
+          `<div class="empty-state">${t('expeditions.empty_active')}</div>` :
           `<div style="display: flex; flex-direction: column; gap: 12px;">
              ${state.expeditions.map(e => this.renderActive(e)).join('')}
            </div>`
@@ -59,7 +59,7 @@ export class ExpeditionsScreen {
       </div>
 
       <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-lg);">
-        <h2 style="margin-bottom: 16px; font-size: 16px;">Available Missions</h2>
+        <h2 style="margin-bottom: 16px; font-size: 16px;">${t('expeditions.available')}</h2>
         <div style="display: flex; flex-direction: column; gap: 16px;">
           ${EXPEDITIONS.map(exp => this.renderTemplate(exp)).join('')}
         </div>
@@ -97,7 +97,7 @@ export class ExpeditionsScreen {
       const end = start + duration;
       
       if (now >= end) {
-        el.textContent = "Complete!";
+        el.textContent = t('expeditions.complete');
         el.parentElement!.querySelector('.claim-btn')?.removeAttribute('disabled');
       } else {
         const remaining = Math.ceil((end - now) / 1000);
@@ -123,12 +123,12 @@ export class ExpeditionsScreen {
           <div>
             <div style="font-size: 14px; font-weight: bold;">${t(hero.nameKey)}</div>
             <div class="exp-timer" data-start="${exp.startedAt}" data-duration="${exp.durationMs}" style="font-size: 12px; color: var(--text-cyan);">
-              ${isComplete ? 'Complete!' : 'Calculating...'}
+              ${isComplete ? t('expeditions.complete') : t('expeditions.calculating')}
             </div>
           </div>
         </div>
         <button class="claim-btn" data-id="${exp.id}" ${isComplete ? '' : 'disabled'} style="background: var(--color-cyan); color: #000; padding: 8px 16px; border-radius: var(--radius-full); font-weight: bold; cursor: ${isComplete ? 'pointer' : 'not-allowed'}; opacity: ${isComplete ? 1 : 0.5};">
-          Claim
+          ${t('btn.claim')}
         </button>
       </div>
     `;
@@ -138,7 +138,7 @@ export class ExpeditionsScreen {
     const state = store.get();
     
     // Build hero options
-    let heroOptions = '<option value="">Select Hero to Dispatch...</option>';
+    let heroOptions = `<option value="">${t('expeditions.select_hero')}</option>`;
     Object.keys(state.heroes).forEach(hId => {
       const hDef = getHeroById(hId);
       if (!hDef) return;
@@ -151,25 +151,25 @@ export class ExpeditionsScreen {
       const rarities: Record<string, number> = { 'common': 1, 'rare': 2, 'epic': 3, 'legendary': 4, 'mythic': 5 };
       if (exp.requiredRarity && (rarities[hDef.rarity] || 0) < (rarities[exp.requiredRarity] || 0)) return;
 
-      heroOptions += `<option value="${hId}">${t(hDef.nameKey)} (${hDef.rarity})</option>`;
+      heroOptions += `<option value="${hId}">${t(hDef.nameKey)} (${t(`equipment.rarity.${hDef.rarity}`)})</option>`;
     });
 
     return `
       <div style="background: var(--bg-surface-raised); border: 1px solid var(--border-highlight); border-radius: var(--radius-md); padding: 16px;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
           <h3 style="font-size: 16px;">${t(exp.nameKey)}</h3>
-          <span style="color: var(--text-muted); font-size: 12px;">⏱️ ${exp.durationHours} Hours</span>
+          <span style="color: var(--text-muted); font-size: 12px;">⏱️ ${t('expeditions.hours', { hours: exp.durationHours })}</span>
         </div>
         
         <div style="display: flex; gap: 8px; font-size: 12px; color: var(--text-gold); margin-bottom: 12px;">
-          <span>Rewards:</span>
+          <span>${t('expeditions.rewards')}:</span>
           <span>💎 ${exp.rewards.crystals}</span>
           <span>🧪 ${exp.rewards.essence}</span>
-          <span>💰 ~${exp.rewards.goldEquivalentMinutes}m gold</span>
+          <span>💰 ~${t('expeditions.gold_minutes', { minutes: exp.rewards.goldEquivalentMinutes })}</span>
         </div>
 
         <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 12px;">
-          Requires: ${exp.requiredElement ? exp.requiredElement.toUpperCase() : 'Any Element'} | ${exp.requiredRarity ? exp.requiredRarity.toUpperCase() : 'Any Rarity'}
+          ${t('expeditions.requires')}: ${exp.requiredElement ? t(`element.${exp.requiredElement}`) : t('expeditions.any_element')} | ${exp.requiredRarity ? t(`equipment.rarity.${exp.requiredRarity}`) : t('expeditions.any_rarity')}
         </div>
 
         <select class="dispatch-select" data-template="${exp.id}" style="width: 100%; padding: 8px; background: var(--bg-core); color: var(--text-main); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);">

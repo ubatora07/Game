@@ -14,6 +14,7 @@ import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
 import { classSystem } from './ClassSystem';
 import { partyTeamSystem } from './PartyTeamSystem';
+import { t } from '../services/i18n/I18nService';
 
 export class PetSystem {
   private static instance: PetSystem;
@@ -86,7 +87,7 @@ export class PetSystem {
     }
 
     events.emit('toast:show', {
-      message: `New Companion Acquired: ${def.defaultName}!`,
+      message: t('toast.pet.acquired', { name: t(def.nameKey) }),
       type: 'epic',
     });
 
@@ -110,7 +111,7 @@ export class PetSystem {
     if (petId) {
       const pet = this.ownedPets[petId];
       events.emit('toast:show', {
-        message: `Active Companion: ${pet.name}`,
+        message: t('toast.pet.active', { name: t(getPetDefinition(petId)?.evolutions[pet.evolutionStage]?.nameKey || getPetDefinition(petId)?.nameKey || pet.name) }),
         type: 'info',
       });
     }
@@ -136,7 +137,7 @@ export class PetSystem {
 
     if (leveledUp) {
       events.emit('toast:show', {
-        message: `${pet.name} reached Level ${pet.level}!`,
+        message: t('toast.pet.level_up', { name: t(getPetDefinition(petId)?.evolutions[pet.evolutionStage]?.nameKey || getPetDefinition(petId)?.nameKey || pet.name), level: pet.level }),
         type: 'epic',
       });
 
@@ -211,7 +212,7 @@ export class PetSystem {
     }
 
     events.emit('toast:show', {
-      message: `EVOLUTION! ${pet.name} awakened to Stage ${nextStage}!`,
+      message: t('toast.pet.evolved', { name: t(evoDef.nameKey), stage: nextStage }),
       type: 'epic',
     });
 

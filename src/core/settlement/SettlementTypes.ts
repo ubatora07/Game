@@ -52,6 +52,7 @@ export interface SettlementBuildingDefinition {
   unlockedAtSettlementLevel: number;
   linkedNPCId?: SettlementNPCId;
   modifiers: SettlementBuildingModifier[];
+  functionalityKey: string;
   functionalityDescription: string;
 }
 
@@ -65,6 +66,7 @@ export interface SettlementBuildingState {
 
 export interface NPCDialogueLine {
   id: string;
+  textKey: string;
   text: string;
   textRu: string;
   karmaCondition?: 'virtuous' | 'infamous' | 'neutral';
@@ -78,10 +80,16 @@ export interface SettlementNPCDefinition {
   defaultName: string;
   titleKey: string;
   defaultTitle: string;
+  roleKey: string;
   role: string;
   avatarSvg: string;
   linkedBuildingId: SettlementBuildingId;
   dialogues: NPCDialogueLine[];
+  karmaDialogueKeys: {
+    virtuous: string;
+    infamous: string;
+    neutral: string;
+  };
   karmaDialogueVariants: {
     virtuous: string;
     infamous: string;

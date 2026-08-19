@@ -47,8 +47,8 @@ export const SettingsModal: ModalInstance = {
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span>${t('settings.notation')}</span>
           <select id="setNotation" style="background:#1e293b; color:#fff; border:1px solid var(--border-subtle); padding:4px 8px; border-radius:var(--radius-sm);">
-            <option value="standard" ${s.notation === 'standard' ? 'selected' : ''}>Standard (1.25M)</option>
-            <option value="scientific" ${s.notation === 'scientific' ? 'selected' : ''}>Scientific (1.25e6)</option>
+            <option value="standard" ${s.notation === 'standard' ? 'selected' : ''}>${t('settings.notation_standard')}</option>
+            <option value="scientific" ${s.notation === 'scientific' ? 'selected' : ''}>${t('settings.notation_scientific')}</option>
           </select>
         </div>
 
@@ -56,8 +56,8 @@ export const SettingsModal: ModalInstance = {
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span>${t('settings.language')}</span>
           <select id="setLang" style="background:#1e293b; color:#fff; border:1px solid var(--border-subtle); padding:4px 8px; border-radius:var(--radius-sm);">
-            <option value="ru" ${s.language === 'ru' ? 'selected' : ''}>Русский</option>
-            <option value="en" ${s.language === 'en' ? 'selected' : ''}>English</option>
+            <option value="ru" ${s.language === 'ru' ? 'selected' : ''}>${t('settings.language_ru')}</option>
+            <option value="en" ${s.language === 'en' ? 'selected' : ''}>${t('settings.language_en')}</option>
           </select>
         </div>
 

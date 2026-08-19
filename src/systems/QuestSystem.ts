@@ -4,6 +4,7 @@ import { QUESTS } from '../content/quests';
 import { EconomyEngine } from '../economy/EconomyEngine';
 import { events } from '../core/EventBus';
 import { sound } from '../services/audio/SoundService';
+import { t } from '../services/i18n/I18nService';
 
 export class QuestSystem {
   public static checkAchievements(): void {
@@ -26,7 +27,7 @@ export class QuestSystem {
         });
 
         events.emit('toast:show', {
-          message: `Achievement: ${ach.rewardCrystals} 💎`,
+          message: t('toast.achievement.unlocked', { name: t(ach.nameKey), crystals: ach.rewardCrystals }),
           type: 'gold'
         });
       }

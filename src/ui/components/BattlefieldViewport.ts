@@ -143,7 +143,7 @@ export class BattlefieldViewport {
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
 
-    FloatingNumbers.spawn(cx, cy - 20, '⚡ SAMSARA RUSH!', true, '');
+    FloatingNumbers.spawn(cx, cy - 20, `⚡ ${t('combat.legacy_rush')}`, true, '');
     if (this.particleCanvas) {
       this.particleCanvas.emitBurst(cx, cy, 25, '#fbbf24', true);
     }
@@ -157,16 +157,16 @@ export class BattlefieldViewport {
 
     if (data.active) {
       if (data.mechanic === 'shield') {
-        FloatingNumbers.spawn(x, y - 10, '🛡️ SHIELD UP!', true, '');
+        FloatingNumbers.spawn(x, y - 10, `🛡️ ${t('combat.shield_up')}`, true, '');
         this.enemyAvatarEl.style.boxShadow = '0 0 25px #38bdf8';
         if (this.particleCanvas) this.particleCanvas.emitBurst(x, y, 16, '#38bdf8', true);
       } else if (data.mechanic === 'enrage') {
-        FloatingNumbers.spawn(x, y - 10, '🔥 ENRAGED!', true, '');
+        FloatingNumbers.spawn(x, y - 10, `🔥 ${t('combat.enraged')}`, true, '');
         this.enemyAvatarEl.style.boxShadow = '0 0 30px #ef4444';
         this.enemyAvatarEl.style.filter = 'brightness(1.4) drop-shadow(0 0 15px #ef4444)';
         if (this.particleCanvas) this.particleCanvas.emitBurst(x, y, 20, '#ef4444', true);
       } else if (data.mechanic === 'damage_reduction') {
-        FloatingNumbers.spawn(x, y - 10, '⛓️ HARDENED (-50%)', true, '');
+        FloatingNumbers.spawn(x, y - 10, `⛓️ ${t('combat.hardened')}`, true, '');
         this.enemyAvatarEl.style.boxShadow = '0 0 20px #94a3b8';
         if (this.particleCanvas) this.particleCanvas.emitBurst(x, y, 14, '#94a3b8', true);
       }
@@ -177,7 +177,7 @@ export class BattlefieldViewport {
   }
 
   private onWorldCleared(data: { worldId: number }): void {
-    FloatingNumbers.spawn(window.innerWidth / 2, window.innerHeight / 3, `🌟 REALM ${data.worldId} CONQUERED!`, true, '');
+    FloatingNumbers.spawn(window.innerWidth / 2, window.innerHeight / 3, `🌟 ${t('combat.world_conquered', { worldId: data.worldId })}`, true, '');
     if (this.particleCanvas) {
       this.particleCanvas.emitBurst(window.innerWidth / 2, window.innerHeight / 3, 40, '#fde047', true);
     }
@@ -204,7 +204,7 @@ export class BattlefieldViewport {
   private showBossWarning(bossName?: string): void {
     if (!this.bossWarningBannerEl) return;
     this.setHeroAnimation('hurt', 400);
-    this.bossWarningBannerEl.textContent = `⚠️ BOSS: ${bossName?.toUpperCase() || 'ANCIENT SOVEREIGN'} ⚠️`;
+    this.bossWarningBannerEl.textContent = `⚠️ ${t('combat.boss_warning', { bossName: (bossName || t('combat.unknown_boss')).toUpperCase() })} ⚠️`;
     this.bossWarningBannerEl.style.display = 'block';
     this.bossWarningBannerEl.style.opacity = '1';
 
@@ -434,7 +434,7 @@ export class BattlefieldViewport {
 
     const pct = Math.max(0, Math.min(100, (currentHp / enemy.maxHp) * 100));
     this.enemyHpFillEl.style.width = `${pct}%`;
-    this.enemyHpTextEl.textContent = `${BigNumber.format(Math.max(0, currentHp))} / ${BigNumber.format(enemy.maxHp)} HP`;
+    this.enemyHpTextEl.textContent = `${BigNumber.format(Math.max(0, currentHp))} / ${BigNumber.format(enemy.maxHp)} ${t('combat.hp')}`;
 
     if (pct < 25) {
       this.enemyHpFillEl.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
@@ -472,7 +472,7 @@ export class BattlefieldViewport {
 
     if (partySynergy) {
       const synergy = HeroSystem.getPartySynergy();
-      partySynergy.innerHTML = `<span style="color:#f59e0b;">⚔️</span> <span>${synergy.partyCount > 0 ? `${synergy.synergyPctText} Synergy` : 'Swordsman'}</span>`;
+      partySynergy.innerHTML = `<span style="color:#f59e0b;">⚔️</span> <span>${synergy.partyCount > 0 ? `${synergy.synergyPctText} ${t('combat.synergy')}` : t('class.swordsman.name')}</span>`;
     }
 
     this.updatePetDisplay();
@@ -559,7 +559,7 @@ export class BattlefieldViewport {
             </div>
           </div>
           <div id="enemyHpText" style="font-size:11px; font-weight:bold; color:#cbd5e1; font-family:var(--font-display);">
-            ${BigNumber.format(enemy?.currentHp || 0)} / ${BigNumber.format(enemy?.maxHp || 1)} HP
+            ${BigNumber.format(enemy?.currentHp || 0)} / ${BigNumber.format(enemy?.maxHp || 1)} ${t('combat.hp')}
           </div>
         </div>
 
@@ -570,7 +570,7 @@ export class BattlefieldViewport {
 
         <!-- Boss Timer Bar (if active) -->
         <div id="bossTimerContainer" style="display:${combat.isTimerActive ? 'flex' : 'none'}; align-items:center; gap:6px; width:100%; margin-top:2px;">
-          <span style="font-size:10px; font-weight:bold; color:#ef4444;">⏱️ TIME:</span>
+          <span style="font-size:10px; font-weight:bold; color:#ef4444;">⏱️ ${t('combat.time')}:</span>
           <div style="flex:1; height:4px; background:#0c0a09; border-radius:2px; overflow:hidden; border:1px solid #450a0a;">
             <div id="bossTimerBar" style="height:100%; width:100%; background:#ef4444; transition:width 0.2s linear;"></div>
           </div>
@@ -580,7 +580,7 @@ export class BattlefieldViewport {
 
       <!-- Boss Warning Banner Overlay -->
       <div id="bossWarningBanner" style="display:none; position:absolute; top:35%; left:50%; transform:translate(-50%, -50%); background:rgba(153, 27, 27, 0.95); color:#fef08a; font-size:14px; font-weight:900; font-family:var(--font-display); padding:8px 20px; border-radius:4px; border:2px solid #f59e0b; box-shadow:0 0 30px rgba(239,68,68,0.9); z-index:40; pointer-events:none; transition:all 0.3s ease; text-align:center;">
-        ⚠️ BOSS ENCOUNTER ⚠️
+        ⚠️ ${t('combat.boss_encounter')} ⚠️
       </div>
 
       <!-- Center Battlefield Arena (Swordsman + Pet on left, Goblin on right) -->
@@ -621,7 +621,7 @@ export class BattlefieldViewport {
           </div>
           
           <div style="font-size:10px; font-weight:bold; color:${enemy?.isBoss ? '#f87171' : '#cbd5e1'}; font-family:var(--font-display); background:rgba(18,15,23,0.8); border:1px solid #451a03; padding:1px 6px; border-radius:3px;">
-            ${enemy?.isBoss ? 'BOSS' : enemy?.archetype === 'elite' ? 'ELITE' : 'MINION'}
+            ${enemy?.isBoss ? t('combat.enemy_boss') : enemy?.archetype === 'elite' ? t('combat.enemy_elite') : t('combat.enemy_minion')}
           </div>
         </div>
       </div>

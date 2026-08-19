@@ -72,7 +72,7 @@ export class HeroesScreen {
 
                 <!-- Name & Title -->
                 <div style="font-weight:bold; font-size:13px; color:var(--text-main);">${t(hero.nameKey)}</div>
-                <div class="h-title" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">Locked</div>
+                <div class="h-title" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">${t('btn.locked')}</div>
 
                 <!-- Star Rating -->
                 <div class="h-stars" style="font-size:12px; color:#fde047; margin-bottom:6px;">
@@ -136,7 +136,7 @@ export class HeroesScreen {
       const actionEl = card.querySelector('.h-action') as HTMLElement;
 
       if (avatarEl) avatarEl.innerText = isOwned ? '🥋' : '❓';
-      if (titleTextEl) titleTextEl.innerText = isOwned ? t(hero.titleKey) : 'Locked';
+      if (titleTextEl) titleTextEl.innerText = isOwned ? t(hero.titleKey) : t('btn.locked');
       if (starsEl) starsEl.innerText = isOwned ? '⭐'.repeat(stars) : '☆☆☆☆☆';
       if (bonusEl) bonusEl.innerText = isOwned ? `+${effBonusPct}% ${hero.modifier.type.replace('_pct', '').toUpperCase()}` : '???';
 
@@ -155,7 +155,7 @@ export class HeroesScreen {
                 font-weight: bold;
                 cursor: pointer;
               ">
-                ⭐ UP (${starCost} ✨)
+                ${t('heroes.star_up', { cost: starCost })}
               </button>
             `;
             actionEl.querySelector('.star-up-btn')?.addEventListener('click', (e) => {
@@ -164,13 +164,13 @@ export class HeroesScreen {
             });
           } else {
             const btn = actionEl.querySelector('.star-up-btn') as HTMLElement;
-            btn.innerText = `⭐ UP (${starCost} ✨)`;
+            btn.innerText = `${t('heroes.star_up', { cost: starCost })}`;
             btn.style.background = canStarUp ? 'linear-gradient(135deg, #7c3aed, #a855f7)' : 'rgba(51,65,85,0.5)';
             btn.style.borderColor = canStarUp ? '#c084fc' : 'transparent';
             btn.style.color = canStarUp ? '#fff' : '#64748b';
           }
         } else if (isOwned) {
-          actionEl.innerHTML = `<div style="font-size:11px; color:#fde047; font-weight:bold;">MAX STARS</div>`;
+          actionEl.innerHTML = `<div style="font-size:11px; color:#fde047; font-weight:bold;">${t('heroes.max_stars')}</div>`;
         } else {
           actionEl.innerHTML = `<div style="font-size:11px; color:var(--text-dim);">${t('btn.locked')}</div>`;
         }

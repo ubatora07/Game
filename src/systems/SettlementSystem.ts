@@ -13,6 +13,7 @@ import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { store } from '../core/GameState';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 import { karmaSystem } from './KarmaSystem';
 
 export class SettlementSystem {
@@ -86,7 +87,7 @@ export class SettlementSystem {
     this.reapplySettlementModifiers();
 
     events.emit('toast:show', {
-      message: `DOMAIN CLAIMED! You are now the Sovereign of ${name}!`,
+      message: t('toast.settlement.claimed', { name }),
       type: 'epic',
     });
 
@@ -199,7 +200,7 @@ export class SettlementSystem {
     this.reapplySettlementModifiers();
 
     events.emit('toast:show', {
-      message: `CONSTRUCTION COMPLETE: ${def.defaultName} reached Level ${bState.level}!`,
+      message: t('settlement.construction_complete', { name: t(def.nameKey), level: bState.level }),
       type: 'success',
     });
 
@@ -235,13 +236,15 @@ export class SettlementSystem {
     const def = getSettlementNPCDef(npcId);
     const npc = this.state.npcs[npcId];
     if (!def || !npc || !npc.isUnlocked) {
-      return { line: 'The resident is currently away.', affinityGained: 0 };
+      return { line: t('settlement.npc.away'), affinityGained: 0 };
     }
 
     const karmaBand = karmaSystem.getKarmaBand();
     const karmaKey: 'virtuous' | 'infamous' | 'neutral' =
       karmaBand === 'virtuous' || karmaBand === 'infamous' ? karmaBand : 'neutral';
-    let speech = def.karmaDialogueVariants[karmaKey] || def.dialogues[0]?.text || '';
+    const speechKey = def.karmaDialogueKeys[karmaKey] || def.dialogues[0]?.textKey;
+    const fallbackSpeech = def.karmaDialogueVariants[karmaKey] || def.dialogues[0]?.text || '';
+    const speech = speechKey ? t(speechKey) : fallbackSpeech;
 
     const now = Date.now();
     const oneDayMs = 24 * 60 * 60 * 1000;

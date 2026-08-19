@@ -90,8 +90,8 @@ export class TowerScreen {
               <div style="width:72px; height:72px; border-radius:50%; background:rgba(30,41,59,0.8); border:2px solid var(--color-cyan); display:flex; align-items:center; justify-content:center; font-size:36px; box-shadow:0 0 15px rgba(56,189,248,0.4); animation:heroFloat 3s infinite;">
                 🥋
               </div>
-              <div style="font-weight:bold; font-size:12px; color:var(--text-main);">YOU</div>
-              <div id="towerPlayerDps" style="font-size:11px; color:var(--color-cyan); font-weight:bold;">120 DPS</div>
+              <div style="font-weight:bold; font-size:12px; color:var(--text-main);">${t('tower.you')}</div>
+              <div id="towerPlayerDps" style="font-size:11px; color:var(--color-cyan); font-weight:bold;">${t('tower.dps_value', { value: 120 })}</div>
             </div>
 
             <!-- VS Badge -->
@@ -105,14 +105,14 @@ export class TowerScreen {
                 ${combat.enemyIcon}
               </div>
               <div id="towerEnemyName" style="font-weight:bold; font-size:12px; color:var(--text-main);">${t(combat.enemyNameKey)}</div>
-              <div id="towerEnemyStats" style="font-size:11px; color:#ef4444; font-weight:bold;">HP: ${BigNumber.format(combat.enemyMaxHp)}</div>
+              <div id="towerEnemyStats" style="font-size:11px; color:#ef4444; font-weight:bold;">${t('tower.hp_value', { value: BigNumber.format(combat.enemyMaxHp) })}</div>
             </div>
           </div>
 
           <!-- Enemy Health Bar -->
           <div style="width:100%; max-width:400px; margin-bottom:8px;">
             <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:bold; margin-bottom:3px;">
-              <span style="color:#ef4444;">Enemy HP</span>
+              <span style="color:#ef4444;">${t('tower.enemy_hp')}</span>
               <span id="towerHpText" style="color:#fde047;">${BigNumber.format(combat.enemyCurrentHp)} / ${BigNumber.format(combat.enemyMaxHp)}</span>
             </div>
             <div style="width:100%; height:12px; background:rgba(15,23,42,0.9); border-radius:var(--radius-full); overflow:hidden; border:1px solid var(--border-subtle);">
@@ -262,7 +262,7 @@ export class TowerScreen {
     if (playerDps) playerDps.textContent = `${BigNumber.format(metrics.towerCombatPower)} DPS`;
     if (enemyIcon) enemyIcon.textContent = combat.enemyIcon;
     if (enemyName) enemyName.textContent = t(combat.enemyNameKey);
-    if (enemyStats) enemyStats.textContent = `HP: ${BigNumber.format(combat.enemyMaxHp)}`;
+    if (enemyStats) enemyStats.textContent = t('tower.hp_value', { value: BigNumber.format(combat.enemyMaxHp) });
     if (hpText) hpText.textContent = `${BigNumber.format(combat.enemyCurrentHp)} / ${BigNumber.format(combat.enemyMaxHp)}`;
 
     if (hpBar) {
@@ -271,7 +271,7 @@ export class TowerScreen {
     }
 
     if (timerText) {
-      timerText.textContent = `${combat.battleTimer.toFixed(1)}s`;
+      timerText.textContent = t('common.seconds_short', { seconds: combat.battleTimer.toFixed(1) });
     }
 
     const autoClimbBtn = this.el.querySelector('#toggleAutoClimbBtn') as HTMLElement;

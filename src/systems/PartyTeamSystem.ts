@@ -4,6 +4,7 @@ import { SkillNodeDefinition } from '../content/skillTrees';
 import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class PartyTeamSystem {
   private static instance: PartyTeamSystem;
@@ -58,7 +59,7 @@ export class PartyTeamSystem {
     if (this.characters[slotId].isUnlocked) {
       this.activeFocusCharId = slotId;
       events.emit('toast:show', {
-        message: `Switched Focus: ${this.characters[slotId].name}`,
+        message: t('toast.party.focus', { name: this.characters[slotId].name }),
         type: 'info',
       });
     }
@@ -78,7 +79,7 @@ export class PartyTeamSystem {
     this.reapplyAllModifiers();
 
     events.emit('toast:show', {
-      message: `Partner Awakened: ${name}!`,
+      message: t('toast.party.partner_unlocked', { name }),
       type: 'epic',
     });
 
@@ -113,7 +114,7 @@ export class PartyTeamSystem {
 
     if (emitFeedback) {
       events.emit('toast:show', {
-        message: `${char.name} selected path: ${classId.toUpperCase()}!`,
+        message: t('toast.party.class_selected', { name: char.name, className: t(getClassById(classId)?.nameKey || classId) }),
         type: 'epic',
       });
 

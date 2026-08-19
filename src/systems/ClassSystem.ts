@@ -2,6 +2,7 @@ import { CharacterClassId, CharacterClassDefinition, getClassById } from '../con
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
 import { partyTeamSystem } from './PartyTeamSystem';
+import { t } from '../services/i18n/I18nService';
 
 export class ClassSystem {
   private static instance: ClassSystem;
@@ -46,7 +47,7 @@ export class ClassSystem {
 
     events.emit('class:selected', { classId });
     events.emit('toast:show', {
-      message: `Path Chosen: ${def.defaultName}!`,
+      message: t('toast.class.chosen', { name: t(def.nameKey) }),
       type: 'epic',
     });
 

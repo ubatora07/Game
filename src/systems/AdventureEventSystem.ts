@@ -17,6 +17,7 @@ import { petSystem } from './PetSystem';
 import { titleSystem } from './TitleSystem';
 import { craftingEquipmentSystem } from './CraftingEquipmentSystem';
 import { CraftingMaterialId } from '../core/crafting/CraftingTypes';
+import { t } from '../services/i18n/I18nService';
 
 export class AdventureEventSystem {
   private static instance: AdventureEventSystem;
@@ -251,7 +252,7 @@ export class AdventureEventSystem {
     });
 
     events.emit('toast:show', {
-      message: `Event Resolved: ${choice.id}`,
+      message: t('toast.adventure.resolved', { result: t(choice.outcome.resultTextKey) }),
       type: 'info',
     });
 

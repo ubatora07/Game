@@ -3,6 +3,7 @@ import { getTitleDef } from '../content/titlesCatalog';
 import { modifierResolver } from '../core/modifiers/ModifierResolver';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class TitleSystem {
   private static instance: TitleSystem;
@@ -76,7 +77,7 @@ export class TitleSystem {
     this.state.unlockedTitleIds.push(id);
 
     events.emit('toast:show', {
-      message: `TITLE UNLOCKED: ✦ ${def.defaultName} ✦`,
+      message: t('toast.title.unlocked', { name: t(def.nameKey) }),
       type: 'epic',
     });
 

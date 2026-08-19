@@ -40,16 +40,16 @@ export class SettlementScreen {
         <div style="max-width:500px; margin:40px auto; text-align:center; padding:24px; background:rgba(28,25,23,0.9); border:2px solid #d97706; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.9);">
           <div style="font-size:42px; margin-bottom:12px;">🏰</div>
           <div style="font-size:11px; color:#f59e0b; font-weight:bold; letter-spacing:1px; text-transform:uppercase; font-family:var(--font-display);">
-            ✦ UNCLAIMED REALM DOMAIN ✦
+            ✦ ${t('settlement.unclaimed_label')} ✦
           </div>
           <h2 style="font-family:var(--font-display); font-size:22px; color:#fef08a; margin:4px 0 12px 0;">
-            Claim Your First Settlement
+            ${t('settlement.claim_title')}
           </h2>
           <p style="color:#cbd5e1; font-size:13px; line-height:1.5; margin-bottom:20px;">
-            Establish your stronghold in the Mountain Haven. Construct master forges, recruit sellswords, harvest timber and stone, and repel wilderness raids.
+            ${t('settlement.claim_desc')}
           </p>
           <button id="btn-claim-settlement" style="padding:12px 24px; background:linear-gradient(135deg, #d97706, #b45309); border:1px solid #f59e0b; border-radius:4px; color:#ffffff; font-family:var(--font-display); font-weight:900; font-size:15px; letter-spacing:1px; cursor:pointer; box-shadow:0 0 15px rgba(217,119,6,0.6);">
-            FOUND SETTLEMENT NOW
+            ${t('settlement.claim_action')}
           </button>
         </div>
       `;
@@ -70,7 +70,7 @@ export class SettlementScreen {
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:rgba(28,25,23,0.9); border:1.5px solid #b45309; border-radius:6px; padding:10px 14px; box-shadow:0 2px 8px rgba(0,0,0,0.6);">
         <div>
           <div style="font-size:10px; color:#f59e0b; font-weight:bold; letter-spacing:0.5px; font-family:var(--font-display);">
-            ✦ SOVEREIGN REALM • LEVEL ${sState.settlementLevel} ✦
+            ✦ ${t('settlement.header_level', { level: sState.settlementLevel })} ✦
           </div>
           <h2 style="font-family:var(--font-display); font-size:18px; color:#fef08a; margin:2px 0 0 0;">
             ${sState.settlementName}
@@ -89,13 +89,13 @@ export class SettlementScreen {
             ⚙️ <b style="color:#38bdf8;">${mats.iron}</b>
           </div>
           <div style="background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:4px; border:1px solid #f59e0b;">
-            🛡️ DEF: <b style="color:#fde047;">${sState.defenseRating}</b>
+            🛡️ ${t('settlement.defense_short')}: <b style="color:#fde047;">${sState.defenseRating}</b>
           </div>
           <div style="background:rgba(0,0,0,0.5); padding:4px 8px; border-radius:4px; border:1px solid #10b981;">
-            ⭐ PROSP: <b style="color:#34d399;">${sState.prosperityRating}</b>
+            ⭐ ${t('settlement.prosperity_short')}: <b style="color:#34d399;">${sState.prosperityRating}</b>
           </div>
           <button id="btn-harvest-mats" style="padding:4px 10px; background:linear-gradient(135deg, #10b981, #059669); border:1px solid #34d399; border-radius:4px; color:#ffffff; font-family:var(--font-display); font-weight:bold; font-size:11px; cursor:pointer;">
-            🌾 HARVEST
+            🌾 ${t('settlement.harvest')}
           </button>
         </div>
       </div>
@@ -142,7 +142,7 @@ export class SettlementScreen {
                   ${structSvg}
                 </div>
                 <div style="background:rgba(0,0,0,0.8); border:1px solid #d97706; padding:1px 6px; border-radius:3px; font-size:9px; font-weight:bold; color:#fef08a; font-family:var(--font-display); margin-top:-4px; white-space:nowrap;">
-                  ${def.defaultName.split(' ')[0]} ${b && b.isConstructed ? `Lv.${b.level}` : 'Plot'}
+                  ${t(def.nameKey).split(' ')[0]} ${b && b.isConstructed ? t('common.level_short', { level: b.level }) : t('settlement.plot')}
                 </div>
               </div>
             `;
@@ -153,7 +153,7 @@ export class SettlementScreen {
       <!-- Domain Residents Roster Strip -->
       <div style="background:rgba(28,25,23,0.85); border:1.5px solid #78350f; border-radius:6px; padding:10px 14px;">
         <div style="font-size:11px; color:#f59e0b; font-weight:bold; margin-bottom:8px; font-family:var(--font-display);">
-          ✦ DOMAIN CITIZENS & SAGES ✦
+          ✦ ${t('settlement.residents_title')} ✦
         </div>
         <div class="settlement-npc-row" style="display:flex; gap:12px; overflow-x:auto; padding-bottom:4px;">
           ${getAllSettlementNPCDefs().map(npcDef => {
@@ -165,8 +165,8 @@ export class SettlementScreen {
                   ${npcDef.avatarSvg}
                 </div>
                 <div>
-                  <div style="font-size:11px; font-weight:bold; color:${isUnlocked ? '#fef08a' : '#78716c'}; font-family:var(--font-display);">${npcDef.defaultName.split(' ')[0]}</div>
-                  <div style="font-size:9px; color:#94a3b8;">${isUnlocked ? `Affinity: ${npcState?.affinity || 0}` : 'Locked'}</div>
+                  <div style="font-size:11px; font-weight:bold; color:${isUnlocked ? '#fef08a' : '#78716c'}; font-family:var(--font-display);">${t(npcDef.nameKey).split(' ')[0]}</div>
+                  <div style="font-size:9px; color:#94a3b8;">${isUnlocked ? t('settlement.affinity', { value: npcState?.affinity || 0 }) : t('common.locked')}</div>
                 </div>
               </div>
             `;
@@ -177,7 +177,7 @@ export class SettlementScreen {
       <!-- Building Management Matrix -->
       <div style="background:rgba(28,25,23,0.85); border:1.5px solid #78350f; border-radius:6px; padding:12px;">
         <div style="font-size:11px; color:#f59e0b; font-weight:bold; margin-bottom:10px; font-family:var(--font-display);">
-          ✦ STRUCTURE UPGRADES & PLOTS ✦
+          ✦ ${t('settlement.structures_title')} ✦
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px;">
           ${getAllSettlementBuildingDefs().map(def => {
@@ -187,13 +187,13 @@ export class SettlementScreen {
             return `
               <div class="building-card-tile" data-building-id="${def.id}" style="background:rgba(12,10,9,0.7); border:1px solid #78350f; border-radius:4px; padding:8px 10px; cursor:pointer; transition:all 0.15s ease;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                  <div style="font-size:12px; font-weight:bold; color:#fef08a; font-family:var(--font-display);">${def.defaultName}</div>
+                  <div style="font-size:12px; font-weight:bold; color:#fef08a; font-family:var(--font-display);">${t(def.nameKey)}</div>
                   <div style="font-size:10px; background:rgba(217,119,6,0.2); border:1px solid #d97706; padding:1px 5px; border-radius:3px; color:#fde047; font-family:var(--font-display); font-weight:bold;">
-                    ${isConstructed ? `Lv.${lvl}` : 'Plot'}
+                    ${isConstructed ? t('common.level_short', { level: lvl }) : t('settlement.plot')}
                   </div>
                 </div>
-                <div style="font-size:10px; color:#94a3b8; margin-bottom:6px; line-height:1.35;">${def.functionalityDescription}</div>
-                <div style="font-size:10px; color:#34d399; font-weight:bold;">Tap to Inspect / Upgrade ➔</div>
+                <div style="font-size:10px; color:#94a3b8; margin-bottom:6px; line-height:1.35;">${t(def.descKey)}</div>
+                <div style="font-size:10px; color:#34d399; font-weight:bold;">${t('settlement.inspect_upgrade')} ➔</div>
               </div>
             `;
           }).join('')}
@@ -237,12 +237,12 @@ export class SettlementScreen {
       const harvest = settlementSystem.harvestProduction();
       if (harvest.minutes > 0) {
         events.emit('toast:show', {
-          message: `HARVEST COMPLETE: +${harvest.wood} Wood, +${harvest.stone} Stone, +${harvest.iron} Iron!`,
+          message: t('settlement.harvest_complete', { wood: harvest.wood, stone: harvest.stone, iron: harvest.iron }),
           type: 'success',
         });
       } else {
         events.emit('toast:show', {
-          message: 'Harvest fields are recharging (yields accumulate every minute).',
+          message: t('settlement.harvest_recharging'),
           type: 'info',
         });
       }

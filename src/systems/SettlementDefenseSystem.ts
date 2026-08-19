@@ -11,6 +11,7 @@ import { karmaSystem } from './KarmaSystem';
 import { store } from '../core/GameState';
 import { events } from '../core/EventBus';
 import { analytics } from '../services/analytics/AnalyticsService';
+import { t } from '../services/i18n/I18nService';
 
 export class SettlementDefenseSystem {
   private static instance: SettlementDefenseSystem;
@@ -81,7 +82,7 @@ export class SettlementDefenseSystem {
     this.state.activeRaid = active;
 
     events.emit('toast:show', {
-      message: `⚔️ RAID INCOMING: ${def.defaultName} is attacking Mountain Haven!`,
+      message: t('raid.toast.incoming', { name: t(def.nameKey) }),
       type: 'warning',
     });
 
@@ -117,7 +118,7 @@ export class SettlementDefenseSystem {
       }
 
       events.emit('toast:show', {
-        message: `🛡️ RAID REPELLED: Mountain Haven stood strong against ${def.defaultName}!`,
+        message: t('raid.toast.repelled', { name: t(def.nameKey) }),
         type: 'epic',
       });
 
@@ -138,7 +139,7 @@ export class SettlementDefenseSystem {
       });
 
       events.emit('toast:show', {
-        message: `⚠️ DEFENSE BREACHED: ${def.defaultName} raided stored provisions. Repairs needed!`,
+        message: t('raid.toast.breached', { name: t(def.nameKey) }),
         type: 'warning',
       });
 
