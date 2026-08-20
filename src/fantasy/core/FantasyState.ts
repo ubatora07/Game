@@ -163,6 +163,11 @@ class FantasyStateStore {
     this.state = newState;
     events.emit('state:changed', this.state);
   }
+
+  public reset(): void {
+    this.state = createInitialFantasyState();
+    events.emit('state:changed', this.state);
+  }
 }
 
 export const store = new FantasyStateStore();
