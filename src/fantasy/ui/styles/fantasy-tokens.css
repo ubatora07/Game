@@ -1,0 +1,50 @@
+:root {
+  /* Classic Western Fantasy Dark RPG Palette */
+  --f-bg-core: #09090b;
+  --f-bg-panel: #18181b;
+  --f-bg-panel-hover: #27272a;
+  --f-bg-card: #1f1f23;
+  --f-bg-darker: #0c0a09;
+
+  --f-border-subtle: #3f3f46;
+  --f-border-gold: #b45309;
+  --f-border-gold-bright: #f59e0b;
+
+  --f-gold: #d97706;
+  --f-gold-bright: #fbbf24;
+  --f-gold-glow: rgba(245, 158, 11, 0.25);
+
+  --f-gems: #06b6d4;
+  --f-gems-glow: rgba(6, 182, 212, 0.25);
+
+  --f-legacy: #a855f7;
+  --f-legacy-glow: rgba(168, 85, 247, 0.25);
+
+  --f-power: #ef4444;
+  --f-green: #22c55e;
+  --f-red: #dc2626;
+
+  --f-text-main: #f5f5f4;
+  --f-text-dim: #a8a29e;
+  --f-text-muted: #71717a;
+
+  /* Rarity Colors */
+  --f-rarity-common: #94a3b8;
+  --f-rarity-uncommon: #22c55e;
+  --f-rarity-rare: #3b82f6;
+  --f-rarity-epic: #a855f7;
+  --f-rarity-legendary: #f59e0b;
+
+  /* Spacing Scale */
+  --f-space-xs: 4px;
+  --f-space-sm: 8px;
+  --f-space-md: 12px;
+  --f-space-lg: 16px;
+  --f-space-xl: 24px;
+
+  /* Radii */
+  --f-radius-sm: 4px;
+  --f-radius-md: 6px;
+  --f-radius-lg: 8px;
+  --f-radius-xl: 12px;
+}

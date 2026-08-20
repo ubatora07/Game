@@ -1,0 +1,292 @@
+/* Base Reset & Shell */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  background: var(--f-bg-core);
+  color: var(--f-text-main);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.fantasy-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: var(--f-bg-core);
+  position: relative;
+}
+
+/* Top HUD */
+.fantasy-top-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--f-space-sm) var(--f-space-lg);
+  background: var(--f-bg-panel);
+  border-bottom: 2px solid var(--f-border-gold);
+  z-index: 50;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hud-hero-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--f-space-sm);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--f-gold-bright);
+}
+
+.hud-currencies {
+  display: flex;
+  align-items: center;
+  gap: var(--f-space-md);
+  flex-wrap: wrap;
+}
+
+.hud-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--f-space-xs);
+  background: var(--f-bg-card);
+  border: 1px solid var(--f-border-subtle);
+  padding: var(--f-space-xs) var(--f-space-sm);
+  border-radius: var(--f-radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-chip.gold { color: var(--f-gold-bright); border-color: var(--f-gold); }
+.hud-chip.gems { color: var(--f-gems); }
+.hud-chip.power { color: var(--f-power); border-color: rgba(239, 68, 68, 0.4); }
+
+.hud-menu-btn {
+  background: var(--f-bg-card);
+  border: 1px solid var(--f-border-gold);
+  color: var(--f-gold-bright);
+  padding: var(--f-space-xs) var(--f-space-md);
+  border-radius: var(--f-radius-sm);
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hud-menu-btn:hover {
+  background: var(--f-gold);
+  color: #000;
+}
+
+/* Viewport Area (Takes entire middle space) */
+.fantasy-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bottom Navigation Bar */
+.fantasy-bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--f-bg-panel);
+  border-top: 2px solid var(--f-border-gold);
+  padding: var(--f-space-xs) var(--f-space-sm);
+  z-index: 50;
+  flex-shrink: 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.nav-item-btn {
+  flex: 1;
+  padding: var(--f-space-sm) var(--f-space-xs);
+  background: transparent;
+  border: none;
+  border-radius: var(--f-radius-sm);
+  color: var(--f-text-dim);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.15s ease;
+}
+
+.nav-item-btn:hover {
+  color: var(--f-text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item-btn.active {
+  color: var(--f-gold-bright);
+  background: rgba(217, 119, 6, 0.15);
+  border: 1px solid var(--f-border-gold);
+}
+
+/* Battle Stage Overlay UI */
+.battle-overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--f-space-md);
+  box-sizing: border-box;
+}
+
+.stage-title-card {
+  align-self: center;
+  background: rgba(12, 10, 9, 0.85);
+  border: 1px solid var(--f-border-gold);
+  border-radius: var(--f-radius-md);
+  padding: var(--f-space-sm) var(--f-space-lg);
+  text-align: center;
+  pointer-events: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+}
+
+.stage-world-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--f-gold-bright);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.stage-number {
+  font-size: 12px;
+  color: var(--f-text-dim);
+  margin-top: 2px;
+}
+
+.wave-nodes-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.wave-node {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--f-bg-card);
+  border: 1px solid var(--f-border-subtle);
+}
+
+.wave-node.completed {
+  background: var(--f-gold-bright);
+  border-color: var(--f-gold);
+  box-shadow: 0 0 6px var(--f-gold-glow);
+}
+
+.wave-node.boss {
+  border-radius: 2px;
+  background: var(--f-red);
+  border-color: #ef4444;
+}
+
+/* Attack Button */
+.battle-controls-bottom {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--f-space-sm);
+  pointer-events: auto;
+  margin-bottom: var(--f-space-sm);
+}
+
+.attack-btn {
+  background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
+  border: 2px solid var(--f-gold-bright);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 12px 48px;
+  border-radius: var(--f-radius-md);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(180, 83, 9, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.08s ease;
+}
+
+.attack-btn:active {
+  transform: scale(0.96);
+  background: #78350f;
+}
+
+.battle-meta-chips {
+  display: flex;
+  gap: var(--f-space-md);
+  font-size: 11px;
+  color: var(--f-text-dim);
+  font-weight: 600;
+}
+
+/* Screen Panels (Hero, Gear, Upgrades, World) */
+.fantasy-tab-screen {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--f-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--f-space-md);
+}
+
+.fantasy-card {
+  background: var(--f-bg-panel);
+  border: 1px solid var(--f-border-subtle);
+  border-radius: var(--f-radius-lg);
+  padding: var(--f-space-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.fantasy-card.gold-trim {
+  border-color: var(--f-border-gold);
+}
+
+/* Modals */
+.fantasy-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: var(--f-space-lg);
+}
+
+.fantasy-modal-card {
+  background: var(--f-bg-panel);
+  border: 2px solid var(--f-border-gold);
+  border-radius: var(--f-radius-lg);
+  padding: var(--f-space-lg);
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
+}

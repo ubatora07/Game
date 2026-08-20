@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "fantasy": "vite --open /fantasy.html",
     "beta": "vite --open /beta.html",
     "editor": "vite --open /editor.html",
     "typecheck": "tsc --noEmit",
