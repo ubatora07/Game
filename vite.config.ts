@@ -1,8 +1,10 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
+import { editorDevPlugin } from './src/editor/server/editorDevPlugin';
 
 export default defineConfig({
   base: './',
+  plugins: [editorDevPlugin()],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -18,3 +20,4 @@ export default defineConfig({
     include: ['tests/**/*.test.ts']
   }
 });
+

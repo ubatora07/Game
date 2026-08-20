@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "editor": "vite --open /editor.html",
+    "typecheck": "tsc --noEmit",
     "build": "npm run qa:governance && npm run qa:source-safety && npm run qa:terminology && npm run qa:i18n && npm run qa:content-coherence && npm run qa:meta-content && npm run qa:art-registry && npm run qa:ui-production && tsc && vite build && npm run qa:release-safety",
     "preview": "vite preview",
     "test": "vitest run",
