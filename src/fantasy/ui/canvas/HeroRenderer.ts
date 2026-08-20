@@ -4,6 +4,18 @@ export class HeroRenderer {
   private runAnimTimer: number = 0;
   private attackAnimTimer: number = 0;
   private isAttacking: boolean = false;
+  private spriteImg: HTMLImageElement | null = null;
+  private isLoaded: boolean = false;
+
+  constructor() {
+    if (typeof Image !== 'undefined') {
+      this.spriteImg = new Image();
+      this.spriteImg.src = '/assets/fantasy/hero/hero_knight.png';
+      this.spriteImg.onload = () => {
+        this.isLoaded = true;
+      };
+    }
+  }
 
   public triggerAttack(): void {
     this.isAttacking = true;
@@ -30,94 +42,33 @@ export class HeroRenderer {
     const phase = CombatEngine.getPhase();
     const isRunning = phase === 'RUNNING';
 
-    // Hero Base Anchor Position (Left Side of screen)
-    const heroX = width * 0.28;
+    // Hero Base Anchor Position (Display Area: 240x280)
+    const displayW = 240;
+    const displayH = 280;
+    const heroX = width * 0.22;
     const groundY = height * 0.78;
-    const heroY = groundY - 45;
+    const heroY = groundY - displayH + 30;
 
     // Bobbing offset
-    const bob = isRunning ? Math.sin(this.runAnimTimer) * 4 : Math.sin(this.runAnimTimer) * 1.5;
-    const legOffset = isRunning ? Math.sin(this.runAnimTimer) * 8 : 0;
+    const bob = isRunning ? Math.sin(this.runAnimTimer) * 6 : Math.sin(this.runAnimTimer) * 2;
+    const tilt = isRunning ? 0.05 : (this.isAttacking ? 0.15 : 0);
 
     ctx.save();
-    ctx.translate(heroX, heroY + bob);
+    ctx.translate(heroX + displayW / 2, heroY + displayH / 2 + bob);
+    ctx.rotate(tilt);
 
-    // 1. Cape (Royal Blue)
-    ctx.fillStyle = '#1d4ed8';
-    ctx.beginPath();
-    ctx.moveTo(-12, 0);
-    ctx.lineTo(-24 - (isRunning ? Math.cos(this.runAnimTimer) * 6 : 0), 28);
-    ctx.lineTo(-6, 28);
-    ctx.closePath();
-    ctx.fill();
-
-    // 2. Legs / Boots (Dark Iron)
-    ctx.fillStyle = '#3f3f46';
-    // Left Leg
-    ctx.fillRect(-8 - legOffset * 0.5, 24, 6, 16);
-    // Right Leg
-    ctx.fillRect(2 + legOffset * 0.5, 24, 6, 16);
-
-    // 3. Torso Armor (Silver & Gold Inlay)
-    ctx.fillStyle = '#e4e4e7';
-    ctx.fillRect(-10, 4, 20, 22);
-    // Gold trim
-    ctx.fillStyle = '#f59e0b';
-    ctx.fillRect(-2, 6, 4, 18);
-    ctx.fillRect(-8, 12, 16, 3);
-
-    // 4. Shield (Left Arm / Front)
-    ctx.fillStyle = '#3b82f6';
-    ctx.beginPath();
-    ctx.moveTo(-16, 6);
-    ctx.lineTo(-8, 6);
-    ctx.lineTo(-8, 22);
-    ctx.lineTo(-12, 28);
-    ctx.lineTo(-16, 22);
-    ctx.closePath();
-    ctx.fill();
-    ctx.strokeStyle = '#f59e0b';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    // 5. Head / Great Helmet
-    ctx.fillStyle = '#d4d4d8';
-    ctx.fillRect(-8, -14, 16, 16);
-    // Visor slit
-    ctx.fillStyle = '#18181b';
-    ctx.fillRect(-4, -8, 12, 3);
-    // Golden Plume
-    ctx.fillStyle = '#f59e0b';
-    ctx.beginPath();
-    ctx.moveTo(-4, -14);
-    ctx.lineTo(0, -22);
-    ctx.lineTo(8, -14);
-    ctx.closePath();
-    ctx.fill();
-
-    // 6. Sword / Weapon (Right Arm)
-    ctx.save();
-    if (this.isAttacking) {
-      // Forward slash swing
-      ctx.translate(14, 8);
-      ctx.rotate(Math.PI / 3);
+    if (this.isLoaded && this.spriteImg) {
+      // Draw High-Res Knight Sprite
+      ctx.drawImage(this.spriteImg, -displayW / 2, -displayH / 2, displayW, displayH);
     } else {
-      // Resting / ready angle
-      ctx.translate(10, 10);
-      ctx.rotate(-Math.PI / 6);
+      // Procedural Fallback
+      ctx.fillStyle = '#d4d4d8';
+      ctx.fillRect(-25, -50, 50, 80);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillRect(-8, -40, 16, 60);
+      ctx.fillStyle = '#2563eb';
+      ctx.fillRect(-45, -30, 20, 50);
     }
-
-    // Blade
-    ctx.fillStyle = '#f8fafc';
-    ctx.fillRect(0, -26, 4, 26);
-    ctx.fillStyle = '#60a5fa'; // Blue glow edge
-    ctx.fillRect(3, -26, 1, 26);
-    // Crossguard & Hilt
-    ctx.fillStyle = '#d97706';
-    ctx.fillRect(-4, 0, 12, 3);
-    ctx.fillStyle = '#78350f';
-    ctx.fillRect(0, 3, 4, 6);
-    ctx.restore();
 
     ctx.restore();
   }

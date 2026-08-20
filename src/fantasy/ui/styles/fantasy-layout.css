@@ -88,7 +88,7 @@ body, html {
   color: #000;
 }
 
-/* Viewport Area (Takes entire middle space) */
+/* Viewport Area */
 .fantasy-viewport {
   flex: 1;
   position: relative;
@@ -112,7 +112,9 @@ body, html {
 
 .nav-item-btn {
   flex: 1;
-  padding: var(--f-space-sm) var(--f-space-xs);
+  max-width: 180px;
+  height: 64px;
+  padding: var(--f-space-xs);
   background: transparent;
   border: none;
   border-radius: var(--f-radius-sm);
@@ -123,6 +125,7 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2px;
   transition: all 0.15s ease;
 }
@@ -134,8 +137,8 @@ body, html {
 
 .nav-item-btn.active {
   color: var(--f-gold-bright);
-  background: rgba(217, 119, 6, 0.15);
-  border: 1px solid var(--f-border-gold);
+  background: url('/assets/fantasy/ui/nav_tab.png') no-repeat center / contain;
+  border: none;
 }
 
 /* Battle Stage Overlay UI */
@@ -206,7 +209,7 @@ body, html {
   border-color: #ef4444;
 }
 
-/* Attack Button */
+/* Production Attack Button (Display: 320x76) */
 .battle-controls-bottom {
   align-self: center;
   display: flex;
@@ -218,22 +221,19 @@ body, html {
 }
 
 .attack-btn {
-  background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
-  border: 2px solid var(--f-gold-bright);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  padding: 12px 48px;
-  border-radius: var(--f-radius-md);
+  width: 320px;
+  height: 76px;
+  background: url('/assets/fantasy/ui/btn_attack.png') no-repeat center / contain;
+  border: none;
+  color: transparent;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(180, 83, 9, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: all 0.08s ease;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
+  transition: transform 0.08s ease, filter 0.08s ease;
 }
 
 .attack-btn:active {
-  transform: scale(0.96);
-  background: #78350f;
+  transform: scale(0.95);
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8)) brightness(0.9);
 }
 
 .battle-meta-chips {
@@ -244,7 +244,7 @@ body, html {
   font-weight: 600;
 }
 
-/* Screen Panels (Hero, Gear, Upgrades, World) */
+/* Screen Panels */
 .fantasy-tab-screen {
   flex: 1;
   overflow-y: auto;
@@ -264,6 +264,24 @@ body, html {
 
 .fantasy-card.gold-trim {
   border-color: var(--f-border-gold);
+}
+
+/* Gear Slots (Display: 84x84) */
+.equipped-slot-btn, .inventory-item-tile {
+  width: 84px;
+  height: 84px;
+  background: url('/assets/fantasy/ui/gear_slot.png') no-repeat center / contain !important;
+  border: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.equipped-slot-btn:hover, .inventory-item-tile:hover {
+  transform: scale(1.04);
 }
 
 /* Modals */
