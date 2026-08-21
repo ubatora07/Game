@@ -224,64 +224,73 @@ body, html {
   box-shadow: 0 0 8px #ef4444;
 }
 
-/* Right Currencies & Settings (Exact Figma JSON coordinates) */
+/* Right Currencies & Settings (Fixed inner frame boundaries so numbers never overflow) */
 .hud-resource-slot,
 .hud-res-slot {
   position: absolute;
+  top: 132px;
+  height: 70px;
+  width: 134px;
   z-index: 10;
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
+  padding: 0 8px 0 6px;
+  gap: 6px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .hud-res-icon {
   object-fit: contain;
   image-rendering: pixelated;
+  flex-shrink: 0;
 }
 
 .hud-res-value {
   font-family: var(--font-display, sans-serif);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 900;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
   letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex: 1;
+  text-align: center;
+  min-width: 0;
 }
 
-/* Gold slot (Coin: 64x64 at left:1296, top:137) */
+/* Gold slot (left: 1290, top: 132, w: 134, h: 70) */
 .gold-slot {
-  left: 1296px;
-  top: 137px;
+  left: 1290px;
 }
 .gold-slot .coin-icon {
-  width: 64px;
-  height: 64px;
+  width: 44px;
+  height: 44px;
 }
 .gold-slot .hud-gold-text {
   color: #fde047;
 }
 
-/* Power slot (Sword_Power: 51x51 at left:1449, top:140) */
+/* Power slot (left: 1440, top: 132, w: 134, h: 70) */
 .power-slot {
-  left: 1449px;
-  top: 140px;
+  left: 1440px;
 }
 .power-slot .power-icon {
-  width: 51px;
-  height: 51px;
+  width: 40px;
+  height: 40px;
 }
 .power-slot .hud-power-text {
   color: #f87171;
 }
 
-/* Gems slot (Diamond: 64x64 at left:1592, top:134) */
+/* Gems slot (left: 1588, top: 132, w: 134, h: 70) */
 .gems-slot {
-  left: 1592px;
-  top: 134px;
+  left: 1588px;
 }
 .gems-slot .diamond-icon {
-  width: 64px;
-  height: 64px;
+  width: 44px;
+  height: 44px;
 }
 .gems-slot .hud-gems-text {
   color: #38bdf8;
