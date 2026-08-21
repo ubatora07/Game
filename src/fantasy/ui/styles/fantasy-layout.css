@@ -224,22 +224,21 @@ body, html {
   box-shadow: 0 0 8px #ef4444;
 }
 
-/* Right Currencies & Settings (Fixed inner frame boundaries so numbers never overflow) */
+/* Right Currencies & Settings (Centered icon + text inside each golden frame box) */
 .hud-resource-slot,
 .hud-res-slot {
   position: absolute;
   top: 132px;
-  height: 70px;
-  width: 134px;
+  height: 68px;
+  width: 140px;
   z-index: 10;
   pointer-events: auto;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0 8px 0 6px;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .hud-res-icon {
@@ -250,47 +249,46 @@ body, html {
 
 .hud-res-value {
   font-family: var(--font-display, sans-serif);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 900;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
   letter-spacing: 0.5px;
   white-space: nowrap;
-  flex: 1;
-  text-align: center;
-  min-width: 0;
+  flex: none;
+  text-align: left;
 }
 
-/* Gold slot (left: 1290, top: 132, w: 134, h: 70) */
+/* Gold slot: center at x:1348 (left: 1278, w: 140, h: 68) */
 .gold-slot {
-  left: 1290px;
+  left: 1278px;
 }
 .gold-slot .coin-icon {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
 }
 .gold-slot .hud-gold-text {
   color: #fde047;
 }
 
-/* Power slot (left: 1440, top: 132, w: 134, h: 70) */
+/* Power slot: center at x:1504 (left: 1434, w: 140, h: 68) */
 .power-slot {
-  left: 1440px;
+  left: 1434px;
 }
 .power-slot .power-icon {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
 }
 .power-slot .hud-power-text {
   color: #f87171;
 }
 
-/* Gems slot (left: 1588, top: 132, w: 134, h: 70) */
+/* Gems slot: center at x:1660 (left: 1590, w: 140, h: 68) */
 .gems-slot {
-  left: 1588px;
+  left: 1590px;
 }
 .gems-slot .diamond-icon {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
 }
 .gems-slot .hud-gems-text {
   color: #38bdf8;
