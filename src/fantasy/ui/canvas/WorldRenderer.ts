@@ -1,6 +1,7 @@
 import { store } from '../../core/FantasyState';
 import { WORLDS } from '../../content/worlds';
 import { CombatEngine } from '../../engine/CombatEngine';
+import { BATTLE_LAYOUT } from '../layout/BattleLayout';
 
 export class WorldRenderer {
   private offsetFar: number = 0;
@@ -9,15 +10,11 @@ export class WorldRenderer {
   private offsetGround: number = 0;
 
   private bgImg: HTMLImageElement | null = null;
-  private isBgLoaded: boolean = false;
 
   constructor() {
     if (typeof Image !== 'undefined') {
       this.bgImg = new Image();
-      this.bgImg.src = '/assets/fantasy/bg/greenvale_bg_far.png';
-      this.bgImg.onload = () => {
-        this.isBgLoaded = true;
-      };
+      this.bgImg.src = '/assets/fantasy/bg/Background_Greenvale.png';
     }
   }
 
@@ -35,15 +32,9 @@ export class WorldRenderer {
     const s = store.get();
     const worldDef = WORLDS[s.world.currentWorldId] || WORLDS[1];
 
-    if (this.isBgLoaded && this.bgImg && s.world.currentWorldId === 1) {
-      // Draw Seamless Parallax BG
-      const bgW = 1920;
-      const bgH = height;
-
-      const startX = -(this.offsetFar % bgW);
-      for (let x = startX; x < width + bgW; x += bgW) {
-        ctx.drawImage(this.bgImg, x, 0, bgW, bgH);
-      }
+    if (this.bgImg && this.bgImg.complete && this.bgImg.naturalWidth > 0) {
+      const { x: bgX, y: bgY, width: bgW, height: bgH } = BATTLE_LAYOUT.background;
+      ctx.drawImage(this.bgImg, bgX, bgY, bgW, bgH);
     } else {
       // Procedural Fallback
       const sky = ctx.createLinearGradient(0, 0, 0, height);

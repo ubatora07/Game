@@ -16,9 +16,6 @@ export class BattleView {
   private worldRenderer: WorldRenderer = new WorldRenderer();
   private heroRenderer: HeroRenderer = new HeroRenderer();
 
-  private worldNameEl!: HTMLElement;
-  private stageNumberEl!: HTMLElement;
-  private waveNodesEl!: HTMLElement;
   private bossTimerContainerEl!: HTMLElement;
   private bossTimerFillEl!: HTMLElement;
   private bossTimerTextEl!: HTMLElement;
@@ -41,9 +38,8 @@ export class BattleView {
 
   public resize(): void {
     if (!this.canvas) return;
-    const rect = this.container.getBoundingClientRect();
-    this.canvas.width = rect.width;
-    this.canvas.height = rect.height;
+    this.canvas.width = 1920;
+    this.canvas.height = 1080;
   }
 
   public update(dt: number): void {
@@ -51,31 +47,22 @@ export class BattleView {
     this.heroRenderer.update(dt);
     VfxRenderer.update(dt);
 
-    this.renderCanvas();
+    this.render();
     this.updateHUD();
   }
 
-  private renderCanvas(): void {
-    if (!this.ctx || !this.canvas) return;
-    const w = this.canvas.width;
-    const h = this.canvas.height;
+  private render(): void {
+    if (!this.ctx) return;
+
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     const shake = VfxRenderer.getShakeOffset();
     this.ctx.save();
     this.ctx.translate(shake.x, shake.y);
 
-    this.ctx.clearRect(0, 0, w, h);
-
-    // 1. Parallax World
-    this.worldRenderer.render(this.ctx, w, h);
-
-    // 2. Hero
-    this.heroRenderer.render(this.ctx, w, h);
-
-    // 3. Enemy
-    EnemyRenderer.render(this.ctx, w, h);
-
-    // 4. VFX & Particles
+    this.worldRenderer.render(this.ctx, this.canvas.width, this.canvas.height);
+    this.heroRenderer.render(this.ctx, this.canvas.width, this.canvas.height);
+    EnemyRenderer.render(this.ctx, this.canvas.width, this.canvas.height);
     VfxRenderer.render(this.ctx);
 
     this.ctx.restore();
@@ -85,21 +72,6 @@ export class BattleView {
     const s = store.get();
     const worldDef = WORLDS[s.world.currentWorldId] || WORLDS[1];
     const stats = UpgradeEngine.calculateStats(s);
-
-    this.worldNameEl.textContent = worldDef.name;
-    this.stageNumberEl.textContent = s.world.isFarmMode 
-      ? `STAGE ${s.world.currentStageNumber} (FARM MODE)` 
-      : `STAGE ${s.world.currentStageNumber}-${worldDef.maxStages}`;
-
-    // Wave Nodes
-    this.waveNodesEl.innerHTML = '';
-    for (let i = 0; i < worldDef.enemiesPerStage; i++) {
-      const node = document.createElement('div');
-      const isCompleted = i < s.world.waveProgress;
-      const isBossNode = s.world.currentStageNumber === worldDef.maxStages;
-      node.className = `wave-node ${isCompleted ? 'completed' : ''} ${isBossNode && i === worldDef.enemiesPerStage - 1 ? 'boss' : ''}`;
-      this.waveNodesEl.appendChild(node);
-    }
 
     // Boss Timer
     if (s.world.isBossActive) {
@@ -135,6 +107,7 @@ export class BattleView {
   private buildDOM(): void {
     // 1. Canvas Layer
     this.canvas = document.createElement('canvas');
+    this.canvas.id = 'fantasyCanvas';
     this.canvas.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; cursor:crosshair;';
     this.container.appendChild(this.canvas);
     this.ctx = this.canvas.getContext('2d')!;
@@ -147,18 +120,15 @@ export class BattleView {
       this.handleAttackClick(clickX, clickY);
     });
 
-    // 2. Overlay Container
+    // 2. Overlay Container (Boss timer and controls only)
     const overlay = document.createElement('div');
     overlay.className = 'battle-overlay-container';
 
-    // Top Stage Title Card
-    const titleCard = document.createElement('div');
-    titleCard.className = 'stage-title-card';
-    titleCard.innerHTML = `
-      <div class="stage-world-name">GREENVALE</div>
-      <div class="stage-number">STAGE 1-1</div>
-      <div class="wave-nodes-bar"></div>
-      <div class="boss-timer-wrap" style="display:none; flex-direction:column; align-items:center; margin-top:6px;">
+    // Boss Timer & Retry
+    const bossCard = document.createElement('div');
+    bossCard.className = 'boss-status-wrap';
+    bossCard.innerHTML = `
+      <div class="boss-timer-wrap" style="display:none; flex-direction:column; align-items:center;">
         <span class="boss-timer-text" style="font-size:11px; font-weight:800; color:#ef4444; margin-bottom:2px;">BOSS ENCOUNTER: 30s</span>
         <div style="width:140px; height:6px; background:rgba(0,0,0,0.5); border-radius:3px; overflow:hidden; border:1px solid #ef4444;">
           <div class="boss-timer-fill" style="width:100%; height:100%; background:#ef4444; transition:width 0.1s linear;"></div>
@@ -168,15 +138,12 @@ export class BattleView {
         ⚔️ RETRY BOSS
       </button>
     `;
-    overlay.appendChild(titleCard);
+    overlay.appendChild(bossCard);
 
-    this.worldNameEl = titleCard.querySelector('.stage-world-name')!;
-    this.stageNumberEl = titleCard.querySelector('.stage-number')!;
-    this.waveNodesEl = titleCard.querySelector('.wave-nodes-bar')!;
-    this.bossTimerContainerEl = titleCard.querySelector('.boss-timer-wrap')!;
-    this.bossTimerFillEl = titleCard.querySelector('.boss-timer-fill')!;
-    this.bossTimerTextEl = titleCard.querySelector('.boss-timer-text')!;
-    this.retryBossBtn = titleCard.querySelector('#btn-retry-boss')!;
+    this.bossTimerContainerEl = bossCard.querySelector('.boss-timer-wrap')!;
+    this.bossTimerFillEl = bossCard.querySelector('.boss-timer-fill')!;
+    this.bossTimerTextEl = bossCard.querySelector('.boss-timer-text')!;
+    this.retryBossBtn = bossCard.querySelector('#btn-retry-boss')!;
 
     this.retryBossBtn.addEventListener('click', () => {
       CombatEngine.retryBoss();
@@ -186,7 +153,7 @@ export class BattleView {
     const controls = document.createElement('div');
     controls.className = 'battle-controls-bottom';
     controls.innerHTML = `
-      <button class="attack-btn">ATTACK</button>
+      <button id="fantasyAttackBtn" class="attack-btn">ATTACK</button>
       <div class="battle-meta-chips">
         <span class="chip-auto" style="cursor:pointer;">AUTO: ON</span>
         <span class="chip-dps">DPS: 120</span>
@@ -216,7 +183,7 @@ export class BattleView {
     setTimeout(() => this.resize(), 50);
   }
 
-  private handleAttackClick(screenX?: number, screenY?: number): void {
+  public handleAttackClick(screenX?: number, screenY?: number): void {
     this.heroRenderer.triggerAttack();
     CombatEngine.performPlayerClickAttack(screenX, screenY);
   }

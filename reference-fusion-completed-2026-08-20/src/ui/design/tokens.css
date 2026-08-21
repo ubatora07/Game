@@ -1,0 +1,242 @@
+:root {
+  /* Safe Area Insets */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+
+  /* Dark heroic-fantasy foundation */
+  --bg-core: #080706;
+  --bg-surface: #12100e;
+  --bg-surface-raised: #1b1713;
+  --bg-card: #17130f; /* compatibility alias: opaque, never glass */
+  --bg-card-hover: #211a14;
+
+  /* Production surfaces */
+  --surface-forged-bronze: linear-gradient(180deg, #2a2118 0%, #17110c 100%);
+  --surface-stone: linear-gradient(180deg, #201d1a 0%, #12100e 100%);
+  --surface-wood: linear-gradient(180deg, #2a1b10 0%, #17100a 100%);
+  --surface-leather: linear-gradient(180deg, #251812 0%, #120d0a 100%);
+  --surface-parchment: #d7c29a;
+  --surface-parchment-ink: #2b2118;
+
+  --border-subtle: #493a2c;
+  --border-highlight: #806344;
+  --border-gold: #9a641f;
+  --border-cyan: #2d6f85;
+  --border-purple: #6d4b7e;
+  --frame-bronze-dark: #5b3518;
+  --frame-bronze: #9a5b22;
+  --frame-bronze-light: #d49a45;
+
+  /* Accent & element colors */
+  --color-gold: #d9902f;
+  --color-gold-glow: rgba(217, 144, 47, 0.32);
+  --color-cyan: #48a7bf;
+  --color-cyan-glow: rgba(72, 167, 191, 0.30);
+  --color-purple: #9a70b5;
+  --color-purple-glow: rgba(154, 112, 181, 0.30);
+  --color-crimson: #c84b52;
+  --color-crimson-glow: rgba(200, 75, 82, 0.32);
+  --color-emerald: #3f9b72;
+
+  /* Rarity colors */
+  --rarity-common: #a8a29e;
+  --rarity-rare: #4e9fc2;
+  --rarity-epic: #9a70b5;
+  --rarity-legendary: #d6a03c;
+  --rarity-mythic: #c84b52;
+
+  /* Typography: local/system-only, no font-file dependency */
+  --font-main: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-mono: 'Cascadia Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* Text colors */
+  --text-main: #f2eee8;
+  --text-muted: #b2aaa1;
+  --text-dim: #81786f;
+  --text-gold: #f0c66e;
+  --text-cyan: #8cc9d8;
+  --text-purple: #c9add8;
+
+  /* Canonical spacing scale. Numeric tokens preserve exact layout geometry while
+     preventing one-off inline values from drifting between screens/modals. */
+  --space-01: 1px;
+  --space-02: 2px;
+  --space-03: 3px;
+  --space-04: 4px;
+  --space-05: 5px;
+  --space-06: 6px;
+  --space-07: 7px;
+  --space-08: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-18: 18px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-hairline: var(--space-01); /* optical-only: dense nav separators */
+  --space-micro: var(--space-02); /* optical-only: dense nav internals */
+  --space-1: var(--space-04);
+  --space-2: var(--space-08);
+  --space-3: var(--space-12);
+  --space-4: var(--space-16);
+  --space-5: var(--space-24);
+  --space-6: var(--space-32);
+
+  /* Compact RPG geometry; avoid SaaS pill/card language. */
+  --radius-01: 1px;
+  --radius-02: 2px;
+  --radius-03: 3px;
+  --radius-04: 4px;
+  --radius-06: 6px;
+  --radius-08: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-14: 14px;
+  --radius-20: 20px;
+  --radius-sm: var(--radius-02);
+  --radius-md: var(--radius-04);
+  --radius-lg: var(--radius-06);
+  --radius-full: 9999px;
+
+  /* Controlled shadows */
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 5px 14px rgba(0, 0, 0, 0.58);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.70);
+  --shadow-inset-frame: inset 0 1px 0 rgba(240, 198, 110, 0.10), inset 0 -2px 0 rgba(0, 0, 0, 0.35);
+  --shadow-nav: 0 -6px 18px rgba(0, 0, 0, 0.45), var(--shadow-inset-frame);
+  --shadow-accent-inset: inset 3px 0 0 var(--domain-accent);
+  --shadow-alert-badge: 0 0 6px rgba(200, 75, 82, 0.72);
+  --shadow-nav-active: inset 0 0 10px rgba(217, 144, 47, 0.10);
+  --shadow-hub-header: var(--shadow-md), var(--shadow-inset-frame);
+  --shadow-emblem: inset 0 0 14px rgba(217, 144, 47, 0.12);
+  --shadow-toast: var(--shadow-md), 0 0 16px var(--toast-glow, rgba(178, 170, 161, 0.24));
+  --shadow-modal: var(--shadow-lg), var(--shadow-inset-frame);
+  --shadow-inset-deep: inset 0 1px 3px rgba(0, 0, 0, 0.90);
+  --shadow-inset-soft: inset 0 1px 4px rgba(0, 0, 0, 0.80);
+  --shadow-battlefield: inset 0 0 40px rgba(0, 0, 0, 0.80), 0 0 15px rgba(217, 119, 6, 0.20);
+  --shadow-cta: 0 6px 20px rgba(245, 158, 11, 0.40), inset 0 2px 4px rgba(255, 255, 255, 0.40);
+  --shadow-ground-glow: 0 -4px 15px rgba(217, 119, 6, 0.30);
+
+  /* Controlled semantic glows. Dynamic rank/rarity colors set --ui-glow-color. */
+  --glow-gold: 0 0 12px rgba(217, 144, 47, 0.32);
+  --glow-gold-strong: 0 0 22px rgba(245, 158, 11, 0.58);
+  --glow-cyan: 0 0 12px rgba(72, 167, 191, 0.34);
+  --glow-cyan-strong: 0 0 20px rgba(56, 189, 248, 0.48);
+  --glow-purple: 0 0 12px rgba(154, 112, 181, 0.34);
+  --glow-purple-strong: 0 0 24px rgba(168, 85, 247, 0.52);
+  --glow-success: 0 0 12px rgba(16, 185, 129, 0.42);
+  --glow-danger: 0 0 12px rgba(239, 68, 68, 0.44);
+  --glow-danger-strong: 0 0 24px rgba(239, 68, 68, 0.70);
+  --glow-neutral: 0 0 12px rgba(148, 163, 184, 0.30);
+  --glow-dynamic-sm: 0 0 10px var(--ui-glow-color, rgba(217, 144, 47, 0.32));
+  --glow-dynamic-md: 0 0 15px var(--ui-glow-color, rgba(217, 144, 47, 0.32));
+  --glow-dynamic-lg: 0 0 20px var(--ui-glow-color, rgba(217, 144, 47, 0.32));
+  --glow-dynamic-xl: 0 0 30px var(--ui-glow-color, rgba(217, 144, 47, 0.32));
+  --glow-gold-pulse-low: 0 0 10px rgba(245, 158, 11, 0.40), inset 0 0 10px rgba(245, 158, 11, 0.20);
+  --glow-gold-pulse-high: 0 0 25px rgba(245, 158, 11, 0.90), inset 0 0 15px rgba(245, 158, 11, 0.40);
+
+  /* Accessibility / input */
+  --touch-target-min: 44px;
+  --focus-ring: 0 0 0 2px #080706, 0 0 0 4px #f0c66e;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-core);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+}
+
+input,
+select,
+textarea {
+  min-height: var(--touch-target-min);
+}
+
+button:focus-visible,
+[role='button']:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring) !important;
+}
+
+button:disabled,
+button[aria-disabled='true'],
+.is-disabled {
+  cursor: not-allowed !important;
+  opacity: 0.46 !important;
+  filter: saturate(0.45);
+}
+
+.ui-frame-primary {
+  background: var(--surface-forged-bronze);
+  border: 1px solid var(--frame-bronze);
+  box-shadow: var(--shadow-md), var(--shadow-inset-frame);
+  border-radius: var(--radius-md);
+}
+.ui-panel-stone { background: var(--surface-stone); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.ui-panel-wood { background: var(--surface-wood); border: 1px solid #65401f; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.ui-panel-leather { background: var(--surface-leather); border: 1px solid #57372b; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.ui-panel-parchment { background: var(--surface-parchment); color: var(--surface-parchment-ink); border: 1px solid #876f4f; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); }
+
+.ui-btn-primary,
+.ui-btn-secondary,
+.ui-btn-destructive {
+  min-height: var(--touch-target-min);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: var(--shadow-sm), var(--shadow-inset-frame);
+}
+.ui-btn-primary { color: #fff7e6; background: linear-gradient(180deg, #9a5b22, #633716); border: 1px solid #d49a45; }
+.ui-btn-secondary { color: var(--text-main); background: var(--surface-stone); border: 1px solid var(--border-highlight); }
+.ui-btn-destructive { color: #fff1f2; background: linear-gradient(180deg, #8d2f35, #50191e); border: 1px solid #c84b52; }
+
+.rarity-frame-common { border-color: var(--rarity-common) !important; }
+.rarity-frame-rare { border-color: var(--rarity-rare) !important; box-shadow: 0 0 0 1px rgba(78,159,194,.16); }
+.rarity-frame-epic { border-color: var(--rarity-epic) !important; box-shadow: 0 0 0 1px rgba(154,112,181,.18); }
+.rarity-frame-legendary { border-color: var(--rarity-legendary) !important; box-shadow: 0 0 0 1px rgba(214,160,60,.20); }
+.rarity-frame-mythic { border-color: var(--rarity-mythic) !important; box-shadow: 0 0 0 1px rgba(200,75,82,.22); }

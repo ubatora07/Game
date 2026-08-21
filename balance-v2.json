@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "timestamp": "2026-08-20T08:27:28.619Z",
+  "timestamp": "2026-08-21T10:52:05.271Z",
   "buildings": [
     {
       "id": "dojo",
@@ -1212,165 +1212,165 @@
     "ACTIVE": {
       "1m": {
         "timeSeconds": 60,
-        "power": 31768,
-        "gold": 11,
-        "powerPerSec": 594,
-        "goldPerSec": 336,
+        "power": 31968,
+        "gold": 19,
+        "powerPerSec": 550,
+        "goldPerSec": 320,
         "rank": "C",
-        "totalBuildings": 42,
-        "upgradesPurchased": 6,
+        "totalBuildings": 40,
+        "upgradesPurchased": 7,
         "potentialSouls": 0,
         "rankTimestamps": {
           "E": 0,
           "D": 23,
-          "C": 56
+          "C": 57
         }
       },
       "5m": {
         "timeSeconds": 300,
-        "power": 681989489,
-        "gold": 69923,
-        "powerPerSec": 12784595,
-        "goldPerSec": 1662412,
+        "power": 715025793,
+        "gold": 322599,
+        "powerPerSec": 13757897,
+        "goldPerSec": 1761191,
         "rank": "A",
-        "totalBuildings": 274,
-        "upgradesPurchased": 71,
+        "totalBuildings": 276,
+        "upgradesPurchased": 73,
         "potentialSouls": 0,
         "rankTimestamps": {
           "E": 0,
           "D": 23,
-          "C": 59,
-          "B": 114,
-          "A": 193
+          "C": 58,
+          "B": 112,
+          "A": 197
         }
       },
       "10m": {
         "timeSeconds": 600,
-        "power": 57483584208,
-        "gold": 2041502,
-        "powerPerSec": 517091635,
-        "goldPerSec": 23372960,
+        "power": 55585128692,
+        "gold": 12177787,
+        "powerPerSec": 514223006,
+        "goldPerSec": 23255539,
         "rank": "S",
-        "totalBuildings": 440,
+        "totalBuildings": 439,
         "upgradesPurchased": 92,
         "potentialSouls": 40,
         "rankTimestamps": {
           "E": 0,
-          "D": 23,
-          "C": 59,
-          "B": 114,
-          "A": 194,
-          "S": 350
+          "D": 22,
+          "C": 58,
+          "B": 112,
+          "A": 200,
+          "S": 352
         }
       },
       "15m": {
         "timeSeconds": 900,
-        "power": 531826193305,
-        "gold": 250575677,
-        "powerPerSec": 2792497734,
-        "goldPerSec": 78509593,
+        "power": 543176203368,
+        "gold": 207830460,
+        "powerPerSec": 2816771630,
+        "goldPerSec": 79082598,
         "rank": "SS",
-        "totalBuildings": 525,
+        "totalBuildings": 526,
         "upgradesPurchased": 97,
-        "potentialSouls": 111,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 23,
-          "C": 58,
-          "B": 114,
-          "A": 194,
-          "S": 347,
-          "SS": 782
-        }
-      },
-      "30m": {
-        "timeSeconds": 1800,
-        "power": 12242067051597,
-        "gold": 2358711855,
-        "powerPerSec": 26734209486,
-        "goldPerSec": 572941209,
-        "rank": "SS",
-        "totalBuildings": 667,
-        "upgradesPurchased": 107,
-        "potentialSouls": 457,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 23,
-          "C": 56,
-          "B": 114,
-          "A": 191,
-          "S": 345,
-          "SS": 782
-        }
-      },
-      "1h": {
-        "timeSeconds": 3600,
-        "power": 276363770279457,
-        "gold": 30875541850,
-        "powerPerSec": 355621781018,
-        "goldPerSec": 4168753740,
-        "rank": "SSS",
-        "totalBuildings": 823,
-        "upgradesPurchased": 116,
-        "potentialSouls": 1859,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 23,
-          "C": 59,
-          "B": 108,
-          "A": 194,
-          "S": 344,
-          "SS": 776,
-          "SSS": 2603
-        }
-      },
-      "2h": {
-        "timeSeconds": 7200,
-        "power": 2984183561944926,
-        "gold": 496861013,
-        "powerPerSec": 1958269108785,
-        "goldPerSec": 21224367155,
-        "rank": "SSS",
-        "totalBuildings": 968,
-        "upgradesPurchased": 119,
-        "potentialSouls": 5425,
+        "potentialSouls": 112,
         "rankTimestamps": {
           "E": 0,
           "D": 22,
           "C": 58,
           "B": 109,
-          "A": 189,
+          "A": 191,
+          "S": 342,
+          "SS": 778
+        }
+      },
+      "30m": {
+        "timeSeconds": 1800,
+        "power": 12131007318792,
+        "gold": 863160764,
+        "powerPerSec": 26734209486,
+        "goldPerSec": 572941209,
+        "rank": "SS",
+        "totalBuildings": 667,
+        "upgradesPurchased": 107,
+        "potentialSouls": 455,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 22,
+          "C": 58,
+          "B": 107,
+          "A": 198,
+          "S": 352,
+          "SS": 789
+        }
+      },
+      "1h": {
+        "timeSeconds": 3600,
+        "power": 277441614789092,
+        "gold": 38275895516,
+        "powerPerSec": 358539004886,
+        "goldPerSec": 4204630732,
+        "rank": "SSS",
+        "totalBuildings": 823,
+        "upgradesPurchased": 116,
+        "potentialSouls": 1862,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 23,
+          "C": 56,
+          "B": 113,
+          "A": 199,
+          "S": 349,
+          "SS": 785,
+          "SSS": 2609
+        }
+      },
+      "2h": {
+        "timeSeconds": 7200,
+        "power": 3003344657385642,
+        "gold": 212765000561,
+        "powerPerSec": 1958269108785,
+        "goldPerSec": 21224367155,
+        "rank": "SSS",
+        "totalBuildings": 968,
+        "upgradesPurchased": 119,
+        "potentialSouls": 5441,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 22,
+          "C": 56,
+          "B": 114,
+          "A": 193,
           "S": 343,
-          "SS": 778,
-          "SSS": 2607
+          "SS": 776,
+          "SSS": 2592
         }
       },
       "4h": {
         "timeSeconds": 14400,
-        "power": 24544874787293530,
-        "gold": 295736135890,
+        "power": 24513967763910640,
+        "gold": 39111144415,
         "powerPerSec": 4125024129876,
         "goldPerSec": 32081993856,
         "rank": "AWAKENED",
         "totalBuildings": 1105,
         "upgradesPurchased": 119,
-        "potentialSouls": 14003,
+        "potentialSouls": 13995,
         "rankTimestamps": {
           "E": 0,
-          "D": 22,
-          "C": 56,
-          "B": 108,
-          "A": 192,
-          "S": 344,
-          "SS": 776,
-          "SSS": 2592,
-          "AWAKENED": 12006
+          "D": 23,
+          "C": 59,
+          "B": 113,
+          "A": 189,
+          "S": 345,
+          "SS": 785,
+          "SSS": 2607,
+          "AWAKENED": 12013
         }
       },
       "8h": {
         "timeSeconds": 28800,
-        "power": 101913695207750780,
-        "gold": 2175008216090,
+        "power": 101918126675833700,
+        "gold": 2223750285970,
         "powerPerSec": 6528921939072,
         "goldPerSec": 48781907456,
         "rank": "AWAKENED",
@@ -1379,120 +1379,120 @@
         "potentialSouls": 26574,
         "rankTimestamps": {
           "E": 0,
-          "D": 22,
-          "C": 59,
-          "B": 117,
-          "A": 198,
+          "D": 23,
+          "C": 58,
+          "B": 115,
+          "A": 192,
           "S": 348,
           "SS": 781,
-          "SSS": 2605,
+          "SSS": 2597,
           "AWAKENED": 12011
         }
       },
       "24h": {
         "timeSeconds": 86400,
-        "power": 552828900936451000,
-        "gold": 46376230545564,
+        "power": 552984329373894700,
+        "gold": 47541916840491,
         "powerPerSec": 8658351831168,
         "goldPerSec": 64758439936,
         "rank": "AWAKENED",
         "totalBuildings": 1310,
         "upgradesPurchased": 119,
-        "potentialSouls": 56875,
+        "potentialSouls": 56882,
         "rankTimestamps": {
           "E": 0,
           "D": 23,
-          "C": 60,
-          "B": 112,
-          "A": 199,
-          "S": 348,
-          "SS": 782,
-          "SSS": 2611,
-          "AWAKENED": 12020
+          "C": 56,
+          "B": 111,
+          "A": 193,
+          "S": 341,
+          "SS": 772,
+          "SSS": 2588,
+          "AWAKENED": 12002
         }
       },
       "7d": {
         "timeSeconds": 604800,
-        "power": 9973183488218149000,
-        "gold": 248989086315799,
+        "power": 9973414671875080000,
+        "gold": 250194180956747,
         "powerPerSec": 28688258756352,
         "goldPerSec": 150628959488,
         "rank": "TRANSCENDENT",
         "totalBuildings": 1504,
         "upgradesPurchased": 119,
-        "potentialSouls": 209042,
+        "potentialSouls": 209044,
         "rankTimestamps": {
           "E": 0,
           "D": 23,
           "C": 58,
-          "B": 117,
-          "A": 193,
-          "S": 349,
-          "SS": 784,
-          "SSS": 2613,
-          "AWAKENED": 12022,
-          "TRANSCENDENT": 427649
+          "B": 114,
+          "A": 190,
+          "S": 344,
+          "SS": 785,
+          "SSS": 2607,
+          "AWAKENED": 12013,
+          "TRANSCENDENT": 427641
         }
       }
     },
     "OPTIMAL": {
       "1m": {
         "timeSeconds": 60,
-        "power": 163819,
-        "gold": 329,
-        "powerPerSec": 2100,
-        "goldPerSec": 1211,
+        "power": 177487,
+        "gold": 287,
+        "powerPerSec": 2057,
+        "goldPerSec": 1195,
         "rank": "C",
-        "totalBuildings": 46,
-        "upgradesPurchased": 12,
-        "potentialSouls": 0,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 15,
-          "C": 40
-        }
-      },
-      "5m": {
-        "timeSeconds": 300,
-        "power": 849321709,
-        "gold": 80838,
-        "powerPerSec": 18032880,
-        "goldPerSec": 921640,
-        "rank": "A",
-        "totalBuildings": 260,
-        "upgradesPurchased": 48,
+        "totalBuildings": 45,
+        "upgradesPurchased": 13,
         "potentialSouls": 0,
         "rankTimestamps": {
           "E": 0,
           "D": 16,
+          "C": 38
+        }
+      },
+      "5m": {
+        "timeSeconds": 300,
+        "power": 893493379,
+        "gold": 369116,
+        "powerPerSec": 14289840,
+        "goldPerSec": 747304,
+        "rank": "A",
+        "totalBuildings": 264,
+        "upgradesPurchased": 47,
+        "potentialSouls": 0,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 15,
           "C": 40,
           "B": 84,
-          "A": 164
+          "A": 163
         }
       },
       "10m": {
         "timeSeconds": 600,
-        "power": 34396617541,
-        "gold": 4463927,
-        "powerPerSec": 207087115,
-        "goldPerSec": 6492288,
+        "power": 35218748355,
+        "gold": 1114425,
+        "powerPerSec": 210008990,
+        "goldPerSec": 6562288,
         "rank": "S",
-        "totalBuildings": 391,
+        "totalBuildings": 392,
         "upgradesPurchased": 54,
         "potentialSouls": 32,
         "rankTimestamps": {
           "E": 0,
           "D": 16,
-          "C": 39,
+          "C": 38,
           "B": 85,
-          "A": 163,
-          "S": 342
+          "A": 164,
+          "S": 341
         }
       },
       "15m": {
         "timeSeconds": 900,
-        "power": 163088842148,
-        "gold": 68281808,
+        "power": 162973333587,
+        "gold": 68286219,
         "powerPerSec": 660957325,
         "goldPerSec": 14402544,
         "rank": "S",
@@ -1501,37 +1501,37 @@
         "potentialSouls": 65,
         "rankTimestamps": {
           "E": 0,
-          "D": 15,
-          "C": 39,
+          "D": 16,
+          "C": 40,
           "B": 85,
-          "A": 163,
-          "S": 342
+          "A": 164,
+          "S": 341
         }
       },
       "30m": {
         "timeSeconds": 1800,
-        "power": 2508499241711,
-        "gold": 561323723,
-        "powerPerSec": 3986836308,
-        "goldPerSec": 52964224,
+        "power": 2551073796058,
+        "gold": 396781770,
+        "powerPerSec": 3986926164,
+        "goldPerSec": 52966272,
         "rank": "SS",
-        "totalBuildings": 549,
+        "totalBuildings": 550,
         "upgradesPurchased": 62,
-        "potentialSouls": 224,
+        "potentialSouls": 225,
         "rankTimestamps": {
           "E": 0,
-          "D": 14,
+          "D": 15,
           "C": 40,
-          "B": 85,
+          "B": 86,
           "A": 163,
-          "S": 343,
-          "SS": 1020
+          "S": 341,
+          "SS": 1010
         }
       },
       "1h": {
         "timeSeconds": 3600,
-        "power": 33223975221350,
-        "gold": 5311715704,
+        "power": 33193241153374,
+        "gold": 5023986724,
         "powerPerSec": 30647209320,
         "goldPerSec": 286473472,
         "rank": "SS",
@@ -1542,22 +1542,86 @@
           "E": 0,
           "D": 15,
           "C": 40,
-          "B": 83,
+          "B": 84,
           "A": 164,
-          "S": 341,
-          "SS": 1016
+          "S": 343,
+          "SS": 1017
         }
       },
       "2h": {
         "timeSeconds": 7200,
-        "power": 612494801939136,
-        "gold": 50614920761,
+        "power": 612841153953986,
+        "gold": 52628153617,
         "powerPerSec": 346330631088,
         "goldPerSec": 2011978496,
         "rank": "SSS",
         "totalBuildings": 817,
         "upgradesPurchased": 73,
-        "potentialSouls": 2660,
+        "potentialSouls": 2661,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 16,
+          "C": 40,
+          "B": 84,
+          "A": 164,
+          "S": 342,
+          "SS": 1016,
+          "SSS": 4020
+        }
+      },
+      "4h": {
+        "timeSeconds": 14400,
+        "power": 5355626149344874,
+        "gold": 258399307196,
+        "powerPerSec": 1158339276432,
+        "goldPerSec": 6286124416,
+        "rank": "SSS",
+        "totalBuildings": 949,
+        "upgradesPurchased": 75,
+        "potentialSouls": 7058,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 15,
+          "C": 40,
+          "B": 84,
+          "A": 163,
+          "S": 343,
+          "SS": 1017,
+          "SSS": 4021
+        }
+      },
+      "8h": {
+        "timeSeconds": 28800,
+        "power": 50254349742532220,
+        "gold": 1051526786517,
+        "powerPerSec": 3920608776864,
+        "goldPerSec": 15219289856,
+        "rank": "AWAKENED",
+        "totalBuildings": 1088,
+        "upgradesPurchased": 75,
+        "potentialSouls": 19332,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 15,
+          "C": 40,
+          "B": 83,
+          "A": 163,
+          "S": 342,
+          "SS": 1015,
+          "SSS": 4028,
+          "AWAKENED": 19084
+        }
+      },
+      "24h": {
+        "timeSeconds": 86400,
+        "power": 380279418344930750,
+        "gold": 11062142994143,
+        "powerPerSec": 6911612565312,
+        "goldPerSec": 25615091712,
+        "rank": "AWAKENED",
+        "totalBuildings": 1223,
+        "upgradesPurchased": 75,
+        "potentialSouls": 48062,
         "rankTimestamps": {
           "E": 0,
           "D": 16,
@@ -1566,78 +1630,14 @@
           "A": 164,
           "S": 343,
           "SS": 1017,
-          "SSS": 4021
-        }
-      },
-      "4h": {
-        "timeSeconds": 14400,
-        "power": 5359100320388208,
-        "gold": 277261398114,
-        "powerPerSec": 1158339276432,
-        "goldPerSec": 6286124416,
-        "rank": "SSS",
-        "totalBuildings": 949,
-        "upgradesPurchased": 75,
-        "potentialSouls": 7060,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 15,
-          "C": 40,
-          "B": 85,
-          "A": 168,
-          "S": 340,
-          "SS": 1014,
-          "SSS": 4018
-        }
-      },
-      "8h": {
-        "timeSeconds": 28800,
-        "power": 50273952725297160,
-        "gold": 1127629470458,
-        "powerPerSec": 3920608776864,
-        "goldPerSec": 15219289856,
-        "rank": "AWAKENED",
-        "totalBuildings": 1088,
-        "upgradesPurchased": 75,
-        "potentialSouls": 19335,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 16,
-          "C": 39,
-          "B": 83,
-          "A": 163,
-          "S": 341,
-          "SS": 1010,
-          "SSS": 4023,
-          "AWAKENED": 19079
-        }
-      },
-      "24h": {
-        "timeSeconds": 86400,
-        "power": 380377051054097340,
-        "gold": 11434159442040,
-        "powerPerSec": 6911612565312,
-        "goldPerSec": 25615091712,
-        "rank": "AWAKENED",
-        "totalBuildings": 1223,
-        "upgradesPurchased": 75,
-        "potentialSouls": 48067,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 16,
-          "C": 41,
-          "B": 84,
-          "A": 164,
-          "S": 343,
-          "SS": 1016,
-          "SSS": 4028,
-          "AWAKENED": 19086
+          "SSS": 4021,
+          "AWAKENED": 19100
         }
       },
       "7d": {
         "timeSeconds": 604800,
-        "power": 5456985306477644000,
-        "gold": 252657863349170,
+        "power": 5457025427851684000,
+        "gold": 252760994316261,
         "powerPerSec": 20061301318656,
         "goldPerSec": 51564264192,
         "rank": "TRANSCENDENT",
@@ -1646,157 +1646,157 @@
         "potentialSouls": 159363,
         "rankTimestamps": {
           "E": 0,
-          "D": 15,
+          "D": 17,
           "C": 40,
           "B": 85,
-          "A": 167,
-          "S": 344,
-          "SS": 1013,
-          "SSS": 4026,
-          "AWAKENED": 19082,
-          "TRANSCENDENT": 581794
+          "A": 164,
+          "S": 342,
+          "SS": 1011,
+          "SSS": 4024,
+          "AWAKENED": 19080,
+          "TRANSCENDENT": 581792
         }
       }
     },
     "CASUAL": {
       "1m": {
         "timeSeconds": 60,
-        "power": 4028,
-        "gold": 4,
-        "powerPerSec": 133,
-        "goldPerSec": 100,
+        "power": 4518,
+        "gold": 11,
+        "powerPerSec": 138,
+        "goldPerSec": 104,
         "rank": "D",
-        "totalBuildings": 25,
-        "upgradesPurchased": 4,
+        "totalBuildings": 26,
+        "upgradesPurchased": 5,
         "potentialSouls": 0,
         "rankTimestamps": {
           "E": 0,
-          "D": 44
+          "D": 42
         }
       },
       "5m": {
         "timeSeconds": 300,
-        "power": 189687229,
-        "gold": 211230,
-        "powerPerSec": 7039620,
-        "goldPerSec": 1198796,
+        "power": 150211485,
+        "gold": 214105,
+        "powerPerSec": 4930587,
+        "goldPerSec": 848717,
         "rank": "A",
-        "totalBuildings": 252,
-        "upgradesPurchased": 65,
+        "totalBuildings": 246,
+        "upgradesPurchased": 64,
         "potentialSouls": 0,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 42,
-          "C": 86,
-          "B": 150,
-          "A": 247
-        }
-      },
-      "10m": {
-        "timeSeconds": 600,
-        "power": 43168681421,
-        "gold": 11010966,
-        "powerPerSec": 404181718,
-        "goldPerSec": 22171379,
-        "rank": "S",
-        "totalBuildings": 431,
-        "upgradesPurchased": 91,
-        "potentialSouls": 36,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 45,
-          "C": 88,
-          "B": 151,
-          "A": 253,
-          "S": 391
-        }
-      },
-      "15m": {
-        "timeSeconds": 900,
-        "power": 414350183255,
-        "gold": 10060631,
-        "powerPerSec": 2724891202,
-        "goldPerSec": 76629529,
-        "rank": "SS",
-        "totalBuildings": 517,
-        "upgradesPurchased": 97,
-        "potentialSouls": 99,
         "rankTimestamps": {
           "E": 0,
           "D": 43,
           "C": 89,
           "B": 156,
-          "A": 256,
-          "S": 396,
-          "SS": 826
+          "A": 256
         }
       },
-      "30m": {
-        "timeSeconds": 1800,
-        "power": 11303023256083,
-        "gold": 595773972,
-        "powerPerSec": 26480680574,
-        "goldPerSec": 567587737,
-        "rank": "SS",
-        "totalBuildings": 663,
-        "upgradesPurchased": 107,
-        "potentialSouls": 441,
+      "10m": {
+        "timeSeconds": 600,
+        "power": 41654870272,
+        "gold": 24717588,
+        "powerPerSec": 336431613,
+        "goldPerSec": 18962451,
+        "rank": "S",
+        "totalBuildings": 431,
+        "upgradesPurchased": 89,
+        "potentialSouls": 35,
         "rankTimestamps": {
           "E": 0,
           "D": 42,
           "C": 87,
-          "B": 153,
-          "A": 256,
-          "S": 393,
-          "SS": 819
+          "B": 152,
+          "A": 254,
+          "S": 389
+        }
+      },
+      "15m": {
+        "timeSeconds": 900,
+        "power": 418656813875,
+        "gold": 13982648,
+        "powerPerSec": 2681330839,
+        "goldPerSec": 75509094,
+        "rank": "SS",
+        "totalBuildings": 517,
+        "upgradesPurchased": 97,
+        "potentialSouls": 100,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 42,
+          "C": 88,
+          "B": 156,
+          "A": 260,
+          "S": 397,
+          "SS": 824
+        }
+      },
+      "30m": {
+        "timeSeconds": 1800,
+        "power": 11064726472044,
+        "gold": 449228935,
+        "powerPerSec": 26479906814,
+        "goldPerSec": 567562137,
+        "rank": "SS",
+        "totalBuildings": 662,
+        "upgradesPurchased": 107,
+        "potentialSouls": 437,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 44,
+          "C": 92,
+          "B": 158,
+          "A": 259,
+          "S": 394,
+          "SS": 823
         }
       },
       "1h": {
         "timeSeconds": 3600,
-        "power": 263299538712386,
-        "gold": 50284887556,
+        "power": 262970572828289,
+        "gold": 46114303953,
         "powerPerSec": 355553310091,
         "goldPerSec": 4167534438,
         "rank": "SSS",
         "totalBuildings": 820,
         "upgradesPurchased": 116,
-        "potentialSouls": 1819,
+        "potentialSouls": 1818,
         "rankTimestamps": {
           "E": 0,
-          "D": 43,
-          "C": 88,
-          "B": 157,
-          "A": 256,
-          "S": 396,
-          "SS": 826,
-          "SSS": 2644
+          "D": 42,
+          "C": 85,
+          "B": 149,
+          "A": 254,
+          "S": 394,
+          "SS": 818,
+          "SSS": 2645
         }
       },
       "2h": {
         "timeSeconds": 7200,
-        "power": 2925576818853644,
-        "gold": 320056757069,
+        "power": 2917860676125243,
+        "gold": 236417261977,
         "powerPerSec": 1929066769905,
         "goldPerSec": 20908653619,
         "rank": "SSS",
         "totalBuildings": 966,
         "upgradesPurchased": 119,
-        "potentialSouls": 5377,
+        "potentialSouls": 5370,
         "rankTimestamps": {
           "E": 0,
-          "D": 42,
-          "C": 86,
-          "B": 147,
-          "A": 251,
-          "S": 388,
-          "SS": 819,
-          "SSS": 2637
+          "D": 43,
+          "C": 91,
+          "B": 153,
+          "A": 252,
+          "S": 391,
+          "SS": 823,
+          "SSS": 2641
         }
       },
       "4h": {
         "timeSeconds": 14400,
-        "power": 24334049173245270,
-        "gold": 1899603242437,
+        "power": 24334049173191616,
+        "gold": 1899603242428,
         "powerPerSec": 4085909476116,
         "goldPerSec": 31770173568,
         "rank": "AWAKENED",
@@ -1805,7 +1805,7 @@
         "potentialSouls": 13949,
         "rankTimestamps": {
           "E": 0,
-          "D": 44,
+          "D": 42,
           "C": 90,
           "B": 155,
           "A": 266,
@@ -1817,86 +1817,85 @@
       },
       "8h": {
         "timeSeconds": 28800,
-        "power": 101617980267628050,
-        "gold": 11380298735628,
+        "power": 101604923282018450,
+        "gold": 11282735112969,
         "powerPerSec": 6528821475072,
         "goldPerSec": 48780781056,
         "rank": "AWAKENED",
         "totalBuildings": 1193,
         "upgradesPurchased": 119,
-        "potentialSouls": 26539,
+        "potentialSouls": 26538,
         "rankTimestamps": {
           "E": 0,
-          "D": 43,
+          "D": 44,
           "C": 89,
           "B": 155,
-          "A": 258,
+          "A": 256,
           "S": 395,
-          "SS": 821,
-          "SSS": 2648,
-          "AWAKENED": 12057
+          "SS": 823,
+          "SSS": 2650,
+          "AWAKENED": 12059
         }
       },
       "24h": {
         "timeSeconds": 86400,
-        "power": 552464465643216200,
-        "gold": 43656310578497,
+        "power": 552516417609306940,
+        "gold": 44044868357194,
         "powerPerSec": 8658351831168,
         "goldPerSec": 64758439936,
         "rank": "AWAKENED",
         "totalBuildings": 1310,
         "upgradesPurchased": 119,
-        "potentialSouls": 56858,
+        "potentialSouls": 56860,
         "rankTimestamps": {
           "E": 0,
-          "D": 42,
-          "C": 91,
-          "B": 156,
-          "A": 258,
-          "S": 398,
-          "SS": 826,
-          "SSS": 2653,
-          "AWAKENED": 12062
+          "D": 44,
+          "C": 89,
+          "B": 155,
+          "A": 257,
+          "S": 396,
+          "SS": 820,
+          "SSS": 2647,
+          "AWAKENED": 12056
         }
       },
       "7d": {
         "timeSeconds": 604800,
-        "power": 9972432910896695000,
-        "gold": 245072658232042,
+        "power": 9972689008616903000,
+        "gold": 246428288507364,
         "powerPerSec": 28688258756352,
         "goldPerSec": 150628959488,
         "rank": "TRANSCENDENT",
         "totalBuildings": 1504,
         "upgradesPurchased": 119,
-        "potentialSouls": 209035,
+        "potentialSouls": 209037,
         "rankTimestamps": {
           "E": 0,
           "D": 42,
-          "C": 88,
-          "B": 151,
-          "A": 255,
-          "S": 393,
-          "SS": 819,
-          "SSS": 2641,
-          "AWAKENED": 12047,
-          "TRANSCENDENT": 427675
+          "C": 86,
+          "B": 149,
+          "A": 249,
+          "S": 388,
+          "SS": 811,
+          "SSS": 2625,
+          "AWAKENED": 12039,
+          "TRANSCENDENT": 427666
         }
       }
     },
     "IDLE": {
       "1m": {
         "timeSeconds": 60,
-        "power": 1230,
-        "gold": 2,
-        "powerPerSec": 92,
-        "goldPerSec": 76,
-        "rank": "D",
+        "power": 1165,
+        "gold": 52,
+        "powerPerSec": 44,
+        "goldPerSec": 40,
+        "rank": "E",
         "totalBuildings": 19,
-        "upgradesPurchased": 4,
+        "upgradesPurchased": 3,
         "potentialSouls": 0,
         "rankTimestamps": {
-          "E": 0,
-          "D": 59
+          "E": 0
         }
       },
       "5m": {
@@ -1978,14 +1977,56 @@
       },
       "1h": {
         "timeSeconds": 3600,
-        "power": 258430454752314,
-        "gold": 50003877080,
-        "powerPerSec": 353067060091,
-        "goldPerSec": 4143534438,
+        "power": 251645972946001,
+        "gold": 18289822040,
+        "powerPerSec": 352748820091,
+        "goldPerSec": 4139182438,
         "rank": "SSS",
-        "totalBuildings": 819,
+        "totalBuildings": 818,
         "upgradesPurchased": 116,
-        "potentialSouls": 1804,
+        "potentialSouls": 1782,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422,
+          "SS": 850,
+          "SSS": 2677
+        }
+      },
+      "2h": {
+        "timeSeconds": 7200,
+        "power": 2848447437625187,
+        "gold": 403665142858,
+        "powerPerSec": 1926146880777,
+        "goldPerSec": 20872719667,
+        "rank": "SSS",
+        "totalBuildings": 964,
+        "upgradesPurchased": 119,
+        "potentialSouls": 5312,
+        "rankTimestamps": {
+          "E": 0,
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422,
+          "SS": 850,
+          "SSS": 2677
+        }
+      },
+      "4h": {
+        "timeSeconds": 14400,
+        "power": 24299266356874496,
+        "gold": 1645390919095,
+        "powerPerSec": 4085909476116,
+        "goldPerSec": 31770173568,
+        "rank": "AWAKENED",
+        "totalBuildings": 1104,
+        "upgradesPurchased": 119,
+        "potentialSouls": 13940,
         "rankTimestamps": {
           "E": 0,
           "D": 59,
@@ -1994,40 +2035,20 @@
           "A": 281,
           "S": 414,
           "SS": 837,
-          "SSS": 2652
+          "SSS": 2652,
+          "AWAKENED": 12066
         }
       },
-      "2h": {
-        "timeSeconds": 7200,
-        "power": 2875446482481597,
-        "gold": 244034991773,
-        "powerPerSec": 1929065496945,
-        "goldPerSec": 20908628019,
-        "rank": "SSS",
-        "totalBuildings": 965,
-        "upgradesPurchased": 119,
-        "potentialSouls": 5335,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 60,
-          "C": 112,
-          "B": 184,
-          "A": 271,
-          "S": 409,
-          "SS": 836,
-          "SSS": 2663
-        }
-      },
-      "4h": {
-        "timeSeconds": 14400,
-        "power": 24217969038933230,
-        "gold": 1009950431279,
-        "powerPerSec": 4085909476116,
-        "goldPerSec": 31770173568,
+      "8h": {
+        "timeSeconds": 28800,
+        "power": 101428644257250500,
+        "gold": 9965620480466,
+        "powerPerSec": 6528821475072,
+        "goldPerSec": 48780781056,
         "rank": "AWAKENED",
-        "totalBuildings": 1104,
+        "totalBuildings": 1193,
         "upgradesPurchased": 119,
-        "potentialSouls": 13919,
+        "potentialSouls": 26517,
         "rankTimestamps": {
           "E": 0,
           "D": 60,
@@ -2040,54 +2061,32 @@
           "AWAKENED": 12086
         }
       },
-      "8h": {
-        "timeSeconds": 28800,
-        "power": 101558799815170800,
-        "gold": 10941273118041,
-        "powerPerSec": 6528821475072,
-        "goldPerSec": 48780781056,
-        "rank": "AWAKENED",
-        "totalBuildings": 1193,
-        "upgradesPurchased": 119,
-        "potentialSouls": 26532,
-        "rankTimestamps": {
-          "E": 0,
-          "D": 59,
-          "C": 110,
-          "B": 184,
-          "A": 281,
-          "S": 414,
-          "SS": 837,
-          "SSS": 2652,
-          "AWAKENED": 12066
-        }
-      },
       "24h": {
         "timeSeconds": 86400,
-        "power": 552429411264098000,
-        "gold": 43397284377441,
+        "power": 552256665099055170,
+        "gold": 42102078562265,
         "powerPerSec": 8658351831168,
         "goldPerSec": 64758439936,
         "rank": "AWAKENED",
         "totalBuildings": 1310,
         "upgradesPurchased": 119,
-        "potentialSouls": 56856,
+        "potentialSouls": 56848,
         "rankTimestamps": {
           "E": 0,
-          "D": 59,
-          "C": 110,
-          "B": 184,
-          "A": 281,
-          "S": 414,
-          "SS": 837,
-          "SSS": 2652,
-          "AWAKENED": 12066
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422,
+          "SS": 850,
+          "SSS": 2677,
+          "AWAKENED": 12086
         }
       },
       "7d": {
         "timeSeconds": 604800,
-        "power": 9971312394173078000,
-        "gold": 239198027318718,
+        "power": 9971341082435918000,
+        "gold": 239348657505545,
         "powerPerSec": 28688258756352,
         "goldPerSec": 150628959488,
         "rank": "TRANSCENDENT",
@@ -2096,15 +2095,15 @@
         "potentialSouls": 209024,
         "rankTimestamps": {
           "E": 0,
-          "D": 59,
-          "C": 115,
-          "B": 189,
-          "A": 287,
-          "S": 423,
-          "SS": 851,
-          "SSS": 2678,
-          "AWAKENED": 12087,
-          "TRANSCENDENT": 427714
+          "D": 60,
+          "C": 114,
+          "B": 188,
+          "A": 286,
+          "S": 422,
+          "SS": 850,
+          "SSS": 2677,
+          "AWAKENED": 12086,
+          "TRANSCENDENT": 427713
         }
       }
     }
@@ -2113,9 +2112,9 @@
     {
       "runIndex": 1,
       "durationSeconds": 3600,
-      "finalPower": 33070482898261.824,
-      "soulsEarned": 715,
-      "totalSouls": 684,
+      "finalPower": 33223893611251.273,
+      "soulsEarned": 716,
+      "totalSouls": 685,
       "highestRank": "SS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2123,9 +2122,9 @@
     {
       "runIndex": 2,
       "durationSeconds": 3600,
-      "finalPower": 81615988619484.38,
+      "finalPower": 81581940737491.9,
       "soulsEarned": 1235,
-      "totalSouls": 1869,
+      "totalSouls": 1870,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2133,9 +2132,9 @@
     {
       "runIndex": 3,
       "durationSeconds": 3600,
-      "finalPower": 176420738355177.2,
-      "soulsEarned": 1975,
-      "totalSouls": 3750,
+      "finalPower": 175652103127354.72,
+      "soulsEarned": 1971,
+      "totalSouls": 3747,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2143,9 +2142,9 @@
     {
       "runIndex": 4,
       "durationSeconds": 3600,
-      "finalPower": 358826426463463.9,
-      "soulsEarned": 3032,
-      "totalSouls": 6610,
+      "finalPower": 356877258662284.3,
+      "soulsEarned": 3025,
+      "totalSouls": 6600,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2153,9 +2152,9 @@
     {
       "runIndex": 5,
       "durationSeconds": 3600,
-      "finalPower": 801938221269703.4,
-      "soulsEarned": 4805,
-      "totalSouls": 11102,
+      "finalPower": 796409254283736.8,
+      "soulsEarned": 4790,
+      "totalSouls": 11077,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2163,9 +2162,9 @@
     {
       "runIndex": 6,
       "durationSeconds": 3600,
-      "finalPower": 1440471880543713.5,
-      "soulsEarned": 6841,
-      "totalSouls": 17369,
+      "finalPower": 1459957264099404,
+      "soulsEarned": 6882,
+      "totalSouls": 17385,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2173,9 +2172,9 @@
     {
       "runIndex": 7,
       "durationSeconds": 3600,
-      "finalPower": 2344831835724239,
-      "soulsEarned": 9248,
-      "totalSouls": 25554,
+      "finalPower": 2330682998820296,
+      "soulsEarned": 9223,
+      "totalSouls": 25545,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2183,9 +2182,9 @@
     {
       "runIndex": 8,
       "durationSeconds": 3600,
-      "finalPower": 3524657801093967,
-      "soulsEarned": 11987,
-      "totalSouls": 35574,
+      "finalPower": 3521099461155989.5,
+      "soulsEarned": 11981,
+      "totalSouls": 35559,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2193,9 +2192,9 @@
     {
       "runIndex": 9,
       "durationSeconds": 3600,
-      "finalPower": 5389463257398145,
-      "soulsEarned": 15573,
-      "totalSouls": 47490,
+      "finalPower": 5421342642928304,
+      "soulsEarned": 15614,
+      "totalSouls": 47516,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2203,9 +2202,9 @@
     {
       "runIndex": 10,
       "durationSeconds": 3600,
-      "finalPower": 7553195656122968,
-      "soulsEarned": 19363,
-      "totalSouls": 60020,
+      "finalPower": 7596865567019846,
+      "soulsEarned": 19413,
+      "totalSouls": 60096,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2213,9 +2212,9 @@
     {
       "runIndex": 11,
       "durationSeconds": 3600,
-      "finalPower": 10491615860517934,
-      "soulsEarned": 23882,
-      "totalSouls": 71097,
+      "finalPower": 10483085278308040,
+      "soulsEarned": 23873,
+      "totalSouls": 71164,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2223,9 +2222,9 @@
     {
       "runIndex": 12,
       "durationSeconds": 3600,
-      "finalPower": 14008881701768810,
-      "soulsEarned": 28832,
-      "totalSouls": 75851,
+      "finalPower": 13959847752345494,
+      "soulsEarned": 28787,
+      "totalSouls": 75873,
       "highestRank": "SSS",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2233,9 +2232,9 @@
     {
       "runIndex": 13,
       "durationSeconds": 3600,
-      "finalPower": 20253192252465080,
-      "soulsEarned": 35961,
-      "totalSouls": 66379,
+      "finalPower": 19782273486705456,
+      "soulsEarned": 35582,
+      "totalSouls": 66022,
       "highestRank": "AWAKENED",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2243,9 +2242,9 @@
     {
       "runIndex": 14,
       "durationSeconds": 3600,
-      "finalPower": 34960317449233840,
-      "soulsEarned": 48438,
-      "totalSouls": 28846,
+      "finalPower": 34181982980527416,
+      "soulsEarned": 47950,
+      "totalSouls": 28001,
       "highestRank": "AWAKENED",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2253,9 +2252,9 @@
     {
       "runIndex": 15,
       "durationSeconds": 3600,
-      "finalPower": 50370897077796060,
-      "soulsEarned": 59993,
-      "totalSouls": 40672,
+      "finalPower": 50742291276500560,
+      "soulsEarned": 60191,
+      "totalSouls": 40025,
       "highestRank": "AWAKENED",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2263,9 +2262,9 @@
     {
       "runIndex": 16,
       "durationSeconds": 3600,
-      "finalPower": 68923814744538240,
-      "soulsEarned": 69085,
-      "totalSouls": 36973,
+      "finalPower": 68722622223963480,
+      "soulsEarned": 68994,
+      "totalSouls": 36235,
       "highestRank": "AWAKENED",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2273,9 +2272,9 @@
     {
       "runIndex": 17,
       "durationSeconds": 3600,
-      "finalPower": 85243327223450270,
-      "soulsEarned": 76018,
-      "totalSouls": 57437,
+      "finalPower": 85656413729213730,
+      "soulsEarned": 76183,
+      "totalSouls": 56864,
       "highestRank": "AWAKENED",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2283,9 +2282,9 @@
     {
       "runIndex": 18,
       "durationSeconds": 3600,
-      "finalPower": 105687016867413150,
-      "soulsEarned": 83739,
-      "totalSouls": 44680,
+      "finalPower": 106426975833098100,
+      "soulsEarned": 84002,
+      "totalSouls": 44370,
       "highestRank": "AWAKENED",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2293,9 +2292,9 @@
     {
       "runIndex": 19,
       "durationSeconds": 3600,
-      "finalPower": 128268064944367660,
-      "soulsEarned": 91363,
-      "totalSouls": 10692,
+      "finalPower": 129003018049737580,
+      "soulsEarned": 91598,
+      "totalSouls": 10617,
       "highestRank": "AWAKENED",
       "highestFloor": 1,
       "highestStage": "5-10"
@@ -2303,9 +2302,9 @@
     {
       "runIndex": 20,
       "durationSeconds": 3600,
-      "finalPower": 150406080443068700,
-      "soulsEarned": 98149,
-      "totalSouls": 27742,
+      "finalPower": 149482177862234900,
+      "soulsEarned": 97878,
+      "totalSouls": 27396,
       "highestRank": "AWAKENED",
       "highestFloor": 1,
       "highestStage": "5-10"

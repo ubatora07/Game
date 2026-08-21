@@ -64,7 +64,11 @@ export class FantasyApp {
     shell.appendChild(this.viewportEl);
 
     this.bottomNav = new BottomNav((tab) => {
-      this.switchTab(tab);
+      if (this.currentTab === tab && tab === 'battle') {
+        this.battleView.handleAttackClick();
+      } else {
+        this.switchTab(tab);
+      }
     });
     shell.appendChild(this.bottomNav.getElement());
 

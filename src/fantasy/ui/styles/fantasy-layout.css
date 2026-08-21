@@ -1,4 +1,4 @@
-/* Base Reset & Shell */
+/* Base Reset & 1920x1080 Shell */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,138 +10,395 @@
 body, html {
   width: 100%;
   height: 100%;
-  background: var(--f-bg-core);
+  background: #000000;
   color: var(--f-text-main);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fantasy-shell {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  background: var(--f-bg-core);
+  width: 1920px;
+  height: 1080px;
+  max-width: 1920px;
+  max-height: 1080px;
+  background: #ffffff;
   position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
 }
 
-/* Top HUD */
+/* Responsive Auto-Scale Container if screen is not exactly 1920x1080 */
+@media (max-width: 1919px), (max-height: 1079px) {
+  .fantasy-shell {
+    transform-origin: center center;
+    transform: scale(min(calc(100vw / 1920), calc(100vh / 1080)));
+  }
+}
+
+/* Top HUD (Figma Reference: Header_frame left:-16, top:0, width:1950, height:274) */
 .fantasy-top-hud {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 274px;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.hud-brown-bg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1920px;
+  height: 86px;
+  image-rendering: pixelated;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hud-header-frame {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1920px;
+  height: 300px;
+  image-rendering: pixelated;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hud-hero-avatar-wrap {
+  position: absolute;
+  left: 60px;
+  top: 106px;
+  width: 134px;
+  height: 134px;
+  z-index: 10;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hud-hero-avatar-img {
+  width: 127px;
+  height: 127px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.hud-slot-upper {
+  position: absolute;
+  left: 200px;
+  top: 122px;
+  width: 405px;
+  height: 42px;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--f-space-sm) var(--f-space-lg);
-  background: var(--f-bg-panel);
-  border-bottom: 2px solid var(--f-border-gold);
-  z-index: 50;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  padding: 0 16px;
+  pointer-events: auto;
 }
 
-.hud-hero-badge {
-  display: flex;
-  align-items: center;
-  gap: var(--f-space-sm);
+.hud-hero-level-text {
+  font-family: var(--font-display, sans-serif);
+  font-size: 15px;
+  font-weight: 900;
+  color: #fde047;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hud-hero-class-text {
+  font-family: var(--font-display, sans-serif);
+  font-size: 12px;
   font-weight: 800;
-  font-size: 14px;
-  color: var(--f-gold-bright);
+  color: #cbd5e1;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
-.hud-currencies {
+.hud-slot-lower {
+  position: absolute;
+  left: 200px;
+  top: 176px;
+  width: 405px;
+  height: 42px;
+  z-index: 10;
   display: flex;
   align-items: center;
-  gap: var(--f-space-md);
-  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 16px;
+  pointer-events: auto;
 }
 
-.hud-chip {
-  display: flex;
-  align-items: center;
-  gap: var(--f-space-xs);
-  background: var(--f-bg-card);
-  border: 1px solid var(--f-border-subtle);
-  padding: var(--f-space-xs) var(--f-space-sm);
-  border-radius: var(--f-radius-sm);
+.hud-hero-power-label {
+  font-family: var(--font-display, sans-serif);
   font-size: 12px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  color: #f87171;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
-.hud-chip.gold { color: var(--f-gold-bright); border-color: var(--f-gold); }
-.hud-chip.gems { color: var(--f-gems); }
-.hud-chip.power { color: var(--f-power); border-color: rgba(239, 68, 68, 0.4); }
-
-.hud-menu-btn {
-  background: var(--f-bg-card);
-  border: 1px solid var(--f-border-gold);
-  color: var(--f-gold-bright);
-  padding: var(--f-space-xs) var(--f-space-md);
-  border-radius: var(--f-radius-sm);
-  font-weight: 700;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.15s ease;
+.hud-hero-power-val {
+  font-family: var(--font-display, sans-serif);
+  font-size: 16px;
+  font-weight: 900;
+  color: #fef08a;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
-.hud-menu-btn:hover {
-  background: var(--f-gold);
-  color: #000;
-}
-
-/* Viewport Area */
-.fantasy-viewport {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Bottom Navigation Bar */
-.fantasy-bottom-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background: var(--f-bg-panel);
-  border-top: 2px solid var(--f-border-gold);
-  padding: var(--f-space-xs) var(--f-space-sm);
-  z-index: 50;
-  flex-shrink: 0;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.nav-item-btn {
-  flex: 1;
-  max-width: 180px;
-  height: 64px;
-  padding: var(--f-space-xs);
-  background: transparent;
-  border: none;
-  border-radius: var(--f-radius-sm);
-  color: var(--f-text-dim);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
+/* Center Stage & World Header (Inside ornate crest) */
+.hud-center-stage {
+  position: absolute;
+  left: 740px;
+  top: 86px;
+  width: 440px;
+  text-align: center;
+  z-index: 10;
+  pointer-events: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  transition: all 0.15s ease;
+}
+
+.hud-world-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #cbd5e1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hud-stage-title {
+  font-family: var(--font-display, sans-serif);
+  font-size: 22px;
+  font-weight: 900;
+  color: #fde047;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  letter-spacing: 1px;
+}
+
+.hud-wave-nodes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.hud-resource-slot {
+  position: absolute;
+  z-index: 10;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud-res-icon {
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.hud-res-value {
+  font-family: var(--font-display, sans-serif);
+  font-size: 20px;
+  font-weight: 900;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.5px;
+}
+
+/* Gold slot (Coin: 64x64 at left:1282, top:124) */
+.gold-slot {
+  left: 1282px;
+  top: 124px;
+}
+.gold-slot .coin-icon {
+  width: 64px;
+  height: 64px;
+}
+.gold-slot .hud-gold-text {
+  color: #fde047;
+}
+
+/* Power slot (Sword_Power: 51x51 at left:1455, top:130) */
+.power-slot {
+  left: 1455px;
+  top: 130px;
+}
+.power-slot .power-icon {
+  width: 51px;
+  height: 51px;
+}
+.power-slot .hud-power-text {
+  color: #f87171;
+}
+
+/* Gems slot (Diamond: 64x64 at left:1606, top:124) */
+.gems-slot {
+  left: 1606px;
+  top: 124px;
+}
+.gems-slot .diamond-icon {
+  width: 64px;
+  height: 64px;
+}
+.gems-slot .hud-gems-text {
+  color: #38bdf8;
+}
+
+/* Settings button (96x96 at left:1788, top:108) */
+.hud-settings-btn {
+  position: absolute;
+  left: 1788px;
+  top: 108px;
+  width: 96px;
+  height: 96px;
+  z-index: 10;
+  pointer-events: auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--t-fast);
+}
+
+.hud-settings-btn:hover {
+  transform: rotate(30deg) scale(1.08);
+}
+
+.hud-settings-btn:active {
+  transform: rotate(60deg) scale(0.95);
+}
+
+.hud-gear-icon {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+/* Viewport Area */
+.fantasy-viewport {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Bottom Navigation Bar (Figma Reference: Footer_frame left:0, top:853, width:1920, height:227) */
+.fantasy-bottom-nav {
+  position: absolute;
+  left: 0;
+  top: 853px;
+  width: 1920px;
+  height: 227px;
+  z-index: 50;
+  background: transparent;
+  pointer-events: none;
+}
+
+.nav-footer-frame {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1920px;
+  height: 227px;
+  image-rendering: pixelated;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.nav-item-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.1s ease, filter 0.15s ease;
 }
 
 .nav-item-btn:hover {
-  color: var(--f-text-main);
-  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.05);
+  filter: brightness(1.15);
 }
 
-.nav-item-btn.active {
-  color: var(--f-gold-bright);
-  background: url('/assets/fantasy/ui/nav_tab.png') no-repeat center / contain;
-  border: none;
+.nav-item-btn:active {
+  transform: scale(0.96);
 }
 
-/* Battle Stage Overlay UI */
+.nav-button-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+/* Exact Figma Button Positions:
+   Battle: left: 217, top: 20, width: 208, height: 192
+   Hero: left: 517, top: 24, width: 226, height: 183
+   Gear: left: 847, top: 27, width: 237, height: 180
+   Upgrades: left: 1172, top: 32, width: 221, height: 170
+   World: left: 1491, top: 29, width: 231, height: 173
+*/
+.btn-battle {
+  left: 217px;
+  top: 20px;
+  width: 208px;
+  height: 192px;
+  z-index: 5;
+}
+
+.btn-hero {
+  left: 517px;
+  top: 24px;
+  width: 226px;
+  height: 183px;
+  z-index: 5;
+}
+
+.btn-gear {
+  left: 847px;
+  top: 27px;
+  width: 237px;
+  height: 180px;
+  z-index: 5;
+}
+
+.btn-upgrades {
+  left: 1172px;
+  top: 32px;
+  width: 221px;
+  height: 170px;
+  z-index: 5;
+}
+
+.btn-world {
+  left: 1491px;
+  top: 29px;
+  width: 231px;
+  height: 173px;
+  z-index: 5;
+}
+
+/* Battle Stage Overlay UI (Boss status and battle controls) */
 .battle-overlay-container {
   position: absolute;
   top: 0;
@@ -149,91 +406,45 @@ body, html {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 20;
+}
+
+.boss-status-wrap {
+  position: absolute;
+  left: 740px;
+  top: 210px;
+  width: 440px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: var(--f-space-md);
-  box-sizing: border-box;
-}
-
-.stage-title-card {
-  align-self: center;
-  background: rgba(12, 10, 9, 0.85);
-  border: 1px solid var(--f-border-gold);
-  border-radius: var(--f-radius-md);
-  padding: var(--f-space-sm) var(--f-space-lg);
-  text-align: center;
-  pointer-events: auto;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
-}
-
-.stage-world-name {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--f-gold-bright);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.stage-number {
-  font-size: 12px;
-  color: var(--f-text-dim);
-  margin-top: 2px;
-}
-
-.wave-nodes-bar {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 6px;
+  pointer-events: auto;
 }
 
 .wave-node {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--f-bg-card);
-  border: 1px solid var(--f-border-subtle);
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #78350f;
 }
 
 .wave-node.completed {
-  background: var(--f-gold-bright);
-  border-color: var(--f-gold);
-  box-shadow: 0 0 6px var(--f-gold-glow);
+  background: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b;
 }
 
 .wave-node.boss {
-  border-radius: 2px;
-  background: var(--f-red);
   border-color: #ef4444;
+  background: #7f1d1d;
 }
 
-/* Production Attack Button (Display: 320x76) */
+.wave-node.boss.completed {
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+}
+
 .battle-controls-bottom {
-  align-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--f-space-sm);
-  pointer-events: auto;
-  margin-bottom: var(--f-space-sm);
-}
-
-.attack-btn {
-  width: 320px;
-  height: 76px;
-  background: url('/assets/fantasy/ui/btn_attack.png') no-repeat center / contain;
-  border: none;
-  color: transparent;
-  cursor: pointer;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
-  transition: transform 0.08s ease, filter 0.08s ease;
-}
-
-.attack-btn:active {
-  transform: scale(0.95);
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8)) brightness(0.9);
+  display: none;
 }
 
 .battle-meta-chips {

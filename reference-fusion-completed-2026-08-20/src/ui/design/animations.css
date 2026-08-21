@@ -1,0 +1,247 @@
+/* Hero Breathing & Floating Animation */
+@keyframes heroFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+/* Aura Glow Pulsing */
+@keyframes auraPulse {
+  0%, 100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 35px currentColor);
+  }
+}
+
+/* Celestial Swirl */
+@keyframes celestialRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button Pulse for Available Upgrade / Ascension Ready */
+@keyframes buttonReadyGlow {
+  0%, 100% {
+    box-shadow: var(--glow-gold-pulse-low);
+    border-color: rgba(245, 158, 11, 0.8);
+  }
+  50% {
+    box-shadow: var(--glow-gold-pulse-high);
+    border-color: #fde047;
+  }
+}
+
+/* Screen Shake for Crits & Boss Attacks */
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-4px, 3px); }
+  40% { transform: translate(4px, -3px); }
+  60% { transform: translate(-3px, -2px); }
+  80% { transform: translate(3px, 2px); }
+}
+
+.shake-active {
+  animation: screenShake 0.2s ease-in-out;
+}
+
+/* Floating Number Popups */
+@keyframes floatUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-15px) scale(1.15);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-45px) scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-65px) scale(0.85);
+  }
+}
+
+.floating-number {
+  position: absolute;
+  pointer-events: none;
+  font-family: var(--font-display);
+  font-weight: bold;
+  font-size: 20px;
+  animation: floatUpFade 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 100;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.floating-number.crit {
+  font-size: 28px;
+  color: #fde047;
+  text-shadow: 0 0 15px rgba(245, 158, 11, 0.9), 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Modal Pop In */
+@keyframes modalPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-content-animated {
+  animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pixel Art Animation Suite */
+.pixel-sprite {
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+  user-select: none;
+}
+
+@keyframes pixelIdle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-pixel-idle {
+  animation: pixelIdle 2.4s ease-in-out infinite;
+}
+
+@keyframes runCycle {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-4px) rotate(1deg); }
+}
+
+.animate-run-cycle {
+  animation: runCycle 0.28s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes slashDash {
+  0% { transform: translateX(0) scale(1); }
+  35% { transform: translateX(18px) scale(1.1); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+.animate-slash {
+  animation: slashDash 0.28s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes critCleave {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(6px, -12px) scale(1.2); }
+  55% { transform: translate(24px, 4px) scale(1.15); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.animate-crit-cleave {
+  animation: critCleave 0.38s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes pixelHurt {
+  0% { transform: translateX(0); filter: brightness(2.2) drop-shadow(0 0 10px #ef4444); }
+  40% { transform: translateX(-8px) scale(0.95); filter: brightness(1.8) drop-shadow(0 0 8px #ef4444); }
+  100% { transform: translateX(0) scale(1); filter: none; }
+}
+
+.animate-hurt {
+  animation: pixelHurt 0.25s ease-out;
+}
+
+@keyframes victoryCheer {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-12px) scale(1.08); }
+  60% { transform: translateY(-16px) scale(1.12); }
+}
+
+.animate-victory-cheer {
+  animation: victoryCheer 0.8s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 2.8s ease-in-out infinite;
+}
+
+@keyframes floatMedium {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+.animate-float-medium {
+  animation: floatMedium 2.2s ease-in-out infinite;
+}
+
+@keyframes sovereignFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.04); }
+}
+
+.animate-sovereign-float {
+  animation: sovereignFloat 3s ease-in-out infinite;
+}
+
+@keyframes slashArc {
+  0% { opacity: 0; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+.animate-slash-arc {
+  animation: slashArc 0.25s ease-out forwards;
+}
+
+
+
+/* Presentation-only combat states. Simulation timing never depends on these animations. */
+@keyframes heroDefeatFall {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  60% { transform: translateY(7px) rotate(-8deg); opacity: .72; }
+  100% { transform: translateY(11px) rotate(-12deg); opacity: .42; }
+}
+.animate-defeat-fall {
+  animation: heroDefeatFall .42s ease-out forwards;
+  transform-origin: 50% 90%;
+}
+
+@keyframes enemyAttackLunge {
+  0%, 100% { transform: translateX(0) scale(1); }
+  55% { transform: translateX(-9px) scale(1.05); }
+}
+@keyframes enemyHurtRecoil {
+  0% { transform: translateX(0) scale(1); filter: brightness(1); }
+  35% { transform: translateX(7px) scale(.94); filter: brightness(1.6); }
+  100% { transform: translateX(0) scale(1); filter: brightness(1); }
+}
+@keyframes enemyDeathFall {
+  0% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
+  100% { transform: translateY(12px) rotate(10deg) scale(.2); opacity: 0; }
+}
+.enemy-state-attack { animation: enemyAttackLunge .13s ease-out; }
+.enemy-state-hurt { animation: enemyHurtRecoil .14s ease-out; }
+.enemy-state-death { animation: enemyDeathFall .28s ease-in forwards; pointer-events: none; }

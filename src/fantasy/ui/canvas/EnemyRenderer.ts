@@ -1,9 +1,11 @@
 import { CombatEngine } from '../../engine/CombatEngine';
 import { BigNumber } from '../../core/BigNumber';
+import { BATTLE_LAYOUT } from '../layout/BattleLayout';
 
 export class EnemyRenderer {
   private static hpFrameImg: HTMLImageElement | null = null;
   private static isFrameLoaded: boolean = false;
+  public static goblinImg: HTMLImageElement | null = null;
 
   static {
     if (typeof Image !== 'undefined') {
@@ -12,19 +14,21 @@ export class EnemyRenderer {
       this.hpFrameImg.onload = () => {
         this.isFrameLoaded = true;
       };
+
+      this.goblinImg = new Image();
+      this.goblinImg.src = '/assets/fantasy/enemy/Enemy_Goblin.png';
     }
   }
 
-  public static render(ctx: CanvasRenderingContext2D, width: number, height: number): void {
+  public static render(ctx: CanvasRenderingContext2D, _width: number, _height: number): void {
     const enemy = CombatEngine.getActiveEnemy();
     if (!enemy) return;
 
-    // Anchor position: Right Side
-    let enemyX = width * 0.72 + (enemy.recoilOffset || 0);
-    const groundY = height * 0.78;
-    let enemyY = groundY - 40;
+    const { x: baseX, y: baseY, width: goblinW, height: goblinH } = BATTLE_LAYOUT.enemy;
+    let goblinX = baseX;
+    let goblinY = baseY;
 
-    let scale = (enemy.def.sizeMultiplier || 1.0) * (enemy.isElite ? 1.25 : 1.0);
+    let scale = (enemy.def.sizeMultiplier || 1.0) * (enemy.isElite ? 1.15 : 1.0);
     let alpha = 1.0;
     let rotation = 0;
 
@@ -33,14 +37,14 @@ export class EnemyRenderer {
         scale *= 0.5 + (1 - enemy.flashTimer / 0.2) * 0.5;
         break;
       case 'IDLE':
-        enemyY += Math.sin(performance.now() * 0.005) * 2;
+        goblinY += Math.sin(performance.now() * 0.005) * 2;
         break;
       case 'ATTACK':
-        enemyX -= 25; // Lunge towards hero
+        goblinX -= 25;
         rotation = -0.15;
         break;
       case 'HURT':
-        enemyX += enemy.recoilOffset;
+        goblinX += enemy.recoilOffset || 0;
         rotation = 0.12;
         break;
       case 'DEATH':
@@ -50,9 +54,12 @@ export class EnemyRenderer {
         break;
     }
 
+    const isFlashing = enemy.state === 'HURT' || enemy.flashTimer > 0;
+    const def = enemy.def;
+
     ctx.save();
     ctx.globalAlpha = alpha;
-    ctx.translate(enemyX, enemyY);
+    ctx.translate(goblinX + goblinW / 2, goblinY + goblinH / 2);
     ctx.rotate(rotation);
     ctx.scale(scale, scale);
 
@@ -64,112 +71,34 @@ export class EnemyRenderer {
       ctx.shadowColor = '#f59e0b';
       ctx.shadowBlur = 16;
       ctx.beginPath();
-      ctx.arc(0, 5, 36, 0, Math.PI * 2);
+      ctx.arc(0, 0, goblinW * 0.45, 0, Math.PI * 2);
       ctx.stroke();
       ctx.restore();
     }
 
-    const isFlashing = enemy.state === 'HURT' || enemy.flashTimer > 0;
-    const def = enemy.def;
-
     if (isFlashing) {
-      ctx.fillStyle = '#ffffff';
-    } else {
-      ctx.fillStyle = def.color;
+      ctx.filter = 'brightness(2) drop-shadow(0 0 16px #ef4444)';
     }
 
-    // 1. Render Specific Monster Body
-    if (def.id.includes('slime')) {
-      ctx.beginPath();
-      ctx.ellipse(0, 10, 20, 16, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(-8, 6, 4, 6);
-      ctx.fillRect(4, 6, 4, 6);
-    } else if (def.id.includes('wolf')) {
-      ctx.beginPath();
-      ctx.ellipse(0, 12, 28, 14, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillRect(-22, -2, 16, 12);
-      ctx.beginPath();
-      ctx.moveTo(-16, -2);
-      ctx.lineTo(-20, -14);
-      ctx.lineTo(-12, -2);
-      ctx.fill();
-      ctx.fillStyle = '#ef4444';
-      ctx.fillRect(-18, 2, 4, 3);
-    } else if (def.id.includes('spider')) {
-      ctx.beginPath();
-      ctx.ellipse(0, 10, 18, 14, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = def.color;
-      ctx.lineWidth = 2;
-      for (let i = -3; i <= 3; i += 2) {
-        ctx.beginPath();
-        ctx.moveTo(i * 4, 10);
-        ctx.lineTo(i * 10, 24);
-        ctx.stroke();
-      }
-      ctx.fillStyle = '#ec4899';
-      ctx.fillRect(-6, 6, 3, 3);
-      ctx.fillRect(3, 6, 3, 3);
-    } else if (def.id.includes('dragon')) {
-      ctx.beginPath();
-      ctx.moveTo(-20, -10);
-      ctx.lineTo(-40, -40);
-      ctx.lineTo(-10, -20);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(20, -10);
-      ctx.lineTo(40, -40);
-      ctx.lineTo(10, -20);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.ellipse(0, 10, 42, 30, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#ef4444';
-      ctx.beginPath();
-      ctx.moveTo(-30, 0);
-      ctx.lineTo(-70, -35);
-      ctx.lineTo(-40, 15);
-      ctx.closePath();
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(30, 0);
-      ctx.lineTo(70, -35);
-      ctx.lineTo(40, 15);
-      ctx.closePath();
-      ctx.fill();
-    } else if (def.id.includes('treant')) {
-      ctx.fillRect(-22, -15, 44, 45);
-      ctx.fillStyle = '#15803d';
-      ctx.beginPath();
-      ctx.arc(0, -25, 24, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#facc15';
-      ctx.fillRect(-10, -5, 6, 6);
-      ctx.fillRect(4, -5, 6, 6);
+    if (this.goblinImg && this.goblinImg.complete && this.goblinImg.naturalWidth > 0) {
+      ctx.drawImage(this.goblinImg, -goblinW / 2, -goblinH / 2, goblinW, goblinH);
     } else {
-      ctx.fillRect(-14, 0, 28, 28);
-      ctx.fillRect(-10, -16, 20, 18);
-      ctx.fillStyle = '#fbbf24';
-      ctx.fillRect(-6, -10, 4, 4);
-      ctx.fillRect(2, -10, 4, 4);
-      ctx.fillStyle = '#78716c';
-      ctx.fillRect(14, -8, 6, 24);
+      ctx.fillStyle = isFlashing ? '#ffffff' : '#15803d';
+      ctx.fillRect(-goblinW / 2, -goblinH / 2, goblinW, goblinH);
     }
 
     ctx.restore();
 
-    // 2. Health Bar Frame Above Head (Display: 360x40 for Boss, 200x26 for normal/elite)
+    // 2. Health Bar Frame Above Head (1920x1080 coordinate space)
     if (enemy.state !== 'DEATH') {
       const hpPct = Math.max(0, enemy.currentHp / enemy.maxHp);
-      const frameW = def.isBoss ? 360 : 220;
-      const frameH = def.isBoss ? 40 : 28;
-      const barX = enemyX - frameW / 2;
-      const barY = enemyY - (scale * 45) - 30;
+      const frameW = def.isBoss ? BATTLE_LAYOUT.enemy.hpBar.bossWidth : BATTLE_LAYOUT.enemy.hpBar.normalWidth;
+      const frameH = def.isBoss ? BATTLE_LAYOUT.enemy.hpBar.bossHeight : BATTLE_LAYOUT.enemy.hpBar.normalHeight;
+      const centerX = goblinX + goblinW / 2;
+      const barX = centerX - frameW / 2;
+      const barY = goblinY + BATTLE_LAYOUT.enemy.hpBar.yOffset;
 
-      if (this.isFrameLoaded && this.hpFrameImg) {
+      if (this.isFrameLoaded && this.hpFrameImg && this.hpFrameImg.complete && this.hpFrameImg.naturalWidth > 0) {
         ctx.drawImage(this.hpFrameImg, barX, barY, frameW, frameH);
 
         const innerX = barX + (def.isBoss ? 52 : 32);
@@ -193,13 +122,13 @@ export class EnemyRenderer {
       ctx.fillStyle = '#ffffff';
       ctx.font = 'bold 11px monospace';
       ctx.textAlign = 'center';
-      ctx.fillText(`${BigNumber.format(enemy.currentHp)} / ${BigNumber.format(enemy.maxHp)}`, enemyX, barY + (def.isBoss ? 24 : 19));
+      ctx.fillText(`${BigNumber.format(enemy.currentHp)} / ${BigNumber.format(enemy.maxHp)}`, centerX, barY + (def.isBoss ? 24 : 19));
 
       // Enemy Name + Elite / Boss Tag
       const prefix = def.isBoss ? '👑 ' : (enemy.isElite ? '⭐ ELITE ' : '');
       ctx.fillStyle = def.isBoss ? '#fbbf24' : (enemy.isElite ? '#f59e0b' : '#f5f5f4');
       ctx.font = def.isBoss ? '900 13px sans-serif' : 'bold 12px sans-serif';
-      ctx.fillText(`${prefix}${def.name}`, enemyX, barY - 6);
+      ctx.fillText(`${prefix}${def.name}`, centerX, barY - 6);
     }
   }
 }

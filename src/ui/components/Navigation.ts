@@ -199,7 +199,9 @@ export class Navigation {
     if (activeBtn) {
       activeBtn.classList.add('active');
       activeBtn.setAttribute('aria-current', 'page');
-      if (!this.el.contains(document.activeElement)) this.setRovingFocus(activeBtn);
+      if (this.el && typeof this.el.contains === 'function' && !this.el.contains(document.activeElement)) {
+        this.setRovingFocus(activeBtn);
+      }
     }
   }
 

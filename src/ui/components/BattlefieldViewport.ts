@@ -129,13 +129,23 @@ export class BattlefieldViewport {
     if (activePet) {
       this.petAvatarEl.style.display = 'block';
       this.petAvatarEl.innerHTML = ArtRuntimeRenderer.renderPet(activePet.id, activePet.evolutionStage);
-      this.petAvatarEl.dataset.petId = activePet.id;
-      this.petAvatarEl.dataset.petEvolution = String(activePet.evolutionStage);
+      if (this.petAvatarEl.dataset) {
+        this.petAvatarEl.dataset.petId = activePet.id;
+        this.petAvatarEl.dataset.petEvolution = String(activePet.evolutionStage);
+      } else {
+        this.petAvatarEl.setAttribute('data-pet-id', activePet.id);
+        this.petAvatarEl.setAttribute('data-pet-evolution', String(activePet.evolutionStage));
+      }
     } else {
       this.petAvatarEl.style.display = 'none';
       this.petAvatarEl.innerHTML = '';
-      delete this.petAvatarEl.dataset.petId;
-      delete this.petAvatarEl.dataset.petEvolution;
+      if (this.petAvatarEl.dataset) {
+        delete this.petAvatarEl.dataset.petId;
+        delete this.petAvatarEl.dataset.petEvolution;
+      } else {
+        this.petAvatarEl.removeAttribute('data-pet-id');
+        this.petAvatarEl.removeAttribute('data-pet-evolution');
+      }
     }
   }
 
