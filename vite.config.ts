@@ -1,10 +1,8 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
-import { editorDevPlugin } from './src/editor/server/editorDevPlugin';
 
 export default defineConfig({
   base: './',
-  plugins: [editorDevPlugin()],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -13,11 +11,10 @@ export default defineConfig({
     target: 'es2020'
   },
   server: {
-    port: 3000,
+    port: 5173,
     open: false
   },
   test: {
     include: ['tests/**/*.test.ts']
   }
 });
-

@@ -1,6 +1,0 @@
-Rarity,PullRatePct,ExpectedCostDiamonds,DuplicateEssence,Star1Multiplier,Star2Multiplier,Star3Multiplier,Star4Multiplier,Star5Multiplier,Star5TotalCostEssence
-Common,55%,182,10,1.0x,1.3x,1.6x,1.9x,2.2x,150
-Rare,28%,357,25,1.0x,1.3x,1.6x,1.9x,2.2x,375
-Epic,12%,833,75,1.0x,1.3x,1.6x,1.9x,2.2x,1125
-Legendary,4%,2500,250,1.0x,1.3x,1.6x,1.9x,2.2x,3750
-Mythic,1%,10000,1000,1.0x,1.3x,1.6x,1.9x,2.2x,15000

@@ -1,6 +1,0 @@
-MilestoneTier,TowerFloor,TowerRewardType,TowerRewardValue,CampaignStage,CampaignGoldPerMinute,CampaignPowerPerMinute,SynergyAssessment
-"Early (World 1)",5,"50 Gems + 10 Essence",500,1-5,240/min,450/min,"Balanced — Tower gives gacha gems, Campaign gives steady gold"
-"Mid (World 2)",15,"150 Gems + 25 Essence",1500,2-5,1.8k/min,3.2k/min,"Tower accelerates hero star promotion, Campaign funds Sect dojos"
-"Late (World 3)",30,"350 Gems + 60 Essence",3000,3-5,24k/min,48k/min,"Complementary — Hero upgrades directly boost Campaign wave clear"
-"Endgame (World 4)",50,"750 Gems + 150 Essence",5000,4-5,380k/min,820k/min,"High synergy with Samsara rush buffs"
-"Master (World 5)",75,"1500 Gems + 300 Essence",7500,5-10,6.5M/min,14M/min,"Infinite scaling endpoint — neither obsoletes the other"
