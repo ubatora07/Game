@@ -29,7 +29,7 @@ export const BATTLE_LAYOUT = {
 
   enemy: {
     x: 1446,
-    y: 540,
+    y: 556,
     width: 320,
     height: 320,
     hpBar: {
