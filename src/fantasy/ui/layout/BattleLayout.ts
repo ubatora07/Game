@@ -1,5 +1,6 @@
 /**
  * Unified Single Source of Truth for Battle Screen (1920x1080 reference canvas)
+ * Extracted directly from Figma JSON export (BattleScreen_Desktop_1920x1080)
  */
 export const BATTLE_LAYOUT = {
   canvas: {
@@ -9,7 +10,7 @@ export const BATTLE_LAYOUT = {
 
   background: {
     x: 0,
-    y: 135,
+    y: 137,
     width: 1920,
     height: 760,
   },
@@ -17,12 +18,17 @@ export const BATTLE_LAYOUT = {
   hero: {
     x: 132,
     y: 540,
-    width: 320,
-    height: 320,
+    width: 302,
+    height: 302,
+    attackFrames: {
+      attack1: { x: 484, y: 533, width: 320, height: 320 },
+      attack2: { x: 854, y: 533, width: 320, height: 320 },
+      attack3: { x: 1224, y: 533, width: 320, height: 320 },
+    },
   },
 
   enemy: {
-    x: 1429,
+    x: 1446,
     y: 540,
     width: 320,
     height: 320,
@@ -47,8 +53,8 @@ export const BATTLE_LAYOUT = {
       height: 86,
     },
     avatar: {
-      x: 60,
-      y: 106,
+      x: 34,
+      y: 92,
       width: 127,
       height: 127,
     },
@@ -71,28 +77,34 @@ export const BATTLE_LAYOUT = {
       height: 108,
     },
     coin: {
-      x: 1282,
-      y: 124,
+      x: 1296,
+      y: 137,
       width: 64,
       height: 64,
+      textX: 1368,
+      textY: 153,
     },
     power: {
-      x: 1455,
-      y: 130,
+      x: 1449,
+      y: 140,
       width: 51,
       height: 51,
+      textX: 1508,
+      textY: 153,
     },
     diamond: {
-      x: 1606,
-      y: 124,
+      x: 1592,
+      y: 134,
       width: 64,
       height: 64,
+      textX: 1664,
+      textY: 153,
     },
     settings: {
-      x: 1788,
-      y: 108,
-      width: 96,
-      height: 96,
+      x: 1754,
+      y: 102,
+      width: 128,
+      height: 128,
     },
   },
 
@@ -102,11 +114,11 @@ export const BATTLE_LAYOUT = {
     width: 1920,
     height: 227,
     buttons: {
-      battle: { x: 217, topOffset: 20, width: 208, height: 192 },
-      hero: { x: 517, topOffset: 24, width: 226, height: 183 },
-      gear: { x: 847, topOffset: 27, width: 237, height: 180 },
-      upgrades: { x: 1172, topOffset: 32, width: 221, height: 170 },
-      world: { x: 1491, topOffset: 29, width: 231, height: 173 },
+      battle: { x: 211, topOffset: 30, width: 208, height: 192 },
+      hero: { x: 527, topOffset: 35, width: 226, height: 183 },
+      gear: { x: 841, topOffset: 44, width: 237, height: 180 },
+      upgrades: { x: 1166, topOffset: 48, width: 221, height: 170 },
+      world: { x: 1485, topOffset: 35, width: 231, height: 173 },
     },
   },
 } as const;

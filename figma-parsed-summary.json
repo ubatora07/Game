@@ -1,0 +1,227 @@
+[
+  {
+    "name": "BattleScreen_Desktop_1920x1080",
+    "type": "FRAME",
+    "relX": 0,
+    "relY": 0,
+    "width": 1920,
+    "height": 1080,
+    "depth": 0
+  },
+  {
+    "name": "BG",
+    "type": "GROUP",
+    "relX": 0,
+    "relY": 0,
+    "width": 1920,
+    "height": 1080,
+    "depth": 1
+  },
+  {
+    "name": "Background_Greenvale",
+    "type": "RECTANGLE",
+    "relX": 0,
+    "relY": 137,
+    "width": 1920,
+    "height": 760,
+    "depth": 2
+  },
+  {
+    "name": "Footer_frame",
+    "type": "RECTANGLE",
+    "relX": 0,
+    "relY": 853,
+    "width": 1920,
+    "height": 227,
+    "depth": 2
+  },
+  {
+    "name": "Rectangle 1",
+    "type": "RECTANGLE",
+    "relX": 0,
+    "relY": 0,
+    "width": 1920,
+    "height": 86,
+    "depth": 2
+  },
+  {
+    "name": "header1 1",
+    "type": "RECTANGLE",
+    "relX": 0,
+    "relY": 0,
+    "width": 1920,
+    "height": 300,
+    "depth": 1
+  },
+  {
+    "name": "Enemy",
+    "type": "GROUP",
+    "relX": 1446,
+    "relY": 540,
+    "width": 320,
+    "height": 320,
+    "depth": 1
+  },
+  {
+    "name": "Enemy_Goblin",
+    "type": "RECTANGLE",
+    "relX": 1446,
+    "relY": 540,
+    "width": 320,
+    "height": 320,
+    "depth": 2
+  },
+  {
+    "name": "Hero",
+    "type": "GROUP",
+    "relX": 132,
+    "relY": 533,
+    "width": 1412,
+    "height": 320,
+    "depth": 1
+  },
+  {
+    "name": "Hero_ATTACK_3",
+    "type": "RECTANGLE",
+    "relX": 1224,
+    "relY": 533,
+    "width": 320,
+    "height": 320,
+    "depth": 2
+  },
+  {
+    "name": "Hero_ATTACK_2",
+    "type": "RECTANGLE",
+    "relX": 854,
+    "relY": 533,
+    "width": 320,
+    "height": 320,
+    "depth": 2
+  },
+  {
+    "name": "Hero_ATTACK_1",
+    "type": "RECTANGLE",
+    "relX": 484,
+    "relY": 533,
+    "width": 320,
+    "height": 320,
+    "depth": 2
+  },
+  {
+    "name": "Hero_IDLE",
+    "type": "RECTANGLE",
+    "relX": 132,
+    "relY": 540,
+    "width": 302,
+    "height": 302,
+    "depth": 2
+  },
+  {
+    "name": "Icon",
+    "type": "GROUP",
+    "relX": 34,
+    "relY": 92,
+    "width": 1622,
+    "height": 127,
+    "depth": 1
+  },
+  {
+    "name": "Diamond",
+    "type": "RECTANGLE",
+    "relX": 1592,
+    "relY": 134,
+    "width": 64,
+    "height": 64,
+    "depth": 2
+  },
+  {
+    "name": "Sword_Power",
+    "type": "RECTANGLE",
+    "relX": 1449,
+    "relY": 140,
+    "width": 51,
+    "height": 51,
+    "depth": 2
+  },
+  {
+    "name": "Coin",
+    "type": "RECTANGLE",
+    "relX": 1296,
+    "relY": 137,
+    "width": 64,
+    "height": 64,
+    "depth": 2
+  },
+  {
+    "name": "Slop_Hero_icon",
+    "type": "RECTANGLE",
+    "relX": 34,
+    "relY": 92,
+    "width": 127,
+    "height": 127,
+    "depth": 2
+  },
+  {
+    "name": "Button",
+    "type": "GROUP",
+    "relX": 211,
+    "relY": 102,
+    "width": 1671,
+    "height": 975,
+    "depth": 1
+  },
+  {
+    "name": "World_button",
+    "type": "RECTANGLE",
+    "relX": 1485,
+    "relY": 888,
+    "width": 231,
+    "height": 173,
+    "depth": 2
+  },
+  {
+    "name": "Upgrades_button",
+    "type": "RECTANGLE",
+    "relX": 1166,
+    "relY": 901,
+    "width": 221,
+    "height": 170,
+    "depth": 2
+  },
+  {
+    "name": "Gear_button",
+    "type": "RECTANGLE",
+    "relX": 841,
+    "relY": 897,
+    "width": 237,
+    "height": 180,
+    "depth": 2
+  },
+  {
+    "name": "Hero_button",
+    "type": "RECTANGLE",
+    "relX": 527,
+    "relY": 888,
+    "width": 226,
+    "height": 183,
+    "depth": 2
+  },
+  {
+    "name": "Battle_button",
+    "type": "RECTANGLE",
+    "relX": 211,
+    "relY": 883,
+    "width": 208,
+    "height": 192,
+    "depth": 2
+  },
+  {
+    "name": "Settings_gear",
+    "type": "RECTANGLE",
+    "relX": 1754,
+    "relY": 102,
+    "width": 128,
+    "height": 128,
+    "depth": 2
+  }
+]

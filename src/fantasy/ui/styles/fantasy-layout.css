@@ -75,10 +75,10 @@ body, html {
 
 .hud-hero-avatar-wrap {
   position: absolute;
-  left: 60px;
-  top: 106px;
-  width: 134px;
-  height: 134px;
+  left: 34px;
+  top: 92px;
+  width: 127px;
+  height: 127px;
   z-index: 10;
   pointer-events: auto;
   display: flex;
@@ -179,24 +179,54 @@ body, html {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
 }
 
-.hud-stage-title {
+.hud-stage-title,
+.hud-stage-number {
   font-family: var(--font-display, sans-serif);
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 900;
   color: #fde047;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
-  letter-spacing: 1px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.5px;
 }
 
-.hud-wave-nodes {
+.hud-wave-nodes,
+.hud-wave-dots {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  margin-top: 4px;
+  gap: 4px;
+  margin-top: 2px;
 }
 
-.hud-resource-slot {
+.wave-node,
+.hud-wave-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #78350f;
+}
+
+.wave-node.completed,
+.hud-wave-dot.active {
+  background: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b;
+}
+
+.wave-node.boss,
+.hud-wave-dot.boss {
+  border-color: #ef4444;
+}
+
+.wave-node.boss.completed,
+.hud-wave-dot.boss.active {
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+/* Right Currencies & Settings (Exact Figma JSON coordinates) */
+.hud-resource-slot,
+.hud-res-slot {
   position: absolute;
   z-index: 10;
   pointer-events: auto;
@@ -218,10 +248,10 @@ body, html {
   letter-spacing: 0.5px;
 }
 
-/* Gold slot (Coin: 64x64 at left:1282, top:124) */
+/* Gold slot (Coin: 64x64 at left:1296, top:137) */
 .gold-slot {
-  left: 1282px;
-  top: 124px;
+  left: 1296px;
+  top: 137px;
 }
 .gold-slot .coin-icon {
   width: 64px;
@@ -231,10 +261,10 @@ body, html {
   color: #fde047;
 }
 
-/* Power slot (Sword_Power: 51x51 at left:1455, top:130) */
+/* Power slot (Sword_Power: 51x51 at left:1449, top:140) */
 .power-slot {
-  left: 1455px;
-  top: 130px;
+  left: 1449px;
+  top: 140px;
 }
 .power-slot .power-icon {
   width: 51px;
@@ -244,10 +274,10 @@ body, html {
   color: #f87171;
 }
 
-/* Gems slot (Diamond: 64x64 at left:1606, top:124) */
+/* Gems slot (Diamond: 64x64 at left:1592, top:134) */
 .gems-slot {
-  left: 1606px;
-  top: 124px;
+  left: 1592px;
+  top: 134px;
 }
 .gems-slot .diamond-icon {
   width: 64px;
@@ -257,13 +287,13 @@ body, html {
   color: #38bdf8;
 }
 
-/* Settings button (96x96 at left:1788, top:108) */
+/* Settings button (Settings_gear: 128x128 at left:1754, top:102) */
 .hud-settings-btn {
   position: absolute;
-  left: 1788px;
-  top: 108px;
-  width: 96px;
-  height: 96px;
+  left: 1754px;
+  top: 102px;
+  width: 128px;
+  height: 128px;
   z-index: 10;
   pointer-events: auto;
   background: transparent;
@@ -285,8 +315,8 @@ body, html {
 }
 
 .hud-gear-icon {
-  width: 96px;
-  height: 96px;
+  width: 128px;
+  height: 128px;
   object-fit: contain;
   image-rendering: pixelated;
 }
@@ -352,47 +382,47 @@ body, html {
 }
 
 /* Exact Figma Button Positions:
-   Battle: left: 217, top: 20, width: 208, height: 192
-   Hero: left: 517, top: 24, width: 226, height: 183
-   Gear: left: 847, top: 27, width: 237, height: 180
-   Upgrades: left: 1172, top: 32, width: 221, height: 170
-   World: left: 1491, top: 29, width: 231, height: 173
+   Battle: left: 211, top: 30, width: 208, height: 192
+   Hero: left: 527, top: 35, width: 226, height: 183
+   Gear: left: 841, top: 44, width: 237, height: 180
+   Upgrades: left: 1166, top: 48, width: 221, height: 170
+   World: left: 1485, top: 35, width: 231, height: 173
 */
 .btn-battle {
-  left: 217px;
-  top: 20px;
+  left: 211px;
+  top: 30px;
   width: 208px;
   height: 192px;
   z-index: 5;
 }
 
 .btn-hero {
-  left: 517px;
-  top: 24px;
+  left: 527px;
+  top: 35px;
   width: 226px;
   height: 183px;
   z-index: 5;
 }
 
 .btn-gear {
-  left: 847px;
-  top: 27px;
+  left: 841px;
+  top: 44px;
   width: 237px;
   height: 180px;
   z-index: 5;
 }
 
 .btn-upgrades {
-  left: 1172px;
-  top: 32px;
+  left: 1166px;
+  top: 48px;
   width: 221px;
   height: 170px;
   z-index: 5;
 }
 
 .btn-world {
-  left: 1491px;
-  top: 29px;
+  left: 1485px;
+  top: 35px;
   width: 231px;
   height: 173px;
   z-index: 5;
